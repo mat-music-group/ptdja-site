@@ -54,6 +54,7 @@ Rifare il sito pubblico di Pete Tong DJ Academy (`www.petetong-djacademy.com`, o
 | YouTube | solo link al canale | 9 pagine | link |
 | Lottie | animazione icona menu | 7 pagine | **resta**, file `.json` da Webflow |
 | vt-quiz.js | landing kit, quiz Virtual Tour su `start.petetong` | ogni pagina | **resta** |
+| Trengo | widget di chat (bolla in basso a destra), custom code di pagina | 6 pagine: home, dj-course, producer-course, mix-mastering-course, pricing-page, play-get-signed | **resta** (Matteo, 14/09), montato solo su quelle 6 |
 | Google Fonts | Oswald, Lato, Geist, Inter | ogni pagina | gratuiti, via `next/font` |
 
 Form Webflow: **nessuno sulle 10 pagine** (verificato sull'HTML live e sulla lista form del sito). I 27 form Webflow esistenti stanno su lite-version, rekordbox trial, pagine `-old` e contact in bozza: fuori scope.

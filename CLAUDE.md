@@ -26,6 +26,9 @@ Il sito Webflow ha nel custom code (salvato in `docs/webflow/custom-code-head.ht
 6. `https://tool.ptdja.com/landing-kit/kit/vt-quiz.js` con `data-quiz="https://start.petetong-djacademy.com/virtualtour-form"`.
 7. Iubenda CMP (config nell'HTML di ogni pagina).
 8. Trustpilot bootstrap e widget, Feedspace embed, Wistia, Lottie.
+9. Trengo (chat), custom code **di pagina**: componente `Trengo` da montare solo su home, dj-course, producer-course, mix-mastering-course, pricing-page, play-get-signed. Non sulle altre.
+
+Iubenda: sul sito la Cookie Solution la carica **GTM** (nessuna `csConfiguration` nell'HTML). Quindi `Cmp` e `GoogleConsentBridge` del repo landing NON vanno montati: il banner arriva dal container.
 
 **Parti dai componenti del repo landing** (`src/components/` di `repo-start`: `Cmp`, `ConsentBridge`, `GoogleConsentBridge`, `GoogleTags`, `Mixpanel`, `Clarity`, `Acquisition`, `useConsentedScript`, `src/lib/analytics.config.ts`, `src/lib/iubenda.config.json`) e adattali: il sito, a differenza delle landing, carica GTM via Stape e NON usa `meta.js` del landing kit (il pixel Meta passa da GTM: aggiungere `meta.js` duplicherebbe gli eventi).
 

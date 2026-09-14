@@ -30,6 +30,9 @@ export const MIXPANEL_API_HOST = "https://api-eu.mixpanel.com";
 /** Progetto Microsoft Clarity, lo stesso del checkout: il funnel si legge intero. */
 export const CLARITY_PROJECT_ID = "qgyx8qgz1i";
 
+/** Widget di chat Trengo. Chiave pubblica, sta nell'HTML di 6 pagine del sito. */
+export const TRENGO_KEY = "tXUJdf3UvUi255j6ncl8";
+
 /** Quiz del Virtual Tour servito dal landing kit. */
 export const VT_QUIZ_DESTINATION = "https://start.petetong-djacademy.com/virtualtour-form";
 
