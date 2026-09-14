@@ -98,8 +98,23 @@ Sezione 1 del piano **fatta**. Tutto letto, niente scritto sul sito Webflow. Il 
 - Il banner Iubenda si chiude cliccando `.iubenda-cs-accept-btn` (funziona su tutte le pagine). La via del cookie `_iub_cs-<siteId>` pre-impostato è stata scartata: il `siteId` non è nell'HTML perché la CMP la inietta GTM.
 - Gli asset referenziati dal CSS Webflow via `url()` **non** sono stati scaricati: la consegna riguardava quelli usati dall'HTML. Se in ricostruzione manca un'immagine di sfondo, è lì che va cercata.
 
+## 🔁 Ripresa serale (Fable, 2026-09-14, dalle 20:30)
+
+La sessione precedente si è fermata alle 20:30 lasciando 6 pagine costruite ma non committate. Verificato: tipi puliti, tutte le sezioni dell'outline presenti, metadati e JSON-LD identici ai json di riferimento, nessun TODO nel codice. Confronto screenshot della pricing page: **due difetti trovati e corretti**:
+1. FAQ 40 px per riga più alta (107 contro 67 px). Causa: Webflow tiene `margin-top: -40px` su `.faq-item-content` anche da chiusa, e il componente smontava la risposta. Ora `Faq.tsx` la tiene montata ad altezza zero con `-mt-[40px]` sempre. Misurato dopo: 67 px.
+2. "Their Words" del titolo recensioni senza peso 600 (`.text-span-136`): aggiunto `font-semibold` in `Reviews.tsx`.
+
+`test/rotte.mjs` esteso alle 7 rotte (79 controlli, 0 errori). Commit `8c8cd2d feat(pagine): 404, terms, terms-sa, recess, advanced-djs e pricing-page`. Pricing desktop 5000 px contro 4973 di riferimento; mobile 6992 contro 6617, rifinitura mobile in corso con un agente Opus (hero, eyebrow, card, spazi fra sezioni).
+
+Omissioni dichiarate dall'agente che ha costruito le 6 pagine (nei commenti dei file): popup exit intent senza contenuto perché vuoto anche sull'originale; secondo script exit intent del footer (codice morto che lancia `TypeError`) non portato; handler `#btn-typeform` e tutti gli eventi Mixpanel rimandati al passo tracking (oggi `trackMixpanel` non ha chiamanti); tooltip Flowbase sostituito da `title` nativo; quarto effetto dell'accordion FAQ (fondo crema alla chiusura) scartato.
+
+Mancanze di metadati comuni a tutte le pagine, da fare nel passo SEO: `icons` (favicon e apple touch icon), `verification.google` (`cExwpYSnIc6g-zZ9OygGshai6S4i3ICN-h0gkbnms8U`), `metadataBase`; `twitter:card` oggi emesso anche dove Webflow non lo ha.
+
+Server `next start -p 3000` rimasto acceso dalla sessione precedente: fermato. Piano completo di ripresa in `~/.claude/plans/ok-continua-non-so-purrfect-unicorn.md` (ondate A: play-get-signed, B: dj-course, C: producer, mix-mastering, home in parallelo; poi tracking, SEO, deploy).
+
 ## 👉 Next steps (what I'd do next)
-1. ~~Estrazione (sezione 1 del piano)~~ **fatta**, vedi sopra. Da qui in poi il riferimento è `docs/webflow/`.
-2. Sciogliere i dubbi 1, 2 e 4 qui sopra con Matteo.
-3. Ricostruzione pagina per pagina con Opus, verifica screenshot con Fable.
-4. Eventi Mixpanel del footer, verifica della decorazione dei link al carrello, audit Vibe Shield, deploy di test.
+1. ~~Estrazione~~ fatta. ~~Sei pagine semplici~~ fatte e committate (`8c8cd2d`).
+2. Ondata A: `play-get-signed` (in corso). Ondata B: `dj-course` e componenti corso. Ondata C: `producer-course`, `mix-mastering-course`, home in parallelo.
+3. Eventi Mixpanel del footer, verifica decorazione link carrello.
+4. SEO: icons, verification, metadataBase, sitemap, redirect (serve export da Webflow).
+5. Vibe Shield, repo GitHub, deploy di test. Decisioni da chiedere a Matteo al deploy: guardia hostname Mixpanel; Clarity dietro consenso o no.

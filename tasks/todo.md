@@ -1,30 +1,30 @@
 # Piano: sito-ptdja, fase 1 (10 pagine)
 
-> Piano da confermare prima di costruire. Spuntare man mano. Ultimo aggiornamento: 2026-09-14.
+> Piano da confermare prima di costruire. Spuntare man mano. Ultimo aggiornamento: 2026-09-14 (sera, ripresa Fable).
 
 ## 0. Fondamenta
-- [ ] Repo locale in `sito-ptdja/` (git init, `.gitignore`, `.env.example` vuoto, `CLAUDE.md` di progetto, `README.md`).
-- [ ] Scaffolding Next.js copiato dal repo landing (`repo-start`): `package.json`, `tsconfig`, Tailwind 4, `next.config.ts`, `test/rotte.mjs` adattato.
-- [ ] Componenti trasversali riusati dal repo landing: `Cmp` (Iubenda), `ConsentBridge`, `GoogleTags` (GTM via Stape), `Mixpanel`, `Clarity`, `Acquisition` (track.js con `data-landing="sito"`), `useConsentedScript`.
-- [ ] Script `cb push v2.2` portato tal quale in un componente `Attribution` (stesse chiavi `attr_*`, stesso cookie domain, stessi `FIELD_MAP`).
-- [ ] Refersion, Trustpilot bootstrap, vt-quiz.js come `next/script` con consenso dove serve.
-- [ ] Font via `next/font/google`: Oswald, Lato, Geist, Inter.
+- [x] Repo locale in `sito-ptdja/` (git init, `.gitignore`, `.env.example` vuoto, `CLAUDE.md` di progetto, `README.md`).
+- [x] Scaffolding Next.js copiato dal repo landing (`repo-start`): `package.json`, `tsconfig`, Tailwind 4, `next.config.ts`, `test/rotte.mjs` adattato.
+- [x] Componenti trasversali riusati dal repo landing: `Cmp` (Iubenda), `ConsentBridge`, `GoogleTags` (GTM via Stape), `Mixpanel`, `Clarity`, `Acquisition` (track.js con `data-landing="sito"`), `useConsentedScript`.
+- [x] Script `cb push v2.2` portato tal quale in un componente `Attribution` (stesse chiavi `attr_*`, stesso cookie domain, stessi `FIELD_MAP`).
+- [x] Refersion, Trustpilot bootstrap, vt-quiz.js come `next/script` con consenso dove serve.
+- [x] Font via `next/font/google`: Oswald, Lato, Geist, Inter.
 - [ ] Vibe Shield: `/setup-security` sul repo nuovo.
 
 ## 1. Estrazione dal sito Webflow (nessuna modifica al sito live)
-- [ ] Per ognuna delle 10 pagine: HTML pubblicato salvato in `docs/webflow/<slug>.html`, CSS `mats-mubly.webflow.shared.*.css` salvato una volta.
-- [ ] Metadati via MCP: title, meta description, Open Graph, JSON-LD per pagina → `src/testi/<slug>.meta.ts`.
-- [ ] Asset: elenco degli URL immagine e video usati dalle 10 pagine, scaricati in `public/` con nomi leggibili, mappa vecchio URL → nuovo path.
-- [ ] Lottie del menu scaricato.
-- [ ] Screenshot di riferimento desktop (1440) e mobile (390) di ogni pagina, sopra e sotto la piega, con tutte le sezioni.
+- [x] Per ognuna delle 10 pagine: HTML pubblicato salvato in `docs/webflow/<slug>.html`, CSS `mats-mubly.webflow.shared.*.css` salvato una volta.
+- [x] Metadati via MCP: title, meta description, Open Graph, JSON-LD per pagina → `src/testi/<slug>.meta.ts`.
+- [x] Asset: elenco degli URL immagine e video usati dalle 10 pagine, scaricati in `public/` con nomi leggibili, mappa vecchio URL → nuovo path.
+- [x] Lottie del menu scaricato.
+- [x] Screenshot di riferimento desktop (1440) e mobile (390) di ogni pagina, sopra e sotto la piega, con tutte le sezioni.
 
 ## 2. Ricostruzione pagina per pagina (Opus, un subagente per pagina, Fable verifica)
 Ordine: prima le pagine semplici per stabilizzare header, footer e design token, poi le pesanti.
-- [ ] Header e footer condivisi (menu, dropdown, icona Lottie, CTA `Enroll now`), 404.
-- [ ] `terms-conditions` e `terms-conditions-sa` (testo lungo, pochi componenti).
-- [ ] `advanced-djs` (36KB, zero interazioni).
-- [ ] `recess`.
-- [ ] `pricing-page`: 3 piani × 2 cicli × 3 valute, 18 link Chargebee identici, meccanismo di scelta valuta da capire e replicare, tooltip nativo al posto di Flowbase.
+- [x] Header e footer condivisi (menu, dropdown, icona Lottie, CTA `Enroll now`), 404.
+- [x] `terms-conditions` e `terms-conditions-sa` (testo lungo, pochi componenti).
+- [x] `advanced-djs` (36KB, zero interazioni).
+- [x] `recess`.
+- [x] `pricing-page`: 3 piani × 2 cicli × 3 valute, 18 link Chargebee identici, meccanismo di scelta valuta da capire e replicare, tooltip nativo al posto di Flowbase.
 - [ ] `play-get-signed` (Talent Pool).
 - [ ] Home (59 interazioni, carosello corsi, Feedspace, Trustpilot, Wistia hero).
 - [ ] `dj-course` (77 interazioni, 19 riferimenti Wistia, FAQ).
