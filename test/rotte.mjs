@@ -77,6 +77,7 @@ const ROTTE = [
   { path: "/advanced-djs", status: 200, nome: "advanced-djs" },
   { path: "/pricing-page", status: 200, nome: "pricing-page" },
   { path: "/play-get-signed", status: 200, nome: "play-get-signed" },
+  { path: "/dj-course", status: 200, nome: "dj-course" },
 ];
 
 /* ── Ciò che deve esserci, e ciò che non deve esserci ──────────────
