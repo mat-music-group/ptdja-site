@@ -1,0 +1,341 @@
+"use client";
+
+import { motion } from "framer-motion";
+import Image from "next/image";
+import { useEffect, useRef, useState } from "react";
+import { Tooltip } from "@/components/ui/Tooltip";
+import { usePaese } from "@/lib/usePaese";
+import { visibilePerPaese } from "@/lib/geo";
+import { LISTINO, PIANI, VALUTE, type Piano, type Valuta } from "@/testi/condivisi";
+
+/*
+ * Il blocco prezzi: `div.cloneable-container-default-2.center`.
+ *
+ * È il componente più condiviso del sito: 6 pagine su 11 lo montano con
+ * 5.499 caratteri di testo identico e gli stessi 18 link al carrello.
+ *
+ * ── LE TRE VALUTE ───────────────────────────────────────────────────────
+ * Non c'è nessuno switch di valuta. Le tre griglie (USD, EUR, GBP) stanno
+ * tutte e tre nel DOM, come su Webflow, e il gate geografico ne accende una
+ * sola. Il server le rende tutte e non ne mostra nessuna: le nasconde la
+ * regola `[data-geo]` di `globals.css`, che sono le stesse righe che il sito
+ * inietta insieme allo script "GEO-GATED REGION BLOCKER v0.3". Vedi
+ * `src/lib/geo.ts` per la cascata e per il perché non usiamo l'IP.
+ *
+ * ── IL CICLO DI FATTURAZIONE ────────────────────────────────────────────
+ * ⚠️ Sul sito i nomi delle classi sono invertiti: `.is_monthly` è il piano
+ * ANNUALE e `.is_annual` è il TRIMESTRALE, `data-month` (13/19/24) è il
+ * mensile equivalente dell'annuale e `data-year` (19/29/39) quello del
+ * trimestrale. Qui i nomi dicono la verità: `annuale` e `trimestrale`.
+ * Lo stato iniziale è ANNUALE, come su Webflow (nell'IX2 il primo gruppo di
+ * `a-606` è dichiarato stato iniziale, con il pallino a sinistra e il bottone
+ * annuale visibile).
+ *
+ * L'animazione dei numeri riproduce lo script jQuery `#packageSwitch`:
+ * 500 ms, andamento lineare, arrotondamento a intero a ogni passo.
+ */
+
+type ProprietaPricing = {
+  readonly className?: string;
+};
+
+export function PricingPlans({ className = "" }: ProprietaPricing) {
+  const paese = usePaese();
+  const [trimestrale, setTrimestrale] = useState(false);
+
+  return (
+    <div className={`flex w-full flex-col items-center ${className}`}>
+      <div className="mx-auto w-full max-w-sito bg-sfondo px-[60px] max-sm:px-[10px]">
+        {/* ── Titolo ─────────────────────────────────────────────────── */}
+        <h2 className="mt-[110px] text-center text-[48px] font-medium tracking-[-2.5px] text-bianco max-sm:mt-[50px] max-sm:text-[32px] max-sm:leading-[1.2]">
+          <span className="text-bianco">
+            {LISTINO.titoloPrima}
+            <br />
+          </span>
+          <span className="text-bianco">
+            {VALUTE.map((valuta) => (
+              <span
+                key={valuta.codice}
+                data-geo={valuta.modo}
+                className={
+                  visibilePerPaese(valuta.modo, valuta.paesi, paese)
+                    ? "geo-visibile"
+                    : undefined
+                }
+              >
+                {valuta.simbolo}
+                {LISTINO.cifraTitolo}
+              </span>
+            ))}
+            {LISTINO.titoloDopo}
+          </span>
+        </h2>
+
+        {/* `color: gray` nel CSS Webflow, cioè la parola chiave CSS (#808080),
+            non un grigio della scala Tailwind. */}
+        <p className="mb-[10px] text-center text-[18px] leading-[1.2] text-[gray]">
+          {LISTINO.paragrafo.split("\n").map((riga, i) => (
+            <span key={riga}>
+              {i > 0 ? <br /> : null}
+              {riga}
+            </span>
+          ))}
+        </p>
+
+        <div className="mt-[44px] flex flex-wrap items-center justify-start">
+          {/* ── Interruttore annuale / trimestrale ───────────────────── */}
+          <div className="flex w-full items-center justify-center">
+            <div className="flex w-[40%] flex-row items-center justify-center gap-[10px] self-center rounded-full border border-bordo-chiaro bg-carta px-5 py-[15px] text-left max-lg:w-[53%] max-md:w-full">
+              <div className="flex-none text-center text-sm font-normal leading-none text-testo-toggle">
+                {LISTINO.toggleAnnuale}
+              </div>
+              <button
+                type="button"
+                role="switch"
+                aria-checked={trimestrale}
+                aria-label={
+                  trimestrale ? LISTINO.toggleTrimestrale : LISTINO.toggleAnnuale
+                }
+                onClick={() => setTrimestrale((v) => !v)}
+                className="mx-[10px] w-[4.5rem] shrink-0 cursor-pointer rounded-full bg-mint-acceso p-[5px]"
+              >
+                <motion.span
+                  className="block h-[30px] w-[30px] rounded-full bg-[#191717]"
+                  animate={{ x: trimestrale ? "105%" : "0%" }}
+                  transition={{ duration: 0.5, ease: [0.83, 0, 0.17, 1] }}
+                />
+              </button>
+              <div className="flex-none text-center text-sm font-normal leading-none text-testo-toggle">
+                {LISTINO.toggleTrimestrale}
+              </div>
+            </div>
+          </div>
+
+          {/* ── Le tre griglie di valuta ─────────────────────────────── */}
+          {VALUTE.map((valuta) => (
+            <div
+              key={valuta.codice}
+              data-geo={valuta.modo}
+              className={
+                visibilePerPaese(valuta.modo, valuta.paesi, paese)
+                  ? "geo-visibile w-full"
+                  : "w-full"
+              }
+            >
+              <div className="mx-auto w-full">
+                <div className="mt-16 flex flex-col items-center justify-between">
+                  <div className="grid w-full grid-cols-3 gap-[3.2rem] max-lg:grid-cols-1">
+                    {PIANI.map((piano) => (
+                      <CartaPiano
+                        key={piano.id}
+                        piano={piano}
+                        valuta={valuta}
+                        trimestrale={trimestrale}
+                      />
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+/* ── Una card ──────────────────────────────────────────────────────────── */
+
+function CartaPiano({
+  piano,
+  valuta,
+  trimestrale,
+}: {
+  readonly piano: Piano;
+  readonly valuta: Valuta;
+  readonly trimestrale: boolean;
+}) {
+  const popolare = piano.id === "PRO";
+
+  const href =
+    `${LISTINO.baseCarrello}?subscription_items[item_price_id][0]=` +
+    `${piano.id}-${valuta.codice}-${trimestrale ? "Every-3-months" : "Yearly"}`;
+
+  const totale = trimestrale ? piano.totaleTrimestrale : piano.totaleAnnuale;
+
+  return (
+    <div
+      className={`rounded-carta border p-6 text-bianco ${
+        popolare ? "border-mint-acceso bg-carta-pro" : "border-bordo-chiaro"
+      }`}
+    >
+      {/* Intestazione: nome del piano ed eventuale badge. */}
+      <div className="w-full">
+        <div className="flex items-center justify-start gap-3 leading-none">
+          <div className="pb-[2px] text-[26px] font-semibold">{piano.nome}</div>
+          {piano.badge ? (
+            <div
+              className={`flex items-center justify-center rounded-etichetta px-[10px] py-[6px] text-sm font-semibold ${
+                piano.badge.tono === "mint"
+                  ? "border border-mint-acceso bg-[#2d2d2d] text-mint-acceso"
+                  : "bg-giallo-badge text-carta"
+              }`}
+            >
+              {piano.badge.testo}
+            </div>
+          ) : null}
+        </div>
+        <div className="mt-2 text-[18px] font-light leading-none text-testo-chiaro">
+          {piano.sottotitolo}
+        </div>
+      </div>
+
+      {/* Prezzo: simbolo, numero animato, e la riga "per month / billed …". */}
+      <div className="mt-4">
+        <div className="mb-[-25px] mt-[30px] flex items-end justify-start">
+          <div className="mr-[5px] text-[48px] font-light leading-[48px] text-mint-acceso">
+            {valuta.simbolo}
+          </div>
+          <NumeroAnimato
+            da={piano.mensileAnnuale}
+            a={piano.mensileTrimestrale}
+            trimestrale={trimestrale}
+          />
+          <div className="mr-[5px] whitespace-pre-line pb-[5px] text-sm leading-[18px] text-testo-prezzo">
+            {trimestrale ? LISTINO.perMeseTrimestrale : LISTINO.perMeseAnnuale}
+          </div>
+        </div>
+      </div>
+
+      {/* CTA verso il carrello Chargebee. */}
+      <div className="mt-[30px]">
+        <a
+          href={href}
+          className="flex w-full items-center justify-center rounded-pillola bg-mint-acceso px-5 py-[10px] text-base font-medium text-carta transition-colors hover:bg-bianco"
+        >
+          {LISTINO.ctaPrefisso}
+          {valuta.simbolo}
+          {totale}
+          {!trimestrale ? (
+            <span className="ml-[5px] rounded-xl bg-nero px-[10px] text-mint line-through">
+              {valuta.simbolo}
+              {piano.totalePieno}
+            </span>
+          ) : null}
+        </a>
+      </div>
+
+      <div className="mt-2">
+        <div className="text-center text-sm font-light leading-none text-testo-toggle">
+          {LISTINO.rassicurazione}
+        </div>
+      </div>
+
+      {/* "What's Included:" e la lista. */}
+      <div className="mt-8">
+        <div className="border-b border-bordo pb-[2px] text-sm text-testo-tenue">
+          {LISTINO.incluso}
+        </div>
+      </div>
+
+      <ul className="m-0 mt-8 list-none p-0">
+        {piano.voci.map((voce) => (
+          <li
+            key={voce.testo}
+            className={`mt-[10px] flex justify-start ${
+              voce.grado ? "items-center" : "items-start"
+            }`}
+          >
+            <Image
+              src={voce.grado ? LISTINO.iconaGrado.src : LISTINO.iconaSpunta.src}
+              alt=""
+              width={voce.grado ? LISTINO.iconaGrado.larghezza : LISTINO.iconaSpunta.larghezza}
+              height={voce.grado ? LISTINO.iconaGrado.altezza : LISTINO.iconaSpunta.altezza}
+              className={`mr-6 w-[14px] shrink-0 ${voce.grado ? "h-[19px]" : "h-[14px]"}`}
+            />
+            <div className="flex flex-col">
+              <div className="flex flex-row items-center text-sm font-light leading-[1.2] text-testo-lista">
+                <span>{voce.testo}</span>
+                {voce.tooltip ? <Tooltip messaggio={voce.tooltip} /> : null}
+              </div>
+              {voce.sotto?.map((figlia) => (
+                <div
+                  key={figlia.testo}
+                  className="flex items-center py-[1px] text-sm text-testo-sottovoce"
+                >
+                  <span>{figlia.testo}</span>
+                  <Tooltip messaggio={figlia.tooltip} />
+                </div>
+              ))}
+            </div>
+          </li>
+        ))}
+      </ul>
+
+      {/* "Best For" + la frase, con le parole in mint. */}
+      <div className="mt-[30px] border-t border-bordo pt-[10px] text-[18px] font-light leading-[18px] text-testo-tenue">
+        <span className="font-normal leading-[30px] text-bianco">
+          {piano.bestFor.titolo}
+        </span>
+        <br />
+        {piano.bestFor.prima}
+        <span className="text-mint-acceso">{piano.bestFor.evidenziato}</span>
+        {piano.bestFor.mezzo}
+        {piano.bestFor.evidenziato2 ? (
+          <span className="text-mint-acceso">{piano.bestFor.evidenziato2}</span>
+        ) : null}
+      </div>
+    </div>
+  );
+}
+
+/* ── Il numero che si anima ────────────────────────────────────────────── */
+
+/*
+ * Riproduce lo script jQuery `#packageSwitch` della pagina prezzi: al click
+ * il prezzo scorre dal valore vecchio a quello nuovo in 500 ms con andamento
+ * lineare, arrotondato a intero a ogni passo (`$.animate` con
+ * `easing: 'linear'`, `duration: 500`, `Math.round` dentro lo `step`).
+ *
+ * Non usa framer-motion: qui non si anima una proprietà CSS ma il testo di un
+ * nodo, e un `requestAnimationFrame` di dieci righe costa meno di una
+ * `MotionValue` con la sua sottoscrizione.
+ */
+function NumeroAnimato({
+  da,
+  a,
+  trimestrale,
+}: {
+  readonly da: number;
+  readonly a: number;
+  readonly trimestrale: boolean;
+}) {
+  const obiettivo = trimestrale ? a : da;
+  const [mostrato, setMostrato] = useState(obiettivo);
+  const mostratoRef = useRef(obiettivo);
+  mostratoRef.current = mostrato;
+
+  useEffect(() => {
+    const inizio = mostratoRef.current;
+    if (inizio === obiettivo) return;
+
+    const durata = 500;
+    const partenza = performance.now();
+    let frame = 0;
+
+    const passo = (ora: number) => {
+      const avanzamento = Math.min((ora - partenza) / durata, 1);
+      setMostrato(Math.round(inizio + (obiettivo - inizio) * avanzamento));
+      if (avanzamento < 1) frame = requestAnimationFrame(passo);
+    };
+
+    frame = requestAnimationFrame(passo);
+    return () => cancelAnimationFrame(frame);
+  }, [obiettivo]);
+
+  return (
+    <div className="mr-[5px] text-[48px] font-light leading-[48px] text-mint-acceso">
+      {mostrato}
+    </div>
+  );
+}

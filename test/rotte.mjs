@@ -71,6 +71,11 @@ function esige(condizione, messaggio) {
 const ROTTE = [
   { path: "/", status: 200, nome: "home (segnaposto)" },
   { path: "/404", status: 404, nome: "404" },
+  { path: "/terms-conditions", status: 200, nome: "terms-conditions" },
+  { path: "/terms-conditions-sa", status: 200, nome: "terms-conditions-sa" },
+  { path: "/recess", status: 200, nome: "recess" },
+  { path: "/advanced-djs", status: 200, nome: "advanced-djs" },
+  { path: "/pricing-page", status: 200, nome: "pricing-page" },
 ];
 
 /* ── Ciò che deve esserci, e ciò che non deve esserci ──────────────

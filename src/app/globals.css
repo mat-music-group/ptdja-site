@@ -1,12 +1,94 @@
 @import "tailwindcss";
 
 /* ─────────────────────────────────────────────────────────────────
-   sito-ptdja — fondamenta.
-   Qui dentro va SOLO ciò che è davvero globale. I colori, le
-   spaziature e i token del sito arriveranno dal confronto con gli
-   screenshot di riferimento, pagina per pagina: inventarli adesso
-   significherebbe inventare un design system che poi va disfatto.
+   sito-ptdja — design system.
+
+   Tutto quello che c'è qui dentro viene da `docs/webflow/design-tokens.md`
+   e dal foglio Webflow `docs/webflow/css/*.pretty.css`. Niente è inventato:
+   se un valore non compare lì, non deve comparire qui.
+
+   Tre parti, in quest'ordine:
+   1. `@theme`  — i token, cioè le utility Tailwind che i componenti usano.
+   2. `@utility` — i font, che NON possono stare in `@theme` (vedi sotto).
+   3. `@layer base` — i default degli elementi HTML, copiati dal Webflow:
+      il sito ridefinisce `body`, `h1`-`h6`, `p`, `a`, `ul`, `li` a livello
+      globale e quasi ogni sezione ci si appoggia. Riportarli qui una volta
+      sola evita di ripetere colore e corpo del testo in ogni componente.
    ───────────────────────────────────────────────────────────────── */
+
+@theme {
+  /* ── Colori ──────────────────────────────────────────────────────
+     A sinistra il nome semantico, a destra la variabile Webflow da cui
+     viene. Il sito ha 215 colori distinti: qui ci sono solo quelli con
+     un ruolo, non i residui da 2 occorrenze. */
+
+  --color-sfondo: #1e1e1e; /* --neutral-03, sfondo di `body.body-2` */
+  --color-nero: #000000; /* --neutral-01 */
+  --color-crema: #faf4f3; /* --neutral-02 */
+  --color-mint: #62e8bb; /* --neutral-04 = --theme-color-01, il verde del brand */
+  --color-mint-acceso: #00ecb8; /* variante usata da prezzi, toggle e bottoni del listino */
+  --color-mint-badge: #3becb8; /* badge "Most Complete" prima della variante gialla */
+  --color-notte: #090a15; /* --neutral-05 */
+  --color-grigio-sfondo: #323030; /* --neutral-06 = --sfondo-grigio-base */
+  --color-magenta: #e12fdf; /* --neutral-07 */
+  --color-corallo: #e0593b; /* --theme-color-03 */
+  --color-giallo-cta: #e7ff09; /* --colore-button-cta */
+  --color-giallo-badge: #e1df3d; /* pillola "Most Complete" */
+  --color-bianco: #ffffff; /* --white */
+
+  /* Neutri di servizio: bordi, testi secondari, superfici delle card. */
+  --color-carta: #1d1d1b; /* fondo del toggle e della card Elite */
+  --color-carta-pro: #1d1d1c; /* fondo della card Pro */
+  --color-bordo: #4e4e4e; /* filetti "What's Included" e "Best For" */
+  --color-bordo-chiaro: #5a5a5a; /* bordo delle card e del toggle */
+  --color-testo-tenue: #aaaaaa; /* "What's Included:", "Best For" */
+  --color-testo-chiaro: #c9c9c9; /* sottotitolo del piano */
+  --color-testo-prezzo: #c5c5c5; /* "per month / billed yearly" */
+  --color-testo-toggle: #b8b8b8; /* etichette Annual / Quarterly */
+  --color-testo-sottovoce: #b3b3b3; /* voci figlie del Talent Pool */
+  --color-testo-lista: #ffebeb; /* colore delle voci di listino */
+  --color-info: #666980; /* la "i" dei tooltip */
+  --color-panna-faq: #e9e9e9; /* fondo FAQ del tema chiaro, qui reso trasparente */
+
+  /* ── Font ────────────────────────────────────────────────────────
+     Le famiglie stanno nelle `@utility` qui sotto, NON qui: vedi la nota.
+     `--font-sans` invece sì, perché non collide con `next/font` e dà il
+     default a tutto il documento (il sito usa Geist ovunque). */
+  --font-sans:
+    var(--font-geist), -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Arial, sans-serif;
+
+  /* ── Breakpoint ──────────────────────────────────────────────────
+     Webflow è desktop-first con tre soglie `max-width`: 991, 767, 479.
+     Tailwind è min-width, ma la variante `max-*` genera `width < valore`:
+     quindi con lg = 992px, `max-lg:` significa "fino a 991px compresi",
+     che è esattamente il tablet di Webflow. Stessa cosa per md (≤767) e
+     sm (≤479). xl, 2xl e 3xl coprono i tre `min-width` del foglio
+     (1280, 1440, 1920). Cambiare questi numeri sposta TUTTE le utility
+     responsive del progetto: sono i punti di rottura del sito, non un
+     gusto personale. */
+  --breakpoint-sm: 480px; /* Webflow "mobile portrait": max-width 479px */
+  --breakpoint-md: 768px; /* Webflow "mobile landscape": max-width 767px */
+  --breakpoint-lg: 992px; /* Webflow "tablet": max-width 991px */
+  --breakpoint-xl: 1280px;
+  --breakpoint-2xl: 1440px;
+  --breakpoint-3xl: 1920px;
+
+  /* ── Misure ricorrenti ───────────────────────────────────────────
+     `--global-section-padding` e `--button-radius` sono due delle 24
+     variabili `:root` del sito e valgono ovunque. */
+  --spacing-sezione: 120px; /* --global-section-padding */
+  --spacing-header: 92px; /* altezza fissa di `.header-2` */
+  --container-sito: 1380px; /* `.container`, `.container-3`, `.container-26`… */
+  --container-webflow: 940px; /* `.w-container`, usato dal footer vecchio */
+  --container-testo: 648px; /* colonna di testo delle sezioni a due blocchi */
+  --radius-bottone: 32px; /* --button-radius */
+  --radius-pillola: 360px; /* bottoni del listino */
+  --radius-carta: 30px; /* `.pricing_card` */
+  --radius-media: 25px; /* il raggio più frequente del sito (112 occorrenze) */
+  --radius-blocco: 24px;
+  --radius-etichetta: 16px;
+}
 
 /*
  * I quattro font caricati in `layout.tsx` via `next/font/google`, resi utility
@@ -25,13 +107,8 @@
  * classe, dove `var(--font-oswald)` si risolve su quella di `next/font`, e
  * nessuna variabile viene ridichiarata.
  *
- * Ogni famiglia porta il suo ripiego di sistema: se il file del font non arriva,
- * il testo resta leggibile invece di cadere sul serif di default del browser,
- * che è la differenza visibile fra "lento" e "rotto".
- *
- * `--font-sans` non è toccato di proposito: quale sia il font di base del sito
- * lo dirà il CSS Webflow, e assegnarlo adesso a caso significherebbe vedere ogni
- * pagina con il font sbagliato finché qualcuno non lo corregge.
+ * `--font-sans` in `@theme` qui sopra è l'eccezione che conferma la regola:
+ * quel nome `next/font` non lo usa, quindi non c'è nessun ciclo.
  */
 @utility font-oswald {
   font-family: var(--font-oswald), "Arial Narrow", Arial, sans-serif;
@@ -52,11 +129,167 @@
     Roboto, Arial, sans-serif;
 }
 
-body {
-  -webkit-font-smoothing: antialiased;
-  /* Orizzontale tagliato e non nascosto: `clip` non crea un contenitore di
-     scorrimento, quindi `position: sticky` continua a funzionare dentro. */
-  overflow-x: clip;
+@layer base {
+  /*
+   * I default globali del sito Webflow, copiati dal foglio pubblicato
+   * (blocco a partire da `body { font-family: var(--primary-font) … }`).
+   * Tailwind con la preflight azzera titoli e paragrafi: senza questo blocco
+   * ogni componente dovrebbe riscrivere corpo, colore e interlinea a mano, e
+   * la prima volta che qualcuno se ne dimentica la pagina diverge dal sito.
+   */
+  body {
+    background-color: var(--color-sfondo);
+    color: var(--color-grigio-sfondo);
+    font-family: var(--font-sans);
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 170%;
+    -webkit-font-smoothing: antialiased;
+    /* Orizzontale tagliato e non nascosto: `clip` non crea un contenitore di
+       scorrimento, quindi `position: sticky` continua a funzionare dentro. */
+    overflow-x: clip;
+  }
+
+  h1 {
+    color: var(--color-notte);
+    letter-spacing: -3.5px;
+    font-size: 72px;
+    font-weight: 500;
+    line-height: 115%;
+  }
+
+  h2 {
+    color: var(--color-mint);
+    letter-spacing: -1.8px;
+    font-size: 40px;
+    font-weight: 500;
+    line-height: 130%;
+  }
+
+  h3 {
+    color: var(--color-mint);
+    letter-spacing: -1.5px;
+    font-size: 32px;
+    font-weight: 500;
+    line-height: 130%;
+  }
+
+  h4 {
+    color: var(--color-sfondo);
+    letter-spacing: -0.8px;
+    font-size: 24px;
+    font-weight: 500;
+    line-height: 140%;
+  }
+
+  h5 {
+    color: var(--color-mint);
+    letter-spacing: -0.3px;
+    font-size: 20px;
+    font-weight: 500;
+    line-height: 170%;
+  }
+
+  h6 {
+    color: var(--color-mint);
+    letter-spacing: -0.4px;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 182%;
+  }
+
+  p {
+    color: var(--color-bianco);
+    letter-spacing: -0.8px;
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 180%;
+  }
+
+  a {
+    color: var(--color-mint);
+    text-decoration: none;
+    transition: all 0.3s;
+  }
+
+  li {
+    color: var(--color-bianco);
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 182%;
+  }
+
+  /*
+   * Le tre soglie di Webflow, copiate una per una dai blocchi
+   * `@media screen and (max-width: …)` del foglio pubblicato.
+   *
+   * Non sono un dettaglio: senza la riga `p { font-size: 16px }` a 479px le
+   * pagine di sola prosa (terms, recess) crescono di oltre il 40% in altezza
+   * sul telefono, perché il paragrafo resta a 20px. Misurato confrontando gli
+   * screenshot: 11.322px contro i 7.887px dell'originale.
+   */
+  @media (max-width: 991px) {
+    h1 {
+      font-size: 55px;
+    }
+    h2 {
+      font-size: 40px;
+    }
+    h4 {
+      font-size: 22px;
+    }
+  }
+
+  @media (max-width: 767px) {
+    h1 {
+      font-size: 42px;
+    }
+    h2 {
+      font-size: 32px;
+    }
+    h3 {
+      font-size: 30px;
+    }
+  }
+
+  @media (max-width: 479px) {
+    h1 {
+      font-size: 34px;
+    }
+    h2 {
+      font-size: 28px;
+    }
+    h3 {
+      font-size: 26px;
+    }
+    h4 {
+      font-size: 20px;
+    }
+    p {
+      font-size: 16px;
+    }
+  }
+}
+
+/* ── Gate geografico del listino ───────────────────────────────────
+   Copia della `<style>` che il sito inietta insieme allo script
+   "GEO-GATED REGION BLOCKER v0.3" (testo integrale in
+   `docs/webflow/custom-code-per-pagina.md`, embed `5701c958`).
+
+   Serve a una cosa sola: finché il client non ha stimato il paese, nessun
+   listino è visibile. Il server rende tutte e tre le valute (come fa
+   Webflow), il CSS le nasconde, e `src/lib/geo.ts` accende quella giusta
+   aggiungendo `geo-visibile`. Senza questa regola il visitatore europeo
+   vedrebbe per un istante i prezzi in dollari.
+
+   `display: revert` e non `block`: gli elementi gated sono griglie e
+   `<span>`, e forzarli tutti a `block` romperebbe il titolo. */
+[data-geo] {
+  display: none !important;
+}
+
+[data-geo].geo-visibile {
+  display: revert !important;
 }
 
 @media (prefers-reduced-motion: reduce) {
