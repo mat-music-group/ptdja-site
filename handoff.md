@@ -112,9 +112,28 @@ Mancanze di metadati comuni a tutte le pagine, da fare nel passo SEO: `icons` (f
 
 Server `next start -p 3000` rimasto acceso dalla sessione precedente: fermato. Piano completo di ripresa in `~/.claude/plans/ok-continua-non-so-purrfect-unicorn.md` (ondate A: play-get-signed, B: dj-course, C: producer, mix-mastering, home in parallelo; poi tracking, SEO, deploy).
 
+## 📦 Ondata A, tracking, SEO (Fable + agenti Opus, 2026-09-14 notte)
+
+**Limite di spesa Opus.** I subagenti Opus muoiono con `429 individual spend limit` (reset 22:50): è il motivo del blocco della sessione precedente. Ripresi con `SendMessage` allo stesso agente, contesto intatto. Regola: commit dopo ogni ondata, agenti piccoli.
+
+**Commit di questa fase** (tutti locali, niente push): `feat(pagine): play-get-signed …`, `fix(pricing): parità mobile e desktop dal CSS Webflow`, `feat(seo): …`, `feat(tracking): eventi Mixpanel …`, `test(attribuzione): …`.
+
+**play-get-signed** fatta. Componenti riusabili nati qui: `SliderWebflow` (slider nativo Webflow: frecce, pallini, swipe, `perVista` frazionario), `OpportunitaTalentPool` (toggle DJs/Producers, accordion, tooltip), `SuccessStories`, `SliderCorsi` + `CardCorso`, `VideoWistia`, `DynTube`. Altezze: desktop 10620 contro 11068 e mobile 10810 contro 10701, **tutto spiegato da DynTube**, che su localhost risponde "Video can't be played using this host!" (riquadro 385 px invece di 743): sparirà sul dominio vero. Scorporato: −90 desktop (Feedspace + 3 px di header), −67 mobile. Anomalie del sito riprodotte: sezione `#opportunities` `display:none` fra 480 e 1279 px; pannelli Producers con testi diversi fra desktop e mobile; titolo "DJs" nascosto sotto 480; sezione 5 vuota; `id="choosecourse"` duplicato; refusi "yEarly awards", "Play & Get SIgned"; ZWJ nel titolo. Due misure non nel CSS: clearfix di `.w-container` che diventa 30 px di gap nella hero; `grid-template-rows: auto auto` con un figlio che aggiunge 24 px alle card.
+
+**Pricing mobile** rifinita dal CSS Webflow: da +375 a −39 px (desktop −80, residuo dentro Feedspace: 85 px di aria interna sul sito contro 20 qui, e il muro varia anche fra due run). Trovate regole che valgono per tutte le pagine: header 80 px sotto 991; `text-base` di Tailwind impone interlinea 24 dove Webflow eredita il 170% del body (usare `text-[16px]`); `.section-padding` 120/80/60/50; badge Iubenda disegnati da `iubenda.js` (passo 43) contro i nostri statici (40). `globals.css`: `b, strong { font-weight: bold }` (la preflight usa `bolder`, relativo). `CLAUDE.md` ha in coda il blocco `nextjs-agent-rules` che `next dev` riscrive da solo: committato per tenere l'albero pulito.
+
+**Tracking Mixpanel** portato con stessi nomi e props: Page View a ogni rotta (`PageViewMixpanel`, `usePathname`), Navbar Link Clicked, Pricing Checkout Clicked (con `price` invertito e `price_display` in dollari **come lo script originale**), Tracked FAQ Opened solo in apertura, Course Card Click, Book Free Call CTA; `CTA Click` e `Trustpilot CTA Clicked` pronti (`Button traccia=…`, `LinkTrustpilot`) da montare nelle hero di home e corsi, solo dove il paragrafo Webflow ha classe `paragraph`. Nessun gate consenso, come sul sito. Non riprodotti perché gli elementi non esistono sulle 11 pagine: Typeform Started (`#btn-typeform`), Activate Now (attributo Optibase), BP Lite, alias thank you (fuori scope). **Da decidere con Matteo:** il blocco "LEAD GENERATION" del footer Webflow, che su qualunque pagina con `?email=`/`?uid=` fa `identify` + `people.set` + `Lead Generated`: riproducibile, non fatto perché tocca i profili Mixpanel veri. Verifica: `scripts/_verifica-mixpanel.mjs` (blocca le richieste verso Mixpanel e stampa gli eventi).
+
+**Attribuzione** verificata: `scripts/_verifica-attribuzione.mjs` con cookie `attr_*`, `_fbp`, `_fbc` e consenso fittizio: tutti i link carrello acquisiscono `customer[cf_*]`, UTM e `ptdja_uid`, `ptdja_identity_ready` nel dataLayer, anche dopo il toggle trimestrale. Divergenza: 9 ancore con href di stato invece delle 18 statiche di Webflow, stesso URL finale.
+
+**SEO**: `metadataBase`, `shortcut icon` e `apple-touch-icon` (con il `type="image/x-icon"` sbagliato di Webflow riprodotto), `verification.google`, `sitemap.ts` con le 10 pagine. `twitter:card`: Next lo ricostruisce sempre da `openGraph`, quindi le 5 pagine che su Webflow non lo hanno scrivono i tag a mano con `TagSocialSenzaCard` (`src/lib/metadati.tsx`). **Aperto:** redirect 301 da esportare da Webflow (Site settings → Publishing), posto e forma documentati in `next.config.ts`; `robots.ts` e sitemap si aprono insieme al cambio dominio.
+
+**Strumenti in `scripts/`**: `misura-screenshot.py` (altezze e linee separatrici, riferimento contro locale), `misura-sezioni.mjs` (DOM locale), `_regole-css.py`, `_estrai-frammento.py`, `_ritaglia.py`, `_misura.mjs`, `_dyntube.mjs`, `_verifica-mixpanel.mjs`, `_verifica-attribuzione.mjs`. La rete verso il sito live non è raggiungibile da questa sessione (DNS): le misure sono sui file salvati.
+
+**Piccolo residuo condiviso**: il logo nell'header sta 3 px più in alto che sul sito (tutta la pagina scorre di 2-3 px). Da sistemare in `SiteHeader.tsx` con le misure di `.header-2` (92 px, padding 22) e del logo 350×37.
+
 ## 👉 Next steps (what I'd do next)
 1. ~~Estrazione~~ fatta. ~~Sei pagine semplici~~ fatte e committate (`8c8cd2d`).
-2. Ondata A: `play-get-signed` (in corso). Ondata B: `dj-course` e componenti corso. Ondata C: `producer-course`, `mix-mastering-course`, home in parallelo.
-3. Eventi Mixpanel del footer, verifica decorazione link carrello.
-4. SEO: icons, verification, metadataBase, sitemap, redirect (serve export da Webflow).
-5. Vibe Shield, repo GitHub, deploy di test. Decisioni da chiedere a Matteo al deploy: guardia hostname Mixpanel; Clarity dietro consenso o no.
+2. ~~Ondata A~~ fatta. Ondata B: `dj-course` e componenti corso (in corso). Ondata C: `producer-course`, `mix-mastering-course`, home in parallelo; montare `CTA Click` e `LinkTrustpilot` nelle hero.
+3. ~~Eventi Mixpanel, attribuzione, SEO~~ fatti. Restano: redirect 301 (export Webflow), logo header 3 px.
+4. Vibe Shield (`/setup-security`, `/security-audit`, `/pre-deploy`), repo GitHub, deploy di test. Decisioni da chiedere a Matteo al deploy: guardia hostname Mixpanel; Clarity dietro consenso o no; blocco Lead Generation da `?email`/`?uid`.
