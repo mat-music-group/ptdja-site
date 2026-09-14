@@ -47,8 +47,13 @@ export function PricingPlans({ className = "" }: ProprietaPricing) {
     <div className={`flex w-full flex-col items-center ${className}`}>
       <div className="mx-auto w-full max-w-sito bg-sfondo px-[60px] max-sm:px-[10px]">
         {/* ── Titolo ─────────────────────────────────────────────────── */}
-        <h2 className="mt-[110px] text-center text-[48px] font-medium tracking-[-2.5px] text-bianco max-sm:mt-[50px] max-sm:text-[32px] max-sm:leading-[1.2]">
-          <span className="text-bianco">
+        {/* `.heading-18`: `margin-top: 110px` di base, ma **62px** nel blocco
+            `min-width: 1440px` del foglio, che è proprio la larghezza degli
+            screenshot di riferimento. Senza `2xl:` tutto il resto della pagina
+            scendeva di 48px su desktop. */}
+        <h2 className="mt-[110px] text-center text-[48px] font-medium tracking-[-2.5px] text-bianco 2xl:mt-[62px] max-sm:mt-[50px] max-sm:text-[32px] max-sm:leading-[1.2]">
+          {/* `.text-span-408` a ≤479px scende a 28px (il titolo resta 32px). */}
+          <span className="text-bianco max-sm:text-[28px]">
             {LISTINO.titoloPrima}
             <br />
           </span>
@@ -72,8 +77,15 @@ export function PricingPlans({ className = "" }: ProprietaPricing) {
         </h2>
 
         {/* `color: gray` nel CSS Webflow, cioè la parola chiave CSS (#808080),
-            non un grigio della scala Tailwind. */}
-        <p className="mb-[10px] text-center text-[18px] leading-[1.2] text-[gray]">
+            non un grigio della scala Tailwind.
+
+            `.paragraph-18` cambia in tutti e tre i blocchi che ci riguardano:
+            base 18px con `margin-bottom: 10px`; a `min-width: 1440px` 20px,
+            peso 300, colore #777 e `margin-bottom: 85px`; a `max-width: 479px`
+            14px, peso 300 e `margin-bottom: 45px`. È il motivo per cui sul
+            telefono il sottotitolo del sito sta su due righe e qui ne
+            occupava tre. */}
+        <p className="mb-[10px] text-center text-[18px] leading-[1.2] text-[gray] 2xl:mb-[85px] 2xl:text-[20px] 2xl:font-light 2xl:text-[#777] max-sm:mb-[45px] max-sm:text-[14px] max-sm:font-light">
           {LISTINO.paragrafo.split("\n").map((riga, i) => (
             <span key={riga}>
               {i > 0 ? <br /> : null}
@@ -112,15 +124,23 @@ export function PricingPlans({ className = "" }: ProprietaPricing) {
           </div>
 
           {/* ── Le tre griglie di valuta ─────────────────────────────── */}
+          {/* `margin-top: -30px` sotto i 480px ce l'ha solo
+              `.grid-three-columns.usd`: nel foglio Webflow le varianti `.eur`
+              e `.gbp` non la ricevono. È una disuguaglianza del sito, non un
+              refuso nostro, e si riproduce com'è. */}
           {VALUTE.map((valuta) => (
             <div
               key={valuta.codice}
               data-geo={valuta.modo}
-              className={
+              className={[
+                "w-full",
                 visibilePerPaese(valuta.modo, valuta.paesi, paese)
-                  ? "geo-visibile w-full"
-                  : "w-full"
-              }
+                  ? "geo-visibile"
+                  : "",
+                valuta.codice === "USD" ? "max-sm:-mt-[30px]" : "",
+              ]
+                .filter(Boolean)
+                .join(" ")}
             >
               <div className="mx-auto w-full">
                 <div className="mt-16 flex flex-col items-center justify-between">
@@ -231,45 +251,74 @@ function CartaPiano({
         </div>
       </div>
 
-      {/* "What's Included:" e la lista. */}
+      {/* "What's Included:" e la lista. `.text-block-17` (e `.text-block-14`
+          delle altre due card) dichiara solo `font-size: 14px`: l'interlinea
+          resta quella del `body`, 170% di 16px, cioè 27,2px ereditati. Scritto
+          come `text-[14px]` perché `text-sm` imporrebbe 20px. */}
       <div className="mt-8">
-        <div className="border-b border-bordo pb-[2px] text-sm text-testo-tenue">
+        <div className="border-b border-bordo pb-[2px] text-[14px] text-testo-tenue">
           {LISTINO.incluso}
         </div>
       </div>
 
+      {/* ── Le voci del piano ─────────────────────────────────────────
+          ⚠️ Le voci NON hanno tutte la stessa interlinea, e la differenza si
+          vede: `.pricing_list_item.item.cart26` dichiara `line-height: 1`, e
+          quasi tutte le voci (`.text-block-13`, `-15`, `-22`, `-23`) la
+          ereditano, cioè 14px netti. Solo `.text-block-16` dichiara
+          `line-height: 1.2` (16.8px), e nell'HTML quella classe ce l'hanno le
+          **prime tre voci** di ogni piano più la voce del Talent Pool con le
+          sue sottovoci. Con l'interlinea larga su tutte, ogni card cresceva
+          di 20-30px e il listino di un centinaio. */}
       <ul className="m-0 mt-8 list-none p-0">
-        {piano.voci.map((voce) => (
-          <li
-            key={voce.testo}
-            className={`mt-[10px] flex justify-start ${
-              voce.grado ? "items-center" : "items-start"
-            }`}
-          >
-            <Image
-              src={voce.grado ? LISTINO.iconaGrado.src : LISTINO.iconaSpunta.src}
-              alt=""
-              width={voce.grado ? LISTINO.iconaGrado.larghezza : LISTINO.iconaSpunta.larghezza}
-              height={voce.grado ? LISTINO.iconaGrado.altezza : LISTINO.iconaSpunta.altezza}
-              className={`mr-6 w-[14px] shrink-0 ${voce.grado ? "h-[19px]" : "h-[14px]"}`}
-            />
-            <div className="flex flex-col">
-              <div className="flex flex-row items-center text-sm font-light leading-[1.2] text-testo-lista">
-                <span>{voce.testo}</span>
-                {voce.tooltip ? <Tooltip messaggio={voce.tooltip} /> : null}
-              </div>
-              {voce.sotto?.map((figlia) => (
+        {piano.voci.map((voce, indice) => {
+          const interlineaLarga = indice < 3 || Boolean(voce.sotto);
+          return (
+            <li
+              key={voce.testo}
+              className={`mt-[10px] flex justify-start ${
+                voce.grado ? "items-center" : "items-start"
+              }`}
+            >
+              {/* `.check_icon.gradeicon`: 19px, 21px da 1440 in su, 20px a ≤479. */}
+              <Image
+                src={voce.grado ? LISTINO.iconaGrado.src : LISTINO.iconaSpunta.src}
+                alt=""
+                width={
+                  voce.grado ? LISTINO.iconaGrado.larghezza : LISTINO.iconaSpunta.larghezza
+                }
+                height={
+                  voce.grado ? LISTINO.iconaGrado.altezza : LISTINO.iconaSpunta.altezza
+                }
+                className={`mr-6 w-[14px] shrink-0 ${
+                  voce.grado ? "h-[19px] 2xl:h-[21px] max-sm:h-[20px]" : "h-[14px]"
+                }`}
+              />
+              <div className="flex flex-col">
                 <div
-                  key={figlia.testo}
-                  className="flex items-center py-[1px] text-sm text-testo-sottovoce"
+                  className={`flex flex-row items-center text-sm font-light text-testo-lista ${
+                    interlineaLarga ? "leading-[1.2]" : "leading-none"
+                  }`}
                 >
-                  <span>{figlia.testo}</span>
-                  <Tooltip messaggio={figlia.tooltip} />
+                  <span>{voce.testo}</span>
+                  {voce.tooltip ? <Tooltip messaggio={voce.tooltip} /> : null}
                 </div>
-              ))}
-            </div>
-          </li>
-        ))}
+                {/* Le sottovoci del Talent Pool sono `.text-block-16` dentro
+                    `.div-block-25.talent-pool-list`: 14px, peso 300,
+                    interlinea 1.2, con 1px sopra e sotto. */}
+                {voce.sotto?.map((figlia) => (
+                  <div
+                    key={figlia.testo}
+                    className="flex items-center py-[1px] text-sm font-light leading-[1.2] text-testo-sottovoce"
+                  >
+                    <span>{figlia.testo}</span>
+                    <Tooltip messaggio={figlia.tooltip} />
+                  </div>
+                ))}
+              </div>
+            </li>
+          );
+        })}
       </ul>
 
       {/* "Best For" + la frase, con le parole in mint. */}

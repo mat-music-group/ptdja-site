@@ -22,7 +22,8 @@ import {
  * logo a sinistra, la lista di voci a destra e, sotto i 992px, il bottone
  * del menu con l'icona Lottie.
  *
- * Misure dal CSS: header alto 92px con 22px di padding sopra e sotto,
+ * Misure dal CSS: header alto 92px con 22px di padding sopra e sotto
+ * (80px con 24px di padding sotto i 992px),
  * `position: sticky` in cima, fondo `--neutral-03`, `z-index: 9999`; il
  * contenitore è largo al massimo 1380px con 30px di lato (768px sotto i
  * 992, 600px sotto i 768); le voci hanno 36px di distanza, corpo 16px,
@@ -85,7 +86,10 @@ export function SiteHeader() {
   const attiva = (href: string) => (percorso === href ? "page" : undefined);
 
   return (
-    <div className="sticky inset-x-0 top-0 z-[9999] h-header w-full bg-sfondo py-[22px]">
+    /* `.header-2` a ≤991px: `height: 80px`, `padding: 24px 0` (il foglio
+       Webflow, blocco `max-width: 991px`). Senza questa riga tablet e
+       telefono partivano 12px più in basso di tutto il resto. */
+    <div className="sticky inset-x-0 top-0 z-[9999] h-header w-full bg-sfondo py-[22px] max-lg:h-20 max-lg:py-6">
       <div className="mx-auto w-full max-w-sito px-[30px] max-lg:max-w-[768px] max-md:max-w-[600px]">
         <div className="flex w-full items-center justify-between">
           {/* Il logo si restringe quando lo spazio non basta: il link è un

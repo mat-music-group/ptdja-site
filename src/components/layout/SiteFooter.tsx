@@ -15,10 +15,18 @@ import { FOOTER } from "@/testi/condivisi";
  *   sinistra al 24% e colonna dei link al 60%;
  * - a ≤991 diventa una colonna centrata, a ≤767 i tre gruppi di link
  *   diventano una griglia 2×2 centrata dentro 400px;
- * - i link hanno opacità .42 e diventano mint al passaggio.
+ * - i link hanno opacità .42 e diventano mint al passaggio;
+ * - a ≤479 i tre `.container` prendono `padding-bottom: 10px` e perdono i
+ *   30px di lato.
  *
  * L'intera sezione entra con l'interazione `SCROLL_INTO_VIEW` /
  * `slideInBottom` (`data-w-id="b896166c-…c11a"`, delay 0).
+ *
+ * ⚠️ Corpo del testo scritto come `text-[16px]` e non `text-base`: le utility
+ * `text-*` di Tailwind portano con sé un'interlinea (1.5rem = 24px), mentre
+ * qui vale quella ereditata dal sito — 180% per i titoli dei gruppi
+ * (`p`, cioè 28.8px) e 170% per i link (`body`, cioè 27.2px). Con `text-base`
+ * il footer sul telefono era 50px più corto dell'originale.
  *
  * I tre link Iubenda restano `<a>` normali: sul sito `iubenda.js` li
  * trasforma nel badge nero, e quello script arriva dal custom code, non da
@@ -29,7 +37,7 @@ export function SiteFooter() {
   return (
     <RivelaAllaVista>
       <footer className="bg-sfondo pb-[30px] pt-[60px] max-lg:pt-[30px]">
-        <div className="mx-auto flex w-full max-w-sito flex-col items-center px-[30px] max-sm:px-0">
+        <div className="mx-auto flex w-full max-w-sito flex-col items-center px-[30px] max-sm:px-0 max-sm:pb-[10px]">
           <div className="flex w-full flex-col gap-[72px]">
             <div className="flex justify-between gap-[50px] max-lg:flex-col max-lg:items-center max-lg:gap-10 max-md:mx-auto max-md:max-w-[400px] max-sm:max-w-full max-sm:gap-[30px]">
               {/* Colonna di sinistra: logo e paragrafo "About". */}
@@ -45,9 +53,15 @@ export function SiteFooter() {
                   {/* Sotto i 480px il testo torna a sinistra: sul sito questo
                       link ha la classe `navbar-brand`, che nel blocco
                       `max-width: 479px` dichiara `text-align: left` e vince
-                      sul `text-align: center` ereditato dal blocco a 767px. */}
-                  <Link href={FOOTER.aboutHref} className="block max-sm:text-left">
-                    <p className="m-0 text-base font-medium tracking-[-0.2px] text-bianco">
+                      sul `text-align: center` ereditato dal blocco a 767px.
+                      La stessa regola lo rende `display: flex` in colonna con
+                      16px di distacco e `width: auto`: sono i 16px fra il
+                      titolo "About…" e il paragrafo. */}
+                  <Link
+                    href={FOOTER.aboutHref}
+                    className="block max-sm:flex max-sm:w-auto max-sm:flex-col max-sm:gap-4 max-sm:text-left"
+                  >
+                    <p className="m-0 text-[16px] font-medium tracking-[-0.2px] text-bianco">
                       {FOOTER.titoloAbout}
                     </p>
                     <p className="m-0 text-sm font-normal leading-[180%] tracking-[-0.4px] text-bianco opacity-80 max-sm:text-[15px]">
@@ -64,7 +78,7 @@ export function SiteFooter() {
                     key={colonna.titolo}
                     className="flex flex-col gap-4 max-md:gap-[15px] max-sm:gap-[5px]"
                   >
-                    <p className="m-0 text-base font-medium tracking-[-0.2px] text-bianco">
+                    <p className="m-0 text-[16px] font-medium tracking-[-0.2px] text-bianco">
                       {colonna.titolo}
                     </p>
                     <div className="flex flex-col gap-2 max-lg:gap-[15px] max-md:gap-[10px]">
@@ -82,7 +96,7 @@ export function SiteFooter() {
                     contiene "Login", e i badge sono tre blocchi separati.
                     Si riproduce quella struttura, non una più ordinata. */}
                 <div className="flex flex-col gap-4 max-md:gap-[15px] max-sm:gap-[5px]">
-                  <p className="m-0 text-base font-medium tracking-[-0.2px] text-bianco">
+                  <p className="m-0 text-[16px] font-medium tracking-[-0.2px] text-bianco">
                     {FOOTER.academy.titolo}
                   </p>
                   <div className="flex flex-col gap-2 max-lg:gap-[15px] max-md:gap-[10px]">
@@ -112,7 +126,7 @@ export function SiteFooter() {
 
         {/* La striscia di forme colorate: `.image-41` è larga il 100% del
             contenitore, quindi 1320px su desktop. */}
-        <div className="mx-auto flex w-full max-w-sito flex-col items-center px-[30px] max-sm:px-0">
+        <div className="mx-auto flex w-full max-w-sito flex-col items-center px-[30px] max-sm:px-0 max-sm:pb-[10px]">
           <Image
             src={FOOTER.forme.src}
             alt={FOOTER.forme.alt}
@@ -122,7 +136,7 @@ export function SiteFooter() {
           />
         </div>
 
-        <div className="mx-auto flex w-full max-w-sito flex-col items-center px-[30px] max-sm:px-0">
+        <div className="mx-auto flex w-full max-w-sito flex-col items-center px-[30px] max-sm:px-0 max-sm:pb-[10px]">
           <p className="m-0 text-sm font-normal leading-[180%] tracking-[-0.4px] text-bianco opacity-80 max-sm:text-[15px]">
             {FOOTER.copyright}
           </p>
@@ -142,7 +156,7 @@ export function FooterLink({
   readonly children: string;
 }) {
   const classi =
-    "text-base font-normal capitalize tracking-[-0.4px] text-bianco opacity-[0.42] transition-colors hover:text-mint max-sm:text-[15px]";
+    "text-[16px] font-normal capitalize tracking-[-0.4px] text-bianco opacity-[0.42] transition-colors hover:text-mint max-sm:text-[15px]";
 
   if (href.startsWith("http") || href === "#") {
     return (

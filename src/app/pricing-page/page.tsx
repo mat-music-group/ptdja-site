@@ -58,8 +58,23 @@ export default function PricingPage() {
       {/* L'eyebrow è un `<h1>` con la classe di un sottotitolo: è l'unico
           titolo di primo livello della pagina e vale "PRICING". Il
           `margin-bottom: -50px` è del CSS (`.top-title-head`) e serve a far
-          risalire il titolo del listino sotto di esso. */}
-      <h1 className="relative z-10 mt-[30px] mb-[-50px] rounded-etichetta text-center text-base font-light uppercase text-bianco opacity-70">
+          risalire il titolo del listino sotto di esso.
+
+          `tracking-normal` non è un gusto: `.section-subtitle-44.negative
+          .new-home-2` dichiara `letter-spacing: 0`, mentre il default `h1` del
+          sito è `-3.5px`. Senza, a 16px le lettere di "PRICING" si
+          sovrappongono e la parola sembra scritta in un condensato.
+
+          Sotto i 480px il foglio cambia tre cose (blocco `max-width: 479px`):
+          `margin-bottom: -30px` su `.top-title-head`, `line-height: 16px`
+          sempre su `.top-title-head`, `text-transform: none` su
+          `.negative.new-home-2` (qui non si vede, il testo è già maiuscolo).
+
+          Corpo scritto come `text-[16px]` e non `text-base`: le utility
+          `text-*` di Tailwind impongono anche l'interlinea (1.5rem), mentre
+          `.section-subtitle-44` non la dichiara e quindi vale il 115% dell'`h1`
+          del sito. */}
+      <h1 className="relative z-10 mt-[30px] mb-[-50px] rounded-etichetta text-center text-[16px] font-light uppercase tracking-normal text-bianco opacity-70 max-sm:mb-[-30px] max-sm:normal-case max-sm:leading-4">
         {EYEBROW}
       </h1>
 

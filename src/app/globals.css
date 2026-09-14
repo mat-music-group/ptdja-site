@@ -131,6 +131,18 @@
 
 @layer base {
   /*
+   * La preflight di Tailwind rende `b` e `strong` con `font-weight: bolder`,
+   * che è relativo al genitore: dentro un titolo a peso 300 vale 400. Il
+   * foglio Webflow dichiara `bold`, assoluto (700). Senza questa riga ogni
+   * `<strong>` dentro un titolo leggero esce più magro che sul sito
+   * (trovato su "Opportunities" di play-get-signed il 14/09).
+   */
+  b,
+  strong {
+    font-weight: bold;
+  }
+
+  /*
    * I default globali del sito Webflow, copiati dal foglio pubblicato
    * (blocco a partire da `body { font-family: var(--primary-font) … }`).
    * Tailwind con la preflight azzera titoli e paragrafi: senza questo blocco

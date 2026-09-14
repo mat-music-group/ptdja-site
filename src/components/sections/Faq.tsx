@@ -44,13 +44,20 @@ export function Faq({ domande, className = "" }: ProprietaFaq) {
   const [aperta, setAperta] = useState<string | null>(null);
 
   return (
+    /* Lo spazio sotto è quello di `.section-padding`, che il foglio cala a
+       ogni soglia: 120px, 80px a ≤991, 60px a ≤767, 50px a ≤479. Sopra invece
+       comanda `.faq-section-one…new-home-2` con 90px (50px a ≤479). */
     <section
-      className={`bg-sfondo pb-sezione pt-[90px] max-sm:pt-[50px] ${className}`}
+      className={`bg-sfondo pb-sezione pt-[90px] max-lg:pb-20 max-md:pb-[60px] max-sm:pb-[50px] max-sm:pt-[50px] ${className}`}
     >
-      <div className="mx-auto flex w-full max-w-sito flex-col items-start justify-start px-[30px] max-sm:pb-[50px]">
-        <div className="flex w-full justify-between gap-[50px] pb-0 max-lg:flex-col">
-          <div className="flex w-full max-w-[500px] flex-col gap-4">
-            <h2 className="text-[56px] font-medium leading-[125%] tracking-[-2.5px] text-bianco max-sm:text-[36px]">
+      <div className="mx-auto flex w-full max-w-sito flex-col items-start justify-start px-[30px] max-lg:max-w-[768px] max-md:max-w-[600px] max-sm:pb-[50px]">
+        {/* `.faq-wrapper-one`: 50px fra le due colonne, 20px a ≤479. */}
+        <div className="flex w-full justify-between gap-[50px] pb-0 max-lg:flex-col max-sm:gap-5">
+          {/* `.faq-left-block`: centrato a ≤991, di nuovo a sinistra a ≤479. */}
+          <div className="flex w-full max-w-[500px] flex-col gap-4 max-lg:items-center max-lg:text-center max-sm:items-start max-sm:text-left">
+            {/* `.section-title-heading-6`: 56px, 50px a ≤991, 45px a ≤767,
+                32px a ≤479. */}
+            <h2 className="text-[56px] font-medium leading-[125%] tracking-[-2.5px] text-bianco max-lg:text-[50px] max-md:text-[45px] max-sm:text-[32px]">
               {FAQ_TITOLO}
             </h2>
           </div>
@@ -66,7 +73,13 @@ export function Faq({ domande, className = "" }: ProprietaFaq) {
                     onClick={() => setAperta(attiva ? null : voce.domanda)}
                     className="z-10 mb-[25px] flex w-full justify-between border-t border-bianco bg-transparent p-4 text-left"
                   >
-                    <span className="pr-[30px] text-[18px] font-normal tracking-[-0.4px] text-bianco">
+                    {/* `.faq-item-heading`: 18px, 16px a ≤479. Corpo scritto
+                        come valore arbitrario e non `text-base`: le utility
+                        `text-*` di Tailwind portano con sé un'interlinea
+                        (1.5rem), mentre qui l'interlinea deve restare quella
+                        del `body` del sito, 170%. Con `text-base` una domanda
+                        su due righe misurava 48px invece di 54. */}
+                    <span className="pr-[30px] text-[18px] font-normal tracking-[-0.4px] text-bianco max-sm:text-[16px]">
                       {voce.domanda}
                     </span>
                     <span
@@ -98,7 +111,8 @@ export function Faq({ domande, className = "" }: ProprietaFaq) {
                     aria-hidden={!attiva}
                     className="-mt-[40px] overflow-hidden rounded-b-media"
                   >
-                    <p className="m-0 mt-[30px] px-4 pb-5 text-base font-normal leading-[180%] tracking-[-0.4px] text-bianco">
+                    {/* `.faq-item-content-p`: 16px, 15px a ≤479. */}
+                    <p className="m-0 mt-[30px] px-4 pb-5 text-base font-normal leading-[180%] tracking-[-0.4px] text-bianco max-sm:text-[15px]">
                       {voce.risposta}
                     </p>
                   </motion.div>
