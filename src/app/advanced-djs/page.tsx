@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Button } from "@/components/ui/Button";
+import { TagSocialSenzaCard } from "@/lib/metadati";
 import { ADVANCED_DJS } from "@/testi/advanced-djs";
 
 /*
@@ -23,13 +24,16 @@ import { ADVANCED_DJS } from "@/testi/advanced-djs";
 export const metadata: Metadata = {
   title: ADVANCED_DJS.meta.title,
   alternates: { canonical: ADVANCED_DJS.meta.canonical },
-  openGraph: { title: ADVANCED_DJS.meta.title },
-  twitter: { title: ADVANCED_DJS.meta.title },
+  /* `og:title` e `twitter:title` NON stanno qui: la pagina non ha
+     `twitter:card` su Webflow e il campo `openGraph` di Next ne creerebbe uno.
+     Li scrive `TagSocialSenzaCard`, sotto. Vedi `src/lib/metadati.tsx`. */
 };
 
 export default function AdvancedDjs() {
   return (
     <section className="bg-sfondo pb-0 pt-[108px] max-sm:pt-sezione">
+      <TagSocialSenzaCard titolo={ADVANCED_DJS.meta.title} />
+
       <div
         id="landing-video"
         className="mx-auto block w-full max-w-sito px-[30px] text-center"

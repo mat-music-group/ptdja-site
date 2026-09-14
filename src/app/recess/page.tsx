@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { SiteFooterRecess } from "@/components/layout/SiteFooterRecess";
 import { SiteHeaderLegacy } from "@/components/layout/SiteHeaderLegacy";
 import { PaginaLegale } from "@/components/sections/PaginaLegale";
+import { TagSocialSenzaCard } from "@/lib/metadati";
 import { RECESS } from "@/testi/recess";
 
 /*
@@ -18,13 +19,15 @@ import { RECESS } from "@/testi/recess";
 export const metadata: Metadata = {
   title: "Recess",
   alternates: { canonical: "https://www.petetong-djacademy.com/recess" },
-  openGraph: { title: "Recess" },
-  twitter: { title: "Recess" },
+  /* `og:title` e `twitter:title` NON stanno qui: la pagina non ha
+     `twitter:card` su Webflow e il campo `openGraph` di Next ne creerebbe uno.
+     Li scrive `TagSocialSenzaCard`, sotto. Vedi `src/lib/metadati.tsx`. */
 };
 
 export default function Recess() {
   return (
     <>
+      <TagSocialSenzaCard titolo="Recess" />
       <SiteHeaderLegacy />
       <PaginaLegale testo={RECESS} />
       <SiteFooterRecess />

@@ -57,12 +57,51 @@ const inter = Inter({
 });
 
 /*
- * Metadati di ripiego. Ogni pagina dichiara i suoi, copiati dall'HTML Webflow:
- * questi valgono solo dove una pagina non ne dichiara nessuno, e non devono
- * diventare la scorciatoia per non copiare quelli veri.
+ * Metadati di ripiego più i tre blocchi che sul sito Webflow sono identici su
+ * tutte le pagine (icone, verifica Search Console, dominio di riferimento).
+ *
+ * Il `title` qui vale solo dove una pagina non ne dichiara nessuno, e non deve
+ * diventare la scorciatoia per non copiare quello vero: ogni pagina dichiara i
+ * suoi metadati, copiati da `docs/webflow/meta/<slug>.json`.
+ *
+ * Icone, `verification` e `metadataBase` invece stanno QUI apposta: Webflow li
+ * mette in ogni pagina perché sono impostazioni di sito, non di pagina, e nel
+ * layout li si scrive una volta sola. Next li propaga a tutte le rotte, dato
+ * che una pagina eredita i campi che non ridichiara.
  */
 export const metadata: Metadata = {
+  /*
+   * Il dominio vero, non quello su cui il repo gira oggi.
+   *
+   * Serve a due cose: dare una base agli URL relativi dei metadati (senza,
+   * Next avvisa a ogni render e in produzione userebbe l'URL di deploy) e
+   * tenere canonical e og:url ancorati a `petetong-djacademy.com` anche
+   * mentre il sito vive su un indirizzo di test. Le pagine passano comunque
+   * URL assoluti: dove sono assoluti, `metadataBase` viene ignorato.
+   */
+  metadataBase: new URL("https://www.petetong-djacademy.com"),
+
   title: "Pete Tong DJ Academy",
+
+  /*
+   * Le due icone del sito, scaricate in `public/webflow/shared/`
+   * (`docs/webflow/asset-map.json`, voci `favicon` e `webclip`).
+   *
+   * Si riproduce l'HTML di Webflow riga per riga: un `rel="shortcut icon"` e
+   * un `rel="apple-touch-icon"`, nient'altro. Niente `icon` semplice, che
+   * Next aggiungerebbe come terzo `<link>` inesistente sul sito. Il
+   * `type="image/x-icon"` su un PNG è sbagliato ed è quello che Webflow
+   * scrive: si copia, non si corregge.
+   */
+  icons: {
+    shortcut: [{ url: "/webflow/shared/13dnew.png", type: "image/x-icon" }],
+    apple: [{ url: "/webflow/shared/12dnew.png" }],
+  },
+
+  /* Il token Search Console, presente in tutte le pagine Webflow. */
+  verification: {
+    google: "cExwpYSnIc6g-zZ9OygGshai6S4i3ICN-h0gkbnms8U",
+  },
 };
 
 export default function RootLayout({

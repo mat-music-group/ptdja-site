@@ -8,12 +8,29 @@ import type { NextConfig } from "next";
  * (i rimandi 308 degli slug rinominati, il middleware di split A/B) riguarda le
  * landing e qui non esiste.
  *
- * ⚠️ I redirect 301 configurati su Webflow (Site settings → Publishing) NON sono
- * ancora qui: l'elenco va esportato dal pannello e replicato prima del cambio
- * dominio, altrimenti i link in giro (ads, email, partner) si rompono nel
- * passaggio. È il punto 4 del piano in `tasks/todo.md`.
+ * ⚠️ I REDIRECT 301 DI WEBFLOW MANCANO, e non si inventano.
+ *
+ * Su Webflow stanno in Site settings → Publishing → 301 redirects. L'elenco va
+ * esportato di là (lo fa Matteo) e replicato QUI DENTRO, in una funzione
+ * `async redirects()` accanto a `images`, una voce per riga con
+ * `{ source, destination, permanent: true }` — `permanent: true` è il 301,
+ * `false` sarebbe un 308 temporaneo e non è quello che Webflow serve oggi.
+ *
+ * Finché l'elenco non arriva questa configurazione non ha redirect: scriverne
+ * a memoria significherebbe mandare traffico vero su destinazioni indovinate.
+ * Al cambio dominio, senza quelle righe, i link in giro (ads, email, partner,
+ * risultati di ricerca) si rompono tutti insieme. È il punto 4 del piano in
+ * `tasks/todo.md`.
  */
 const nextConfig: NextConfig = {
+  /*
+   * `trailingSlash` non è dichiarato di proposito: il default di Next è
+   * `false`, cioè URL senza slash finale, che è come Webflow serve il sito
+   * (`/pricing-page`, non `/pricing-page/`). Metterlo a `true` creerebbe un
+   * redirect su ogni URL canonico e cambierebbe tutti i canonical: non si
+   * tocca.
+   */
+
   /*
    * La radice del progetto, dichiarata invece che dedotta.
    *

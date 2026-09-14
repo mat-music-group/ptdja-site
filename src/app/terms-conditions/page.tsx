@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { SiteFooter } from "@/components/layout/SiteFooter";
 import { SiteHeader } from "@/components/layout/SiteHeader";
 import { PaginaLegale } from "@/components/sections/PaginaLegale";
+import { TagSocialSenzaCard } from "@/lib/metadati";
 import { TERMS_CONDITIONS } from "@/testi/terms-conditions";
 
 /*
@@ -18,13 +19,15 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "https://www.petetong-djacademy.com/terms-conditions",
   },
-  openGraph: { title: "Terms & Conditions" },
-  twitter: { title: "Terms & Conditions" },
+  /* `og:title` e `twitter:title` NON stanno qui: la pagina non ha
+     `twitter:card` su Webflow e il campo `openGraph` di Next ne creerebbe uno.
+     Li scrive `TagSocialSenzaCard`, sotto. Vedi `src/lib/metadati.tsx`. */
 };
 
 export default function TermsConditions() {
   return (
     <>
+      <TagSocialSenzaCard titolo="Terms & Conditions" />
       <SiteHeader />
       <PaginaLegale testo={TERMS_CONDITIONS} />
       <SiteFooter />

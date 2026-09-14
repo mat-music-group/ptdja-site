@@ -5,6 +5,7 @@ import { SiteFooter } from "@/components/layout/SiteFooter";
 import { SiteHeader } from "@/components/layout/SiteHeader";
 import { Button } from "@/components/ui/Button";
 import { RivelaAllaVista } from "@/components/ui/RivelaAllaVista";
+import { TagSocialSenzaCard } from "@/lib/metadati";
 import { NOT_FOUND } from "@/testi/404";
 
 /*
@@ -32,14 +33,16 @@ import { NOT_FOUND } from "@/testi/404";
 export const metadata: Metadata = {
   title: NOT_FOUND.meta.title,
   alternates: { canonical: NOT_FOUND.meta.canonical },
-  openGraph: { title: NOT_FOUND.meta.title },
-  twitter: { title: NOT_FOUND.meta.title },
   robots: { index: false, follow: true },
+  /* `og:title` e `twitter:title` NON stanno qui: la pagina non ha
+     `twitter:card` su Webflow e il campo `openGraph` di Next ne creerebbe uno.
+     Li scrive `TagSocialSenzaCard`, sotto. Vedi `src/lib/metadati.tsx`. */
 };
 
 export default function NotFound() {
   return (
     <>
+      <TagSocialSenzaCard titolo={NOT_FOUND.meta.title} />
       <SiteHeader />
 
       <aside className="bg-sfondo pb-sezione pt-[200px]">
