@@ -1,0 +1,279 @@
+{
+  "slug": "dj-course",
+  "url": "https://www.petetong-djacademy.com/dj-course",
+  "webflow_page_id": "6852b849a798270dd3900dd7",
+  "lang": "en",
+  "title": "Online DJ Course with Pete Tong & World-Class DJs | Start Mixing Today",
+  "description": "Learn to DJ from the best. Join Pete Tong, Jamie Jones, Nicole Moudaber & more in our complete online DJ course. From beginner to pro. Start your journey now.",
+  "robots": null,
+  "google-site-verification": "cExwpYSnIc6g-zZ9OygGshai6S4i3ICN-h0gkbnms8U",
+  "viewport": "width=device-width, initial-scale=1",
+  "twitter:title": "Online DJ Course with Pete Tong & World-Class DJs | Start Mixing Today",
+  "twitter:description": "Learn to DJ from the best. Join Pete Tong, Jamie Jones, Nicole Moudaber & more in our complete online DJ course. From beginner to pro. Start your journey now.",
+  "twitter:image": "https://cdn.prod.website-files.com/677f9e71c11a68b86359df57/67c72a69971bade6763459e4_IMMAGINE%20ACADEMY.png",
+  "twitter:card": "summary_large_image",
+  "twitter:site": null,
+  "twitter:creator": null,
+  "og:title": "Online DJ Course with Pete Tong & World-Class DJs | Start Mixing Today",
+  "og:description": "Learn to DJ from the best. Join Pete Tong, Jamie Jones, Nicole Moudaber & more in our complete online DJ course. From beginner to pro. Start your journey now.",
+  "og:image": "https://cdn.prod.website-files.com/677f9e71c11a68b86359df57/67c72a69971bade6763459e4_IMMAGINE%20ACADEMY.png",
+  "og:type": "website",
+  "og:url": "https://www.petetong-djacademy.com/dj-course",
+  "og:site_name": "Pete Tong DJ Academy",
+  "og:locale": null,
+  "canonical": "https://www.petetong-djacademy.com/dj-course",
+  "favicon": "https://cdn.prod.website-files.com/677f9e71c11a68b86359df57/67bde232bb8ed51e1459da20_13dnew.png",
+  "apple_touch_icon": "https://cdn.prod.website-files.com/677f9e71c11a68b86359df57/67bde20e27ae4c6c2c03b0ca_12dnew.png",
+  "_nota_robots": "nessun meta robots nella pagina: vale il default index,follow",
+  "jsonld": [
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": [
+            "Organization",
+            "EducationalOrganization"
+          ],
+          "@id": "https://www.petetong-djacademy.com/#organization",
+          "name": "Pete Tong DJ Academy",
+          "url": "https://www.petetong-djacademy.com",
+          "logo": {
+            "@type": "ImageObject",
+            "url": "https://cdn.prod.website-files.com/677f9e71c11a68b86359df57/67ba16cad5588af38e877220_logo-altra%20versionewhite.png"
+          }
+        },
+        {
+          "@type": "Person",
+          "@id": "https://www.petetong-djacademy.com/#pete-tong",
+          "name": "Pete Tong",
+          "jobTitle": "DJ, broadcaster and founder",
+          "sameAs": [
+            "https://en.wikipedia.org/wiki/Pete_Tong"
+          ]
+        },
+        {
+          "@type": "Person",
+          "@id": "https://www.petetong-djacademy.com/#carl-cox",
+          "name": "Carl Cox",
+          "sameAs": [
+            "https://en.wikipedia.org/wiki/Carl_Cox"
+          ]
+        },
+        {
+          "@type": "Person",
+          "@id": "https://www.petetong-djacademy.com/#adam-beyer",
+          "name": "Adam Beyer",
+          "sameAs": [
+            "https://en.wikipedia.org/wiki/Adam_Beyer"
+          ]
+        },
+        {
+          "@type": "Person",
+          "@id": "https://www.petetong-djacademy.com/#jamie-jones",
+          "name": "Jamie Jones",
+          "sameAs": [
+            "https://en.wikipedia.org/wiki/Jamie_Jones_(DJ)"
+          ]
+        },
+        {
+          "@type": "Person",
+          "@id": "https://www.petetong-djacademy.com/#nicole-moudaber",
+          "name": "Nicole Moudaber",
+          "sameAs": [
+            "https://en.wikipedia.org/wiki/Nicole_Moudaber"
+          ]
+        },
+        {
+          "@type": "Person",
+          "@id": "https://www.petetong-djacademy.com/#tsha",
+          "name": "TSHA",
+          "sameAs": [
+            "https://en.wikipedia.org/wiki/TSHA_(musician)"
+          ]
+        },
+        {
+          "@type": "MusicGroup",
+          "@id": "https://www.petetong-djacademy.com/#ame",
+          "name": "Âme",
+          "sameAs": [
+            "https://en.wikipedia.org/wiki/%C3%82me"
+          ]
+        },
+        {
+          "@type": "MusicGroup",
+          "@id": "https://www.petetong-djacademy.com/#the-reloud",
+          "name": "The Reloud"
+        },
+        {
+          "@type": "WebPage",
+          "@id": "https://www.petetong-djacademy.com/dj-course#webpage",
+          "url": "https://www.petetong-djacademy.com/dj-course",
+          "name": "Online DJ Course with Pete Tong & World-Class DJs | Start Mixing Today",
+          "description": "Learn to DJ from the best. Join Pete Tong, Jamie Jones, Nicole Moudaber & more in our complete online DJ course. From beginner to pro. Start your journey now.",
+          "isPartOf": {
+            "@id": "https://www.petetong-djacademy.com/#website"
+          },
+          "breadcrumb": {
+            "@id": "https://www.petetong-djacademy.com/dj-course#breadcrumb"
+          }
+        },
+        {
+          "@type": "BreadcrumbList",
+          "@id": "https://www.petetong-djacademy.com/dj-course#breadcrumb",
+          "itemListElement": [
+            {
+              "@type": "ListItem",
+              "position": 1,
+              "name": "Home",
+              "item": "https://www.petetong-djacademy.com/"
+            },
+            {
+              "@type": "ListItem",
+              "position": 2,
+              "name": "DJ Course",
+              "item": "https://www.petetong-djacademy.com/dj-course"
+            }
+          ]
+        },
+        {
+          "@type": "FAQPage",
+          "@id": "https://www.petetong-djacademy.com/dj-course#faq",
+          "mainEntity": [
+            {
+              "@type": "Question",
+              "name": "Is this course beginner-friendly?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Yes. It's perfect for newcomers and also includes advanced modules for experienced DJs."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "What skills will I learn in the DJ course?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "You’ll master mixing, transitions, effects, crowd control, set prep, and performance techniques."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Do I need equipment to get started?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "No. You can begin with just a laptop and free software provided in the course."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Are live mentor sessions included?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Yes. Monthly live sessions are part of every plan."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Is the DJ course available in every plan?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Yes, but only if DJing is one of the courses selected in your plan."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "What’s the difference between 1, 2, and 3 course plans?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Each additional course unlocks more lessons, features, and bonus content — up to full access."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Can I upgrade later to access more courses?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Absolutely. You can upgrade at any time from your dashboard."
+              }
+            }
+          ]
+        },
+        {
+          "@type": "Course",
+          "@id": "https://www.petetong-djacademy.com/dj-course#course",
+          "name": "DJ Course",
+          "description": "Online DJ course taught by Pete Tong, Carl Cox, Adam Beyer, Jamie Jones, Nicole Moudaber, TSHA, Âme and The Reloud. A multi-level path for beginners and advanced DJs covering setup, beatmatching, mixing with EQ and effects, building DJ sets, reading the crowd, and DJ career and industry skills. Includes subtitles in English, Spanish, French, Portuguese and Italian.",
+          "url": "https://www.petetong-djacademy.com/dj-course",
+          "provider": {
+            "@id": "https://www.petetong-djacademy.com/#organization"
+          },
+          "inLanguage": "en",
+          "educationalLevel": "Beginner & Advanced",
+          "educationalCredentialAwarded": "Official certificate",
+          "instructor": [
+            {
+              "@id": "https://www.petetong-djacademy.com/#pete-tong"
+            },
+            {
+              "@id": "https://www.petetong-djacademy.com/#carl-cox"
+            },
+            {
+              "@id": "https://www.petetong-djacademy.com/#adam-beyer"
+            },
+            {
+              "@id": "https://www.petetong-djacademy.com/#jamie-jones"
+            },
+            {
+              "@id": "https://www.petetong-djacademy.com/#nicole-moudaber"
+            },
+            {
+              "@id": "https://www.petetong-djacademy.com/#tsha"
+            },
+            {
+              "@id": "https://www.petetong-djacademy.com/#ame"
+            },
+            {
+              "@id": "https://www.petetong-djacademy.com/#the-reloud"
+            }
+          ],
+          "hasCourseInstance": {
+            "@type": "CourseInstance",
+            "courseMode": "Online",
+            "location": {
+              "@type": "VirtualLocation",
+              "url": "https://www.petetong-djacademy.com"
+            }
+          },
+          "offers": [
+            {
+              "@type": "AggregateOffer",
+              "priceCurrency": "USD",
+              "lowPrice": "57.00",
+              "highPrice": "288.00",
+              "offerCount": 6,
+              "url": "https://www.petetong-djacademy.com/pricing-page",
+              "availability": "https://schema.org/InStock"
+            },
+            {
+              "@type": "AggregateOffer",
+              "priceCurrency": "EUR",
+              "lowPrice": "57.00",
+              "highPrice": "288.00",
+              "offerCount": 6,
+              "url": "https://www.petetong-djacademy.com/pricing-page",
+              "availability": "https://schema.org/InStock"
+            },
+            {
+              "@type": "AggregateOffer",
+              "priceCurrency": "GBP",
+              "lowPrice": "57.00",
+              "highPrice": "288.00",
+              "offerCount": 6,
+              "url": "https://www.petetong-djacademy.com/pricing-page",
+              "availability": "https://schema.org/InStock"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

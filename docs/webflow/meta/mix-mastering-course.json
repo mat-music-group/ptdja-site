@@ -1,0 +1,205 @@
+{
+  "slug": "mix-mastering-course",
+  "url": "https://www.petetong-djacademy.com/mix-mastering-course",
+  "webflow_page_id": "69cf968af997dbd30be73fcd",
+  "lang": "en",
+  "title": "Mix & Mastering Course | Pete Tong DJ Academy",
+  "description": "Take your sound to Grammy level. Learn advanced mixing and mastering techniques for electronic music with Luca Pretolesi in this pro-level online course.",
+  "robots": null,
+  "google-site-verification": "cExwpYSnIc6g-zZ9OygGshai6S4i3ICN-h0gkbnms8U",
+  "viewport": "width=device-width, initial-scale=1",
+  "twitter:title": "Mix & Mastering Course | Pete Tong DJ Academy",
+  "twitter:description": "Take your sound to Grammy level. Learn advanced mixing and mastering techniques for electronic music with Luca Pretolesi in this pro-level online course.",
+  "twitter:image": "https://cdn.prod.website-files.com/677f9e71c11a68b86359df57/67c72a69971bade6763459e4_IMMAGINE%20ACADEMY.png",
+  "twitter:card": "summary_large_image",
+  "twitter:site": null,
+  "twitter:creator": null,
+  "og:title": "Mix & Mastering Course | Pete Tong DJ Academy",
+  "og:description": "Take your sound to Grammy level. Learn advanced mixing and mastering techniques for electronic music with Luca Pretolesi in this pro-level online course.",
+  "og:image": "https://cdn.prod.website-files.com/677f9e71c11a68b86359df57/67c72a69971bade6763459e4_IMMAGINE%20ACADEMY.png",
+  "og:type": "website",
+  "og:url": "https://www.petetong-djacademy.com/mix-mastering-course",
+  "og:site_name": "Pete Tong DJ Academy",
+  "og:locale": null,
+  "canonical": "https://www.petetong-djacademy.com/mix-mastering-course",
+  "favicon": "https://cdn.prod.website-files.com/677f9e71c11a68b86359df57/67bde232bb8ed51e1459da20_13dnew.png",
+  "apple_touch_icon": "https://cdn.prod.website-files.com/677f9e71c11a68b86359df57/67bde20e27ae4c6c2c03b0ca_12dnew.png",
+  "_nota_robots": "nessun meta robots nella pagina: vale il default index,follow",
+  "jsonld": [
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": [
+            "Organization",
+            "EducationalOrganization"
+          ],
+          "@id": "https://www.petetong-djacademy.com/#organization",
+          "name": "Pete Tong DJ Academy",
+          "url": "https://www.petetong-djacademy.com",
+          "logo": {
+            "@type": "ImageObject",
+            "url": "https://cdn.prod.website-files.com/677f9e71c11a68b86359df57/67ba16cad5588af38e877220_logo-altra%20versionewhite.png"
+          }
+        },
+        {
+          "@type": "Person",
+          "@id": "https://www.petetong-djacademy.com/#luca-pretolesi",
+          "name": "Luca Pretolesi",
+          "jobTitle": "Mixing and mastering engineer, founder of Studio DMI",
+          "sameAs": [
+            "https://en.wikipedia.org/wiki/Luca_Pretolesi"
+          ]
+        },
+        {
+          "@type": "WebPage",
+          "@id": "https://www.petetong-djacademy.com/mix-mastering-course#webpage",
+          "url": "https://www.petetong-djacademy.com/mix-mastering-course",
+          "name": "Mix & Mastering Course | Pete Tong DJ Academy",
+          "description": "Take your sound to Grammy level. Learn advanced mixing and mastering techniques for electronic music with Luca Pretolesi in this pro-level online course.",
+          "isPartOf": {
+            "@id": "https://www.petetong-djacademy.com/#website"
+          },
+          "breadcrumb": {
+            "@id": "https://www.petetong-djacademy.com/mix-mastering-course#breadcrumb"
+          }
+        },
+        {
+          "@type": "BreadcrumbList",
+          "@id": "https://www.petetong-djacademy.com/mix-mastering-course#breadcrumb",
+          "itemListElement": [
+            {
+              "@type": "ListItem",
+              "position": 1,
+              "name": "Home",
+              "item": "https://www.petetong-djacademy.com/"
+            },
+            {
+              "@type": "ListItem",
+              "position": 2,
+              "name": "Mix & Mastering Course",
+              "item": "https://www.petetong-djacademy.com/mix-mastering-course"
+            }
+          ]
+        },
+        {
+          "@type": "FAQPage",
+          "@id": "https://www.petetong-djacademy.com/mix-mastering-course#faq",
+          "mainEntity": [
+            {
+              "@type": "Question",
+              "name": "Is this course suitable for self-releasing artists?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Yes. It's designed to help you prepare your tracks for platforms like Spotify, Beatport, and more."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "What topics are covered in mixing and mastering?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "EQ, compression, stereo imaging, reverb, loudness, dynamics, exporting and more."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Will I be able to finalize tracks for streaming?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Yes — after the course you’ll know how to prepare your mix/master for release."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Can I get feedback on my mix?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Yes. Through live sessions and Talent Pool submissions."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Is mastering included in all subscription plans?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "No — the Mixing & Mastering course is only available in the Elite (3-course) plan. It’s an advanced course designed for students who want full access to the entire learning path."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Do I need the full access plan to get everything?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "All subscription plans include the same features: live sessions, AI tutors, contests, feedback, downloads, and community access. However, to unlock the Mixing & Mastering course and its exclusive content, you’ll need the Elite plan (3-course access) — which gives you the full educational experience from DJing to final mastering."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Is certification included in the price?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Yes. Complete the course and you'll receive an official certificate."
+              }
+            }
+          ]
+        },
+        {
+          "@type": "Course",
+          "@id": "https://www.petetong-djacademy.com/mix-mastering-course#course",
+          "name": "Grammy® Advanced Mix & Mastering Course",
+          "description": "Advanced mixing and mastering course led by Luca Pretolesi, mixing and mastering engineer and founder of Studio DMI in Las Vegas, who has collaborated with artists including Diplo, Skrillex, Drake, Steve Aoki, David Guetta and Beyoncé. Built on his Reverse Funnel 2.0® approach: shape the stereo bus first, sculpt the core sounds, then finalize vocals and mastering for a release-ready result. Available in the Elite plan. Includes subtitles in English, Spanish, French, Portuguese and Italian.",
+          "url": "https://www.petetong-djacademy.com/mix-mastering-course",
+          "provider": {
+            "@id": "https://www.petetong-djacademy.com/#organization"
+          },
+          "inLanguage": "en",
+          "educationalLevel": "Advanced",
+          "educationalCredentialAwarded": "Official certificate",
+          "instructor": [
+            {
+              "@id": "https://www.petetong-djacademy.com/#luca-pretolesi"
+            }
+          ],
+          "hasCourseInstance": {
+            "@type": "CourseInstance",
+            "courseMode": "Online",
+            "location": {
+              "@type": "VirtualLocation",
+              "url": "https://www.petetong-djacademy.com"
+            }
+          },
+          "offers": [
+            {
+              "@type": "AggregateOffer",
+              "priceCurrency": "USD",
+              "lowPrice": "117.00",
+              "highPrice": "288.00",
+              "offerCount": 2,
+              "url": "https://www.petetong-djacademy.com/pricing-page",
+              "availability": "https://schema.org/InStock"
+            },
+            {
+              "@type": "AggregateOffer",
+              "priceCurrency": "EUR",
+              "lowPrice": "117.00",
+              "highPrice": "288.00",
+              "offerCount": 2,
+              "url": "https://www.petetong-djacademy.com/pricing-page",
+              "availability": "https://schema.org/InStock"
+            },
+            {
+              "@type": "AggregateOffer",
+              "priceCurrency": "GBP",
+              "lowPrice": "117.00",
+              "highPrice": "288.00",
+              "offerCount": 2,
+              "url": "https://www.petetong-djacademy.com/pricing-page",
+              "availability": "https://schema.org/InStock"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

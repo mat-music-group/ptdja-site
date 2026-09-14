@@ -1,0 +1,494 @@
+<!--
+  Custom code di SITO di petetong-djacademy.com, estratto il 2026-09-14
+  dall'HTML pubblicato. Identico su tutte e 11 le pagine in scope.
+  Copia fedele: non modificare a mano, si rigenera con scripts/estrai-custom-code.py
+-->
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WLFQB5G"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const btn = document.querySelector("#enroll-now-menu");
+    if (btn) {
+      btn.addEventListener("click", function () {
+        if (typeof mixpanel !== 'undefined') {
+          mixpanel.track("Buy Now Menu");
+        }
+      });
+    }
+  });
+  
+  document.addEventListener("DOMContentLoaded", function () {
+    const btn = document.querySelector("#buy-now-header");
+    if (btn) {
+      btn.addEventListener("click", function () {
+        if (typeof mixpanel !== 'undefined') {
+          mixpanel.track("Buy Now Header");
+        }
+      });
+    }
+  });
+</script>
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  // ✅ Utility for Mixpanel tracking
+  function trackMixpanel(eventName, data = {}) {
+    if (typeof mixpanel !== 'undefined') {
+      data.page = window.location.pathname;
+      mixpanel.track(eventName, data);
+      console.log('[Mixpanel]', eventName, data);
+    } else {
+      console.warn('Mixpanel not available');
+    }
+  }
+
+  // ✅ Track Page View (skip thank-you pages to reduce noise)
+  if (!window.location.href.includes("thank-you")) {
+    trackMixpanel('Page View', {
+      title: document.title,
+      url: window.location.href,
+      timestamp: new Date().toISOString()
+    });
+  }
+
+  // -----------------------------------
+  // ✅ Merge Customer on Thank You Page
+  // -----------------------------------
+  function linkCustomerWithMixpanel(retries = 10) {
+    if (!window.location.href.includes("thank-you")) return;
+
+    if (!window.mixpanel || typeof window.mixpanel.get_distinct_id !== "function") {
+      if (retries > 0) {
+        console.log(`[Mixpanel] Not ready, retrying... (${retries} left)`);
+        return setTimeout(() => linkCustomerWithMixpanel(retries - 1), 500);
+      }
+      console.warn("[Mixpanel] Mixpanel still not ready, giving up.");
+      return;
+    }
+
+    const params = new URLSearchParams(window.location.search);
+    const customerId = params.get("email");
+    if (!customerId) {
+      console.warn("[Mixpanel] No cust_id found in URL");
+      return;
+    }
+
+    const subId = params.get("sub_id");
+    const invoiceId = params.get("invoice_id");
+    const state = params.get("state");
+    const distinctId = mixpanel.get_distinct_id();
+
+    const alreadyAliased = localStorage.getItem("mixpanel_aliased_customer") === customerId;
+
+    if (!alreadyAliased && distinctId !== customerId) {
+      console.log("[Mixpanel] First-time alias:", { distinctId, customerId });
+      mixpanel.alias(customerId);
+      localStorage.setItem("mixpanel_aliased_customer", customerId);
+    } else {
+      console.log("[Mixpanel] Skipping alias, already linked:", customerId);
+    }
+
+    mixpanel.identify(customerId);
+
+    mixpanel.people.set({
+      $user_id: customerId,
+      $email: customerId,	
+      subscription_id: subId,
+      invoice_id: invoiceId,
+      checkout_state: state,
+      linked_at: new Date().toISOString(),
+      last_page: window.location.href
+    });
+
+    if (!sessionStorage.getItem("checkout_tracked_" + customerId)) {
+      trackMixpanel("Checkout Succeeded", {
+        customer_id: customerId,
+        subscription_id: subId,
+        invoice_id: invoiceId,
+        state: state,
+        url: window.location.href,
+        timestamp: new Date().toISOString()
+      });
+      sessionStorage.setItem("checkout_tracked_" + customerId, "true");
+    }
+  }
+
+  window.addEventListener("load", () => {
+    linkCustomerWithMixpanel();
+  });
+
+  // ✅ CTA Tracking (example)
+  document.querySelectorAll('a.button.enroll.signup-now').forEach(button => {
+    button.addEventListener('click', function () {
+      const label = button.querySelector('.button-text')?.innerText.trim() || 'Unknown';
+      const href = button.getAttribute('href') || '';
+      trackMixpanel('CTA Click', {
+        section: 'Hero Signup',
+        label,
+        href,
+        url: window.location.href
+      });
+    });
+  });
+
+  // ✅ Navbar Link Tracking
+  document.querySelectorAll('.header-2 a, .nav-menu-2 a').forEach(link => {
+    link.addEventListener('click', function () {
+      const label = link.innerText.trim();
+      const href = link.getAttribute('href') || '';
+      let type = 'Main Menu';
+      let menu = 'Main';
+
+      const dropdownParent = link.closest('.nav-dropdown-list-2');
+      if (dropdownParent) {
+        type = 'Submenu';
+        const toggle = dropdownParent.closest('.nav-dropdown')?.querySelector('.menu-dropdown-text-2');
+        menu = toggle ? toggle.textContent.trim() : 'Unknown Submenu';
+      }
+
+      trackMixpanel('Navbar Link Clicked', { type, menu, label, href, url: window.location.href });
+    });
+  });
+
+  // ✅ Trustpilot CTA Tracking
+  document.querySelectorAll('p.paragraph a[href*="trustpilot.com"]').forEach(link => {
+    link.addEventListener('click', () => {
+      const label = link.innerText.trim() || 'Trustpilot';
+      const href = link.getAttribute('href') || '';
+      trackMixpanel('Trustpilot CTA Clicked', {
+        section: 'Generic Trust Section',
+        label: 'Trustpilot CTA',
+        text: label,
+        href,
+        url: window.location.href
+      });
+    });
+  });
+
+  // ✅ "Book a Free Call" CTA Tracking
+  document.querySelectorAll('a.button-2.secondary.w-inline-block[href*="calendly.com"]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const heading = btn.closest('.content-text-block-2')?.querySelector('h2')?.innerText.trim() || '';
+      const description = btn.closest('.content-text-block-2')?.querySelector('p')?.innerText.trim() || '';
+      const href = btn.getAttribute('href') || '';
+
+      trackMixpanel('Book Free Call CTA', {
+        section: 'Free Call Section',
+        label: 'Book a free call',
+        heading,
+        description,
+        href,
+        url: window.location.href,
+        timestamp: new Date().toISOString()
+      });
+    });
+  });
+
+  // ✅ Footer FAQ Tracking
+  document.querySelectorAll('.faq-right-block.section-footer .faq-item.w-dropdown .faq-header').forEach(faqHeader => {
+    faqHeader.addEventListener('click', function () {
+      const title = faqHeader.querySelector('.faq-item-heading')?.innerText.trim();
+      const isExpanded = faqHeader.getAttribute('aria-expanded') === 'true';
+      if (!isExpanded) {
+        trackMixpanel('Tracked FAQ Opened', {
+          section: 'Footer FAQ Section',
+          faqTitle: title,
+          url: window.location.href,
+          timestamp: new Date().toISOString()
+        });
+      }
+    });
+  });
+
+  // ✅ Homepage Courses Carousel Tracking
+  document.querySelectorAll('#sliderId .w-slide a.w-inline-block').forEach(link => {
+    link.addEventListener('click', function () {
+      const href = link.getAttribute('href') || '';
+      const img = link.querySelector('img');
+      const imgSrc = img?.getAttribute('src') || '';
+      const courseNameFromHref = href.split('/').filter(Boolean).pop()?.replace(/[-_]/g, ' ') || 'Unknown';
+      const courseName = courseNameFromHref.replace(/\b\w/g, char => char.toUpperCase());
+      trackMixpanel('Course Card Click', {
+        section: 'Homepage Courses Carousel',
+        label: courseName,
+        href,
+        image: imgSrc,
+        url: window.location.href
+      });
+    });
+  });
+
+  // ✅ Beatport Lite Activation Form Tracking
+  const form = document.querySelector('#wf-form-BP-Lite-Activation-1');
+  if (form) {
+    // Track submit attempt
+    form.addEventListener('submit', () => {
+      const email = form.querySelector('input[name="email"]')?.value || '';
+      const code = form.querySelector('input[name="name"]')?.value || '';
+      const agreed = form.querySelector('input[name="radio"]:checked') ? true : false;
+
+      trackMixpanel('BP Lite Activation Attempt', {
+        section: 'Lite Version Page',
+        formId: form.id,
+        email,
+        code,
+        agreed,
+        url: window.location.href,
+        timestamp: new Date().toISOString()
+      });
+    });
+
+    // Track success
+    const successEl = form.parentElement.querySelector('.w-form-done');
+    if (successEl) {
+      const observer = new MutationObserver(entries => {
+        entries.forEach(entry => {
+          if (entry.target.style.display !== 'none' && entry.target.offsetParent !== null) {
+            trackMixpanel('BP Lite Activation Success', {
+              section: 'Lite Version Page',
+              formId: form.id,
+              url: window.location.href,
+              timestamp: new Date().toISOString()
+            });
+          }
+        });
+      });
+      observer.observe(successEl, { attributes: true, attributeFilter: ['style'] });
+    }
+
+    // Track failure
+    const failEl = form.parentElement.querySelector('.w-form-fail');
+    if (failEl) {
+      const observer = new MutationObserver(entries => {
+        entries.forEach(entry => {
+          if (entry.target.style.display !== 'none' && entry.target.offsetParent !== null) {
+            trackMixpanel('BP Lite Activation Failed', {
+              section: 'Lite Version Page',
+              formId: form.id,
+              url: window.location.href,
+              timestamp: new Date().toISOString()
+            });
+          }
+        });
+      });
+      observer.observe(failEl, { attributes: true, attributeFilter: ['style'] });
+    }
+  }
+
+  // -----------------------------------
+  // ✅ NEW BUTTONS (added at the end)
+  // -----------------------------------
+
+  // Track "Activate Now" button (Enrollment CTA)
+  const activateNowBtn = document.querySelector('a[data-optibase-click-conversion-id="activation_3mesi"]');
+  if (activateNowBtn) {
+    activateNowBtn.addEventListener('click', () => {
+      const label = activateNowBtn.innerText.trim() || 'Activate Now';
+      const href = activateNowBtn.getAttribute('href') || '';
+
+      trackMixpanel('Activate Now Button Clicked', {
+        section: 'Enrollment CTA',
+        label,
+        href,
+        url: window.location.href,
+        timestamp: new Date().toISOString()
+      });
+    });
+  }
+
+});
+</script>
+
+<script>
+// --- LEAD GENERATION (Typeform UID/Email) ---
+(function() {
+  try {
+    var urlParams = new URLSearchParams(window.location.search);
+    var uid = urlParams.get('uid');
+    var email = urlParams.get('email');
+
+    if (email) {
+      if (typeof mixpanel !== 'undefined') {
+        mixpanel.identify(email);
+        mixpanel.people.set({
+          "$email": email,
+          "$name": email,
+          "Status": "Lead"
+        });
+        mixpanel.track("Lead Generated", {
+          "Source": "Typeform"
+        });
+      }
+      console.log("Utente identificato con email: " + email);
+    } else if (uid) {
+      if (typeof mixpanel !== 'undefined') {
+        mixpanel.identify(uid);
+      }
+      console.log("Utente identificato con ID anonimo: " + uid);
+    }
+
+    if ((email || uid) && typeof mixpanel !== 'undefined') {
+      mixpanel.track("Landing View", {
+        "Page Name": document.title
+      });
+    }
+
+  } catch (e) {
+    console.log('Mixpanel tracking error:', e);
+  }
+})();
+</script>
+<!-- ============================================================================ -->
+<!-- PRICING CHECKOUT BUTTONS TRACKING - CLEAN VERSION -->
+<!-- ============================================================================ -->
+<script>
+// Pricing Checkout Buttons Tracking - Clean Version
+(function() {
+  
+  function getPlanName(card) {
+    // Method 1: Look for plan_titile element
+    const planTitleEl = card.querySelector('.plan_titile');
+    if (planTitleEl) {
+      const title = planTitleEl.innerText.trim();
+      if (title === 'One' || title === 'Pro' || title === 'Elite') {
+        return title;
+      }
+    }
+    
+    // Method 2: Look for specific text in the card
+    const cardText = card.innerText;
+    
+    // Check for Elite first (most specific)
+    if (cardText.includes('Mix & Mastering') || cardText.includes('Three Full Courses')) {
+      return 'Elite';
+    }
+    
+    // Check for Pro
+    if ((cardText.includes('DJ + Producer') && !cardText.includes('Mix & Mastering')) || 
+        cardText.includes('Two Full courses')) {
+      return 'Pro';
+    }
+    
+    // Check for One
+    if (cardText.includes('Choose DJ or Producer Course') || cardText.includes('One')) {
+      return 'One';
+    }
+    
+    // Method 3: Check the price element's parent structure
+    const priceEl = card.querySelector('.number[data-year]');
+    if (priceEl) {
+      const yearlyPrice = priceEl.getAttribute('data-year');
+      if (yearlyPrice === '19') return 'One';
+      if (yearlyPrice === '29') return 'Pro';
+      if (yearlyPrice === '39') return 'Elite';
+    }
+    
+    // Method 4: Check button href patterns
+    const button = card.querySelector('.button_primary-2');
+    if (button) {
+      const href = button.getAttribute('href') || '';
+      if (href.includes('One-')) return 'One';
+      if (href.includes('PRO-')) return 'Pro';
+      if (href.includes('ELITE-')) return 'Elite';
+    }
+    
+    console.warn('[Pricing Tracking] Could not detect plan for card:', cardText.substring(0, 100));
+    return 'Unknown';
+  }
+  
+  function getPlanPrice(card, planName) {
+    const priceEl = card.querySelector('.number[data-year]');
+    if (priceEl) {
+      const yearlyPrice = priceEl.getAttribute('data-year');
+      const monthlyPrice = priceEl.getAttribute('data-month');
+      
+      // Fallback prices based on plan if not found
+      if (planName === 'One') return { yearly: '19', monthly: '13' };
+      if (planName === 'Pro') return { yearly: '29', monthly: '19' };
+      if (planName === 'Elite') return { yearly: '39', monthly: '24' };
+      
+      return { yearly: yearlyPrice || 'unknown', monthly: monthlyPrice || 'unknown' };
+    }
+    
+    // Default prices if element not found
+    if (planName === 'One') return { yearly: '19', monthly: '13' };
+    if (planName === 'Pro') return { yearly: '29', monthly: '19' };
+    if (planName === 'Elite') return { yearly: '39', monthly: '24' };
+    return { yearly: 'unknown', monthly: 'unknown' };
+  }
+  
+  function initPricingTracking() {
+    const pricingCards = document.querySelectorAll('.pricing_card');
+    
+    if (pricingCards.length === 0) return;
+    
+    pricingCards.forEach((card) => {
+      const buttons = card.querySelectorAll('.button_primary-2');
+      
+      buttons.forEach(button => {
+        if (button.hasAttribute('data-pricing-tracked')) return;
+        button.setAttribute('data-pricing-tracked', 'true');
+        
+        const planName = getPlanName(card);
+        const prices = getPlanPrice(card, planName);
+        
+        const isYearly = button.classList.contains('is_monthly');
+        const isQuarterly = button.classList.contains('is_annual');
+        let billingCycle = 'unknown';
+        if (isYearly) billingCycle = 'yearly';
+        if (isQuarterly) billingCycle = 'quarterly';
+        
+        const price = isYearly ? prices.yearly : prices.monthly;
+        
+        const displayPriceEl = isYearly ? card.querySelector('.save-hs') : card.querySelector('.billed-3-mo');
+        let displayPrice = displayPriceEl?.innerText?.trim() || '';
+        if (!displayPrice) {
+          displayPrice = isYearly ? `billed yearly at $${parseInt(price) * 12}` : `billed quarterly at $${parseInt(price) * 3}`;
+        }
+        
+        button.addEventListener('click', function(e) {
+          const trackData = {
+            plan_name: planName,
+            billing_cycle: billingCycle,
+            price: price,
+            price_display: `$${price}/month`,
+            billing_description: displayPrice,
+            button_text: this.innerText.trim() || 'Start Learning',
+            checkout_url: this.getAttribute('href') || '',
+            page_url: window.location.href,
+            timestamp: new Date().toISOString()
+          };
+          
+          if (typeof mixpanel !== 'undefined') {
+            mixpanel.track('Pricing Checkout Clicked', trackData);
+            console.log('[Mixpanel] Pricing Checkout Clicked:', trackData);
+          }
+        });
+      });
+    });
+  }
+  
+  // Initialize when DOM is ready
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initPricingTracking);
+  } else {
+    initPricingTracking();
+  }
+  
+  // Observer for dynamic content (handles SPA navigation)
+  const observer = new MutationObserver(() => initPricingTracking());
+  observer.observe(document.body, { childList: true, subtree: true });
+  
+})();
+</script>
+
+<!-- TRACCIAMENTO PROPRIETARIO MAT:PETE — BEGIN -->
+<script src="https://tool.ptdja.com/tracking/track.js"
+        data-brand="ptdja"
+        data-landing="sito"
+        data-endpoint="https://tool.ptdja.com"
+        data-engagement="off"
+        defer></script>

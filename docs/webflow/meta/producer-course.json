@@ -1,0 +1,243 @@
+{
+  "slug": "producer-course",
+  "url": "https://www.petetong-djacademy.com/producer-course",
+  "webflow_page_id": "687529f924c7728eb03f5a2a",
+  "lang": "en",
+  "title": "Learn Music Production with Diplo, PARISI & Âme | Producer Course",
+  "description": "Master music production with our complete online Producer Course. Learn from Diplo, PARISI, Âme, and more. For aspiring and advanced producers. Start now.",
+  "robots": null,
+  "google-site-verification": "cExwpYSnIc6g-zZ9OygGshai6S4i3ICN-h0gkbnms8U",
+  "viewport": "width=device-width, initial-scale=1",
+  "twitter:title": "Learn Music Production with Diplo, PARISI & Âme | Producer Course",
+  "twitter:description": "Master music production with our complete online Producer Course. Learn from Diplo, PARISI, Âme, and more. For aspiring and advanced producers. Start now.",
+  "twitter:image": "https://cdn.prod.website-files.com/677f9e71c11a68b86359df57/67c72a69971bade6763459e4_IMMAGINE%20ACADEMY.png",
+  "twitter:card": "summary_large_image",
+  "twitter:site": null,
+  "twitter:creator": null,
+  "og:title": "Learn Music Production with Diplo, PARISI & Âme | Producer Course",
+  "og:description": "Master music production with our complete online Producer Course. Learn from Diplo, PARISI, Âme, and more. For aspiring and advanced producers. Start now.",
+  "og:image": "https://cdn.prod.website-files.com/677f9e71c11a68b86359df57/67c72a69971bade6763459e4_IMMAGINE%20ACADEMY.png",
+  "og:type": "website",
+  "og:url": "https://www.petetong-djacademy.com/producer-course",
+  "og:site_name": "Pete Tong DJ Academy",
+  "og:locale": null,
+  "canonical": "https://www.petetong-djacademy.com/producer-course",
+  "favicon": "https://cdn.prod.website-files.com/677f9e71c11a68b86359df57/67bde232bb8ed51e1459da20_13dnew.png",
+  "apple_touch_icon": "https://cdn.prod.website-files.com/677f9e71c11a68b86359df57/67bde20e27ae4c6c2c03b0ca_12dnew.png",
+  "_nota_robots": "nessun meta robots nella pagina: vale il default index,follow",
+  "jsonld": [
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": [
+            "Organization",
+            "EducationalOrganization"
+          ],
+          "@id": "https://www.petetong-djacademy.com/#organization",
+          "name": "Pete Tong DJ Academy",
+          "url": "https://www.petetong-djacademy.com",
+          "logo": {
+            "@type": "ImageObject",
+            "url": "https://cdn.prod.website-files.com/677f9e71c11a68b86359df57/67ba16cad5588af38e877220_logo-altra%20versionewhite.png"
+          }
+        },
+        {
+          "@type": "Person",
+          "@id": "https://www.petetong-djacademy.com/#pete-tong",
+          "name": "Pete Tong",
+          "jobTitle": "DJ, broadcaster and founder",
+          "sameAs": [
+            "https://en.wikipedia.org/wiki/Pete_Tong"
+          ]
+        },
+        {
+          "@type": "Person",
+          "@id": "https://www.petetong-djacademy.com/#diplo",
+          "name": "Diplo",
+          "sameAs": [
+            "https://en.wikipedia.org/wiki/Diplo"
+          ]
+        },
+        {
+          "@type": "MusicGroup",
+          "@id": "https://www.petetong-djacademy.com/#parisi",
+          "name": "PARISI"
+        },
+        {
+          "@type": "MusicGroup",
+          "@id": "https://www.petetong-djacademy.com/#ame",
+          "name": "Âme",
+          "sameAs": [
+            "https://en.wikipedia.org/wiki/%C3%82me"
+          ]
+        },
+        {
+          "@type": "MusicGroup",
+          "@id": "https://www.petetong-djacademy.com/#the-reloud",
+          "name": "The Reloud"
+        },
+        {
+          "@type": "WebPage",
+          "@id": "https://www.petetong-djacademy.com/producer-course#webpage",
+          "url": "https://www.petetong-djacademy.com/producer-course",
+          "name": "Learn Music Production with the Pete Tong DJ Academy | Producer Course",
+          "description": "Master music production with our complete online Producer Course. Learn from Diplo, PARISI, Âme, and more. For aspiring and advanced producers. Start now.",
+          "isPartOf": {
+            "@id": "https://www.petetong-djacademy.com/#website"
+          },
+          "breadcrumb": {
+            "@id": "https://www.petetong-djacademy.com/producer-course#breadcrumb"
+          }
+        },
+        {
+          "@type": "BreadcrumbList",
+          "@id": "https://www.petetong-djacademy.com/producer-course#breadcrumb",
+          "itemListElement": [
+            {
+              "@type": "ListItem",
+              "position": 1,
+              "name": "Home",
+              "item": "https://www.petetong-djacademy.com/"
+            },
+            {
+              "@type": "ListItem",
+              "position": 2,
+              "name": "Producer Course",
+              "item": "https://www.petetong-djacademy.com/producer-course"
+            }
+          ]
+        },
+        {
+          "@type": "FAQPage",
+          "@id": "https://www.petetong-djacademy.com/producer-course#faq",
+          "mainEntity": [
+            {
+              "@type": "Question",
+              "name": "What software or tools do I need to produce?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "You can start with free or trial versions of any DAW (e.g. Ableton, FL Studio, Logic etc. ). No hardware required."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "What kind of tracks will I be able to create?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "You’ll learn how to go from a blank project to a full track — drums, melodies, basslines, arrangements and effects."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Are genre-specific styles covered?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Yes. Techniques apply to any genre and you’ll also get genre-based templates and inspiration."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Will I get downloadable samples and templates?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Absolutely. Every module includes downloadable files and creative tools."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Is the Production course part of the basic plan?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Yes — if selected as your main course in a 1-course or higher plan."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Do I unlock more production content with higher plans?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Yes. More courses = more hours of content, resources, live mentoring and contest access."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Can I pay monthly or annually?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Yes. Choose what fits your budget: monthly or discounted yearly plans."
+              }
+            }
+          ]
+        },
+        {
+          "@type": "Course",
+          "@id": "https://www.petetong-djacademy.com/producer-course#course",
+          "name": "Producer Course",
+          "description": "Complete online music production course taught by Pete Tong, Diplo, PARISI, Âme and The Reloud. Covers producer mindset, drums and sound design, bass, synthesis, music theory and arrangement, vocals, mixing and mastering, and music career strategy. Includes subtitles in English, Spanish, French, Portuguese and Italian.",
+          "url": "https://www.petetong-djacademy.com/producer-course",
+          "provider": {
+            "@id": "https://www.petetong-djacademy.com/#organization"
+          },
+          "inLanguage": "en",
+          "educationalLevel": "Beginner & Advanced",
+          "educationalCredentialAwarded": "Official certificate",
+          "instructor": [
+            {
+              "@id": "https://www.petetong-djacademy.com/#pete-tong"
+            },
+            {
+              "@id": "https://www.petetong-djacademy.com/#diplo"
+            },
+            {
+              "@id": "https://www.petetong-djacademy.com/#parisi"
+            },
+            {
+              "@id": "https://www.petetong-djacademy.com/#ame"
+            },
+            {
+              "@id": "https://www.petetong-djacademy.com/#the-reloud"
+            }
+          ],
+          "hasCourseInstance": {
+            "@type": "CourseInstance",
+            "courseMode": "Online",
+            "location": {
+              "@type": "VirtualLocation",
+              "url": "https://www.petetong-djacademy.com"
+            }
+          },
+          "offers": [
+            {
+              "@type": "AggregateOffer",
+              "priceCurrency": "USD",
+              "lowPrice": "57.00",
+              "highPrice": "288.00",
+              "offerCount": 6,
+              "url": "https://www.petetong-djacademy.com/pricing-page",
+              "availability": "https://schema.org/InStock"
+            },
+            {
+              "@type": "AggregateOffer",
+              "priceCurrency": "EUR",
+              "lowPrice": "57.00",
+              "highPrice": "288.00",
+              "offerCount": 6,
+              "url": "https://www.petetong-djacademy.com/pricing-page",
+              "availability": "https://schema.org/InStock"
+            },
+            {
+              "@type": "AggregateOffer",
+              "priceCurrency": "GBP",
+              "lowPrice": "57.00",
+              "highPrice": "288.00",
+              "offerCount": 6,
+              "url": "https://www.petetong-djacademy.com/pricing-page",
+              "availability": "https://schema.org/InStock"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

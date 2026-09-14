@@ -1,0 +1,187 @@
+{
+  "_generato": "2026-09-14",
+  "_sorgente": "https://www.petetong-djacademy.com",
+  "_nota": "Estratto da scripts/estrai-meta.py sull'HTML pubblicato. Un file per pagina in meta/<slug>.json.",
+  "pagine": {
+    "home": {
+      "url": "https://www.petetong-djacademy.com/",
+      "file": "meta/home.json",
+      "title": "Pete Tong DJ Academy – Online DJ & Producer Courses",
+      "description": "Learn online with Grammy‑winning DJs and producers. Comprehensive DJ, music production & mixing courses. Join our Talent Pool and launch your career.",
+      "canonical": "https://www.petetong-djacademy.com",
+      "og:image": "https://cdn.prod.website-files.com/677f9e71c11a68b86359df57/67c72a69971bade6763459e4_IMMAGINE%20ACADEMY.png",
+      "jsonld_tipi": [
+        [
+          "Organization",
+          "EducationalOrganization"
+        ],
+        "Person",
+        "WebSite",
+        "WebPage"
+      ],
+      "jsonld_blocchi": 1
+    },
+    "dj-course": {
+      "url": "https://www.petetong-djacademy.com/dj-course",
+      "file": "meta/dj-course.json",
+      "title": "Online DJ Course with Pete Tong & World-Class DJs | Start Mixing Today",
+      "description": "Learn to DJ from the best. Join Pete Tong, Jamie Jones, Nicole Moudaber & more in our complete online DJ course. From beginner to pro. Start your journey now.",
+      "canonical": "https://www.petetong-djacademy.com/dj-course",
+      "og:image": "https://cdn.prod.website-files.com/677f9e71c11a68b86359df57/67c72a69971bade6763459e4_IMMAGINE%20ACADEMY.png",
+      "jsonld_tipi": [
+        [
+          "Organization",
+          "EducationalOrganization"
+        ],
+        "Person",
+        "Person",
+        "Person",
+        "Person",
+        "Person",
+        "Person",
+        "MusicGroup",
+        "MusicGroup",
+        "WebPage",
+        "BreadcrumbList",
+        "FAQPage",
+        "Course"
+      ],
+      "jsonld_blocchi": 1
+    },
+    "producer-course": {
+      "url": "https://www.petetong-djacademy.com/producer-course",
+      "file": "meta/producer-course.json",
+      "title": "Learn Music Production with Diplo, PARISI & Âme | Producer Course",
+      "description": "Master music production with our complete online Producer Course. Learn from Diplo, PARISI, Âme, and more. For aspiring and advanced producers. Start now.",
+      "canonical": "https://www.petetong-djacademy.com/producer-course",
+      "og:image": "https://cdn.prod.website-files.com/677f9e71c11a68b86359df57/67c72a69971bade6763459e4_IMMAGINE%20ACADEMY.png",
+      "jsonld_tipi": [
+        [
+          "Organization",
+          "EducationalOrganization"
+        ],
+        "Person",
+        "Person",
+        "MusicGroup",
+        "MusicGroup",
+        "MusicGroup",
+        "WebPage",
+        "BreadcrumbList",
+        "FAQPage",
+        "Course"
+      ],
+      "jsonld_blocchi": 1
+    },
+    "mix-mastering-course": {
+      "url": "https://www.petetong-djacademy.com/mix-mastering-course",
+      "file": "meta/mix-mastering-course.json",
+      "title": "Mix & Mastering Course | Pete Tong DJ Academy",
+      "description": "Take your sound to Grammy level. Learn advanced mixing and mastering techniques for electronic music with Luca Pretolesi in this pro-level online course.",
+      "canonical": "https://www.petetong-djacademy.com/mix-mastering-course",
+      "og:image": "https://cdn.prod.website-files.com/677f9e71c11a68b86359df57/67c72a69971bade6763459e4_IMMAGINE%20ACADEMY.png",
+      "jsonld_tipi": [
+        [
+          "Organization",
+          "EducationalOrganization"
+        ],
+        "Person",
+        "WebPage",
+        "BreadcrumbList",
+        "FAQPage",
+        "Course"
+      ],
+      "jsonld_blocchi": 1
+    },
+    "pricing-page": {
+      "url": "https://www.petetong-djacademy.com/pricing-page",
+      "file": "meta/pricing-page.json",
+      "title": "Pete Tong DJ Academy Pricing – Online DJ & Producer Courses",
+      "description": "Learn to DJ, produce and master with Pete Tong DJ Academy. Three plans from $13 per month, taught by Pete Tong, Carl Cox, Diplo and other leading artists. Cancel anytime.",
+      "canonical": "https://www.petetong-djacademy.com/pricing-page",
+      "og:image": "https://cdn.prod.website-files.com/677f9e71c11a68b86359df57/67c72a69971bade6763459e4_IMMAGINE%20ACADEMY.png",
+      "jsonld_tipi": [
+        [
+          "Organization",
+          "EducationalOrganization"
+        ],
+        "Person",
+        "WebPage",
+        "BreadcrumbList",
+        "FAQPage",
+        "Product",
+        "Product",
+        "Product"
+      ],
+      "jsonld_blocchi": 1
+    },
+    "play-get-signed": {
+      "url": "https://www.petetong-djacademy.com/play-get-signed",
+      "file": "meta/play-get-signed.json",
+      "title": "Play & Get Signed – Talent Pool for DJs & Producers",
+      "description": "Submit your mixes and tracks. Enter contests & get scouted by partner labels, clubs & festivals. Grow through our structured Talent Pool program.",
+      "canonical": "https://www.petetong-djacademy.com/play-get-signed",
+      "og:image": "https://cdn.prod.website-files.com/677f9e71c11a68b86359df57/67c72a69971bade6763459e4_IMMAGINE%20ACADEMY.png",
+      "jsonld_tipi": [
+        [
+          "Organization",
+          "EducationalOrganization"
+        ],
+        "WebPage",
+        "BreadcrumbList",
+        "Service",
+        "FAQPage"
+      ],
+      "jsonld_blocchi": 1
+    },
+    "advanced-djs": {
+      "url": "https://www.petetong-djacademy.com/advanced-djs",
+      "file": "meta/advanced-djs.json",
+      "title": "Advanced DJs",
+      "description": null,
+      "canonical": "https://www.petetong-djacademy.com/advanced-djs",
+      "og:image": null,
+      "jsonld_tipi": [],
+      "jsonld_blocchi": 0
+    },
+    "recess": {
+      "url": "https://www.petetong-djacademy.com/recess",
+      "file": "meta/recess.json",
+      "title": "Recess",
+      "description": null,
+      "canonical": "https://www.petetong-djacademy.com/recess",
+      "og:image": null,
+      "jsonld_tipi": [],
+      "jsonld_blocchi": 0
+    },
+    "terms-conditions": {
+      "url": "https://www.petetong-djacademy.com/terms-conditions",
+      "file": "meta/terms-conditions.json",
+      "title": "Terms & Conditions",
+      "description": null,
+      "canonical": "https://www.petetong-djacademy.com/terms-conditions",
+      "og:image": null,
+      "jsonld_tipi": [],
+      "jsonld_blocchi": 0
+    },
+    "terms-conditions-sa": {
+      "url": "https://www.petetong-djacademy.com/terms-conditions-sa",
+      "file": "meta/terms-conditions-sa.json",
+      "title": "Terms & Conditions SA",
+      "description": null,
+      "canonical": "https://www.petetong-djacademy.com/terms-conditions-sa",
+      "og:image": null,
+      "jsonld_tipi": [],
+      "jsonld_blocchi": 0
+    },
+    "404": {
+      "url": "https://www.petetong-djacademy.com/pagina-che-non-esiste-xyz",
+      "file": "meta/404.json",
+      "title": "Not Found",
+      "description": null,
+      "canonical": "https://www.petetong-djacademy.com/404",
+      "og:image": null,
+      "jsonld_tipi": [],
+      "jsonld_blocchi": 0
+    }
+  }
+}

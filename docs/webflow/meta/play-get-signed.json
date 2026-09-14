@@ -1,0 +1,184 @@
+{
+  "slug": "play-get-signed",
+  "url": "https://www.petetong-djacademy.com/play-get-signed",
+  "webflow_page_id": "685141292471736f9f2c5dc3",
+  "lang": "en",
+  "title": "Play & Get Signed – Talent Pool for DJs & Producers",
+  "description": "Submit your mixes and tracks. Enter contests & get scouted by partner labels, clubs & festivals. Grow through our structured Talent Pool program.",
+  "robots": null,
+  "google-site-verification": "cExwpYSnIc6g-zZ9OygGshai6S4i3ICN-h0gkbnms8U",
+  "viewport": "width=device-width, initial-scale=1",
+  "twitter:title": "Play & Get Signed – Talent Pool for DJs & Producers",
+  "twitter:description": "Submit your mixes and tracks. Enter contests & get scouted by partner labels, clubs & festivals. Grow through our structured Talent Pool program.",
+  "twitter:image": "https://cdn.prod.website-files.com/677f9e71c11a68b86359df57/67c72a69971bade6763459e4_IMMAGINE%20ACADEMY.png",
+  "twitter:card": "summary_large_image",
+  "twitter:site": null,
+  "twitter:creator": null,
+  "og:title": "Play & Get Signed – Talent Pool for DJs & Producers",
+  "og:description": "Submit your mixes and tracks. Enter contests & get scouted by partner labels, clubs & festivals. Grow through our structured Talent Pool program.",
+  "og:image": "https://cdn.prod.website-files.com/677f9e71c11a68b86359df57/67c72a69971bade6763459e4_IMMAGINE%20ACADEMY.png",
+  "og:type": "website",
+  "og:url": "https://www.petetong-djacademy.com/play-get-signed",
+  "og:site_name": "Pete Tong DJ Academy",
+  "og:locale": null,
+  "canonical": "https://www.petetong-djacademy.com/play-get-signed",
+  "favicon": "https://cdn.prod.website-files.com/677f9e71c11a68b86359df57/67bde232bb8ed51e1459da20_13dnew.png",
+  "apple_touch_icon": "https://cdn.prod.website-files.com/677f9e71c11a68b86359df57/67bde20e27ae4c6c2c03b0ca_12dnew.png",
+  "_nota_robots": "nessun meta robots nella pagina: vale il default index,follow",
+  "jsonld": [
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": [
+            "Organization",
+            "EducationalOrganization"
+          ],
+          "@id": "https://www.petetong-djacademy.com/#organization",
+          "name": "Pete Tong DJ Academy",
+          "url": "https://www.petetong-djacademy.com",
+          "logo": {
+            "@type": "ImageObject",
+            "url": "https://cdn.prod.website-files.com/677f9e71c11a68b86359df57/67ba16cad5588af38e877220_logo-altra%20versionewhite.png"
+          }
+        },
+        {
+          "@type": "WebPage",
+          "@id": "https://www.petetong-djacademy.com/play-get-signed#webpage",
+          "url": "https://www.petetong-djacademy.com/play-get-signed",
+          "name": "Play & Get Signed – Talent Pool for DJs & Producers",
+          "description": "Submit your mixes and tracks. Enter contests & get scouted by partner labels, clubs & festivals. Grow through our structured Talent Pool program.",
+          "isPartOf": {
+            "@id": "https://www.petetong-djacademy.com/#website"
+          },
+          "breadcrumb": {
+            "@id": "https://www.petetong-djacademy.com/play-get-signed#breadcrumb"
+          }
+        },
+        {
+          "@type": "BreadcrumbList",
+          "@id": "https://www.petetong-djacademy.com/play-get-signed#breadcrumb",
+          "itemListElement": [
+            {
+              "@type": "ListItem",
+              "position": 1,
+              "name": "Home",
+              "item": "https://www.petetong-djacademy.com/"
+            },
+            {
+              "@type": "ListItem",
+              "position": 2,
+              "name": "Play & Get Signed",
+              "item": "https://www.petetong-djacademy.com/play-get-signed"
+            }
+          ]
+        },
+        {
+          "@type": "Service",
+          "@id": "https://www.petetong-djacademy.com/play-get-signed#talent-pool",
+          "name": "Talent Pool®",
+          "serviceType": "Artist development and talent scouting program",
+          "provider": {
+            "@id": "https://www.petetong-djacademy.com/#organization"
+          },
+          "audience": {
+            "@type": "Audience",
+            "audienceType": "DJs and music producers"
+          },
+          "description": "Pete Tong DJ Academy's structured talent scouting program, included in every subscription. Students climb grades by completing lessons, enter weekly Talent Pool activities, contests and curated challenges tailored to their level, and submit tracks and DJ mixes for structured feedback from mentors and industry professionals. Standout artists earn releases and performance opportunities with partner labels, clubs and festivals including Pacha, elrow, Amsterdam Dance Event, Beatport, Ministry of Sound, Defected, Drumcode and Innervisions, culminating in the annual Future Talent Awards®.",
+          "offers": [
+            {
+              "@type": "AggregateOffer",
+              "priceCurrency": "USD",
+              "lowPrice": "57.00",
+              "highPrice": "288.00",
+              "offerCount": 6,
+              "url": "https://www.petetong-djacademy.com/pricing-page",
+              "availability": "https://schema.org/InStock"
+            },
+            {
+              "@type": "AggregateOffer",
+              "priceCurrency": "EUR",
+              "lowPrice": "57.00",
+              "highPrice": "288.00",
+              "offerCount": 6,
+              "url": "https://www.petetong-djacademy.com/pricing-page",
+              "availability": "https://schema.org/InStock"
+            },
+            {
+              "@type": "AggregateOffer",
+              "priceCurrency": "GBP",
+              "lowPrice": "57.00",
+              "highPrice": "288.00",
+              "offerCount": 6,
+              "url": "https://www.petetong-djacademy.com/pricing-page",
+              "availability": "https://schema.org/InStock"
+            }
+          ]
+        },
+        {
+          "@type": "FAQPage",
+          "@id": "https://www.petetong-djacademy.com/play-get-signed#faq",
+          "mainEntity": [
+            {
+              "@type": "Question",
+              "name": "What is the Talent Pool and how does it work?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "The Talent Pool is our exclusive artist hub where students can submit tracks or DJ sets, join contests, and gain exposure through our label radar and community feedback."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Who can participate in Talent Pool activities?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "All active subscribers — regardless of plan — can access Talent Pool features and participate."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "What types of opportunities can I unlock?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Visibility on our platform, direct feedback, potential label attention, bookings, and contest rewards."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Will I receive feedback on my submissions?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Yes. Every contest includes structured feedback from Pete Tong DJ Academy mentors or industry professionals."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Is the Talent Pool included in every plan?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Yes. Every subscription includes access to Talent Pool activities."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Do I need to pay extra to submit my work?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "No extra cost. Submissions and participation are included in your subscription."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Can I join the Talent Pool with a 1-course plan?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Yes, but plans with more courses unlock more contest categories and visibility tools."
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

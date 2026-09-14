@@ -1,0 +1,87 @@
+{
+  "slug": "home",
+  "url": "https://www.petetong-djacademy.com/",
+  "webflow_page_id": "68495a5aeddd26c7d2112282",
+  "lang": "en",
+  "title": "Pete Tong DJ Academy – Online DJ & Producer Courses",
+  "description": "Learn online with Grammy‑winning DJs and producers. Comprehensive DJ, music production & mixing courses. Join our Talent Pool and launch your career.",
+  "robots": null,
+  "google-site-verification": "cExwpYSnIc6g-zZ9OygGshai6S4i3ICN-h0gkbnms8U",
+  "viewport": "width=device-width, initial-scale=1",
+  "twitter:title": "Pete Tong DJ Academy – Online DJ & Producer Courses",
+  "twitter:description": "Learn online with Grammy‑winning DJs and producers. Comprehensive DJ, music production & mixing courses. Join our Talent Pool and launch your career.",
+  "twitter:image": "https://cdn.prod.website-files.com/677f9e71c11a68b86359df57/67c72a69971bade6763459e4_IMMAGINE%20ACADEMY.png",
+  "twitter:card": "summary_large_image",
+  "twitter:site": null,
+  "twitter:creator": null,
+  "og:title": "Pete Tong DJ Academy – Online DJ & Producer Courses",
+  "og:description": "Learn online with Grammy‑winning DJs and producers. Comprehensive DJ, music production & mixing courses. Join our Talent Pool and launch your career.",
+  "og:image": "https://cdn.prod.website-files.com/677f9e71c11a68b86359df57/67c72a69971bade6763459e4_IMMAGINE%20ACADEMY.png",
+  "og:type": "website",
+  "og:url": "https://www.petetong-djacademy.com/",
+  "og:site_name": "Pete Tong DJ Academy",
+  "og:locale": null,
+  "canonical": "https://www.petetong-djacademy.com",
+  "favicon": "https://cdn.prod.website-files.com/677f9e71c11a68b86359df57/67bde232bb8ed51e1459da20_13dnew.png",
+  "apple_touch_icon": "https://cdn.prod.website-files.com/677f9e71c11a68b86359df57/67bde20e27ae4c6c2c03b0ca_12dnew.png",
+  "_nota_robots": "nessun meta robots nella pagina: vale il default index,follow",
+  "jsonld": [
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": [
+            "Organization",
+            "EducationalOrganization"
+          ],
+          "@id": "https://www.petetong-djacademy.com/#organization",
+          "name": "Pete Tong DJ Academy",
+          "alternateName": "PTDJA",
+          "url": "https://www.petetong-djacademy.com",
+          "logo": {
+            "@type": "ImageObject",
+            "url": "https://cdn.prod.website-files.com/677f9e71c11a68b86359df57/67ba16cad5588af38e877220_logo-altra%20versionewhite.png"
+          },
+          "description": "Connecting thousands of DJs and producers in 140 countries, the go-to platform for aspiring and seasoned artists. Build your skills, collaborate with peers, and hit top-tier gigs.",
+          "founder": {
+            "@id": "https://www.petetong-djacademy.com/#pete-tong"
+          },
+          "sameAs": [
+            "https://www.instagram.com/petetong_djacademy/",
+            "https://www.tiktok.com/@petetong_djacademy",
+            "https://www.youtube.com/@petetongdjacademy"
+          ]
+        },
+        {
+          "@type": "Person",
+          "@id": "https://www.petetong-djacademy.com/#pete-tong",
+          "name": "Pete Tong",
+          "jobTitle": "DJ, broadcaster and founder",
+          "sameAs": [
+            "https://en.wikipedia.org/wiki/Pete_Tong"
+          ]
+        },
+        {
+          "@type": "WebSite",
+          "@id": "https://www.petetong-djacademy.com/#website",
+          "url": "https://www.petetong-djacademy.com",
+          "name": "Pete Tong DJ Academy",
+          "publisher": {
+            "@id": "https://www.petetong-djacademy.com/#organization"
+          },
+          "inLanguage": "en"
+        },
+        {
+          "@type": "WebPage",
+          "@id": "https://www.petetong-djacademy.com/#webpage",
+          "url": "https://www.petetong-djacademy.com/",
+          "name": "Pete Tong DJ Academy – Online DJ & Producer Courses",
+          "description": "Start your journey with the DJ or Production courses. Combine them both, or unlock the full experience with the Advanced Mixing & Mastering course.",
+          "isPartOf": {
+            "@id": "https://www.petetong-djacademy.com/#website"
+          }
+        }
+      ]
+    }
+  ]
+}

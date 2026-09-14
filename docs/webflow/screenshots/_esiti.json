@@ -1,0 +1,268 @@
+{
+  "generato": "2026-09-14T17:15:36.393Z",
+  "base": "https://www.petetong-djacademy.com",
+  "viewport": {
+    "desktop": {
+      "width": 1440,
+      "height": 900
+    },
+    "mobile": {
+      "width": 390,
+      "height": 844
+    }
+  },
+  "userAgent": {
+    "desktop": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/127.0.0.0 Safari/537.36",
+    "mobile": "Mozilla/5.0 (iPhone; CPU iPhone OS 17_5 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.5 Mobile/15E148 Safari/604.1"
+  },
+  "timezone": "America/New_York",
+  "esiti": [
+    {
+      "slug": "404",
+      "formato": "desktop",
+      "url": "https://www.petetong-djacademy.com/pagina-che-non-esiste-xyz",
+      "consenso": ".iubenda-cs-accept-btn",
+      "errore": null,
+      "pagina": {
+        "w": 1440,
+        "h": 1969
+      }
+    },
+    {
+      "slug": "404",
+      "formato": "mobile",
+      "url": "https://www.petetong-djacademy.com/pagina-che-non-esiste-xyz",
+      "consenso": ".iubenda-cs-accept-btn",
+      "errore": null,
+      "pagina": {
+        "w": 390,
+        "h": 1747
+      }
+    },
+    {
+      "slug": "home",
+      "formato": "desktop",
+      "url": "https://www.petetong-djacademy.com/",
+      "consenso": ".iubenda-cs-accept-btn",
+      "errore": null,
+      "pagina": {
+        "w": 1440,
+        "h": 12287
+      }
+    },
+    {
+      "slug": "home",
+      "formato": "mobile",
+      "url": "https://www.petetong-djacademy.com/",
+      "consenso": ".iubenda-cs-accept-btn",
+      "errore": null,
+      "pagina": {
+        "w": 390,
+        "h": 13337
+      }
+    },
+    {
+      "slug": "dj-course",
+      "formato": "desktop",
+      "url": "https://www.petetong-djacademy.com/dj-course",
+      "consenso": ".iubenda-cs-accept-btn",
+      "errore": null,
+      "pagina": {
+        "w": 1440,
+        "h": 15567
+      }
+    },
+    {
+      "slug": "dj-course",
+      "formato": "mobile",
+      "url": "https://www.petetong-djacademy.com/dj-course",
+      "consenso": ".iubenda-cs-accept-btn",
+      "errore": null,
+      "nota": "networkidle non raggiunto entro 30s (tracking e chat restano attivi): si prosegue",
+      "pagina": {
+        "w": 390,
+        "h": 16915
+      }
+    },
+    {
+      "slug": "producer-course",
+      "formato": "desktop",
+      "url": "https://www.petetong-djacademy.com/producer-course",
+      "consenso": ".iubenda-cs-accept-btn",
+      "errore": null,
+      "nota": "networkidle non raggiunto entro 30s (tracking e chat restano attivi): si prosegue",
+      "pagina": {
+        "w": 1440,
+        "h": 15528
+      }
+    },
+    {
+      "slug": "producer-course",
+      "formato": "mobile",
+      "url": "https://www.petetong-djacademy.com/producer-course",
+      "consenso": ".iubenda-cs-accept-btn",
+      "errore": null,
+      "pagina": {
+        "w": 390,
+        "h": 17764
+      }
+    },
+    {
+      "slug": "mix-mastering-course",
+      "formato": "desktop",
+      "url": "https://www.petetong-djacademy.com/mix-mastering-course",
+      "consenso": ".iubenda-cs-accept-btn",
+      "errore": null,
+      "nota": "networkidle non raggiunto entro 30s (tracking e chat restano attivi): si prosegue",
+      "pagina": {
+        "w": 1440,
+        "h": 14410
+      }
+    },
+    {
+      "slug": "mix-mastering-course",
+      "formato": "mobile",
+      "url": "https://www.petetong-djacademy.com/mix-mastering-course",
+      "consenso": ".iubenda-cs-accept-btn",
+      "errore": null,
+      "pagina": {
+        "w": 390,
+        "h": 18330
+      }
+    },
+    {
+      "slug": "pricing-page",
+      "formato": "desktop",
+      "url": "https://www.petetong-djacademy.com/pricing-page",
+      "consenso": ".iubenda-cs-accept-btn",
+      "errore": null,
+      "pagina": {
+        "w": 1440,
+        "h": 4973
+      }
+    },
+    {
+      "slug": "pricing-page",
+      "formato": "mobile",
+      "url": "https://www.petetong-djacademy.com/pricing-page",
+      "consenso": ".iubenda-cs-accept-btn",
+      "errore": null,
+      "pagina": {
+        "w": 390,
+        "h": 6617
+      }
+    },
+    {
+      "slug": "play-get-signed",
+      "formato": "desktop",
+      "url": "https://www.petetong-djacademy.com/play-get-signed",
+      "consenso": ".iubenda-cs-accept-btn",
+      "errore": null,
+      "pagina": {
+        "w": 1440,
+        "h": 11068
+      }
+    },
+    {
+      "slug": "play-get-signed",
+      "formato": "mobile",
+      "url": "https://www.petetong-djacademy.com/play-get-signed",
+      "consenso": ".iubenda-cs-accept-btn",
+      "errore": null,
+      "pagina": {
+        "w": 390,
+        "h": 10701
+      }
+    },
+    {
+      "slug": "advanced-djs",
+      "formato": "desktop",
+      "url": "https://www.petetong-djacademy.com/advanced-djs",
+      "consenso": ".iubenda-cs-accept-btn",
+      "errore": null,
+      "nota": "networkidle non raggiunto entro 30s (tracking e chat restano attivi): si prosegue",
+      "pagina": {
+        "w": 1440,
+        "h": 1013
+      }
+    },
+    {
+      "slug": "advanced-djs",
+      "formato": "mobile",
+      "url": "https://www.petetong-djacademy.com/advanced-djs",
+      "consenso": ".iubenda-cs-accept-btn",
+      "errore": null,
+      "nota": "networkidle non raggiunto entro 30s (tracking e chat restano attivi): si prosegue",
+      "pagina": {
+        "w": 390,
+        "h": 1093
+      }
+    },
+    {
+      "slug": "recess",
+      "formato": "desktop",
+      "url": "https://www.petetong-djacademy.com/recess",
+      "consenso": ".iubenda-cs-accept-btn",
+      "errore": null,
+      "pagina": {
+        "w": 1440,
+        "h": 1908
+      }
+    },
+    {
+      "slug": "recess",
+      "formato": "mobile",
+      "url": "https://www.petetong-djacademy.com/recess",
+      "consenso": ".iubenda-cs-accept-btn",
+      "errore": null,
+      "pagina": {
+        "w": 390,
+        "h": 2481
+      }
+    },
+    {
+      "slug": "terms-conditions",
+      "formato": "desktop",
+      "url": "https://www.petetong-djacademy.com/terms-conditions",
+      "consenso": ".iubenda-cs-accept-btn",
+      "errore": null,
+      "pagina": {
+        "w": 1440,
+        "h": 5698
+      }
+    },
+    {
+      "slug": "terms-conditions",
+      "formato": "mobile",
+      "url": "https://www.petetong-djacademy.com/terms-conditions",
+      "consenso": ".iubenda-cs-accept-btn",
+      "errore": null,
+      "pagina": {
+        "w": 390,
+        "h": 7887
+      }
+    },
+    {
+      "slug": "terms-conditions-sa",
+      "formato": "desktop",
+      "url": "https://www.petetong-djacademy.com/terms-conditions-sa",
+      "consenso": ".iubenda-cs-accept-btn",
+      "errore": null,
+      "pagina": {
+        "w": 1440,
+        "h": 4680
+      }
+    },
+    {
+      "slug": "terms-conditions-sa",
+      "formato": "mobile",
+      "url": "https://www.petetong-djacademy.com/terms-conditions-sa",
+      "consenso": ".iubenda-cs-accept-btn",
+      "errore": null,
+      "pagina": {
+        "w": 390,
+        "h": 4999
+      }
+    }
+  ]
+}

@@ -50,3 +50,8 @@ next-env.d.ts
 # `docs/webflow/screenshots/`. L'HTML pubblicato e le immagini di riferimento
 # sono il capitolato di questo repo: la regola numero uno è "identico", e senza
 # il riferimento versionato non c'è niente contro cui confrontarsi fra sei mesi.
+
+# sottoprogetto degli script di estrazione
+scripts/node_modules/
+__pycache__/
+docs/confronto/

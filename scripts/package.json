@@ -1,0 +1,13 @@
+{
+  "name": "ptdja-scripts",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Sottoprogetto isolato per gli script di estrazione del riferimento Webflow. Tenuto separato dal package.json del sito per non inquinare le dipendenze dell'app Next.js.",
+  "scripts": {
+    "screenshot": "node screenshot-riferimento.mjs"
+  },
+  "devDependencies": {
+    "playwright": "^1.47.0"
+  }
+}

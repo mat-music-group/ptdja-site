@@ -1,0 +1,2685 @@
+{
+  "_generato": "2026-09-14",
+  "_script": "scripts/estrai-asset.py",
+  "_nota": "Chiave: URL originale su cdn.prod.website-files.com così come compare nell'HTML. `url_scaricato` è la variante effettivamente salvata (la più grande dello srcset). `path` è il percorso pubblico nel repo Next.js (file fisico in public/webflow/...). `larghezze` elenca le larghezze disponibili nello srcset di Webflow.",
+  "_totali": {
+    "asset": 180,
+    "scaricati": 180,
+    "falliti": 0,
+    "megabyte": 20.78
+  },
+  "asset": {
+    "https://cdn.prod.website-files.com/677f9e71c11a68b86359df57/677f9e72c11a68b86359e480_arrow-down.svg": {
+      "path": "/webflow/shared/arrow-down.svg",
+      "pagine": [
+        "home",
+        "dj-course",
+        "producer-course",
+        "mix-mastering-course",
+        "pricing-page",
+        "play-get-signed"
+      ],
+      "alt": "",
+      "larghezze": [],
+      "url_scaricato": "https://cdn.prod.website-files.com/677f9e71c11a68b86359df57/677f9e72c11a68b86359e480_arrow-down.svg",
+      "origine": [
+        "img"
+      ]
+    },
+    "https://cdn.prod.website-files.com/677f9e71c11a68b86359df57/677f9e72c11a68b86359e4f0_404.png": {
+      "path": "/webflow/404/404.png",
+      "pagine": [
+        "404"
+      ],
+      "alt": "",
+      "larghezze": [
+        500,
+        1272
+      ],
+      "url_scaricato": "https://cdn.prod.website-files.com/677f9e71c11a68b86359df57/677f9e72c11a68b86359e4f0_404.png",
+      "origine": [
+        "img"
+      ]
+    },
+    "https://cdn.prod.website-files.com/677f9e71c11a68b86359df57/6787d624718b72e565fc060c_elogoLivtello-1%20(1).png": {
+      "path": "/webflow/home/elogolivtello-1-1.png",
+      "pagine": [
+        "home"
+      ],
+      "alt": "elrow Logo",
+      "larghezze": [],
+      "url_scaricato": "https://cdn.prod.website-files.com/677f9e71c11a68b86359df57/6787d624718b72e565fc060c_elogoLivtello-1%20(1).png",
+      "origine": [
+        "img"
+      ]
+    },
+    "https://cdn.prod.website-files.com/677f9e71c11a68b86359df57/6787d6627c1ba86d7353efcb_alpha.png": {
+      "path": "/webflow/home/alpha.png",
+      "pagine": [
+        "home"
+      ],
+      "alt": "AlphaTheta Logo",
+      "larghezze": [],
+      "url_scaricato": "https://cdn.prod.website-files.com/677f9e71c11a68b86359df57/6787d6627c1ba86d7353efcb_alpha.png",
+      "origine": [
+        "img"
+      ]
+    },
+    "https://cdn.prod.website-files.com/677f9e71c11a68b86359df57/6787da67e665bf558c454d59_ebeatporttrans.png": {
+      "path": "/webflow/home/ebeatporttrans.png",
+      "pagine": [
+        "home"
+      ],
+      "alt": "Beatport Logo",
+      "larghezze": [],
+      "url_scaricato": "https://cdn.prod.website-files.com/677f9e71c11a68b86359df57/6787da67e665bf558c454d59_ebeatporttrans.png",
+      "origine": [
+        "img"
+      ]
+    },
+    "https://cdn.prod.website-files.com/677f9e71c11a68b86359df57/6787dc66ab35fd5d291bb205_09.png": {
+      "path": "/webflow/home/09.png",
+      "pagine": [
+        "home"
+      ],
+      "alt": "IMS Ibiza Logo",
+      "larghezze": [],
+      "url_scaricato": "https://cdn.prod.website-files.com/677f9e71c11a68b86359df57/6787dc66ab35fd5d291bb205_09.png",
+      "origine": [
+        "img"
+      ]
+    },
+    "https://cdn.prod.website-files.com/677f9e71c11a68b86359df57/6787dcb43c26f691453255b5_kdefectedtrans2.png": {
+      "path": "/webflow/home/kdefectedtrans2.png",
+      "pagine": [
+        "home"
+      ],
+      "alt": "Defected Logo",
+      "larghezze": [
+        500,
+        800,
+        1080,
+        1113
+      ],
+      "url_scaricato": "https://cdn.prod.website-files.com/677f9e71c11a68b86359df57/6787dcb43c26f691453255b5_kdefectedtrans2.png",
+      "origine": [
+        "img"
+      ]
+    },
+    "https://cdn.prod.website-files.com/677f9e71c11a68b86359df57/678a830de1d4158949180be4_Asset%202%202.png": {
+      "path": "/webflow/shared/asset-2-2.png",
+      "pagine": [
+        "home",
+        "dj-course",
+        "producer-course",
+        "mix-mastering-course",
+        "pricing-page",
+        "play-get-signed",
+        "recess",
+        "terms-conditions",
+        "terms-conditions-sa",
+        "404"
+      ],
+      "alt": "",
+      "larghezze": [],
+      "url_scaricato": "https://cdn.prod.website-files.com/677f9e71c11a68b86359df57/678a830de1d4158949180be4_Asset%202%202.png",
+      "origine": [
+        "img"
+      ]
+    },
+    "https://cdn.prod.website-files.com/677f9e71c11a68b86359df57/6790d7aa3142e3e42a7c63f2_checkmark-circle-02%20(1).png": {
+      "path": "/webflow/shared/checkmark-circle-02-1.png",
+      "pagine": [
+        "dj-course",
+        "producer-course",
+        "mix-mastering-course"
+      ],
+      "alt": "",
+      "larghezze": [],
+      "url_scaricato": "https://cdn.prod.website-files.com/677f9e71c11a68b86359df57/6790d7aa3142e3e42a7c63f2_checkmark-circle-02%20(1).png",
+      "origine": [
+        "img"
+      ]
+    },
+    "https://cdn.prod.website-files.com/677f9e71c11a68b86359df57/6793ad05a982616ff02ccc76_Group.png": {
+      "path": "/webflow/play-get-signed/group.png",
+      "pagine": [
+        "play-get-signed"
+      ],
+      "alt": "",
+      "larghezze": [],
+      "url_scaricato": "https://cdn.prod.website-files.com/677f9e71c11a68b86359df57/6793ad05a982616ff02ccc76_Group.png",
+      "origine": [
+        "img"
+      ]
+    },
+    "https://cdn.prod.website-files.com/677f9e71c11a68b86359df57/679b95c967068c97ad6b0b14_lottieflow-menu-nav-09-ffffff-easey.json": {
+      "path": "/webflow/shared/lottieflow-menu-nav-09-ffffff-easey.json",
+      "pagine": [
+        "home",
+        "dj-course",
+        "producer-course",
+        "mix-mastering-course",
+        "pricing-page",
+        "play-get-signed",
+        "terms-conditions",
+        "404"
+      ],
+      "alt": "",
+      "larghezze": [],
+      "url_scaricato": "https://cdn.prod.website-files.com/677f9e71c11a68b86359df57/679b95c967068c97ad6b0b14_lottieflow-menu-nav-09-ffffff-easey.json",
+      "origine": [
+        "data-src/lottie"
+      ]
+    },
+    "https://cdn.prod.website-files.com/677f9e71c11a68b86359df57/67adf9f4bd7a33a6eebe2918_path-svgrepo-com%20(2).svg": {
+      "path": "/webflow/shared/path-svgrepo-com-2.svg",
+      "pagine": [
+        "dj-course",
+        "producer-course",
+        "mix-mastering-course"
+      ],
+      "alt": "",
+      "larghezze": [],
+      "url_scaricato": "https://cdn.prod.website-files.com/677f9e71c11a68b86359df57/67adf9f4bd7a33a6eebe2918_path-svgrepo-com%20(2).svg",
+      "origine": [
+        "img"
+      ]
+    },
+    "https://cdn.prod.website-files.com/677f9e71c11a68b86359df57/67b48cd000726a588c198e90_reloj.png": {
+      "path": "/webflow/shared/reloj.png",
+      "pagine": [
+        "dj-course",
+        "producer-course",
+        "mix-mastering-course"
+      ],
+      "alt": "",
+      "larghezze": [],
+      "url_scaricato": "https://cdn.prod.website-files.com/677f9e71c11a68b86359df57/67b48cd000726a588c198e90_reloj.png",
+      "origine": [
+        "img"
+      ]
+    },
+    "https://cdn.prod.website-files.com/677f9e71c11a68b86359df57/67b48ce69d511832244b68aa_video.png": {
+      "path": "/webflow/shared/video.png",
+      "pagine": [
+        "dj-course",
+        "producer-course",
+        "mix-mastering-course"
+      ],
+      "alt": "",
+      "larghezze": [],
+      "url_scaricato": "https://cdn.prod.website-files.com/677f9e71c11a68b86359df57/67b48ce69d511832244b68aa_video.png",
+      "origine": [
+        "img"
+      ]
+    },
+    "https://cdn.prod.website-files.com/677f9e71c11a68b86359df57/67b48d0cd8a41e0619c38308_approved.png": {
+      "path": "/webflow/shared/approved.png",
+      "pagine": [
+        "dj-course",
+        "producer-course",
+        "mix-mastering-course"
+      ],
+      "alt": "",
+      "larghezze": [],
+      "url_scaricato": "https://cdn.prod.website-files.com/677f9e71c11a68b86359df57/67b48d0cd8a41e0619c38308_approved.png",
+      "origine": [
+        "img"
+      ]
+    },
+    "https://cdn.prod.website-files.com/677f9e71c11a68b86359df57/67b48d501206666a9081c860_pctab.png": {
+      "path": "/webflow/shared/pctab.png",
+      "pagine": [
+        "dj-course",
+        "producer-course",
+        "mix-mastering-course"
+      ],
+      "alt": "",
+      "larghezze": [],
+      "url_scaricato": "https://cdn.prod.website-files.com/677f9e71c11a68b86359df57/67b48d501206666a9081c860_pctab.png",
+      "origine": [
+        "img"
+      ]
+    },
+    "https://cdn.prod.website-files.com/677f9e71c11a68b86359df57/67b4a32cfe86fce7c1703370_arrowgrey.png": {
+      "path": "/webflow/404/arrowgrey.png",
+      "pagine": [
+        "404"
+      ],
+      "alt": "",
+      "larghezze": [],
+      "url_scaricato": "https://cdn.prod.website-files.com/677f9e71c11a68b86359df57/67b4a32cfe86fce7c1703370_arrowgrey.png",
+      "origine": [
+        "img"
+      ]
+    },
+    "https://cdn.prod.website-files.com/677f9e71c11a68b86359df57/67b5f892ae194f1e3956c865_footer.png": {
+      "path": "/webflow/shared/footer.png",
+      "pagine": [
+        "home",
+        "dj-course",
+        "producer-course",
+        "mix-mastering-course",
+        "pricing-page",
+        "play-get-signed",
+        "recess",
+        "terms-conditions",
+        "terms-conditions-sa",
+        "404"
+      ],
+      "alt": "",
+      "larghezze": [
+        500,
+        800,
+        1080,
+        1600,
+        1856
+      ],
+      "url_scaricato": "https://cdn.prod.website-files.com/677f9e71c11a68b86359df57/67b5f892ae194f1e3956c865_footer.png",
+      "origine": [
+        "img"
+      ]
+    },
+    "https://cdn.prod.website-files.com/677f9e71c11a68b86359df57/67b88969aed276a846ac028a_677f9e72c11a68b86359e4db_comment-01.png": {
+      "path": "/webflow/shared/comment-01.png",
+      "pagine": [
+        "dj-course",
+        "producer-course",
+        "mix-mastering-course"
+      ],
+      "alt": "",
+      "larghezze": [],
+      "url_scaricato": "https://cdn.prod.website-files.com/677f9e71c11a68b86359df57/67b88969aed276a846ac028a_677f9e72c11a68b86359e4db_comment-01.png",
+      "origine": [
+        "img"
+      ]
+    },
+    "https://cdn.prod.website-files.com/677f9e71c11a68b86359df57/67b89c7e114cb3b0526d07e8_180ab9507cb319369770ab30ffa8c5e4_victoria%20whynot.jpg": {
+      "path": "/webflow/shared/victoria-whynot.jpg",
+      "pagine": [
+        "home",
+        "play-get-signed"
+      ],
+      "alt": "Victoria WHYNOT & Carl Cox",
+      "larghezze": [],
+      "url_scaricato": "https://cdn.prod.website-files.com/677f9e71c11a68b86359df57/67b89c7e114cb3b0526d07e8_180ab9507cb319369770ab30ffa8c5e4_victoria%20whynot.jpg",
+      "origine": [
+        "img"
+      ]
+    },
+    "https://cdn.prod.website-files.com/677f9e71c11a68b86359df57/67b89c9b8135c950b6c11966_45d00020941b1db56ff68dbacc543521_constanza%20pucheta.jpg": {
+      "path": "/webflow/shared/constanza-pucheta.jpg",
+      "pagine": [
+        "home",
+        "play-get-signed"
+      ],
+      "alt": "Constanza Pucheta at Amnesia",
+      "larghezze": [],
+      "url_scaricato": "https://cdn.prod.website-files.com/677f9e71c11a68b86359df57/67b89c9b8135c950b6c11966_45d00020941b1db56ff68dbacc543521_constanza%20pucheta.jpg",
+      "origine": [
+        "img"
+      ]
+    },
+    "https://cdn.prod.website-files.com/677f9e71c11a68b86359df57/67b89cb436f8f9b4ca64519d_846303458f9f94698f3f581489335d92_Tavola%20da%20disegno%2015.jpg": {
+      "path": "/webflow/shared/tavola-da-disegno-15.jpg",
+      "pagine": [
+        "home",
+        "play-get-signed"
+      ],
+      "alt": "Academy Students at PACHA",
+      "larghezze": [],
+      "url_scaricato": "https://cdn.prod.website-files.com/677f9e71c11a68b86359df57/67b89cb436f8f9b4ca64519d_846303458f9f94698f3f581489335d92_Tavola%20da%20disegno%2015.jpg",
+      "origine": [
+        "img"
+      ]
+    },
+    "https://cdn.prod.website-files.com/677f9e71c11a68b86359df57/67b89ccbf5d475f3c346a23e_63045df5bb47380d7a0a1c0096d7708b_Tavola%20da%20disegno%208.jpg": {
+      "path": "/webflow/shared/tavola-da-disegno-8.jpg",
+      "pagine": [
+        "home",
+        "play-get-signed"
+      ],
+      "alt": "Maya Live at Green Valley",
+      "larghezze": [],
+      "url_scaricato": "https://cdn.prod.website-files.com/677f9e71c11a68b86359df57/67b89ccbf5d475f3c346a23e_63045df5bb47380d7a0a1c0096d7708b_Tavola%20da%20disegno%208.jpg",
+      "origine": [
+        "img"
+      ]
+    },
+    "https://cdn.prod.website-files.com/677f9e71c11a68b86359df57/67b89ceaa51600cd2d5ed362_Tavola%20da%20disegno%2012.png": {
+      "path": "/webflow/shared/tavola-da-disegno-12.png",
+      "pagine": [
+        "home",
+        "play-get-signed"
+      ],
+      "alt": "Cozmic Cat x HE.SHE.THEY. ",
+      "larghezze": [],
+      "url_scaricato": "https://cdn.prod.website-files.com/677f9e71c11a68b86359df57/67b89ceaa51600cd2d5ed362_Tavola%20da%20disegno%2012.png",
+      "origine": [
+        "img"
+      ]
+    },
+    "https://cdn.prod.website-files.com/677f9e71c11a68b86359df57/67b89d07f8a7cb485badbeb5_Tavola%20da%20disegno%2014.png": {
+      "path": "/webflow/shared/tavola-da-disegno-14.png",
+      "pagine": [
+        "home",
+        "play-get-signed"
+      ],
+      "alt": "2Nomads at Bauman Festival",
+      "larghezze": [
+        500,
+        540
+      ],
+      "url_scaricato": "https://cdn.prod.website-files.com/677f9e71c11a68b86359df57/67b89d07f8a7cb485badbeb5_Tavola%20da%20disegno%2014.png",
+      "origine": [
+        "img"
+      ]
+    },
+    "https://cdn.prod.website-files.com/677f9e71c11a68b86359df57/67b89d334643c83e1fd3628c_Tavola%20da%20disegno%2016.png": {
+      "path": "/webflow/shared/tavola-da-disegno-16.png",
+      "pagine": [
+        "home",
+        "play-get-signed"
+      ],
+      "alt": "Pharma D opening Ibiza Classics, with Pete Tong",
+      "larghezze": [
+        500,
+        540
+      ],
+      "url_scaricato": "https://cdn.prod.website-files.com/677f9e71c11a68b86359df57/67b89d334643c83e1fd3628c_Tavola%20da%20disegno%2016.png",
+      "origine": [
+        "img"
+      ]
+    },
+    "https://cdn.prod.website-files.com/677f9e71c11a68b86359df57/67b89e716f5f4a19a302fae9_Tavola%20da%20disegno%209.png": {
+      "path": "/webflow/shared/tavola-da-disegno-9.png",
+      "pagine": [
+        "home",
+        "play-get-signed"
+      ],
+      "alt": "DJ Suni Side Up from the PTDJA",
+      "larghezze": [
+        500,
+        540
+      ],
+      "url_scaricato": "https://cdn.prod.website-files.com/677f9e71c11a68b86359df57/67b89e716f5f4a19a302fae9_Tavola%20da%20disegno%209.png",
+      "origine": [
+        "img"
+      ]
+    },
+    "https://cdn.prod.website-files.com/677f9e71c11a68b86359df57/67b8aacf65c1c0f74f269392_ezgif.com-resize-2-1.gif": {
+      "path": "/webflow/dj-course/ezgif-com-resize-2-1.gif",
+      "pagine": [
+        "dj-course"
+      ],
+      "alt": "DJ mixing on a professional Pioneer DJ setup with multiple CDJs and a central mixer, adjusting faders and effects in real-time",
+      "larghezze": [],
+      "url_scaricato": "https://cdn.prod.website-files.com/677f9e71c11a68b86359df57/67b8aacf65c1c0f74f269392_ezgif.com-resize-2-1.gif",
+      "origine": [
+        "img"
+      ]
+    },
+    "https://cdn.prod.website-files.com/677f9e71c11a68b86359df57/67b8aea38909860e5d9e6b06_hard-skills-2.webp": {
+      "path": "/webflow/dj-course/hard-skills-2.webp",
+      "pagine": [
+        "dj-course"
+      ],
+      "alt": "Nicole Moudaber performing on a professional DJ mixer in a studio setting, wearing sunglasses and a performance glove",
+      "larghezze": [
+        500,
+        600
+      ],
+      "url_scaricato": "https://cdn.prod.website-files.com/677f9e71c11a68b86359df57/67b8aea38909860e5d9e6b06_hard-skills-2.webp",
+      "origine": [
+        "img"
+      ]
+    },
+    "https://cdn.prod.website-files.com/677f9e71c11a68b86359df57/67b8afed2a12e334a23312a0_hard-skills.webp": {
+      "path": "/webflow/dj-course/hard-skills.webp",
+      "pagine": [
+        "dj-course"
+      ],
+      "alt": "DJ performing on a professional mixer in a club setting with atmospheric lighting and fog effects",
+      "larghezze": [],
+      "url_scaricato": "https://cdn.prod.website-files.com/677f9e71c11a68b86359df57/67b8afed2a12e334a23312a0_hard-skills.webp",
+      "origine": [
+        "img"
+      ]
+    },
+    "https://cdn.prod.website-files.com/677f9e71c11a68b86359df57/67ba12181004321958f4b94d_267b452ada8ab15bb14bc8271_icon-level-02-academy-template.png": {
+      "path": "/webflow/shared/icon-level-02-academy-template.png",
+      "pagine": [
+        "dj-course",
+        "producer-course",
+        "mix-mastering-course"
+      ],
+      "alt": "",
+      "larghezze": [],
+      "url_scaricato": "https://cdn.prod.website-files.com/677f9e71c11a68b86359df57/67ba12181004321958f4b94d_267b452ada8ab15bb14bc8271_icon-level-02-academy-template.png",
+      "origine": [
+        "img"
+      ]
+    },
+    "https://cdn.prod.website-files.com/677f9e71c11a68b86359df57/67ba16cad5588af38e877220_logo-altra%20versionewhite.png": {
+      "path": "/webflow/shared/logo-altra-versionewhite.png",
+      "pagine": [
+        "home",
+        "dj-course",
+        "producer-course",
+        "mix-mastering-course",
+        "pricing-page",
+        "play-get-signed",
+        "recess",
+        "terms-conditions",
+        "terms-conditions-sa",
+        "404"
+      ],
+      "alt": "Pete Tong DJ Academy logo in white with a yellow accent",
+      "larghezze": [],
+      "url_scaricato": "https://cdn.prod.website-files.com/677f9e71c11a68b86359df57/67ba16cad5588af38e877220_logo-altra%20versionewhite.png",
+      "origine": [
+        "img"
+      ]
+    },
+    "https://cdn.prod.website-files.com/677f9e71c11a68b86359df57/67bb7cb24b9e40c89dca3cce_Risorsa-5-3.webp": {
+      "path": "/webflow/dj-course/risorsa-5-3.webp",
+      "pagine": [
+        "dj-course"
+      ],
+      "alt": "Smiling woman in a white t-shirt sitting in a chair during an interview, with a colorful music event poster wall in the background",
+      "larghezze": [],
+      "url_scaricato": "https://cdn.prod.website-files.com/677f9e71c11a68b86359df57/67bb7cb24b9e40c89dca3cce_Risorsa-5-3.webp",
+      "origine": [
+        "img"
+      ]
+    },
+    "https://cdn.prod.website-files.com/677f9e71c11a68b86359df57/67bb7d19a413b4f9203f0dac_ezgif.com-resize-4-1.gif": {
+      "path": "/webflow/dj-course/ezgif-com-resize-4-1.gif",
+      "pagine": [
+        "dj-course"
+      ],
+      "alt": "Pete Tong interviewing a music industry professional in front of a vibrant collage wall with music event posters. The text 'Managers and Promoters' appears on the screen",
+      "larghezze": [],
+      "url_scaricato": "https://cdn.prod.website-files.com/677f9e71c11a68b86359df57/67bb7d19a413b4f9203f0dac_ezgif.com-resize-4-1.gif",
+      "origine": [
+        "img"
+      ]
+    },
+    "https://cdn.prod.website-files.com/677f9e71c11a68b86359df57/67bb7e1d77b800e75fc1f9b1_ezgif.com-resize.gif": {
+      "path": "/webflow/dj-course/ezgif-com-resize.gif",
+      "pagine": [
+        "dj-course"
+      ],
+      "alt": "Close-up of a DJ adjusting faders and knobs on a Pioneer DJ mixer. The DJ wears a performance glove while mixing live",
+      "larghezze": [],
+      "url_scaricato": "https://cdn.prod.website-files.com/677f9e71c11a68b86359df57/67bb7e1d77b800e75fc1f9b1_ezgif.com-resize.gif",
+      "origine": [
+        "img"
+      ]
+    },
+    "https://cdn.prod.website-files.com/677f9e71c11a68b86359df57/67bb7f12e70e65d063d079ca_1BLOCCO-1.webp": {
+      "path": "/webflow/dj-course/1blocco-1.webp",
+      "pagine": [
+        "dj-course"
+      ],
+      "alt": "DJ performing on a hybrid setup with turntables, CDJs, and a professional mixer. Second view features Carl Cox using effects like 'Shorten FX Time' and 'Combo Fill' on a multi-deck Pioneer DJ system",
+      "larghezze": [],
+      "url_scaricato": "https://cdn.prod.website-files.com/677f9e71c11a68b86359df57/67bb7f12e70e65d063d079ca_1BLOCCO-1.webp",
+      "origine": [
+        "img"
+      ]
+    },
+    "https://cdn.prod.website-files.com/677f9e71c11a68b86359df57/67bb7f43ca26b75c6b6a211c_for-BEGINNERS.webp": {
+      "path": "/webflow/dj-course/for-beginners.webp",
+      "pagine": [
+        "dj-course"
+      ],
+      "alt": "Close-up of a DJ mixing on a Pioneer DJ setup with a professional mixer and CDJ. The screen displays waveforms and track details during live performance",
+      "larghezze": [
+        500,
+        573
+      ],
+      "url_scaricato": "https://cdn.prod.website-files.com/677f9e71c11a68b86359df57/67bb7f43ca26b75c6b6a211c_for-BEGINNERS.webp",
+      "origine": [
+        "img"
+      ]
+    },
+    "https://cdn.prod.website-files.com/677f9e71c11a68b86359df57/67bb8091e70e65d063d1e314_Risorsa-8-2.webp": {
+      "path": "/webflow/dj-course/risorsa-8-2.webp",
+      "pagine": [
+        "dj-course"
+      ],
+      "alt": "Nicole Moudaber performing in a professional studio with a mixer, controllers, and a laptop running DJ software. Multi-angle view shows equipment close-ups and waveform display on screen",
+      "larghezze": [
+        500,
+        564
+      ],
+      "url_scaricato": "https://cdn.prod.website-files.com/677f9e71c11a68b86359df57/67bb8091e70e65d063d1e314_Risorsa-8-2.webp",
+      "origine": [
+        "img"
+      ]
+    },
+    "https://cdn.prod.website-files.com/677f9e71c11a68b86359df57/67bdd2c26fd09a05ae9adfe9_Villanis.png": {
+      "path": "/webflow/shared/villanis.png",
+      "pagine": [
+        "dj-course",
+        "producer-course",
+        "mix-mastering-course",
+        "pricing-page"
+      ],
+      "alt": "Pete Tong DJ Academy online session with multiple participants on a video call. Below, a booking page interface for scheduling a Zoom meeting",
+      "larghezze": [
+        500,
+        800,
+        805
+      ],
+      "url_scaricato": "https://cdn.prod.website-files.com/677f9e71c11a68b86359df57/67bdd2c26fd09a05ae9adfe9_Villanis.png",
+      "origine": [
+        "img"
+      ]
+    },
+    "https://cdn.prod.website-files.com/677f9e71c11a68b86359df57/67bde20e27ae4c6c2c03b0ca_12dnew.png": {
+      "path": "/webflow/shared/12dnew.png",
+      "pagine": [
+        "home",
+        "dj-course",
+        "producer-course",
+        "mix-mastering-course",
+        "pricing-page",
+        "play-get-signed",
+        "advanced-djs",
+        "recess",
+        "terms-conditions",
+        "terms-conditions-sa",
+        "404"
+      ],
+      "alt": "",
+      "larghezze": [],
+      "url_scaricato": "https://cdn.prod.website-files.com/677f9e71c11a68b86359df57/67bde20e27ae4c6c2c03b0ca_12dnew.png",
+      "origine": [
+        "webclip"
+      ]
+    },
+    "https://cdn.prod.website-files.com/677f9e71c11a68b86359df57/67bde232bb8ed51e1459da20_13dnew.png": {
+      "path": "/webflow/shared/13dnew.png",
+      "pagine": [
+        "home",
+        "dj-course",
+        "producer-course",
+        "mix-mastering-course",
+        "pricing-page",
+        "play-get-signed",
+        "advanced-djs",
+        "recess",
+        "terms-conditions",
+        "terms-conditions-sa",
+        "404"
+      ],
+      "alt": "",
+      "larghezze": [],
+      "url_scaricato": "https://cdn.prod.website-files.com/677f9e71c11a68b86359df57/67bde232bb8ed51e1459da20_13dnew.png",
+      "origine": [
+        "favicon"
+      ]
+    },
+    "https://cdn.prod.website-files.com/677f9e71c11a68b86359df57/67c72a69971bade6763459e4_IMMAGINE%20ACADEMY.png": {
+      "path": "/webflow/shared/immagine-academy.png",
+      "pagine": [
+        "home",
+        "dj-course",
+        "producer-course",
+        "mix-mastering-course",
+        "pricing-page",
+        "play-get-signed"
+      ],
+      "alt": "",
+      "larghezze": [],
+      "url_scaricato": "https://cdn.prod.website-files.com/677f9e71c11a68b86359df57/67c72a69971bade6763459e4_IMMAGINE%20ACADEMY.png",
+      "origine": [
+        "og:image",
+        "twitter:image"
+      ]
+    },
+    "https://cdn.prod.website-files.com/677f9e71c11a68b86359df57/686259a300967d445196b3a8_tooltip-arrow-white.svg": {
+      "path": "/webflow/shared/tooltip-arrow-white.svg",
+      "pagine": [
+        "home",
+        "dj-course",
+        "producer-course"
+      ],
+      "alt": "",
+      "larghezze": [],
+      "url_scaricato": "https://cdn.prod.website-files.com/677f9e71c11a68b86359df57/686259a300967d445196b3a8_tooltip-arrow-white.svg",
+      "origine": [
+        "img"
+      ]
+    },
+    "https://cdn.prod.website-files.com/677f9e71c11a68b86359df57/6870d4791dd3dd84ec5675dc_abletonctr.png": {
+      "path": "/webflow/home/abletonctr.png",
+      "pagine": [
+        "home"
+      ],
+      "alt": "",
+      "larghezze": [
+        500,
+        800,
+        1080,
+        1600,
+        1696
+      ],
+      "url_scaricato": "https://cdn.prod.website-files.com/677f9e71c11a68b86359df57/6870d4791dd3dd84ec5675dc_abletonctr.png",
+      "origine": [
+        "img"
+      ]
+    },
+    "https://cdn.prod.website-files.com/677f9e71c11a68b86359df57/6874fb97d297d4daf86736d4_djcourse.png": {
+      "path": "/webflow/shared/djcourse.png",
+      "pagine": [
+        "home",
+        "producer-course",
+        "mix-mastering-course",
+        "play-get-signed"
+      ],
+      "alt": "",
+      "larghezze": [],
+      "url_scaricato": "https://cdn.prod.website-files.com/677f9e71c11a68b86359df57/6874fb97d297d4daf86736d4_djcourse.png",
+      "origine": [
+        "img"
+      ]
+    },
+    "https://cdn.prod.website-files.com/677f9e71c11a68b86359df57/6874fbe651ee2a9d7c763f91_producercourse.png": {
+      "path": "/webflow/shared/producercourse.png",
+      "pagine": [
+        "home",
+        "dj-course",
+        "mix-mastering-course",
+        "play-get-signed"
+      ],
+      "alt": "",
+      "larghezze": [],
+      "url_scaricato": "https://cdn.prod.website-files.com/677f9e71c11a68b86359df57/6874fbe651ee2a9d7c763f91_producercourse.png",
+      "origine": [
+        "img"
+      ]
+    },
+    "https://cdn.prod.website-files.com/677f9e71c11a68b86359df57/6874fc77cdc12a138f9aec9e_mixcourse.png": {
+      "path": "/webflow/shared/mixcourse.png",
+      "pagine": [
+        "home",
+        "dj-course",
+        "producer-course",
+        "play-get-signed"
+      ],
+      "alt": "",
+      "larghezze": [],
+      "url_scaricato": "https://cdn.prod.website-files.com/677f9e71c11a68b86359df57/6874fc77cdc12a138f9aec9e_mixcourse.png",
+      "origine": [
+        "img"
+      ]
+    },
+    "https://cdn.prod.website-files.com/677f9e71c11a68b86359df57/6878c0a2039fb0210d0b5b32_STEP-1-ASIA.jpg": {
+      "path": "/webflow/play-get-signed/step-1-asia.jpg",
+      "pagine": [
+        "play-get-signed"
+      ],
+      "alt": "DJ Course and Talent Activities at PTDJ Academy",
+      "larghezze": [
+        500,
+        800,
+        1038
+      ],
+      "url_scaricato": "https://cdn.prod.website-files.com/677f9e71c11a68b86359df57/6878c0a2039fb0210d0b5b32_STEP-1-ASIA.jpg",
+      "origine": [
+        "img"
+      ]
+    },
+    "https://cdn.prod.website-files.com/677f9e71c11a68b86359df57/6878c0a222b09cda62658aad_STEP-3-ASIA.jpg": {
+      "path": "/webflow/play-get-signed/step-3-asia.jpg",
+      "pagine": [
+        "play-get-signed"
+      ],
+      "alt": "Enter the global stages at Pete Tong DJ Academy",
+      "larghezze": [
+        500,
+        800,
+        1038
+      ],
+      "url_scaricato": "https://cdn.prod.website-files.com/677f9e71c11a68b86359df57/6878c0a222b09cda62658aad_STEP-3-ASIA.jpg",
+      "origine": [
+        "img"
+      ]
+    },
+    "https://cdn.prod.website-files.com/677f9e71c11a68b86359df57/6878c0a2cd54ecf173b57926_STEP-2-ASIA.jpg": {
+      "path": "/webflow/play-get-signed/step-2-asia.jpg",
+      "pagine": [
+        "play-get-signed"
+      ],
+      "alt": "Weekly Activities inside the campus",
+      "larghezze": [
+        500,
+        800,
+        1038
+      ],
+      "url_scaricato": "https://cdn.prod.website-files.com/677f9e71c11a68b86359df57/6878c0a2cd54ecf173b57926_STEP-2-ASIA.jpg",
+      "origine": [
+        "img"
+      ]
+    },
+    "https://cdn.prod.website-files.com/677f9e71c11a68b86359df57/6878ed7f040ccf5ddb1c9deb_MINIATURA-PROFILO_THE-RELOUD.png": {
+      "path": "/webflow/producer-course/miniatura-profilo-the-reloud.png",
+      "pagine": [
+        "producer-course"
+      ],
+      "alt": "",
+      "larghezze": [],
+      "url_scaricato": "https://cdn.prod.website-files.com/677f9e71c11a68b86359df57/6878ed7f040ccf5ddb1c9deb_MINIATURA-PROFILO_THE-RELOUD.png",
+      "origine": [
+        "img"
+      ]
+    },
+    "https://cdn.prod.website-files.com/677f9e71c11a68b86359df57/6878ed7f2eb548ace6872e6a_MINIATURA-PROFILO_NICOLE.png": {
+      "path": "/webflow/dj-course/miniatura-profilo-nicole.png",
+      "pagine": [
+        "dj-course"
+      ],
+      "alt": "",
+      "larghezze": [],
+      "url_scaricato": "https://cdn.prod.website-files.com/677f9e71c11a68b86359df57/6878ed7f2eb548ace6872e6a_MINIATURA-PROFILO_NICOLE.png",
+      "origine": [
+        "img"
+      ]
+    },
+    "https://cdn.prod.website-files.com/677f9e71c11a68b86359df57/6878ed7f525a6f5a4c92443d_MINIATURA-PROFILO_PARISI.png": {
+      "path": "/webflow/producer-course/miniatura-profilo-parisi.png",
+      "pagine": [
+        "producer-course"
+      ],
+      "alt": "",
+      "larghezze": [],
+      "url_scaricato": "https://cdn.prod.website-files.com/677f9e71c11a68b86359df57/6878ed7f525a6f5a4c92443d_MINIATURA-PROFILO_PARISI.png",
+      "origine": [
+        "img"
+      ]
+    },
+    "https://cdn.prod.website-files.com/677f9e71c11a68b86359df57/6878ed7f590b8b64bfcb35f4_MINIATURA-PROFILO_JAMIE.png": {
+      "path": "/webflow/dj-course/miniatura-profilo-jamie.png",
+      "pagine": [
+        "dj-course"
+      ],
+      "alt": "",
+      "larghezze": [],
+      "url_scaricato": "https://cdn.prod.website-files.com/677f9e71c11a68b86359df57/6878ed7f590b8b64bfcb35f4_MINIATURA-PROFILO_JAMIE.png",
+      "origine": [
+        "img"
+      ]
+    },
+    "https://cdn.prod.website-files.com/677f9e71c11a68b86359df57/6878ed7f619bbaa1751f56ea_MINIATURA-PROFILO_PETE.png": {
+      "path": "/webflow/shared/miniatura-profilo-pete.png",
+      "pagine": [
+        "dj-course",
+        "producer-course"
+      ],
+      "alt": "",
+      "larghezze": [],
+      "url_scaricato": "https://cdn.prod.website-files.com/677f9e71c11a68b86359df57/6878ed7f619bbaa1751f56ea_MINIATURA-PROFILO_PETE.png",
+      "origine": [
+        "img"
+      ]
+    },
+    "https://cdn.prod.website-files.com/677f9e71c11a68b86359df57/6878ed7fa7c951522d2fe7a9_MINIATURA-PROFILO_CARL.png": {
+      "path": "/webflow/dj-course/miniatura-profilo-carl.png",
+      "pagine": [
+        "dj-course"
+      ],
+      "alt": "",
+      "larghezze": [],
+      "url_scaricato": "https://cdn.prod.website-files.com/677f9e71c11a68b86359df57/6878ed7fa7c951522d2fe7a9_MINIATURA-PROFILO_CARL.png",
+      "origine": [
+        "img"
+      ]
+    },
+    "https://cdn.prod.website-files.com/677f9e71c11a68b86359df57/6878ed7fc811173ef6e3e3c3_MINIATURA-PROFILO_DIPLO.png": {
+      "path": "/webflow/producer-course/miniatura-profilo-diplo.png",
+      "pagine": [
+        "producer-course"
+      ],
+      "alt": "",
+      "larghezze": [],
+      "url_scaricato": "https://cdn.prod.website-files.com/677f9e71c11a68b86359df57/6878ed7fc811173ef6e3e3c3_MINIATURA-PROFILO_DIPLO.png",
+      "origine": [
+        "img"
+      ]
+    },
+    "https://cdn.prod.website-files.com/677f9e71c11a68b86359df57/6878edc6492917b5274a9857_MINIATURA-PROFILO_AME.png": {
+      "path": "/webflow/shared/miniatura-profilo-ame.png",
+      "pagine": [
+        "dj-course",
+        "producer-course"
+      ],
+      "alt": "",
+      "larghezze": [],
+      "url_scaricato": "https://cdn.prod.website-files.com/677f9e71c11a68b86359df57/6878edc6492917b5274a9857_MINIATURA-PROFILO_AME.png",
+      "origine": [
+        "img"
+      ]
+    },
+    "https://cdn.prod.website-files.com/677f9e71c11a68b86359df57/6878edd471bd668fda65fb0f_MINIATURA-PROFILO_TSHA.png": {
+      "path": "/webflow/dj-course/miniatura-profilo-tsha.png",
+      "pagine": [
+        "dj-course"
+      ],
+      "alt": "",
+      "larghezze": [],
+      "url_scaricato": "https://cdn.prod.website-files.com/677f9e71c11a68b86359df57/6878edd471bd668fda65fb0f_MINIATURA-PROFILO_TSHA.png",
+      "origine": [
+        "img"
+      ]
+    },
+    "https://cdn.prod.website-files.com/677f9e71c11a68b86359df57/6878f67ed41350157914adf2_bund-04.png": {
+      "path": "/webflow/mix-mastering-course/bund-04.png",
+      "pagine": [
+        "mix-mastering-course"
+      ],
+      "alt": "",
+      "larghezze": [
+        500,
+        800,
+        1080,
+        1215
+      ],
+      "url_scaricato": "https://cdn.prod.website-files.com/677f9e71c11a68b86359df57/6878f67ed41350157914adf2_bund-04.png",
+      "origine": [
+        "img"
+      ]
+    },
+    "https://cdn.prod.website-files.com/677f9e71c11a68b86359df57/6878f86da9d4118e3e019df3_MINIATURA-PROFILO_ADAM.png": {
+      "path": "/webflow/dj-course/miniatura-profilo-adam.png",
+      "pagine": [
+        "dj-course"
+      ],
+      "alt": "",
+      "larghezze": [],
+      "url_scaricato": "https://cdn.prod.website-files.com/677f9e71c11a68b86359df57/6878f86da9d4118e3e019df3_MINIATURA-PROFILO_ADAM.png",
+      "origine": [
+        "img"
+      ]
+    },
+    "https://cdn.prod.website-files.com/677f9e71c11a68b86359df57/687909995923d1d21d6479f0_3.png": {
+      "path": "/webflow/mix-mastering-course/3.png",
+      "pagine": [
+        "mix-mastering-course"
+      ],
+      "alt": "",
+      "larghezze": [
+        500,
+        800,
+        1000
+      ],
+      "url_scaricato": "https://cdn.prod.website-files.com/677f9e71c11a68b86359df57/687909995923d1d21d6479f0_3.png",
+      "origine": [
+        "img"
+      ]
+    },
+    "https://cdn.prod.website-files.com/677f9e71c11a68b86359df57/687a4a2918f6c73865381a55_WHITE_APPLE.png": {
+      "path": "/webflow/shared/white-apple.png",
+      "pagine": [
+        "home",
+        "dj-course",
+        "play-get-signed"
+      ],
+      "alt": "",
+      "larghezze": [],
+      "url_scaricato": "https://cdn.prod.website-files.com/677f9e71c11a68b86359df57/687a4a2918f6c73865381a55_WHITE_APPLE.png",
+      "origine": [
+        "img"
+      ]
+    },
+    "https://cdn.prod.website-files.com/677f9e71c11a68b86359df57/687a4a29247ff00dca5883ed_WHITE_GROOVE.png": {
+      "path": "/webflow/shared/white-groove.png",
+      "pagine": [
+        "home",
+        "producer-course",
+        "play-get-signed"
+      ],
+      "alt": "Groover Logo",
+      "larghezze": [],
+      "url_scaricato": "https://cdn.prod.website-files.com/677f9e71c11a68b86359df57/687a4a29247ff00dca5883ed_WHITE_GROOVE.png",
+      "origine": [
+        "img"
+      ]
+    },
+    "https://cdn.prod.website-files.com/677f9e71c11a68b86359df57/687a4a29247ff00dca588413_WHITE_MINISTRY.png": {
+      "path": "/webflow/shared/white-ministry.png",
+      "pagine": [
+        "home",
+        "producer-course",
+        "play-get-signed"
+      ],
+      "alt": "Ministry of Sound Logo",
+      "larghezze": [],
+      "url_scaricato": "https://cdn.prod.website-files.com/677f9e71c11a68b86359df57/687a4a29247ff00dca588413_WHITE_MINISTRY.png",
+      "origine": [
+        "img"
+      ]
+    },
+    "https://cdn.prod.website-files.com/677f9e71c11a68b86359df57/687a4a2935938388377fff00_WHITE_BEATPORT.png": {
+      "path": "/webflow/shared/white-beatport.png",
+      "pagine": [
+        "home",
+        "dj-course",
+        "play-get-signed"
+      ],
+      "alt": "",
+      "larghezze": [],
+      "url_scaricato": "https://cdn.prod.website-files.com/677f9e71c11a68b86359df57/687a4a2935938388377fff00_WHITE_BEATPORT.png",
+      "origine": [
+        "img"
+      ]
+    },
+    "https://cdn.prod.website-files.com/677f9e71c11a68b86359df57/687a4a296c80ce02bc299caa_WHITE_INNERVISION.png": {
+      "path": "/webflow/shared/white-innervision.png",
+      "pagine": [
+        "home",
+        "producer-course",
+        "play-get-signed"
+      ],
+      "alt": "Innervision logo",
+      "larghezze": [],
+      "url_scaricato": "https://cdn.prod.website-files.com/677f9e71c11a68b86359df57/687a4a296c80ce02bc299caa_WHITE_INNERVISION.png",
+      "origine": [
+        "img"
+      ]
+    },
+    "https://cdn.prod.website-files.com/677f9e71c11a68b86359df57/687a4a297b3a5a80a2062eb1_WHITE_PACHA.png": {
+      "path": "/webflow/shared/white-pacha.png",
+      "pagine": [
+        "home",
+        "dj-course",
+        "play-get-signed"
+      ],
+      "alt": "",
+      "larghezze": [],
+      "url_scaricato": "https://cdn.prod.website-files.com/677f9e71c11a68b86359df57/687a4a297b3a5a80a2062eb1_WHITE_PACHA.png",
+      "origine": [
+        "img"
+      ]
+    },
+    "https://cdn.prod.website-files.com/677f9e71c11a68b86359df57/687a4a298994b563e6d73e13_WHITE_ELROW.png": {
+      "path": "/webflow/shared/white-elrow.png",
+      "pagine": [
+        "home",
+        "dj-course",
+        "play-get-signed"
+      ],
+      "alt": "",
+      "larghezze": [],
+      "url_scaricato": "https://cdn.prod.website-files.com/677f9e71c11a68b86359df57/687a4a298994b563e6d73e13_WHITE_ELROW.png",
+      "origine": [
+        "img"
+      ]
+    },
+    "https://cdn.prod.website-files.com/677f9e71c11a68b86359df57/687a4a299685c0e3010f43de_WHITE_ADE.png": {
+      "path": "/webflow/shared/white-ade.png",
+      "pagine": [
+        "home",
+        "dj-course",
+        "play-get-signed"
+      ],
+      "alt": "",
+      "larghezze": [],
+      "url_scaricato": "https://cdn.prod.website-files.com/677f9e71c11a68b86359df57/687a4a299685c0e3010f43de_WHITE_ADE.png",
+      "origine": [
+        "img"
+      ]
+    },
+    "https://cdn.prod.website-files.com/677f9e71c11a68b86359df57/687a4a29994699b6768f2c68_WHITE_DEFECTED.png": {
+      "path": "/webflow/shared/white-defected.png",
+      "pagine": [
+        "home",
+        "producer-course",
+        "play-get-signed"
+      ],
+      "alt": "Defected Logo",
+      "larghezze": [],
+      "url_scaricato": "https://cdn.prod.website-files.com/677f9e71c11a68b86359df57/687a4a29994699b6768f2c68_WHITE_DEFECTED.png",
+      "origine": [
+        "img"
+      ]
+    },
+    "https://cdn.prod.website-files.com/677f9e71c11a68b86359df57/687a4a29ce554c76e7ab8bee_WHITE_DRUMCODE.png": {
+      "path": "/webflow/shared/white-drumcode.png",
+      "pagine": [
+        "home",
+        "producer-course",
+        "play-get-signed"
+      ],
+      "alt": "Drumcode Logo",
+      "larghezze": [],
+      "url_scaricato": "https://cdn.prod.website-files.com/677f9e71c11a68b86359df57/687a4a29ce554c76e7ab8bee_WHITE_DRUMCODE.png",
+      "origine": [
+        "img"
+      ]
+    },
+    "https://cdn.prod.website-files.com/677f9e71c11a68b86359df57/687e072236cd738e2d49a0de_Pretolesi%20(1920%20x%201080%20px)%20(1600%20x%201080%20px)%20(2).png": {
+      "path": "/webflow/mix-mastering-course/pretolesi-1920-x-1080-px-1600-x-1080-px-2.png",
+      "pagine": [
+        "mix-mastering-course"
+      ],
+      "alt": "",
+      "larghezze": [
+        500,
+        800
+      ],
+      "url_scaricato": "https://cdn.prod.website-files.com/677f9e71c11a68b86359df57/687e072236cd738e2d49a0de_Pretolesi%20(1920%20x%201080%20px)%20(1600%20x%201080%20px)%20(2).png",
+      "origine": [
+        "img"
+      ]
+    },
+    "https://cdn.prod.website-files.com/677f9e71c11a68b86359df57/687e0735ec12598103298e19_Pretolesi%20(1920%20x%201080%20px)%20(1600%20x%201080%20px).png": {
+      "path": "/webflow/mix-mastering-course/pretolesi-1920-x-1080-px-1600-x-1080-px.png",
+      "pagine": [
+        "mix-mastering-course"
+      ],
+      "alt": "",
+      "larghezze": [
+        500,
+        800
+      ],
+      "url_scaricato": "https://cdn.prod.website-files.com/677f9e71c11a68b86359df57/687e0735ec12598103298e19_Pretolesi%20(1920%20x%201080%20px)%20(1600%20x%201080%20px).png",
+      "origine": [
+        "img"
+      ]
+    },
+    "https://cdn.prod.website-files.com/677f9e71c11a68b86359df57/687e40fd1fd0841fbddd6525_ICON-01.png": {
+      "path": "/webflow/shared/icon-01.png",
+      "pagine": [
+        "home",
+        "dj-course",
+        "producer-course"
+      ],
+      "alt": "",
+      "larghezze": [],
+      "url_scaricato": "https://cdn.prod.website-files.com/677f9e71c11a68b86359df57/687e40fd1fd0841fbddd6525_ICON-01.png",
+      "origine": [
+        "img"
+      ]
+    },
+    "https://cdn.prod.website-files.com/677f9e71c11a68b86359df57/687e40fd2e640e90b3b14f89_ICON-02.png": {
+      "path": "/webflow/shared/icon-02.png",
+      "pagine": [
+        "home",
+        "dj-course",
+        "producer-course"
+      ],
+      "alt": "",
+      "larghezze": [],
+      "url_scaricato": "https://cdn.prod.website-files.com/677f9e71c11a68b86359df57/687e40fd2e640e90b3b14f89_ICON-02.png",
+      "origine": [
+        "img"
+      ]
+    },
+    "https://cdn.prod.website-files.com/677f9e71c11a68b86359df57/687e40fd530fbd2a07ec4f16_ICON-04.png": {
+      "path": "/webflow/shared/icon-04.png",
+      "pagine": [
+        "home",
+        "dj-course",
+        "producer-course"
+      ],
+      "alt": "",
+      "larghezze": [],
+      "url_scaricato": "https://cdn.prod.website-files.com/677f9e71c11a68b86359df57/687e40fd530fbd2a07ec4f16_ICON-04.png",
+      "origine": [
+        "img"
+      ]
+    },
+    "https://cdn.prod.website-files.com/677f9e71c11a68b86359df57/687e40fdb85967bcb2ca7d64_ICON-05.png": {
+      "path": "/webflow/shared/icon-05.png",
+      "pagine": [
+        "home",
+        "dj-course",
+        "producer-course"
+      ],
+      "alt": "",
+      "larghezze": [],
+      "url_scaricato": "https://cdn.prod.website-files.com/677f9e71c11a68b86359df57/687e40fdb85967bcb2ca7d64_ICON-05.png",
+      "origine": [
+        "img"
+      ]
+    },
+    "https://cdn.prod.website-files.com/677f9e71c11a68b86359df57/687e40fdde11a49371fa827f_ICON-06.png": {
+      "path": "/webflow/shared/icon-06.png",
+      "pagine": [
+        "home",
+        "dj-course",
+        "producer-course"
+      ],
+      "alt": "",
+      "larghezze": [],
+      "url_scaricato": "https://cdn.prod.website-files.com/677f9e71c11a68b86359df57/687e40fdde11a49371fa827f_ICON-06.png",
+      "origine": [
+        "img"
+      ]
+    },
+    "https://cdn.prod.website-files.com/677f9e71c11a68b86359df57/687e40fe2d4425a5d7a2e4e1_ICON-03.png": {
+      "path": "/webflow/shared/icon-03.png",
+      "pagine": [
+        "home",
+        "dj-course",
+        "producer-course"
+      ],
+      "alt": "",
+      "larghezze": [],
+      "url_scaricato": "https://cdn.prod.website-files.com/677f9e71c11a68b86359df57/687e40fe2d4425a5d7a2e4e1_ICON-03.png",
+      "origine": [
+        "img"
+      ]
+    },
+    "https://cdn.prod.website-files.com/677f9e71c11a68b86359df57/687e427c240b5dca2f28e356_PLAY-AND-GET-QUAD.webp": {
+      "path": "/webflow/home/play-and-get-quad.webp",
+      "pagine": [
+        "home"
+      ],
+      "alt": "Play & Get Signed at the Pete Tong Academy - Infographic.",
+      "larghezze": [],
+      "url_scaricato": "https://cdn.prod.website-files.com/677f9e71c11a68b86359df57/687e427c240b5dca2f28e356_PLAY-AND-GET-QUAD.webp",
+      "origine": [
+        "img"
+      ]
+    },
+    "https://cdn.prod.website-files.com/677f9e71c11a68b86359df57/687e427f46af4a4d8a5a4c6b_PLAY-AND-GET-VERT.png": {
+      "path": "/webflow/home/play-and-get-vert.png",
+      "pagine": [
+        "home"
+      ],
+      "alt": "",
+      "larghezze": [],
+      "url_scaricato": "https://cdn.prod.website-files.com/677f9e71c11a68b86359df57/687e427f46af4a4d8a5a4c6b_PLAY-AND-GET-VERT.png",
+      "origine": [
+        "img"
+      ]
+    },
+    "https://cdn.prod.website-files.com/677f9e71c11a68b86359df57/687e4381240b5dca2f297b5f_9-min.png": {
+      "path": "/webflow/home/9-min.png",
+      "pagine": [
+        "home"
+      ],
+      "alt": "",
+      "larghezze": [
+        500,
+        540
+      ],
+      "url_scaricato": "https://cdn.prod.website-files.com/677f9e71c11a68b86359df57/687e4381240b5dca2f297b5f_9-min.png",
+      "origine": [
+        "img"
+      ]
+    },
+    "https://cdn.prod.website-files.com/677f9e71c11a68b86359df57/687e4381240b5dca2f297b63_3-min.png": {
+      "path": "/webflow/home/3-min.png",
+      "pagine": [
+        "home"
+      ],
+      "alt": "",
+      "larghezze": [
+        500,
+        540
+      ],
+      "url_scaricato": "https://cdn.prod.website-files.com/677f9e71c11a68b86359df57/687e4381240b5dca2f297b63_3-min.png",
+      "origine": [
+        "img"
+      ]
+    },
+    "https://cdn.prod.website-files.com/677f9e71c11a68b86359df57/687e4381240b5dca2f297b67_4-min.png": {
+      "path": "/webflow/home/4-min.png",
+      "pagine": [
+        "home"
+      ],
+      "alt": "",
+      "larghezze": [
+        500,
+        540
+      ],
+      "url_scaricato": "https://cdn.prod.website-files.com/677f9e71c11a68b86359df57/687e4381240b5dca2f297b67_4-min.png",
+      "origine": [
+        "img"
+      ]
+    },
+    "https://cdn.prod.website-files.com/677f9e71c11a68b86359df57/687e4381240b5dca2f297b6b_8-min.png": {
+      "path": "/webflow/home/8-min.png",
+      "pagine": [
+        "home"
+      ],
+      "alt": "",
+      "larghezze": [
+        500,
+        540
+      ],
+      "url_scaricato": "https://cdn.prod.website-files.com/677f9e71c11a68b86359df57/687e4381240b5dca2f297b6b_8-min.png",
+      "origine": [
+        "img"
+      ]
+    },
+    "https://cdn.prod.website-files.com/677f9e71c11a68b86359df57/687e4381240b5dca2f297b6f_10-min.png": {
+      "path": "/webflow/home/10-min.png",
+      "pagine": [
+        "home"
+      ],
+      "alt": "",
+      "larghezze": [
+        500,
+        540
+      ],
+      "url_scaricato": "https://cdn.prod.website-files.com/677f9e71c11a68b86359df57/687e4381240b5dca2f297b6f_10-min.png",
+      "origine": [
+        "img"
+      ]
+    },
+    "https://cdn.prod.website-files.com/677f9e71c11a68b86359df57/687e4381240b5dca2f297b73_12-min.png": {
+      "path": "/webflow/home/12-min.png",
+      "pagine": [
+        "home"
+      ],
+      "alt": "",
+      "larghezze": [
+        500,
+        540
+      ],
+      "url_scaricato": "https://cdn.prod.website-files.com/677f9e71c11a68b86359df57/687e4381240b5dca2f297b73_12-min.png",
+      "origine": [
+        "img"
+      ]
+    },
+    "https://cdn.prod.website-files.com/677f9e71c11a68b86359df57/687e4381240b5dca2f297b77_2-min.png": {
+      "path": "/webflow/home/2-min.png",
+      "pagine": [
+        "home"
+      ],
+      "alt": "",
+      "larghezze": [
+        500,
+        540
+      ],
+      "url_scaricato": "https://cdn.prod.website-files.com/677f9e71c11a68b86359df57/687e4381240b5dca2f297b77_2-min.png",
+      "origine": [
+        "img"
+      ]
+    },
+    "https://cdn.prod.website-files.com/677f9e71c11a68b86359df57/687e4381240b5dca2f297b7b_1-min.png": {
+      "path": "/webflow/home/1-min.png",
+      "pagine": [
+        "home"
+      ],
+      "alt": "",
+      "larghezze": [
+        500,
+        540
+      ],
+      "url_scaricato": "https://cdn.prod.website-files.com/677f9e71c11a68b86359df57/687e4381240b5dca2f297b7b_1-min.png",
+      "origine": [
+        "img"
+      ]
+    },
+    "https://cdn.prod.website-files.com/677f9e71c11a68b86359df57/687e4381240b5dca2f297b7f_7-min.png": {
+      "path": "/webflow/home/7-min.png",
+      "pagine": [
+        "home"
+      ],
+      "alt": "",
+      "larghezze": [
+        500,
+        540
+      ],
+      "url_scaricato": "https://cdn.prod.website-files.com/677f9e71c11a68b86359df57/687e4381240b5dca2f297b7f_7-min.png",
+      "origine": [
+        "img"
+      ]
+    },
+    "https://cdn.prod.website-files.com/677f9e71c11a68b86359df57/687e4381240b5dca2f297b83_13-min.png": {
+      "path": "/webflow/home/13-min.png",
+      "pagine": [
+        "home"
+      ],
+      "alt": "",
+      "larghezze": [
+        500,
+        540
+      ],
+      "url_scaricato": "https://cdn.prod.website-files.com/677f9e71c11a68b86359df57/687e4381240b5dca2f297b83_13-min.png",
+      "origine": [
+        "img"
+      ]
+    },
+    "https://cdn.prod.website-files.com/677f9e71c11a68b86359df57/687e4381240b5dca2f297b87_21-min.png": {
+      "path": "/webflow/home/21-min.png",
+      "pagine": [
+        "home"
+      ],
+      "alt": "",
+      "larghezze": [
+        500,
+        540
+      ],
+      "url_scaricato": "https://cdn.prod.website-files.com/677f9e71c11a68b86359df57/687e4381240b5dca2f297b87_21-min.png",
+      "origine": [
+        "img"
+      ]
+    },
+    "https://cdn.prod.website-files.com/677f9e71c11a68b86359df57/687e4381240b5dca2f297b8b_20-min.png": {
+      "path": "/webflow/home/20-min.png",
+      "pagine": [
+        "home"
+      ],
+      "alt": "Âme in a music studio with audio equipment behind them.",
+      "larghezze": [
+        500,
+        540
+      ],
+      "url_scaricato": "https://cdn.prod.website-files.com/677f9e71c11a68b86359df57/687e4381240b5dca2f297b8b_20-min.png",
+      "origine": [
+        "img"
+      ]
+    },
+    "https://cdn.prod.website-files.com/677f9e71c11a68b86359df57/687e4381240b5dca2f297b8f_15-min.png": {
+      "path": "/webflow/home/15-min.png",
+      "pagine": [
+        "home"
+      ],
+      "alt": "",
+      "larghezze": [
+        500,
+        540
+      ],
+      "url_scaricato": "https://cdn.prod.website-files.com/677f9e71c11a68b86359df57/687e4381240b5dca2f297b8f_15-min.png",
+      "origine": [
+        "img"
+      ]
+    },
+    "https://cdn.prod.website-files.com/677f9e71c11a68b86359df57/687e4381240b5dca2f297b93_5-min.png": {
+      "path": "/webflow/home/5-min.png",
+      "pagine": [
+        "home"
+      ],
+      "alt": "",
+      "larghezze": [
+        500,
+        540
+      ],
+      "url_scaricato": "https://cdn.prod.website-files.com/677f9e71c11a68b86359df57/687e4381240b5dca2f297b93_5-min.png",
+      "origine": [
+        "img"
+      ]
+    },
+    "https://cdn.prod.website-files.com/677f9e71c11a68b86359df57/687e439883c29cafbb856f96_14-min.png": {
+      "path": "/webflow/home/14-min.png",
+      "pagine": [
+        "home"
+      ],
+      "alt": "Jack and Marco Parisi during an Interview",
+      "larghezze": [
+        500,
+        540
+      ],
+      "url_scaricato": "https://cdn.prod.website-files.com/677f9e71c11a68b86359df57/687e439883c29cafbb856f96_14-min.png",
+      "origine": [
+        "img"
+      ]
+    },
+    "https://cdn.prod.website-files.com/677f9e71c11a68b86359df57/687e439883c29cafbb856f9a_30.png": {
+      "path": "/webflow/home/30.png",
+      "pagine": [
+        "home"
+      ],
+      "alt": "",
+      "larghezze": [
+        500,
+        540
+      ],
+      "url_scaricato": "https://cdn.prod.website-files.com/677f9e71c11a68b86359df57/687e439883c29cafbb856f9a_30.png",
+      "origine": [
+        "img"
+      ]
+    },
+    "https://cdn.prod.website-files.com/677f9e71c11a68b86359df57/687e439883c29cafbb856f9f_24.png": {
+      "path": "/webflow/home/24.png",
+      "pagine": [
+        "home"
+      ],
+      "alt": "",
+      "larghezze": [
+        500,
+        540
+      ],
+      "url_scaricato": "https://cdn.prod.website-files.com/677f9e71c11a68b86359df57/687e439883c29cafbb856f9f_24.png",
+      "origine": [
+        "img"
+      ]
+    },
+    "https://cdn.prod.website-files.com/677f9e71c11a68b86359df57/687e439883c29cafbb856fa3_34.png": {
+      "path": "/webflow/home/34.png",
+      "pagine": [
+        "home"
+      ],
+      "alt": "",
+      "larghezze": [
+        500,
+        540
+      ],
+      "url_scaricato": "https://cdn.prod.website-files.com/677f9e71c11a68b86359df57/687e439883c29cafbb856fa3_34.png",
+      "origine": [
+        "img"
+      ]
+    },
+    "https://cdn.prod.website-files.com/677f9e71c11a68b86359df57/687e439883c29cafbb856fa7_27.png": {
+      "path": "/webflow/home/27.png",
+      "pagine": [
+        "home"
+      ],
+      "alt": "",
+      "larghezze": [
+        500,
+        540
+      ],
+      "url_scaricato": "https://cdn.prod.website-files.com/677f9e71c11a68b86359df57/687e439883c29cafbb856fa7_27.png",
+      "origine": [
+        "img"
+      ]
+    },
+    "https://cdn.prod.website-files.com/677f9e71c11a68b86359df57/687e439883c29cafbb856fab_31.png": {
+      "path": "/webflow/home/31.png",
+      "pagine": [
+        "home"
+      ],
+      "alt": "",
+      "larghezze": [
+        500,
+        540
+      ],
+      "url_scaricato": "https://cdn.prod.website-files.com/677f9e71c11a68b86359df57/687e439883c29cafbb856fab_31.png",
+      "origine": [
+        "img"
+      ]
+    },
+    "https://cdn.prod.website-files.com/677f9e71c11a68b86359df57/687e439883c29cafbb856faf_36.png": {
+      "path": "/webflow/home/36.png",
+      "pagine": [
+        "home"
+      ],
+      "alt": "",
+      "larghezze": [
+        500,
+        540
+      ],
+      "url_scaricato": "https://cdn.prod.website-files.com/677f9e71c11a68b86359df57/687e439883c29cafbb856faf_36.png",
+      "origine": [
+        "img"
+      ]
+    },
+    "https://cdn.prod.website-files.com/677f9e71c11a68b86359df57/687e439883c29cafbb856fb3_23.png": {
+      "path": "/webflow/home/23.png",
+      "pagine": [
+        "home"
+      ],
+      "alt": "",
+      "larghezze": [
+        500,
+        540
+      ],
+      "url_scaricato": "https://cdn.prod.website-files.com/677f9e71c11a68b86359df57/687e439883c29cafbb856fb3_23.png",
+      "origine": [
+        "img"
+      ]
+    },
+    "https://cdn.prod.website-files.com/677f9e71c11a68b86359df57/687e439883c29cafbb856fb7_22.png": {
+      "path": "/webflow/home/22.png",
+      "pagine": [
+        "home"
+      ],
+      "alt": "",
+      "larghezze": [
+        500,
+        540
+      ],
+      "url_scaricato": "https://cdn.prod.website-files.com/677f9e71c11a68b86359df57/687e439883c29cafbb856fb7_22.png",
+      "origine": [
+        "img"
+      ]
+    },
+    "https://cdn.prod.website-files.com/677f9e71c11a68b86359df57/687e439883c29cafbb856fbb_32.png": {
+      "path": "/webflow/home/32.png",
+      "pagine": [
+        "home"
+      ],
+      "alt": "",
+      "larghezze": [
+        500,
+        540
+      ],
+      "url_scaricato": "https://cdn.prod.website-files.com/677f9e71c11a68b86359df57/687e439883c29cafbb856fbb_32.png",
+      "origine": [
+        "img"
+      ]
+    },
+    "https://cdn.prod.website-files.com/677f9e71c11a68b86359df57/687e43c4bb41e5e18193d9e9_19-min.png": {
+      "path": "/webflow/home/19-min.png",
+      "pagine": [
+        "home"
+      ],
+      "alt": "",
+      "larghezze": [
+        500,
+        540
+      ],
+      "url_scaricato": "https://cdn.prod.website-files.com/677f9e71c11a68b86359df57/687e43c4bb41e5e18193d9e9_19-min.png",
+      "origine": [
+        "img"
+      ]
+    },
+    "https://cdn.prod.website-files.com/677f9e71c11a68b86359df57/687e43c4bb41e5e18193d9ed_18-min.png": {
+      "path": "/webflow/home/18-min.png",
+      "pagine": [
+        "home"
+      ],
+      "alt": "Diplo teaching at Pete Tong DJ Academy",
+      "larghezze": [
+        500,
+        540
+      ],
+      "url_scaricato": "https://cdn.prod.website-files.com/677f9e71c11a68b86359df57/687e43c4bb41e5e18193d9ed_18-min.png",
+      "origine": [
+        "img"
+      ]
+    },
+    "https://cdn.prod.website-files.com/677f9e71c11a68b86359df57/687e43c4bb41e5e18193d9f1_28.png": {
+      "path": "/webflow/home/28.png",
+      "pagine": [
+        "home"
+      ],
+      "alt": "",
+      "larghezze": [
+        500,
+        540
+      ],
+      "url_scaricato": "https://cdn.prod.website-files.com/677f9e71c11a68b86359df57/687e43c4bb41e5e18193d9f1_28.png",
+      "origine": [
+        "img"
+      ]
+    },
+    "https://cdn.prod.website-files.com/677f9e71c11a68b86359df57/687e43c4bb41e5e18193d9f5_16-min.png": {
+      "path": "/webflow/home/16-min.png",
+      "pagine": [
+        "home"
+      ],
+      "alt": "",
+      "larghezze": [
+        500,
+        540
+      ],
+      "url_scaricato": "https://cdn.prod.website-files.com/677f9e71c11a68b86359df57/687e43c4bb41e5e18193d9f5_16-min.png",
+      "origine": [
+        "img"
+      ]
+    },
+    "https://cdn.prod.website-files.com/677f9e71c11a68b86359df57/687e43c4bb41e5e18193d9f9_25.png": {
+      "path": "/webflow/home/25.png",
+      "pagine": [
+        "home"
+      ],
+      "alt": "",
+      "larghezze": [
+        500,
+        540
+      ],
+      "url_scaricato": "https://cdn.prod.website-files.com/677f9e71c11a68b86359df57/687e43c4bb41e5e18193d9f9_25.png",
+      "origine": [
+        "img"
+      ]
+    },
+    "https://cdn.prod.website-files.com/677f9e71c11a68b86359df57/687e43c4bb41e5e18193d9fd_33.png": {
+      "path": "/webflow/home/33.png",
+      "pagine": [
+        "home"
+      ],
+      "alt": "",
+      "larghezze": [
+        500,
+        540
+      ],
+      "url_scaricato": "https://cdn.prod.website-files.com/677f9e71c11a68b86359df57/687e43c4bb41e5e18193d9fd_33.png",
+      "origine": [
+        "img"
+      ]
+    },
+    "https://cdn.prod.website-files.com/677f9e71c11a68b86359df57/687e43c4bb41e5e18193da01_26.png": {
+      "path": "/webflow/home/26.png",
+      "pagine": [
+        "home"
+      ],
+      "alt": "",
+      "larghezze": [
+        500,
+        540
+      ],
+      "url_scaricato": "https://cdn.prod.website-files.com/677f9e71c11a68b86359df57/687e43c4bb41e5e18193da01_26.png",
+      "origine": [
+        "img"
+      ]
+    },
+    "https://cdn.prod.website-files.com/677f9e71c11a68b86359df57/687e43c4bb41e5e18193da05_35.png": {
+      "path": "/webflow/home/35.png",
+      "pagine": [
+        "home"
+      ],
+      "alt": "Man wearing cap and hoodie adjusting controls at a professional audio mixing console in a studio.",
+      "larghezze": [
+        500,
+        540
+      ],
+      "url_scaricato": "https://cdn.prod.website-files.com/677f9e71c11a68b86359df57/687e43c4bb41e5e18193da05_35.png",
+      "origine": [
+        "img"
+      ]
+    },
+    "https://cdn.prod.website-files.com/677f9e71c11a68b86359df57/687f89070abeeb4c7c8b5f3f_Screenshot%202025-07-22%20alle%2014.42.33-min.avif": {
+      "path": "/webflow/mix-mastering-course/screenshot-2025-07-22-alle-14-42-33-min.avif",
+      "pagine": [
+        "mix-mastering-course"
+      ],
+      "alt": "",
+      "larghezze": [
+        500,
+        800,
+        1858
+      ],
+      "url_scaricato": "https://cdn.prod.website-files.com/677f9e71c11a68b86359df57/687f89070abeeb4c7c8b5f3f_Screenshot%202025-07-22%20alle%2014.42.33-min.avif",
+      "origine": [
+        "img"
+      ]
+    },
+    "https://cdn.prod.website-files.com/677f9e71c11a68b86359df57/687f890a3c8f7ca5a032baf6_Screenshot%202025-07-22%20alle%2014.42.01%20copia-min.png": {
+      "path": "/webflow/mix-mastering-course/screenshot-2025-07-22-alle-14-42-01-copia-min.png",
+      "pagine": [
+        "mix-mastering-course"
+      ],
+      "alt": "",
+      "larghezze": [
+        500,
+        562
+      ],
+      "url_scaricato": "https://cdn.prod.website-files.com/677f9e71c11a68b86359df57/687f890a3c8f7ca5a032baf6_Screenshot%202025-07-22%20alle%2014.42.01%20copia-min.png",
+      "origine": [
+        "img"
+      ]
+    },
+    "https://cdn.prod.website-files.com/677f9e71c11a68b86359df57/687f89eac535ea4b6f02c239_Screenshot%202025-07-19%20alle%2012.59.28-min.webp": {
+      "path": "/webflow/mix-mastering-course/screenshot-2025-07-19-alle-12-59-28-min.webp",
+      "pagine": [
+        "mix-mastering-course"
+      ],
+      "alt": "",
+      "larghezze": [
+        500,
+        800,
+        1080,
+        1600,
+        2000,
+        2600,
+        2923
+      ],
+      "url_scaricato": "https://cdn.prod.website-files.com/677f9e71c11a68b86359df57/687f89eac535ea4b6f02c239_Screenshot%202025-07-19%20alle%2012.59.28-min.webp",
+      "origine": [
+        "img"
+      ]
+    },
+    "https://cdn.prod.website-files.com/677f9e71c11a68b86359df57/687f8a200b3c9b0a3307b55a_Screenshot%202025-07-22%20alle%2014.43.37-min%20copia.png": {
+      "path": "/webflow/mix-mastering-course/screenshot-2025-07-22-alle-14-43-37-min-copia.png",
+      "pagine": [
+        "mix-mastering-course"
+      ],
+      "alt": "",
+      "larghezze": [],
+      "url_scaricato": "https://cdn.prod.website-files.com/677f9e71c11a68b86359df57/687f8a200b3c9b0a3307b55a_Screenshot%202025-07-22%20alle%2014.43.37-min%20copia.png",
+      "origine": [
+        "img"
+      ]
+    },
+    "https://cdn.prod.website-files.com/677f9e71c11a68b86359df57/687f8a595820a945622143a2_Screenshot%202025-07-22%20alle%2014.42.58-min.webp": {
+      "path": "/webflow/mix-mastering-course/screenshot-2025-07-22-alle-14-42-58-min.webp",
+      "pagine": [
+        "mix-mastering-course"
+      ],
+      "alt": "",
+      "larghezze": [
+        500,
+        800,
+        1080,
+        1600,
+        1865
+      ],
+      "url_scaricato": "https://cdn.prod.website-files.com/677f9e71c11a68b86359df57/687f8a595820a945622143a2_Screenshot%202025-07-22%20alle%2014.42.58-min.webp",
+      "origine": [
+        "img"
+      ]
+    },
+    "https://cdn.prod.website-files.com/677f9e71c11a68b86359df57/687f8b22c535ea4b6f0362c6_Screenshot%202025-07-22%20alle%2014.59.00.webp": {
+      "path": "/webflow/mix-mastering-course/screenshot-2025-07-22-alle-14-59-00.webp",
+      "pagine": [
+        "mix-mastering-course"
+      ],
+      "alt": "",
+      "larghezze": [
+        500,
+        800,
+        1080,
+        1600,
+        1842
+      ],
+      "url_scaricato": "https://cdn.prod.website-files.com/677f9e71c11a68b86359df57/687f8b22c535ea4b6f0362c6_Screenshot%202025-07-22%20alle%2014.59.00.webp",
+      "origine": [
+        "img"
+      ]
+    },
+    "https://cdn.prod.website-files.com/677f9e71c11a68b86359df57/687f8b87f1bfc63ff304f0ab_Screenshot%202025-07-22%20alle%2014.59.55.webp": {
+      "path": "/webflow/mix-mastering-course/screenshot-2025-07-22-alle-14-59-55.webp",
+      "pagine": [
+        "mix-mastering-course"
+      ],
+      "alt": "",
+      "larghezze": [
+        500,
+        800,
+        1055
+      ],
+      "url_scaricato": "https://cdn.prod.website-files.com/677f9e71c11a68b86359df57/687f8b87f1bfc63ff304f0ab_Screenshot%202025-07-22%20alle%2014.59.55.webp",
+      "origine": [
+        "img"
+      ]
+    },
+    "https://cdn.prod.website-files.com/677f9e71c11a68b86359df57/687f8c4d858bef543cef1f4b_Screenshot%202025-07-22%20alle%2014.44.18-min.webp": {
+      "path": "/webflow/mix-mastering-course/screenshot-2025-07-22-alle-14-44-18-min.webp",
+      "pagine": [
+        "mix-mastering-course"
+      ],
+      "alt": "",
+      "larghezze": [
+        500,
+        800,
+        1080,
+        1870
+      ],
+      "url_scaricato": "https://cdn.prod.website-files.com/677f9e71c11a68b86359df57/687f8c4d858bef543cef1f4b_Screenshot%202025-07-22%20alle%2014.44.18-min.webp",
+      "origine": [
+        "img"
+      ]
+    },
+    "https://cdn.prod.website-files.com/677f9e71c11a68b86359df57/687f8d5772037714ba5a61b6_Screenshot%202025-07-22%20alle%2015.06.57.avif": {
+      "path": "/webflow/mix-mastering-course/screenshot-2025-07-22-alle-15-06-57.avif",
+      "pagine": [
+        "mix-mastering-course"
+      ],
+      "alt": "",
+      "larghezze": [
+        500,
+        800,
+        1080,
+        1600,
+        2860
+      ],
+      "url_scaricato": "https://cdn.prod.website-files.com/677f9e71c11a68b86359df57/687f8d5772037714ba5a61b6_Screenshot%202025-07-22%20alle%2015.06.57.avif",
+      "origine": [
+        "img"
+      ]
+    },
+    "https://cdn.prod.website-files.com/677f9e71c11a68b86359df57/687f9475583252dd1744c01a_Screenshot%202025-07-19%20alle%2011.54.04.webp": {
+      "path": "/webflow/producer-course/screenshot-2025-07-19-alle-11-54-04.webp",
+      "pagine": [
+        "producer-course"
+      ],
+      "alt": "",
+      "larghezze": [
+        500,
+        800,
+        1080,
+        1293
+      ],
+      "url_scaricato": "https://cdn.prod.website-files.com/677f9e71c11a68b86359df57/687f9475583252dd1744c01a_Screenshot%202025-07-19%20alle%2011.54.04.webp",
+      "origine": [
+        "img"
+      ]
+    },
+    "https://cdn.prod.website-files.com/677f9e71c11a68b86359df57/687f95052c2a78566960eba6_g7cbun2lc4ovppj8q7x3.webp": {
+      "path": "/webflow/producer-course/g7cbun2lc4ovppj8q7x3.webp",
+      "pagine": [
+        "producer-course"
+      ],
+      "alt": "Pete Tong and Diplo discussing music trends",
+      "larghezze": [
+        500,
+        800,
+        1080,
+        1600,
+        2000,
+        2600,
+        2921
+      ],
+      "url_scaricato": "https://cdn.prod.website-files.com/677f9e71c11a68b86359df57/687f95052c2a78566960eba6_g7cbun2lc4ovppj8q7x3.webp",
+      "origine": [
+        "img"
+      ]
+    },
+    "https://cdn.prod.website-files.com/677f9e71c11a68b86359df57/687f9661e40c652b6203d5ec_Screenshot%202025-07-21%20alle%2017.24.32.png": {
+      "path": "/webflow/producer-course/screenshot-2025-07-21-alle-17-24-32.png",
+      "pagine": [
+        "producer-course"
+      ],
+      "alt": "",
+      "larghezze": [
+        500,
+        800,
+        1080,
+        1855
+      ],
+      "url_scaricato": "https://cdn.prod.website-files.com/677f9e71c11a68b86359df57/687f9661e40c652b6203d5ec_Screenshot%202025-07-21%20alle%2017.24.32.png",
+      "origine": [
+        "img"
+      ]
+    },
+    "https://cdn.prod.website-files.com/677f9e71c11a68b86359df57/687f968a0376afcddbb258ee_Screenshot%202025-07-21%20alle%2017.24.53.webp": {
+      "path": "/webflow/producer-course/screenshot-2025-07-21-alle-17-24-53.webp",
+      "pagine": [
+        "producer-course"
+      ],
+      "alt": "PARISI opening an Ableton Project",
+      "larghezze": [
+        500,
+        800,
+        1080,
+        1600,
+        1862
+      ],
+      "url_scaricato": "https://cdn.prod.website-files.com/677f9e71c11a68b86359df57/687f968a0376afcddbb258ee_Screenshot%202025-07-21%20alle%2017.24.53.webp",
+      "origine": [
+        "img"
+      ]
+    },
+    "https://cdn.prod.website-files.com/677f9e71c11a68b86359df57/687f96e70b0dd1f95e08fe2c_Screenshot%202025-07-19%20alle%2011.53.35%20copia.webp": {
+      "path": "/webflow/producer-course/screenshot-2025-07-19-alle-11-53-35-copia.webp",
+      "pagine": [
+        "producer-course"
+      ],
+      "alt": "",
+      "larghezze": [
+        500,
+        800,
+        1042
+      ],
+      "url_scaricato": "https://cdn.prod.website-files.com/677f9e71c11a68b86359df57/687f96e70b0dd1f95e08fe2c_Screenshot%202025-07-19%20alle%2011.53.35%20copia.webp",
+      "origine": [
+        "img"
+      ]
+    },
+    "https://cdn.prod.website-files.com/677f9e71c11a68b86359df57/687f977e6f6ca0318245c4c8_Screenshot%202025-07-22%20alle%2015.06.57%20copia.webp": {
+      "path": "/webflow/producer-course/screenshot-2025-07-22-alle-15-06-57-copia.webp",
+      "pagine": [
+        "producer-course"
+      ],
+      "alt": "",
+      "larghezze": [
+        500,
+        800,
+        1080,
+        1600,
+        1956
+      ],
+      "url_scaricato": "https://cdn.prod.website-files.com/677f9e71c11a68b86359df57/687f977e6f6ca0318245c4c8_Screenshot%202025-07-22%20alle%2015.06.57%20copia.webp",
+      "origine": [
+        "img"
+      ]
+    },
+    "https://cdn.prod.website-files.com/677f9e71c11a68b86359df57/687f97d503c9325001797543_Screenshot%202025-07-21%20alle%2017.40.18.webp": {
+      "path": "/webflow/producer-course/screenshot-2025-07-21-alle-17-40-18.webp",
+      "pagine": [
+        "producer-course"
+      ],
+      "alt": "Jack and Marco PARISI producing with a Seabord Roli",
+      "larghezze": [
+        500,
+        800,
+        1080,
+        1850
+      ],
+      "url_scaricato": "https://cdn.prod.website-files.com/677f9e71c11a68b86359df57/687f97d503c9325001797543_Screenshot%202025-07-21%20alle%2017.40.18.webp",
+      "origine": [
+        "img"
+      ]
+    },
+    "https://cdn.prod.website-files.com/677f9e71c11a68b86359df57/687f985115a8f8ef267c5891_a1kl3zoowau8z3vb689u.webp": {
+      "path": "/webflow/producer-course/a1kl3zoowau8z3vb689u.webp",
+      "pagine": [
+        "producer-course"
+      ],
+      "alt": "",
+      "larghezze": [
+        500,
+        800,
+        1080,
+        1600,
+        2896
+      ],
+      "url_scaricato": "https://cdn.prod.website-files.com/677f9e71c11a68b86359df57/687f985115a8f8ef267c5891_a1kl3zoowau8z3vb689u.webp",
+      "origine": [
+        "img"
+      ]
+    },
+    "https://cdn.prod.website-files.com/677f9e71c11a68b86359df57/687f98e2627e70db91d7d865_Screenshot%202025-07-19%20alle%2011.56.09%20copia.webp": {
+      "path": "/webflow/producer-course/screenshot-2025-07-19-alle-11-56-09-copia.webp",
+      "pagine": [
+        "producer-course"
+      ],
+      "alt": "",
+      "larghezze": [
+        500,
+        800,
+        873
+      ],
+      "url_scaricato": "https://cdn.prod.website-files.com/677f9e71c11a68b86359df57/687f98e2627e70db91d7d865_Screenshot%202025-07-19%20alle%2011.56.09%20copia.webp",
+      "origine": [
+        "img"
+      ]
+    },
+    "https://cdn.prod.website-files.com/677f9e71c11a68b86359df57/687f99b65c0a9b7f0717d2e9_Screenshot%202025-07-21%20alle%2017.25.47.webp": {
+      "path": "/webflow/producer-course/screenshot-2025-07-21-alle-17-25-47.webp",
+      "pagine": [
+        "producer-course"
+      ],
+      "alt": "",
+      "larghezze": [
+        500,
+        800,
+        1080,
+        1600,
+        1816
+      ],
+      "url_scaricato": "https://cdn.prod.website-files.com/677f9e71c11a68b86359df57/687f99b65c0a9b7f0717d2e9_Screenshot%202025-07-21%20alle%2017.25.47.webp",
+      "origine": [
+        "img"
+      ]
+    },
+    "https://cdn.prod.website-files.com/677f9e71c11a68b86359df57/687f99e8ade24b94664ee61d_Screenshot%202025-07-21%20alle%2017.25.07%20copia.webp": {
+      "path": "/webflow/producer-course/screenshot-2025-07-21-alle-17-25-07-copia.webp",
+      "pagine": [
+        "producer-course"
+      ],
+      "alt": "DS-10 Plugin",
+      "larghezze": [
+        500,
+        630
+      ],
+      "url_scaricato": "https://cdn.prod.website-files.com/677f9e71c11a68b86359df57/687f99e8ade24b94664ee61d_Screenshot%202025-07-21%20alle%2017.25.07%20copia.webp",
+      "origine": [
+        "img"
+      ]
+    },
+    "https://cdn.prod.website-files.com/677f9e71c11a68b86359df57/687f9a195cadfc79e1d62d63_Screenshot%202025-07-21%20alle%2017.33.37%20copia.png": {
+      "path": "/webflow/producer-course/screenshot-2025-07-21-alle-17-33-37-copia.png",
+      "pagine": [
+        "producer-course"
+      ],
+      "alt": "Alex Tripi and Diplo in one of the Pete Tong Academy's lessons",
+      "larghezze": [
+        500,
+        624
+      ],
+      "url_scaricato": "https://cdn.prod.website-files.com/677f9e71c11a68b86359df57/687f9a195cadfc79e1d62d63_Screenshot%202025-07-21%20alle%2017.33.37%20copia.png",
+      "origine": [
+        "img"
+      ]
+    },
+    "https://cdn.prod.website-files.com/677f9e71c11a68b86359df57/6880beed62b8b9b56d78d085_TCZj8gR4.webp": {
+      "path": "/webflow/mix-mastering-course/tczj8gr4.webp",
+      "pagine": [
+        "mix-mastering-course"
+      ],
+      "alt": "",
+      "larghezze": [
+        500,
+        800,
+        1080,
+        1600,
+        2000,
+        2600,
+        3200,
+        4032
+      ],
+      "url_scaricato": "https://cdn.prod.website-files.com/677f9e71c11a68b86359df57/6880beed62b8b9b56d78d085_TCZj8gR4.webp",
+      "origine": [
+        "img"
+      ]
+    },
+    "https://cdn.prod.website-files.com/677f9e71c11a68b86359df57/6880f92b30f694f5791fefca_GRADIENT-ENG-2.png": {
+      "path": "/webflow/shared/gradient-eng-2.png",
+      "pagine": [
+        "dj-course",
+        "producer-course"
+      ],
+      "alt": "",
+      "larghezze": [
+        500,
+        1165
+      ],
+      "url_scaricato": "https://cdn.prod.website-files.com/677f9e71c11a68b86359df57/6880f92b30f694f5791fefca_GRADIENT-ENG-2.png",
+      "origine": [
+        "img"
+      ]
+    },
+    "https://cdn.prod.website-files.com/677f9e71c11a68b86359df57/6880f92baf5ecbfef7ab6090_GRADIENT-ENG-1.png": {
+      "path": "/webflow/shared/gradient-eng-1.png",
+      "pagine": [
+        "dj-course",
+        "producer-course"
+      ],
+      "alt": "",
+      "larghezze": [
+        500,
+        1165
+      ],
+      "url_scaricato": "https://cdn.prod.website-files.com/677f9e71c11a68b86359df57/6880f92baf5ecbfef7ab6090_GRADIENT-ENG-1.png",
+      "origine": [
+        "img"
+      ]
+    },
+    "https://cdn.prod.website-files.com/677f9e71c11a68b86359df57/6880f92fa76463d431c3da6b_SKILLS-ENG-DJ.png": {
+      "path": "/webflow/producer-course/skills-eng-dj.png",
+      "pagine": [
+        "producer-course"
+      ],
+      "alt": "",
+      "larghezze": [
+        500,
+        1164
+      ],
+      "url_scaricato": "https://cdn.prod.website-files.com/677f9e71c11a68b86359df57/6880f92fa76463d431c3da6b_SKILLS-ENG-DJ.png",
+      "origine": [
+        "img"
+      ]
+    },
+    "https://cdn.prod.website-files.com/677f9e71c11a68b86359df57/6880f92feac83994e1f9202c_SKILLS-ENG-PRODUCER.png": {
+      "path": "/webflow/producer-course/skills-eng-producer.png",
+      "pagine": [
+        "producer-course"
+      ],
+      "alt": "",
+      "larghezze": [
+        500,
+        1164
+      ],
+      "url_scaricato": "https://cdn.prod.website-files.com/677f9e71c11a68b86359df57/6880f92feac83994e1f9202c_SKILLS-ENG-PRODUCER.png",
+      "origine": [
+        "img"
+      ]
+    },
+    "https://cdn.prod.website-files.com/677f9e71c11a68b86359df57/68810615b327daac46f74891_SKILLS-ENG-DJ-BEG.png": {
+      "path": "/webflow/dj-course/skills-eng-dj-beg.png",
+      "pagine": [
+        "dj-course"
+      ],
+      "alt": "",
+      "larghezze": [
+        500,
+        1164
+      ],
+      "url_scaricato": "https://cdn.prod.website-files.com/677f9e71c11a68b86359df57/68810615b327daac46f74891_SKILLS-ENG-DJ-BEG.png",
+      "origine": [
+        "img"
+      ]
+    },
+    "https://cdn.prod.website-files.com/677f9e71c11a68b86359df57/68810653baca4ac9672fbafe_SKILLS-ENG-DJ-ADV.png": {
+      "path": "/webflow/shared/skills-eng-dj-adv.png",
+      "pagine": [
+        "dj-course",
+        "producer-course"
+      ],
+      "alt": "",
+      "larghezze": [
+        500,
+        1164
+      ],
+      "url_scaricato": "https://cdn.prod.website-files.com/677f9e71c11a68b86359df57/68810653baca4ac9672fbafe_SKILLS-ENG-DJ-ADV.png",
+      "origine": [
+        "img"
+      ]
+    },
+    "https://cdn.prod.website-files.com/677f9e71c11a68b86359df57/688255563eabf15badd6fea3_3.webp": {
+      "path": "/webflow/home/3.webp",
+      "pagine": [
+        "home"
+      ],
+      "alt": "",
+      "larghezze": [
+        500,
+        800,
+        1080
+      ],
+      "url_scaricato": "https://cdn.prod.website-files.com/677f9e71c11a68b86359df57/688255563eabf15badd6fea3_3.webp",
+      "origine": [
+        "img"
+      ]
+    },
+    "https://cdn.prod.website-files.com/677f9e71c11a68b86359df57/6891bd862d62fe871efe5716_PETE--IPHONE-4.png": {
+      "path": "/webflow/shared/pete-iphone-4.png",
+      "pagine": [
+        "home",
+        "dj-course",
+        "producer-course"
+      ],
+      "alt": "",
+      "larghezze": [],
+      "url_scaricato": "https://cdn.prod.website-files.com/677f9e71c11a68b86359df57/6891bd862d62fe871efe5716_PETE--IPHONE-4.png",
+      "origine": [
+        "img"
+      ]
+    },
+    "https://cdn.prod.website-files.com/677f9e71c11a68b86359df57/6891bd864ab87177aba721ec_PETE--IPHONE-3.png": {
+      "path": "/webflow/shared/pete-iphone-3.png",
+      "pagine": [
+        "home",
+        "dj-course",
+        "producer-course"
+      ],
+      "alt": "",
+      "larghezze": [],
+      "url_scaricato": "https://cdn.prod.website-files.com/677f9e71c11a68b86359df57/6891bd864ab87177aba721ec_PETE--IPHONE-3.png",
+      "origine": [
+        "img"
+      ]
+    },
+    "https://cdn.prod.website-files.com/677f9e71c11a68b86359df57/6891bd86b4947d81fc765bcf_PETE--IPHONE-2.png": {
+      "path": "/webflow/shared/pete-iphone-2.png",
+      "pagine": [
+        "home",
+        "dj-course",
+        "producer-course"
+      ],
+      "alt": "",
+      "larghezze": [],
+      "url_scaricato": "https://cdn.prod.website-files.com/677f9e71c11a68b86359df57/6891bd86b4947d81fc765bcf_PETE--IPHONE-2.png",
+      "origine": [
+        "img"
+      ]
+    },
+    "https://cdn.prod.website-files.com/677f9e71c11a68b86359df57/6891bd86ec1f462be1f05b93_PETE--IPHONE-1.png": {
+      "path": "/webflow/shared/pete-iphone-1.png",
+      "pagine": [
+        "home",
+        "dj-course",
+        "producer-course"
+      ],
+      "alt": "",
+      "larghezze": [],
+      "url_scaricato": "https://cdn.prod.website-files.com/677f9e71c11a68b86359df57/6891bd86ec1f462be1f05b93_PETE--IPHONE-1.png",
+      "origine": [
+        "img"
+      ]
+    },
+    "https://cdn.prod.website-files.com/677f9e71c11a68b86359df57/6891bd87cc5908532a72aebf_PETE--IPHONE-5.png": {
+      "path": "/webflow/shared/pete-iphone-5.png",
+      "pagine": [
+        "home",
+        "dj-course",
+        "producer-course"
+      ],
+      "alt": "",
+      "larghezze": [],
+      "url_scaricato": "https://cdn.prod.website-files.com/677f9e71c11a68b86359df57/6891bd87cc5908532a72aebf_PETE--IPHONE-5.png",
+      "origine": [
+        "img"
+      ]
+    },
+    "https://cdn.prod.website-files.com/677f9e71c11a68b86359df57/689ca751828f2d3fbee37e54_GEOMETRICS-TWELVE_PETE-COMP-1.png": {
+      "path": "/webflow/shared/geometrics-twelve-pete-comp-1.png",
+      "pagine": [
+        "home",
+        "dj-course",
+        "producer-course"
+      ],
+      "alt": "Pete Tong Academy First Lesson Preview",
+      "larghezze": [
+        500,
+        563
+      ],
+      "url_scaricato": "https://cdn.prod.website-files.com/677f9e71c11a68b86359df57/689ca751828f2d3fbee37e54_GEOMETRICS-TWELVE_PETE-COMP-1.png",
+      "origine": [
+        "img"
+      ]
+    },
+    "https://cdn.prod.website-files.com/677f9e71c11a68b86359df57/689ca751c08ee11f822373d4_GEOMETRICS-TWELVE_PETE-COMP-4.png": {
+      "path": "/webflow/shared/geometrics-twelve-pete-comp-4.png",
+      "pagine": [
+        "home",
+        "dj-course",
+        "producer-course"
+      ],
+      "alt": "",
+      "larghezze": [
+        500,
+        563
+      ],
+      "url_scaricato": "https://cdn.prod.website-files.com/677f9e71c11a68b86359df57/689ca751c08ee11f822373d4_GEOMETRICS-TWELVE_PETE-COMP-4.png",
+      "origine": [
+        "img"
+      ]
+    },
+    "https://cdn.prod.website-files.com/677f9e71c11a68b86359df57/689ca751d2669981b4224c4a_GEOMETRICS-TWELVE_PETE-COMP-2.png": {
+      "path": "/webflow/shared/geometrics-twelve-pete-comp-2.png",
+      "pagine": [
+        "home",
+        "dj-course",
+        "producer-course"
+      ],
+      "alt": "",
+      "larghezze": [
+        500,
+        562
+      ],
+      "url_scaricato": "https://cdn.prod.website-files.com/677f9e71c11a68b86359df57/689ca751d2669981b4224c4a_GEOMETRICS-TWELVE_PETE-COMP-2.png",
+      "origine": [
+        "img"
+      ]
+    },
+    "https://cdn.prod.website-files.com/677f9e71c11a68b86359df57/689ca752121dd0a7fd561e85_GEOMETRICS-TWELVE_PETE-COMP-5.png": {
+      "path": "/webflow/shared/geometrics-twelve-pete-comp-5.png",
+      "pagine": [
+        "home",
+        "dj-course",
+        "producer-course"
+      ],
+      "alt": "",
+      "larghezze": [
+        500,
+        563
+      ],
+      "url_scaricato": "https://cdn.prod.website-files.com/677f9e71c11a68b86359df57/689ca752121dd0a7fd561e85_GEOMETRICS-TWELVE_PETE-COMP-5.png",
+      "origine": [
+        "img"
+      ]
+    },
+    "https://cdn.prod.website-files.com/677f9e71c11a68b86359df57/689ca75267d8b5dca2ea4ad2_GEOMETRICS-TWELVE_PETE-COMP-3.png": {
+      "path": "/webflow/shared/geometrics-twelve-pete-comp-3.png",
+      "pagine": [
+        "home",
+        "dj-course",
+        "producer-course"
+      ],
+      "alt": "Live Mentoring Section of the PTDJ Academy",
+      "larghezze": [
+        500,
+        563
+      ],
+      "url_scaricato": "https://cdn.prod.website-files.com/677f9e71c11a68b86359df57/689ca75267d8b5dca2ea4ad2_GEOMETRICS-TWELVE_PETE-COMP-3.png",
+      "origine": [
+        "img"
+      ]
+    },
+    "https://cdn.prod.website-files.com/677f9e71c11a68b86359df57/68b5adc202e56472a62ea424_GEOMETRICS-TWO_CARL-COX.png": {
+      "path": "/webflow/shared/geometrics-two-carl-cox.png",
+      "pagine": [
+        "home",
+        "dj-course"
+      ],
+      "alt": "Carl Cox, tutor at the PTDJ Academy",
+      "larghezze": [],
+      "url_scaricato": "https://cdn.prod.website-files.com/677f9e71c11a68b86359df57/68b5adc202e56472a62ea424_GEOMETRICS-TWO_CARL-COX.png",
+      "origine": [
+        "img"
+      ]
+    },
+    "https://cdn.prod.website-files.com/677f9e71c11a68b86359df57/68b5adc2261e413fffa26fbd_GEOMETRICS-TWO_PARISI.webp": {
+      "path": "/webflow/shared/geometrics-two-parisi.webp",
+      "pagine": [
+        "home",
+        "producer-course"
+      ],
+      "alt": "Portrait of brothers and duo PARISI, tutors of the academy, on a yellow background",
+      "larghezze": [],
+      "url_scaricato": "https://cdn.prod.website-files.com/677f9e71c11a68b86359df57/68b5adc2261e413fffa26fbd_GEOMETRICS-TWO_PARISI.webp",
+      "origine": [
+        "img"
+      ]
+    },
+    "https://cdn.prod.website-files.com/677f9e71c11a68b86359df57/68b5adc22c1aef26b208a54e_GEOMETRICS-TWO_DIPLO.png": {
+      "path": "/webflow/shared/geometrics-two-diplo.png",
+      "pagine": [
+        "home",
+        "producer-course"
+      ],
+      "alt": "Multi-Grammy Award-winning global icon Diplo",
+      "larghezze": [],
+      "url_scaricato": "https://cdn.prod.website-files.com/677f9e71c11a68b86359df57/68b5adc22c1aef26b208a54e_GEOMETRICS-TWO_DIPLO.png",
+      "origine": [
+        "img"
+      ]
+    },
+    "https://cdn.prod.website-files.com/677f9e71c11a68b86359df57/68b5adc22c5c0a63b1d52983_GEOMETRICS-TWO_JAMIES-JONES.png": {
+      "path": "/webflow/shared/geometrics-two-jamies-jones.png",
+      "pagine": [
+        "home",
+        "dj-course"
+      ],
+      "alt": "",
+      "larghezze": [],
+      "url_scaricato": "https://cdn.prod.website-files.com/677f9e71c11a68b86359df57/68b5adc22c5c0a63b1d52983_GEOMETRICS-TWO_JAMIES-JONES.png",
+      "origine": [
+        "img"
+      ]
+    },
+    "https://cdn.prod.website-files.com/677f9e71c11a68b86359df57/68b5adc22edc550c36ffe6b9_GEOMETRICS-TWO_LUCA-PRETOLESI.png": {
+      "path": "/webflow/home/geometrics-two-luca-pretolesi.png",
+      "pagine": [
+        "home"
+      ],
+      "alt": "",
+      "larghezze": [],
+      "url_scaricato": "https://cdn.prod.website-files.com/677f9e71c11a68b86359df57/68b5adc22edc550c36ffe6b9_GEOMETRICS-TWO_LUCA-PRETOLESI.png",
+      "origine": [
+        "img"
+      ]
+    },
+    "https://cdn.prod.website-files.com/677f9e71c11a68b86359df57/68b5adc22f3c4d0c91c32a7f_GEOMETRICS-TWO_PETE.png": {
+      "path": "/webflow/shared/geometrics-two-pete.png",
+      "pagine": [
+        "home",
+        "dj-course",
+        "producer-course"
+      ],
+      "alt": "Pete Tong teaching the DJ & Producer Course at Pete Tong DJ Academy",
+      "larghezze": [],
+      "url_scaricato": "https://cdn.prod.website-files.com/677f9e71c11a68b86359df57/68b5adc22f3c4d0c91c32a7f_GEOMETRICS-TWO_PETE.png",
+      "origine": [
+        "img"
+      ]
+    },
+    "https://cdn.prod.website-files.com/677f9e71c11a68b86359df57/68b5adc2521a62d6920a34b8_GEOMETRICS-TWO_ADAM-BEYER.png": {
+      "path": "/webflow/shared/geometrics-two-adam-beyer.png",
+      "pagine": [
+        "home",
+        "dj-course"
+      ],
+      "alt": "Portrait of DJ Adam Beyer smiling against a blue background",
+      "larghezze": [],
+      "url_scaricato": "https://cdn.prod.website-files.com/677f9e71c11a68b86359df57/68b5adc2521a62d6920a34b8_GEOMETRICS-TWO_ADAM-BEYER.png",
+      "origine": [
+        "img"
+      ]
+    },
+    "https://cdn.prod.website-files.com/677f9e71c11a68b86359df57/68b5adc2569e6521b17cf5ba_GEOMETRICS-TWO_AME.png": {
+      "path": "/webflow/shared/geometrics-two-ame.png",
+      "pagine": [
+        "home",
+        "dj-course",
+        "producer-course"
+      ],
+      "alt": "",
+      "larghezze": [],
+      "url_scaricato": "https://cdn.prod.website-files.com/677f9e71c11a68b86359df57/68b5adc2569e6521b17cf5ba_GEOMETRICS-TWO_AME.png",
+      "origine": [
+        "img"
+      ]
+    },
+    "https://cdn.prod.website-files.com/677f9e71c11a68b86359df57/68b5adc307adfc102c0f739b_GEOMETRICS-TWO_THE-RELOUD.png": {
+      "path": "/webflow/shared/geometrics-two-the-reloud.png",
+      "pagine": [
+        "home",
+        "dj-course",
+        "producer-course"
+      ],
+      "alt": "",
+      "larghezze": [],
+      "url_scaricato": "https://cdn.prod.website-files.com/677f9e71c11a68b86359df57/68b5adc307adfc102c0f739b_GEOMETRICS-TWO_THE-RELOUD.png",
+      "origine": [
+        "img"
+      ]
+    },
+    "https://cdn.prod.website-files.com/677f9e71c11a68b86359df57/68b5adc38c1c4a46ee89e1e9_GEOMETRICS-TWO_NICOLE-MOUDABER.png": {
+      "path": "/webflow/shared/geometrics-two-nicole-moudaber.png",
+      "pagine": [
+        "home",
+        "dj-course"
+      ],
+      "alt": "",
+      "larghezze": [],
+      "url_scaricato": "https://cdn.prod.website-files.com/677f9e71c11a68b86359df57/68b5adc38c1c4a46ee89e1e9_GEOMETRICS-TWO_NICOLE-MOUDABER.png",
+      "origine": [
+        "img"
+      ]
+    },
+    "https://cdn.prod.website-files.com/677f9e71c11a68b86359df57/68b5adc3d00a4b0d4458deb2_GEOMETRICS-TWO_TSHA.png": {
+      "path": "/webflow/shared/geometrics-two-tsha.png",
+      "pagine": [
+        "home",
+        "dj-course"
+      ],
+      "alt": "",
+      "larghezze": [],
+      "url_scaricato": "https://cdn.prod.website-files.com/677f9e71c11a68b86359df57/68b5adc3d00a4b0d4458deb2_GEOMETRICS-TWO_TSHA.png",
+      "origine": [
+        "img"
+      ]
+    },
+    "https://cdn.prod.website-files.com/677f9e71c11a68b86359df57/68d1704b7592f992450055df_rinradiowhite.png": {
+      "path": "/webflow/home/rinradiowhite.png",
+      "pagine": [
+        "home"
+      ],
+      "alt": "",
+      "larghezze": [],
+      "url_scaricato": "https://cdn.prod.website-files.com/677f9e71c11a68b86359df57/68d1704b7592f992450055df_rinradiowhite.png",
+      "origine": [
+        "img"
+      ]
+    },
+    "https://cdn.prod.website-files.com/677f9e71c11a68b86359df57/68f754e9014bede1becf47eb_dj-eng.webp": {
+      "path": "/webflow/dj-course/dj-eng.webp",
+      "pagine": [
+        "dj-course"
+      ],
+      "alt": "DJ Course at the PTDJ Academy, open to all equipments and levels",
+      "larghezze": [
+        500,
+        800,
+        1107
+      ],
+      "url_scaricato": "https://cdn.prod.website-files.com/677f9e71c11a68b86359df57/68f754e9014bede1becf47eb_dj-eng.webp",
+      "origine": [
+        "img"
+      ]
+    },
+    "https://cdn.prod.website-files.com/677f9e71c11a68b86359df57/68f7552f0e2762c25ca927c5_prod-eng.webp": {
+      "path": "/webflow/producer-course/prod-eng.webp",
+      "pagine": [
+        "producer-course"
+      ],
+      "alt": "Producer Course at PTDJ Academy, open to all levels and equipments",
+      "larghezze": [
+        500,
+        800,
+        1107
+      ],
+      "url_scaricato": "https://cdn.prod.website-files.com/677f9e71c11a68b86359df57/68f7552f0e2762c25ca927c5_prod-eng.webp",
+      "origine": [
+        "img"
+      ]
+    },
+    "https://cdn.prod.website-files.com/677f9e71c11a68b86359df57/68f755e9851f6ce966bd548e_mix-eng.webp": {
+      "path": "/webflow/mix-mastering-course/mix-eng.webp",
+      "pagine": [
+        "mix-mastering-course"
+      ],
+      "alt": "",
+      "larghezze": [
+        500,
+        800,
+        1107
+      ],
+      "url_scaricato": "https://cdn.prod.website-files.com/677f9e71c11a68b86359df57/68f755e9851f6ce966bd548e_mix-eng.webp",
+      "origine": [
+        "img"
+      ]
+    },
+    "https://cdn.prod.website-files.com/677f9e71c11a68b86359df57/690885a805d4deab96c31d2f_groover.png": {
+      "path": "/webflow/home/groover.png",
+      "pagine": [
+        "home"
+      ],
+      "alt": "",
+      "larghezze": [
+        500,
+        626
+      ],
+      "url_scaricato": "https://cdn.prod.website-files.com/677f9e71c11a68b86359df57/690885a805d4deab96c31d2f_groover.png",
+      "origine": [
+        "img"
+      ]
+    },
+    "https://cdn.prod.website-files.com/677f9e71c11a68b86359df57/69d7a58c95a81de4e39c5766_Arrow.png": {
+      "path": "/webflow/shared/arrow.png",
+      "pagine": [
+        "home",
+        "dj-course",
+        "producer-course",
+        "mix-mastering-course",
+        "pricing-page",
+        "play-get-signed"
+      ],
+      "alt": "",
+      "larghezze": [],
+      "url_scaricato": "https://cdn.prod.website-files.com/677f9e71c11a68b86359df57/69d7a58c95a81de4e39c5766_Arrow.png",
+      "origine": [
+        "img"
+      ]
+    },
+    "https://cdn.prod.website-files.com/677f9e71c11a68b86359df57/69d7a58c95a81de4e39c576a_Group%20112.png": {
+      "path": "/webflow/shared/group-112.png",
+      "pagine": [
+        "home",
+        "dj-course",
+        "producer-course",
+        "mix-mastering-course",
+        "pricing-page",
+        "play-get-signed"
+      ],
+      "alt": "",
+      "larghezze": [],
+      "url_scaricato": "https://cdn.prod.website-files.com/677f9e71c11a68b86359df57/69d7a58c95a81de4e39c576a_Group%20112.png",
+      "origine": [
+        "img"
+      ]
+    },
+    "https://cdn.prod.website-files.com/677f9e71c11a68b86359df57/6a05f270cc453eadf36401da_Pioneer%20DJ_logo_MARCH15_WHITE-ON-BLACK%201.png": {
+      "path": "/webflow/home/pioneer-dj-logo-march15-white-on-black-1.png",
+      "pagine": [
+        "home"
+      ],
+      "alt": "Pioneer DJ Logo",
+      "larghezze": [],
+      "url_scaricato": "https://cdn.prod.website-files.com/677f9e71c11a68b86359df57/6a05f270cc453eadf36401da_Pioneer%20DJ_logo_MARCH15_WHITE-ON-BLACK%201.png",
+      "origine": [
+        "img"
+      ]
+    },
+    "https://cdn.prod.website-files.com/68750b603ce7d03207169e37/687e3ac32b780c3b9d2536ed_9-min.png": {
+      "path": "/webflow/home/9-min-c78e74.png",
+      "pagine": [
+        "home"
+      ],
+      "alt": "",
+      "larghezze": [],
+      "url_scaricato": "https://cdn.prod.website-files.com/68750b603ce7d03207169e37/687e3ac32b780c3b9d2536ed_9-min.png",
+      "origine": [
+        "img"
+      ]
+    },
+    "https://cdn.prod.website-files.com/68750b603ce7d03207169e37/687e3ac37249c109554fcdd8_3-min.png": {
+      "path": "/webflow/home/3-min-232afa.png",
+      "pagine": [
+        "home"
+      ],
+      "alt": "",
+      "larghezze": [],
+      "url_scaricato": "https://cdn.prod.website-files.com/68750b603ce7d03207169e37/687e3ac37249c109554fcdd8_3-min.png",
+      "origine": [
+        "img"
+      ]
+    },
+    "https://cdn.prod.website-files.com/68750b603ce7d03207169e37/687e3ac38c8f4b4274061ffa_10-min.png": {
+      "path": "/webflow/home/10-min-19fe0b.png",
+      "pagine": [
+        "home"
+      ],
+      "alt": "",
+      "larghezze": [],
+      "url_scaricato": "https://cdn.prod.website-files.com/68750b603ce7d03207169e37/687e3ac38c8f4b4274061ffa_10-min.png",
+      "origine": [
+        "img"
+      ]
+    },
+    "https://cdn.prod.website-files.com/68750b603ce7d03207169e37/687e3ac39d92ea96abd85fd1_12-min.png": {
+      "path": "/webflow/home/12-min-b04a7a.png",
+      "pagine": [
+        "home"
+      ],
+      "alt": "Carl Cox, tutor at Pete Tong DJ Academy, playing in front of a big crowd",
+      "larghezze": [],
+      "url_scaricato": "https://cdn.prod.website-files.com/68750b603ce7d03207169e37/687e3ac39d92ea96abd85fd1_12-min.png",
+      "origine": [
+        "img"
+      ]
+    },
+    "https://cdn.prod.website-files.com/68750b603ce7d03207169e37/687e3ac3ec75ce763219a17a_7-min.png": {
+      "path": "/webflow/home/7-min-468125.png",
+      "pagine": [
+        "home"
+      ],
+      "alt": "",
+      "larghezze": [],
+      "url_scaricato": "https://cdn.prod.website-files.com/68750b603ce7d03207169e37/687e3ac3ec75ce763219a17a_7-min.png",
+      "origine": [
+        "img"
+      ]
+    },
+    "https://cdn.prod.website-files.com/68750b603ce7d03207169e37/687e3ac3f888b6caa292a535_13-min.png": {
+      "path": "/webflow/home/13-min-d80513.png",
+      "pagine": [
+        "home"
+      ],
+      "alt": "",
+      "larghezze": [],
+      "url_scaricato": "https://cdn.prod.website-files.com/68750b603ce7d03207169e37/687e3ac3f888b6caa292a535_13-min.png",
+      "origine": [
+        "img"
+      ]
+    },
+    "https://cdn.prod.website-files.com/68750b603ce7d03207169e37/687e3cb0e91b3457cb271969_22.png": {
+      "path": "/webflow/home/22-b96d7f.png",
+      "pagine": [
+        "home"
+      ],
+      "alt": "",
+      "larghezze": [],
+      "url_scaricato": "https://cdn.prod.website-files.com/68750b603ce7d03207169e37/687e3cb0e91b3457cb271969_22.png",
+      "origine": [
+        "img"
+      ]
+    },
+    "https://cdn.prod.website-files.com/68750b603ce7d03207169e37/687e3cb154d810dc2c2c8330_23.png": {
+      "path": "/webflow/home/23-75efc0.png",
+      "pagine": [
+        "home"
+      ],
+      "alt": "",
+      "larghezze": [],
+      "url_scaricato": "https://cdn.prod.website-files.com/68750b603ce7d03207169e37/687e3cb154d810dc2c2c8330_23.png",
+      "origine": [
+        "img"
+      ]
+    }
+  }
+}

@@ -56,8 +56,50 @@ Sezione 0 del piano fatta: il repo Next.js esiste, compila, si avvia e passa il 
 4. **Trengo** (widget di chat, `static.widget.trengo.eu`) è nell'`<head>` del sito e non compare in nessuna decisione: resta o va?
 5. `next/script` `afterInteractive` non mette il tag nell'HTML servito, mette un `<link rel="preload">` e inietta lo script dopo l'idratazione. Vale per `track.js`, `vt-quiz.js` e `attribution.js`. Funziona (è il modo documentato dal kit) ma va verificato dal vivo che `track.js` legga i suoi `data-*` e che `attribution.js` decori i link: il `boot()` regge il DOM già pronto, ma la prova sta nel cookie.
 
+## 📸 Estrazione riferimento Webflow (agente Opus, 2026-09-14)
+
+Sezione 1 del piano **fatta**. Tutto letto, niente scritto sul sito Webflow. Il riferimento vive in `docs/webflow/` ed è interamente rigenerabile dagli script in `scripts/`. Punto di partenza obbligato per chi ricostruisce: `docs/webflow/README.md`.
+
+**Numeri.** 11 pagine scaricate su 11 (10 in sitemap più la 404, presa chiedendo `/pagina-che-non-esiste-xyz`). 180 asset scaricati su 180, 20,78 MB, zero errori. 22 screenshot su 22 (11 desktop 1440×900 + 11 mobile 390×844, full page). CSS Webflow unico per tutto il sito, 731 KB, salvato anche in versione leggibile. Interazioni Webflow (`data-w-id`) per pagina: home 59, dj-course 77, producer-course 77, mix-mastering-course 47, play-get-signed 30, pricing-page 13, 404 7, terms-conditions 6, recess 5, terms-conditions-sa 5, advanced-djs 0.
+
+**File prodotti.**
+- `docs/webflow/README.md`: indice, procedura, e le scoperte da leggere prima di scrivere codice.
+- `docs/webflow/html/<slug>.html`: 11 file, HTML pubblicato così com'è.
+- `docs/webflow/css/mats-mubly.webflow.shared.6b73890bb.css` + `.pretty.css` + `SORGENTE.txt`.
+- `docs/webflow/custom-code-head.html` (14.854 byte) e `custom-code-footer.html` (16.917 byte): custom code **di sito**, verificato identico byte per byte su tutte e 11 le pagine.
+- `docs/webflow/custom-code-per-pagina.md`: embed, script e stili di pagina con testo integrale, più la spiegazione lunga della logica valuta e del toggle prezzi.
+- `docs/webflow/meta/<slug>.json` (11) + `meta/_tutte.json`: title, description, canonical, OG, Twitter, robots, favicon, webclip, JSON-LD completo come oggetto.
+- `docs/webflow/outline/<slug>.md` (11) + `_header-footer.md` + `_riepilogo.md`: ~494 KB di struttura, ogni stringa copiata dall'HTML.
+- `docs/webflow/asset-map.json`: mappa `URL Webflow → path nel repo`, con pagine, `alt` e larghezze `srcset`.
+- `docs/webflow/design-tokens.md`: 24 variabili `:root`, 215 colori con conteggio, font e pesi, breakpoint, container, raggi, ombre.
+- `docs/webflow/screenshots/`: 22 PNG + `README.md` + `_esiti.json`.
+- `public/webflow/{shared,home,dj-course,producer-course,mix-mastering-course,play-get-signed,404}/`: 180 asset, nomi kebab-case senza hash Webflow.
+- `scripts/`: `estrai-riferimento.py` (orchestratore punti 1-7), `_comune.py`, `scarica-html.py`, `scarica-css.py`, `estrai-custom-code.py`, `estrai-meta.py`, `estrai-outline.py`, `estrai-asset.py`, `estrai-design-tokens.py`, `screenshot-riferimento.mjs`, più `package.json` e `.gitignore` del sottoprogetto Playwright.
+
+**Domanda aperta 2 di `desiderata.md` risolta: come si sceglie la valuta.** Non c'è nessuno switch. Le tre versioni del listino (USD, EUR, GBP) stanno tutte nel DOM e uno script incollato in un embed Webflow, *GEO-GATED REGION BLOCKER v0.3*, ne mostra una sola. Nasconde tutto via CSS (`[data-ms-code] { display:none !important }`), stima il paese in cascata — cache in `localStorage` 60 minuti → fuso orario (`Intl.DateTimeFormat`, tabella scritta a mano) → lingua del browser → `fetch` su `cloudflare.com/cdn-cgi/trace` con timeout 2,5 s → fallback `US` — e poi accende con la classe `ms-geo-visible` gli elementi `data-ms-code="locale-show"` il cui `data-ms-countries` contiene quel paese, e quelli `locale-hide` che non lo contengono. USD è il default, nascosto nei paesi euro e in GB; EUR nei 26 paesi elencati; GBP in `GB, UK`. Il toggle annuale/trimestrale è invece doppio: uno script jQuery `#packageSwitch` che anima i numeri fra `data-month` e `data-year`, e un'interazione Webflow che scambia i due bottoni. **Trappola:** i nomi sono invertiti, `.is_monthly` è il piano annuale e `.is_annual` il trimestrale, e `data-month` (13/19/24) è il mensile equivalente dell'annuale mentre `data-year` (19/29/39) è il trimestrale.
+
+**Componenti condivisi, non solo simili** (stesso testo, non solo stessa classe): header `div.header-2.sticky-bg.new-home-2` su 8 pagine; footer `section.footer-section` su 8; blocco prezzi `div.cloneable-container-default-2.center` su 6 con 5.499 caratteri identici e gli stessi 18 link Chargebee; sezione recensioni Feedspace + Trustpilot su 6; popup exit intent su 6; CTA "More Than a Course" su 3. La sezione FAQ è condivisa come struttura ma non come contenuto: 15 domande sulla home, 7 su ciascuna delle altre cinque.
+
+**Varianti da non perdere.** `recess` e `terms-conditions-sa` usano header e footer **vecchi** e diversi (footer con "Connecting 8000+ DJs in 140 countries" invece di "Connecting thousands of DJs and producers"), e i loro due footer differiscono anche fra loro. `advanced-djs` non ha né header né footer: è una pagina nuda con dentro solo un iframe VideoAsk (`videoask.com/fu1pxfvu9`) e un link. Attenzione a `section.hero-section-two-2.newheader` sulle tre pagine corso: malgrado il nome è la hero, non un header.
+
+**Cose trovate che chiedono una decisione.**
+1. **Trengo** (chat, `window.Trengo.key = 'tXUJdf3UvUi255j6ncl8'`) è nel custom code **di pagina** di home, dj-course, producer-course, mix-mastering-course, pricing-page e play-get-signed. Conferma il dubbio 4 della sezione Fondamenta: non è in nessuna decisione presa.
+2. Sulle stesse 6 pagine c'è un **secondo blocco Refersion duplicato**, con la sintassi rotta (`.then(() =>; {`): lancia un `SyntaxError` e non parte mai. Refersion è comunque già deciso "via".
+3. La **404 punta a `/old-home`**, sia nel paragrafo sia nel bottone "Go back home". Da riprodurre così e segnalare, non da correggere in silenzio (regola numero uno).
+4. **Clarity nell'HTML è uno solo** (`qgyx8qgz1i`), su tutte e 11 le pagine. Se sul live se ne vedono due, il secondo arriva da GTM, non dal custom code: la verifica va fatta in GTM, non nel codice del sito.
+5. Nessuna `csConfiguration` Iubenda nell'HTML di nessuna pagina: la CMP arriva da GTM. Conferma il dubbio 2 della sezione Fondamenta.
+
+**Cosa non è riuscito / limiti noti.**
+- Gli screenshot sono stati scattati con timezone `America/New_York`, quindi **il listino è in USD**. Le versioni EUR e GBP non ci sono: per averle bisogna rilanciare lo script cambiando `timezoneId`.
+- I caroselli (slider corsi, Feedspace, Trustpilot) sono nello stato iniziale, come da consegna.
+- Il widget di chat Trengo compare negli screenshot: fa parte del sito live, non è un artefatto.
+- `networkidle` non sempre arriva entro 30 s (tracking e chat tengono la rete aperta): lo script prosegue e lo annota in `_esiti.json`.
+- Trappola risolta e documentata: lo screenshot `fullPage` ridimensiona la viewport, e quel resize fa rileggere a Webflow IX2 gli stati iniziali delle animazioni, riportando a `opacity: 0` i titoli di sezione. La soluzione è allargare la viewport **prima** e riscorrere dopo. Vale anche per gli screenshot del build Next.js.
+- Il banner Iubenda si chiude cliccando `.iubenda-cs-accept-btn` (funziona su tutte le pagine). La via del cookie `_iub_cs-<siteId>` pre-impostato è stata scartata: il `siteId` non è nell'HTML perché la CMP la inietta GTM.
+- Gli asset referenziati dal CSS Webflow via `url()` **non** sono stati scaricati: la consegna riguardava quelli usati dall'HTML. Se in ricostruzione manca un'immagine di sfondo, è lì che va cercata.
+
 ## 👉 Next steps (what I'd do next)
-1. Estrazione (sezione 1 del piano): HTML e CSS in `docs/webflow/`, metadati, asset, Lottie, screenshot di riferimento.
+1. ~~Estrazione (sezione 1 del piano)~~ **fatta**, vedi sopra. Da qui in poi il riferimento è `docs/webflow/`.
 2. Sciogliere i dubbi 1, 2 e 4 qui sopra con Matteo.
 3. Ricostruzione pagina per pagina con Opus, verifica screenshot con Fable.
 4. Eventi Mixpanel del footer, verifica della decorazione dei link al carrello, audit Vibe Shield, deploy di test.
