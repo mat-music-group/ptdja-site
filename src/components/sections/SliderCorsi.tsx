@@ -1,6 +1,10 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
+import type { MouseEvent } from "react";
 import { SliderWebflow } from "@/components/ui/SliderWebflow";
+import { tracciaCourseCardClick } from "@/lib/eventi-mixpanel";
 
 /*
  * Il carosello delle tre card corso: `div.slider-79.new-home-3.courses`.
@@ -68,9 +72,16 @@ export function SliderCorsi({ corsi, className = "" }: ProprietaSliderCorsi) {
  * corso sta nell'URL del link, quindi si lascia vuoto com'è sul sito.
  */
 export function CardCorso({ corso }: { readonly corso: CorsoInVetrina }) {
+  /* `Course Card Click`. Sul sito l'handler è su
+     `#sliderId .w-slide a.w-inline-block`, cioè proprio questo link: il nome
+     del corso non lo legge dalla pagina, lo ricava dall'href (vedi
+     `src/lib/eventi-mixpanel.ts`). */
+  const suClick = (evento: MouseEvent<HTMLAnchorElement>) =>
+    tracciaCourseCardClick(evento.currentTarget);
+
   return (
     <div className="relative flex min-w-[200px] flex-col rounded-[12px] text-center max-sm:min-w-0 max-sm:gap-[35px] max-sm:rounded-media">
-      <Link href={corso.href} className="inline-block max-w-full">
+      <Link href={corso.href} className="inline-block max-w-full" onClick={suClick}>
         <Image
           src={corso.src}
           alt={corso.alt}

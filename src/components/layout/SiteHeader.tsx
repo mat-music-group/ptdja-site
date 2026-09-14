@@ -5,6 +5,8 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
+import type { MouseEvent } from "react";
+import { MENU_PRINCIPALE, tracciaNavbarLinkClicked } from "@/lib/eventi-mixpanel";
 import {
   ETICHETTA_CORSI,
   LOGO,
@@ -85,6 +87,29 @@ export function SiteHeader() {
 
   const attiva = (href: string) => (percorso === href ? "page" : undefined);
 
+  /*
+   * `Navbar Link Clicked`.
+   *
+   * Sul sito l'handler è registrato su `.header-2 a, .nav-menu-2 a`, cioè su
+   * OGNI link dell'header, e decide `type`/`menu` guardando dove si trova il
+   * link: dentro `.nav-dropdown-list-2` è un sottomenu e prende il nome dal
+   * testo del toggle, altrimenti è 'Main Menu' / 'Main'. Qui la posizione la
+   * sappiamo già mentre scriviamo il markup, quindi si passa direttamente.
+   *
+   * ⚠️ Il logo è incluso, perché anche lui è un `<a>` dentro `.header-2`. Non
+   * avendo testo manda `label: ''`: è l'evento che il sito produce oggi, e
+   * toglierlo cambierebbe i conteggi (vedi `src/lib/eventi-mixpanel.ts`).
+   */
+  const suClickMenu =
+    (posizione: { readonly type: string; readonly menu: string }) =>
+    (evento: MouseEvent<HTMLAnchorElement>) =>
+      tracciaNavbarLinkClicked(evento.currentTarget, posizione);
+
+  /* I link del dropdown "Courses": `type: 'Submenu'`, `menu` = il testo del
+     toggle, che è `ETICHETTA_CORSI`. */
+  const suClickCorsi = suClickMenu({ type: "Submenu", menu: ETICHETTA_CORSI });
+  const suClickPrincipale = suClickMenu(MENU_PRINCIPALE);
+
   return (
     /* `.header-2` a ≤991px: `height: 80px`, `padding: 24px 0` (il foglio
        Webflow, blocco `max-width: 991px`). Senza questa riga tablet e
@@ -102,6 +127,7 @@ export function SiteHeader() {
             href="/"
             className="flex min-w-0 shrink"
             aria-label="Pete Tong DJ Academy"
+            onClick={suClickPrincipale}
           >
             <Image
               src={LOGO.src}
@@ -121,6 +147,7 @@ export function SiteHeader() {
                   <Link
                     href={voce.href}
                     aria-current={attiva(voce.href)}
+                    onClick={suClickPrincipale}
                     className="block py-2 text-base font-normal capitalize tracking-[-0.4px] text-bianco opacity-85 transition-colors hover:text-mint"
                   >
                     {voce.testo}
@@ -159,6 +186,7 @@ export function SiteHeader() {
                           key={corso.href}
                           href={corso.href}
                           aria-current={attiva(corso.href)}
+                          onClick={suClickCorsi}
                           className="px-[10px] py-[3px] text-base font-normal capitalize tracking-[-0.4px] text-notte opacity-85 transition-all hover:text-mint"
                         >
                           {corso.testo}
@@ -174,6 +202,7 @@ export function SiteHeader() {
                   <Link
                     href={voce.href}
                     aria-current={attiva(voce.href)}
+                    onClick={suClickPrincipale}
                     className="block py-2 text-base font-normal capitalize tracking-[-0.4px] text-bianco opacity-85 transition-colors hover:text-mint"
                   >
                     {voce.testo}
@@ -210,6 +239,7 @@ export function SiteHeader() {
                   <Link
                     href={voce.href}
                     aria-current={attiva(voce.href)}
+                    onClick={suClickPrincipale}
                     className="inline-block py-[2px] text-base font-normal capitalize tracking-[-0.4px] text-sfondo opacity-85"
                   >
                     {voce.testo}
@@ -238,6 +268,7 @@ export function SiteHeader() {
                         key={corso.href}
                         href={corso.href}
                         aria-current={attiva(corso.href)}
+                        onClick={suClickCorsi}
                         className="px-[10px] py-[3px] text-base font-normal capitalize tracking-[-0.4px] text-notte opacity-85"
                       >
                         {corso.testo}
@@ -252,6 +283,7 @@ export function SiteHeader() {
                   <Link
                     href={voce.href}
                     aria-current={attiva(voce.href)}
+                    onClick={suClickPrincipale}
                     className="inline-block py-[2px] text-base font-normal capitalize tracking-[-0.4px] text-sfondo opacity-85"
                   >
                     {voce.testo}

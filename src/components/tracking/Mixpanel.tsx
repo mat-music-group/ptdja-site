@@ -1,3 +1,4 @@
+import { PageViewMixpanel } from "@/components/tracking/PageViewMixpanel";
 import { MIXPANEL_API_HOST, MIXPANEL_TOKEN } from "@/lib/analytics.config";
 
 /*
@@ -27,12 +28,24 @@ import { MIXPANEL_API_HOST, MIXPANEL_TOKEN } from "@/lib/analytics.config";
  * collector. Decisione da confermare prima di mandare traffico (vedi
  * `handoff.md`).
  *
- * ⚠️ NESSUN EVENTO PARTE DA QUI. Il sito manda i suoi (Page View, CTA Click,
- * Navbar Link Clicked, Pricing Checkout Clicked, Tracked FAQ Opened, Course Card
- * Click, Book Free Call CTA, Trustpilot CTA Clicked, alias su thank you) dal
- * custom code del footer, pagina per pagina: vanno riprodotti con gli stessi
- * nomi e le stesse props insieme alle pagine, attraverso `trackMixpanel` in
- * `src/lib/mixpanel.ts`. Questo componente installa solo la libreria.
+ * ── GLI EVENTI ──────────────────────────────────────────────────────────
+ * Da qui parte solo `Page View`, e non perché sia più importante degli altri:
+ * è l'unico che non ha un elemento da cui dipendere. Tutti gli altri eventi del
+ * footer Webflow (CTA Click, Navbar Link Clicked, Pricing Checkout Clicked,
+ * Tracked FAQ Opened, Course Card Click, Book Free Call CTA, Trustpilot CTA
+ * Clicked) nascono da un click su un elemento preciso, e stanno attaccati al
+ * componente che quell'elemento lo disegna. Le props di tutti e otto sono
+ * scritte una volta sola in `src/lib/eventi-mixpanel.ts`.
+ *
+ * `PageViewMixpanel` sta qui dentro e non nel layout per una ragione sola: il
+ * layout monta `<Mixpanel />` e basta, quindi chi aggiunge o toglie Mixpanel
+ * aggiunge o toglie anche il suo Page View, senza poter dimenticare metà
+ * installazione.
+ *
+ * ⚠️ NON è riprodotto l'`alias` sulla thank you page (`mixpanel.alias` +
+ * `identify` + `people.set` + `Checkout Succeeded`): quella pagina non è nel
+ * perimetro di questo repo. Quando ci entrerà, il blocco da portare è
+ * `linkCustomerWithMixpanel` in `docs/webflow/custom-code-footer.html`.
  */
 
 const MIXPANEL_STUB =
@@ -50,6 +63,7 @@ export function Mixpanel() {
     <>
       <script dangerouslySetInnerHTML={{ __html: MIXPANEL_STUB }} />
       <script dangerouslySetInnerHTML={{ __html: MIXPANEL_INIT }} />
+      <PageViewMixpanel />
     </>
   );
 }

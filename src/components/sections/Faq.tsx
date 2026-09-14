@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import Image from "next/image";
 import { useState } from "react";
+import { tracciaFaqAperta } from "@/lib/eventi-mixpanel";
 import { FAQ_ICONA, FAQ_TITOLO, type DomandaFaq } from "@/testi/condivisi";
 
 /*
@@ -70,7 +71,15 @@ export function Faq({ domande, className = "" }: ProprietaFaq) {
                   <button
                     type="button"
                     aria-expanded={attiva}
-                    onClick={() => setAperta(attiva ? null : voce.domanda)}
+                    /* `Tracked FAQ Opened` parte SOLO in apertura, come sul
+                       sito: lì l'handler legge `aria-expanded` prima che
+                       Webflow lo ribalti e, se era già `true`, non manda
+                       niente. Qui la condizione è la stessa, scritta con lo
+                       stato che abbiamo già. */
+                    onClick={() => {
+                      if (!attiva) tracciaFaqAperta(voce.domanda);
+                      setAperta(attiva ? null : voce.domanda);
+                    }}
                     className="z-10 mb-[25px] flex w-full justify-between border-t border-bianco bg-transparent p-4 text-left"
                   >
                     {/* `.faq-item-heading`: 18px, 16px a ≤479. Corpo scritto

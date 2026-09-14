@@ -3,7 +3,9 @@
 import { motion } from "framer-motion";
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
+import type { MouseEvent } from "react";
 import { Tooltip } from "@/components/ui/Tooltip";
+import { tracciaPricingCheckoutClicked } from "@/lib/eventi-mixpanel";
 import { usePaese } from "@/lib/usePaese";
 import { visibilePerPaese } from "@/lib/geo";
 import { LISTINO, PIANI, VALUTE, type Piano, type Valuta } from "@/testi/condivisi";
@@ -227,10 +229,31 @@ function CartaPiano({
         </div>
       </div>
 
-      {/* CTA verso il carrello Chargebee. */}
+      {/* CTA verso il carrello Chargebee.
+
+          `Pricing Checkout Clicked`: sul sito parte da `.pricing_card
+          .button_primary-2`, cioè da questo link. `price` e
+          `billing_description` seguono lo script del sito *compresa
+          l'inversione annuale/trimestrale* che ha dentro: la nota lunga sta in
+          `src/lib/eventi-mixpanel.ts`, qui basta sapere che al ciclo 'yearly'
+          lo script associa 19/29/39 (`mensileTrimestrale`) e al 'quarterly'
+          13/19/24 (`mensileAnnuale`), e che si riproduce com'è. */}
       <div className="mt-[30px]">
         <a
           href={href}
+          onClick={(evento: MouseEvent<HTMLAnchorElement>) =>
+            tracciaPricingCheckoutClicked(
+              {
+                planName: piano.nome,
+                billingCycle: trimestrale ? "quarterly" : "yearly",
+                price: trimestrale ? piano.mensileAnnuale : piano.mensileTrimestrale,
+                billingDescription: trimestrale
+                  ? LISTINO.perMeseTrimestrale
+                  : LISTINO.perMeseAnnuale,
+              },
+              evento.currentTarget
+            )
+          }
           className="flex w-full items-center justify-center rounded-pillola bg-mint-acceso px-5 py-[10px] text-base font-medium text-carta transition-colors hover:bg-bianco"
         >
           {LISTINO.ctaPrefisso}

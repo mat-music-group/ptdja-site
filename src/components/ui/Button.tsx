@@ -1,6 +1,13 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
-import type { ReactNode } from "react";
+import type { MouseEvent, ReactNode } from "react";
+import {
+  type TracciaBottone,
+  tracciaBottone,
+  tracciaClickSuId,
+} from "@/lib/eventi-mixpanel";
 
 /*
  * Il bottone del sito, nelle tre varianti che esistono davvero nel CSS
@@ -17,6 +24,18 @@ import type { ReactNode } from "react";
  *
  * Tutte e tre condividono raggio `--button-radius` (32px), padding
  * `10px 24px 8px` (sì, asimmetrico: è così nel CSS) e `line-height: 180%`.
+ *
+ * ── PERCHÉ È UN CLIENT COMPONENT ────────────────────────────────────────
+ * Per il tracciamento, e solo per quello. Sul sito Webflow gli eventi Mixpanel
+ * dei bottoni sono agganciati per selettore (`a.button.enroll.signup-now`,
+ * `#buy-now-header`, `a.button-2.secondary[href*="calendly.com"]`), cioè da
+ * fuori: qui quelle classi non esistono e l'unico posto che sa di essere un
+ * bottone è questo componente. Chi lo usa dichiara *quale* evento con la props
+ * `traccia`, che è un oggetto e non una callback proprio perché deve poter
+ * arrivare da una pagina renderizzata sul server.
+ *
+ * Un bottone senza `traccia` e senza `id` tracciato non manda niente: il click
+ * non passa da nessuna funzione, l'handler esce alla prima riga.
  */
 
 type Variante = "mint" | "stroke" | "giallo";
@@ -36,7 +55,11 @@ type ProprietaBottone = {
   readonly className?: string;
   /** `true` per i link che escono dal sito (carrello, Calendly, social). */
   readonly esterno?: boolean;
+  /** Anche il gancio di `Buy Now Menu` / `Buy Now Header`, che sul sito sono
+   *  agganciati a `#enroll-now-menu` e `#buy-now-header`. */
   readonly id?: string;
+  /** L'evento Mixpanel da mandare al click, se ce n'è uno. */
+  readonly traccia?: TracciaBottone;
 };
 
 export function Button({
@@ -47,6 +70,7 @@ export function Button({
   className = "",
   esterno,
   id,
+  traccia,
 }: ProprietaBottone) {
   const classi = [
     "inline-block rounded-bottone px-6 pt-[10px] pb-2 text-base font-normal leading-[180%] transition-all duration-500",
@@ -55,6 +79,21 @@ export function Button({
   ]
     .filter(Boolean)
     .join(" ");
+
+  /* `data-traccia` (più sotto) non serve al tracciamento: serve a vedere dal
+     DOM quali bottoni sono agganciati, che è l'unica cosa che qui si perde
+     rispetto a Webflow, dove il gancio era una classe e quindi si leggeva
+     nell'HTML. Stessa idea del `data-pricing-tracked` che lo script del listino
+     scrive sui bottoni che ha già preso in carico. Lo usa
+     `scripts/_verifica-mixpanel.mjs`.
+
+     Un solo handler per entrambi i ganci: sul sito un bottone può avere sia
+     l'id tracciato sia una classe tracciata, e in quel caso partono due eventi.
+     Stesso ordine dello script, prima l'id. */
+  const suClick = (evento: MouseEvent<HTMLAnchorElement>) => {
+    tracciaClickSuId(id);
+    if (traccia) tracciaBottone(traccia, evento.currentTarget);
+  };
 
   const contenuto = (
     <span className="flex items-center justify-center gap-3">
@@ -76,14 +115,26 @@ export function Button({
      che non controlliamo. */
   if (esterno || href.startsWith("http") || href.startsWith("#")) {
     return (
-      <a id={id} href={href} className={`group ${classi}`}>
+      <a
+        id={id}
+        href={href}
+        className={`group ${classi}`}
+        onClick={suClick}
+        data-traccia={traccia?.evento}
+      >
         {contenuto}
       </a>
     );
   }
 
   return (
-    <Link id={id} href={href} className={`group ${classi}`}>
+    <Link
+      id={id}
+      href={href}
+      className={`group ${classi}`}
+      onClick={suClick}
+      data-traccia={traccia?.evento}
+    >
       {contenuto}
     </Link>
   );

@@ -95,11 +95,21 @@ export function BookACall() {
                     somma al distacco del flex. Su desktop non si vede (a
                     comandare l'altezza della riga è l'immagine), sul telefono
                     valeva 30px di pagina. */}
+                {/* `Book Free Call CTA`: sul sito l'handler è agganciato a
+                    `a.button-2.secondary.w-inline-block[href*="calendly.com"]`
+                    e legge il titolo e il paragrafo risalendo al
+                    `.content-text-block-2`, cioè i due testi qui accanto. */}
                 <Button
                   href={BOOK_A_CALL.href}
                   variante="mint"
                   esterno
                   className="mt-[30px]"
+                  traccia={{
+                    evento: "Book Free Call CTA",
+                    section: "Free Call Section",
+                    heading: BOOK_A_CALL.titolo,
+                    description: BOOK_A_CALL.paragrafo,
+                  }}
                 >
                   {BOOK_A_CALL.cta}
                 </Button>
