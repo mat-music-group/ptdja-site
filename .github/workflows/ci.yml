@@ -1,0 +1,56 @@
+# Il cancello prima del merge.
+#
+# Adattato dalla CI del repo landing. Là il test verifica il contratto degli
+# slug di acquisizione; qui verifica che ogni rotta risponda, porti il proprio
+# titolo e monti il tracciamento che il sito Webflow ha davvero, senza gli
+# script che abbiamo deciso di non portare (Optibase, Intellimize, Flowbase,
+# Refersion). Il controllo gira sull'HTML servito da un build di produzione,
+# non sui sorgenti: l'attributo giusto in un componente non dimostra che il tag
+# sia finito in pagina.
+
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+jobs:
+  contratto-delle-rotte:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - run: npm ci
+
+      # I tipi prima del build: un errore di tipo qui costa dieci secondi,
+      # scoperto dal build ne costa due minuti.
+      - name: Tipi
+        run: npm run typecheck
+
+      - name: Build
+        run: npm run build
+
+      # `next start` va in background e il passo dopo attende che risponda.
+      # Senza l'attesa il test parte su un server che non è ancora in ascolto e
+      # falliscono tutte le rotte, cioè il modo più efficace di far sembrare
+      # rotto un repo sano.
+      - name: Avvia il build di produzione
+        run: |
+          npm run start -- -p 3699 &
+          for i in $(seq 1 60); do
+            curl -sf -o /dev/null http://localhost:3699/ && exit 0
+            sleep 1
+          done
+          echo "il server non ha risposto entro 60 secondi"
+          exit 1
+
+      - name: Contratto delle rotte
+        run: npm test
+        env:
+          BASE: http://localhost:3699

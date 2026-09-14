@@ -1,0 +1,52 @@
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+
+# dependencies
+/node_modules
+/.pnp
+.pnp.*
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/versions
+
+# testing
+/coverage
+
+# next.js
+/.next/
+/out/
+
+# production
+/build
+
+# misc
+.DS_Store
+*.pem
+
+# debug
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+
+# env files (can opt-in for committing if needed)
+.env*
+# Il template invece si versiona: dice a chi clona che non serve nessuna env.
+!.env.example
+
+# vercel
+.vercel
+
+# typescript
+*.tsbuildinfo
+next-env.d.ts
+
+# editor / local preview
+.claude/
+.vibe-shield/
+
+# NOTA: `docs/webflow/` NON è ignorata, e nemmeno gli screenshot dentro
+# `docs/webflow/screenshots/`. L'HTML pubblicato e le immagini di riferimento
+# sono il capitolato di questo repo: la regola numero uno è "identico", e senza
+# il riferimento versionato non c'è niente contro cui confrontarsi fra sei mesi.

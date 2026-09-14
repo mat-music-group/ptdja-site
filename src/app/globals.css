@@ -1,0 +1,70 @@
+@import "tailwindcss";
+
+/* ─────────────────────────────────────────────────────────────────
+   sito-ptdja — fondamenta.
+   Qui dentro va SOLO ciò che è davvero globale. I colori, le
+   spaziature e i token del sito arriveranno dal confronto con gli
+   screenshot di riferimento, pagina per pagina: inventarli adesso
+   significherebbe inventare un design system che poi va disfatto.
+   ───────────────────────────────────────────────────────────────── */
+
+/*
+ * I quattro font caricati in `layout.tsx` via `next/font/google`, resi utility
+ * Tailwind: `font-oswald`, `font-lato`, `font-geist`, `font-inter`.
+ *
+ * ⚠️ `@utility` e NON `@theme`, ed è la parte di questo file che si sbaglia in
+ * buona fede. `next/font` definisce già `--font-oswald` (e le altre tre)
+ * sull'elemento `<html>`. Un blocco `@theme` con gli stessi nomi le
+ * ridichiara su `:root` nella forma `--font-oswald: var(--font-oswald), …`,
+ * cioè una variabile che si riferisce a sé stessa: il browser la considera
+ * invalida e il testo cade sul font di default. Provato e verificato nel CSS
+ * generato il 2026-09-14, `@theme inline` compreso: emette la dichiarazione lo
+ * stesso.
+ *
+ * Definendo l'utility a mano il valore finisce solo dentro la regola della
+ * classe, dove `var(--font-oswald)` si risolve su quella di `next/font`, e
+ * nessuna variabile viene ridichiarata.
+ *
+ * Ogni famiglia porta il suo ripiego di sistema: se il file del font non arriva,
+ * il testo resta leggibile invece di cadere sul serif di default del browser,
+ * che è la differenza visibile fra "lento" e "rotto".
+ *
+ * `--font-sans` non è toccato di proposito: quale sia il font di base del sito
+ * lo dirà il CSS Webflow, e assegnarlo adesso a caso significherebbe vedere ogni
+ * pagina con il font sbagliato finché qualcuno non lo corregge.
+ */
+@utility font-oswald {
+  font-family: var(--font-oswald), "Arial Narrow", Arial, sans-serif;
+}
+
+@utility font-lato {
+  font-family: var(--font-lato), -apple-system, BlinkMacSystemFont, "Segoe UI",
+    Roboto, Arial, sans-serif;
+}
+
+@utility font-geist {
+  font-family: var(--font-geist), -apple-system, BlinkMacSystemFont, "Segoe UI",
+    Roboto, Arial, sans-serif;
+}
+
+@utility font-inter {
+  font-family: var(--font-inter), -apple-system, BlinkMacSystemFont, "Segoe UI",
+    Roboto, Arial, sans-serif;
+}
+
+body {
+  -webkit-font-smoothing: antialiased;
+  /* Orizzontale tagliato e non nascosto: `clip` non crea un contenitore di
+     scorrimento, quindi `position: sticky` continua a funzionare dentro. */
+  overflow-x: clip;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

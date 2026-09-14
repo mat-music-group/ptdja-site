@@ -1,0 +1,59 @@
+{
+  "_note": {
+    "attenzione": "QUESTA NON E' ANCORA LA CONFIGURAZIONE DEL SITO. E' la copia di quella del repo landing (Funnel/Landing_ADV/PTDJA/repo-start/src/lib/iubenda.config.json), tenuta qui come punto di partenza. Il siteId 3605700 e' quello giusto (sito e landing lo condividono), il resto no: vedi sotto. Da riconciliare prima di montare Cmp.",
+    "dove_sta_la_configurazione_vera": "Il sito Webflow NON ha nessuna csConfiguration nell'HTML: verificato il 2026-09-14 cercando 'csConfiguration' in tutte le pagine scaricate, zero occorrenze. La Cookie Solution la carica GTM (container GTM-WLFQB5G) tramite il template Iubenda. Per leggerla: console su www.petetong-djacademy.com, copy(window._iub.csConfiguration).",
+    "divergenza1_cookiePolicyId": "Qui 27491891 (la landing). Il sito usa 40840624, che in questo file compare solo sotto csLangConfiguration['en-GB']. Con la lingua 'en' di default, montare questo file cosi' com'e' linkerebbe l'informativa sbagliata.",
+    "divergenza2_googleConsentMode": "Il sito ha googleConsentMode: 'template', assente qui. 'template' delega i segnali di consenso Google al template GTM di Iubenda. E' la ragione per cui GoogleConsentBridge NON e' montato in questo repo: scriverebbe gli stessi segnali da un secondo sistema.",
+    "divergenza3_autoblocking": "Il sito NON carica ne' l'autoblocking ne' lo stub GPP, che Cmp.tsx invece include. Sul sito, quindi, ogni script di terza parte parte per tutti: e' la ragione per cui Clarity qui e' ungated come la' (vedi Clarity.tsx) e va segnalato, non corretto in silenzio.",
+    "divergenza4_pulsanteFlottante": "Il sito ha floatingPreferencesButtonDisplay: 'anchored-center-left', qui e' false.",
+    "divergenza5_colori_e_logo": "Colori dei pulsanti allineati al sito (menta #6DE4BC su testo nero). Manca il logo del banner, una PNG base64 da circa 22KB. NON ricopiarlo a mano: un blob troncato rende come un logo assente senza dare errore. Prendilo con una macchina dalla console del sito.",
+    "serializzazione": "Solo questo blocco _note non viene serializzato da Cmp.tsx, che emette csConfiguration e csLangConfiguration: qui dentro si puo' scrivere."
+  },
+  "csConfiguration": {
+    "askConsentAtCookiePolicyUpdate": true,
+    "cookiePolicyId": 27491891,
+    "countryDetection": true,
+    "enableFadp": true,
+    "enableLgpd": true,
+    "enableUspr": true,
+    "fadpApplies": true,
+    "gdprAppliesGlobally": false,
+    "lgpdAppliesGlobally": false,
+    "usprApplies": true,
+    "lang": "en",
+    "perPurposeConsent": true,
+    "siteId": 3605700,
+    "usPreferencesWidgetDisplay": "inline-left",
+    "whitelabel": false,
+    "floatingPreferencesButtonDisplay": false,
+    "banner": {
+      "acceptButtonCaptionColor": "#000000",
+      "acceptButtonColor": "#6DE4BC",
+      "acceptButtonDisplay": true,
+      "backgroundOverlay": false,
+      "closeButtonDisplay": false,
+      "customizeButtonDisplay": true,
+      "explicitWithdrawal": true,
+      "fontSizeBody": "11px",
+      "howToWithdraw": false,
+      "listPurposes": true,
+      "position": "float-bottom-center",
+      "rejectButtonCaptionColor": "#000000",
+      "rejectButtonColor": "#6DE4BC",
+      "rejectButtonDisplay": true,
+      "showTitle": false,
+      "zIndex": 10
+    }
+  },
+  "csLangConfiguration": {
+    "en-GB": { "cookiePolicyId": 40840624 },
+    "fr": { "cookiePolicyId": 90706452 },
+    "en": { "cookiePolicyId": 27491891 },
+    "nl": { "cookiePolicyId": 88238163 },
+    "pt": { "cookiePolicyId": 95660742 },
+    "pt-BR": { "cookiePolicyId": 56891885 },
+    "es": { "cookiePolicyId": 37394722 },
+    "de": { "cookiePolicyId": 81489594 },
+    "it": { "cookiePolicyId": 53773038 }
+  }
+}
