@@ -1,0 +1,40 @@
+# Vibe Shield: configurazione gitleaks del repo, letta dalla CI (security.yml)
+# e da gitleaks in locale.
+#
+# Il primo run in CI (2026-09-15) ha segnalato 56 match, tutti della regola
+# generica `generic-api-key`, su quattro identificatori che NON sono segreti:
+# stanno già nell'HTML pubblico del sito Webflow live e finiscono comunque
+# nell'HTML servito al browser, come documentato in `src/lib/analytics.config.ts`
+# e verificato dall'audit (`.vibe-shield/report.md`, config-auditor punto 7).
+#
+# 1. Chiave del widget di chat Trengo (`window.Trengo.key`, `TRENGO_KEY`).
+# 2. `data-public-api-key` di Optibase, solo nell'HTML Webflow salvato come
+#    riferimento in `docs/webflow/` (Optibase non è installato nel sito Next).
+# 3. Token dei widget Trustpilot (`data-token`, UUID) in HTML, outline e testi.
+# 4. Token del progetto Mixpanel (`MIXPANEL_TOKEN`): identificatore lato client
+#    di qualunque integrazione web Mixpanel, presente nel custom code Webflow.
+#
+# L'allowlist è ristretta a quei pattern e a quella cartella: qualunque altra
+# stringa che somigli a una chiave continua a bloccare la CI.
+
+title = "sito-ptdja"
+
+[extend]
+useDefault = true
+
+[[allowlists]]
+description = "Riferimento Webflow: HTML pubblicato del sito live e sue estrazioni, contengono solo identificatori lato client"
+paths = [
+  '''docs/webflow/.*''',
+]
+
+[[allowlists]]
+description = "Identificatori pubblici lato client: chiave widget Trengo, token widget Trustpilot, token progetto Mixpanel"
+regexTarget = "match"
+regexes = [
+  '''window\.Trengo\.key = '[A-Za-z0-9]{10,40}'\s*;?''',
+  '''TRENGO_KEY = "[A-Za-z0-9]{10,40}"''',
+  '''MIXPANEL_TOKEN = "[0-9a-f]{32}"''',
+  '''data-token[="'\s:]+[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}''',
+  '''token: "[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}"''',
+]
