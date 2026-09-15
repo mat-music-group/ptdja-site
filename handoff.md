@@ -154,9 +154,17 @@ Server `next start -p 3000` rimasto acceso dalla sessione precedente: fermato. P
 
 **Bassi aperti, decisioni per Matteo**: F3 tracker senza consenso e URL completo negli eventi Mixpanel (ereditato; proposta: Clarity dietro finalità 4); F4 iframe VideoAsk con `allow` a `*` (restringere a `'src'` dopo verifica); CFG-02 CSP da costruire in report-only sull'URL di test; CFG-05 apex come redirect verso `www` nel pannello Vercel al cambio dominio. Più le decisioni già note: guardia hostname Mixpanel sull'URL di test, blocco Lead Generation da `?email`/`?uid`, redirect 301 da esportare da Webflow, visibilità del repo GitHub.
 
+## 🚀 Repo GitHub e primo push (2026-09-15, pomeriggio)
+
+Repo **pubblico** `mat-music-group/ptdja-site` creato da Matteo con `gh` (il guard blocca `gh` e `vercel` dalla sessione di Claude: i comandi di pubblicazione li lancia Matteo con `!`). Push di `main` dopo `/pre-deploy` pass. Primo run di `security.yml`: gitleaks fallito su 56 `generic-api-key`, tutti identificatori pubblici lato client (Trengo, Trustpilot, Mixpanel, Optibase nell'HTML salvato): aggiunto `.gitleaks.toml` con allowlist ristretta, riprodotto in locale con gitleaks 8.30.1 ("no leaks found"), secondo push `b158b70`. **CI e Security checks verdi** su `b158b70`. Dependabot attivo: possono comparire PR di aggiornamento (npm radice, npm `scripts/`, GitHub Actions).
+
+Ordine che funziona per pubblicare: `next build` → `write-status.sh begin` → scanner → `pass` → `gate.py --check` → `begin --reuse` → extra senza build → `pass` → `git push` (senza pipe: il guard blocca `git push | tail`).
+
+**Manca**: collegamento del progetto Vercel `ptdja-site` al repo (Matteo, da dashboard "Add New Project → Import mat-music-group/ptdja-site", oppure `! vercel link` e poi Git connect), primo deploy, `/post-deploy-check` sull'URL `*.vercel.app`, verifica di `data-landing="sito-test"` e `X-Robots-Tag: noindex` nell'HTML servito, Lighthouse mobile home Webflow contro Vercel.
+
 ## 👉 Next steps (what I'd do next)
 1. ~~Estrazione~~ fatta. ~~Sei pagine semplici~~ fatte e committate (`8c8cd2d`).
 2. ~~Ondate A, B, C, residui condivisi~~ fatti: 11 pagine, build e test verdi (123 controlli), parità al pixel o entro 17 px.
 3. ~~Tracking, attribuzione, SEO, Vibe Shield~~ fatti: audit e pre-deploy **pass** su `df0b6a5`.
-4. **Pubblicazione di test**, serve Matteo: `! gh auth status`, `! vercel whoami`; creare `mat-music-group/ptdja-site` (visibilità da decidere) e collegare il progetto Vercel `ptdja-site`; `git remote add`, rifare `/pre-deploy` (il pass dura 30 minuti), push; poi `/post-deploy-check`, verifica `data-landing="sito-test"` e `X-Robots-Tag` sull'URL Vercel, Lighthouse mobile home Webflow contro Vercel.
+4. ~~Repo GitHub e push~~ fatti, CI verde su `b158b70`. **Serve Matteo**: collegare il progetto Vercel `ptdja-site` al repo (dashboard o `! vercel link`). Poi: primo deploy, `/post-deploy-check`, verifica `data-landing="sito-test"` e `X-Robots-Tag` sull'URL Vercel, Lighthouse mobile home Webflow contro Vercel.
 5. Decisioni aperte elencate sopra; redirect 301 da esportare da Webflow; aggiornare Next a 16.3.5 anche nel repo landing.
