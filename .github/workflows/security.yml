@@ -1,0 +1,79 @@
+# Vibe Shield: controlli di sicurezza in CI (GitHub Actions).
+# Copiato da /setup-security in .github/workflows/security.yml del progetto.
+# Protegge il repository anche quando le modifiche NON passano da Claude Code
+# (editor, sito di GitHub, altri collaboratori).
+#
+# Adattamento a questo repo: due progetti npm, il sito nella radice e gli
+# script Playwright in `scripts/` (il suo package-lock.json è versionato
+# proprio perché l'audit possa leggerlo). Nessun manifest Python: gli script
+# in `scripts/` non hanno requirements.txt, e il controllo di copertura qui
+# sotto fallisce se in futuro compare un manifest di un ecosistema non coperto.
+name: Security checks
+
+on:
+  push:
+  pull_request:
+  schedule:
+    - cron: "0 6 * * 1" # ogni lunedì: le dipendenze invecchiano anche se il codice non cambia
+
+permissions:
+  contents: read
+
+jobs:
+  secrets:
+    name: Scansione segreti (gitleaks)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4.3.1
+        with:
+          fetch-depth: 0 # storia completa: i segreti nei commit vecchi contano
+      - uses: gitleaks/gitleaks-action@ff98106e4c7b2bc287b24eaf42907196329070c7 # v2.3.9
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  dependencies:
+    name: Vulnerabilità nelle dipendenze
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4.3.1
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Audit dipendenze e verifica copertura
+        # Ogni cartella con un package-lock.json versionato viene auditata con
+        # npm (soglia moderate, come il gate locale). Un package.json senza
+        # lockfile o un manifest di un altro ecosistema fanno fallire il passo:
+        # copertura incompleta, non verde per omissione.
+        run: |
+          python3 - <<'PY_AUDIT'
+          import pathlib
+          import subprocess
+          import sys
+
+          root = pathlib.Path.cwd()
+          tracked = subprocess.check_output(['git', 'ls-files', '-z']).decode().split('\0')
+          paths = {pathlib.PurePosixPath(p) for p in tracked if p}
+          npm_roots = {p.parent for p in paths if p.name in {'package-lock.json', 'npm-shrinkwrap.json'}}
+          requirements = sorted(p for p in paths if p.name == 'requirements.txt')
+          unsupported = []
+          for path in sorted(paths):
+              if path.name == 'package.json' and not any(folder == path.parent or folder in path.parents for folder in npm_roots):
+                  unsupported.append(path)
+              elif path.name in {'pnpm-lock.yaml', 'yarn.lock', 'pyproject.toml', 'Pipfile', 'poetry.lock', 'uv.lock', 'go.mod', 'Cargo.toml', 'Gemfile', 'composer.json', 'pom.xml', 'build.gradle', 'build.gradle.kts', 'packages.config'} or path.suffix in {'.csproj', '.fsproj'}:
+                  unsupported.append(path)
+          if unsupported:
+              print('Controllo dipendenze INCOMPLETO: adatta il workflow ai manifest rilevati:')
+              for path in unsupported:
+                  print(repr(str(path)))
+              sys.exit(1)
+          if not npm_roots and not requirements:
+              print('Nessun manifest riconosciuto: attesi almeno la radice e scripts/.')
+              sys.exit(1)
+          for folder in sorted(npm_roots):
+              print(f'npm audit in {folder or "."}')
+              subprocess.run(['npm', 'audit', '--audit-level=moderate'], cwd=root / folder, check=True)
+          if requirements:
+              subprocess.run([sys.executable, '-m', 'pip', 'install', '--quiet', 'pip-audit==2.9.0'], check=True)
+              for path in requirements:
+                  subprocess.run(['pip-audit', '-r', path.name], cwd=root / path.parent, check=True)
+          PY_AUDIT

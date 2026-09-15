@@ -43,6 +43,41 @@ const nextConfig: NextConfig = {
     root: import.meta.dirname,
   },
 
+  /*
+   * Security header (Vibe Shield, /setup-security del 2026-09-15).
+   *
+   * Valgono per ogni risposta. Niente Content-Security-Policy per ora: la
+   * pagina carica GTM via Stape, Mixpanel, Clarity, Wistia, Feedspace,
+   * Trustpilot, Trengo, DynTube, Iubenda, VideoAsk e Google Fonts, e una CSP
+   * scritta a tavolino romperebbe qualcuno di questi in silenzio. Va costruita
+   * in report-only sull'URL di test, leggendo le violazioni, prima di
+   * imporla. `X-Frame-Options: SAMEORIGIN` e non `DENY`: il sito non deve
+   * essere incorniciato da terzi, ma non è escluso che una pagina interna
+   * venga usata in un iframe del gruppo (campus, tool). HSTS è comunque
+   * aggiunto da Vercel sui domini https; ripeterlo qui non fa danno e vale
+   * anche su altri hosting.
+   */
+  async headers() {
+    return [
+      {
+        source: "/(.*)",
+        headers: [
+          { key: "X-Content-Type-Options", value: "nosniff" },
+          { key: "X-Frame-Options", value: "SAMEORIGIN" },
+          { key: "Referrer-Policy", value: "strict-origin-when-cross-origin" },
+          {
+            key: "Strict-Transport-Security",
+            value: "max-age=63072000; includeSubDomains",
+          },
+          {
+            key: "Permissions-Policy",
+            value: "camera=(), microphone=(), geolocation=()",
+          },
+        ],
+      },
+    ];
+  },
+
   images: {
     remotePatterns: [
       /* Gli asset del sito Webflow. Le immagini verranno scaricate in `public/`

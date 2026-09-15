@@ -55,3 +55,11 @@ next-env.d.ts
 scripts/node_modules/
 __pycache__/
 docs/confronto/
+
+# Vibe Shield: file che non devono mai finire nel repository
+*.key
+credentials.json
+serviceAccountKey.json
+*.log
+*.sql
+*.dump

@@ -1,0 +1,21 @@
+# Vibe Shield: aggiornamenti di sicurezza automatici delle dipendenze.
+# Copiato da /setup-security e adattato: due progetti npm (il sito nella radice,
+# gli script di estrazione e screenshot in `scripts/`) più le GitHub Actions.
+# Niente pip: gli script Python in `scripts/` usano solo la libreria standard e
+# Pillow di sistema, senza requirements.txt.
+version: 2
+updates:
+  - package-ecosystem: "npm"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+    open-pull-requests-limit: 5
+  - package-ecosystem: "npm"
+    directory: "/scripts"
+    schedule:
+      interval: "weekly"
+    open-pull-requests-limit: 5
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"
