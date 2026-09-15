@@ -87,8 +87,11 @@ export function CtaElite({
 
               {/* `p.cta-p-8._w-520.new-home-2.dj-course`: `._w-520` è
                   `width: 100%; max-width: 520px`, ed è quello che manda il
-                  paragrafo su due righe come sul sito. */}
-              <p className="m-0 w-full max-w-[520px] pb-[14px] text-left text-base font-light leading-[180%] tracking-[-0.4px] text-bianco opacity-75 max-sm:pb-[30px] max-sm:text-center max-sm:text-[15px] max-sm:opacity-100">
+                  paragrafo su due righe come sul sito. Il corpo resta 16px
+                  anche sotto i 480px: la regola a ≤479 che porta `.cta-p-8`
+                  a 15px ha una classe sola e perde contro `.cta-p-8._w-520`,
+                  che dichiara `font-size: 16px` nel blocco base. */}
+              <p className="m-0 w-full max-w-[520px] pb-[14px] text-left text-base font-light leading-[180%] tracking-[-0.4px] text-bianco opacity-75 max-sm:pb-[30px] max-sm:text-center max-sm:opacity-100">
                 {paragrafo}
                 <br />
               </p>

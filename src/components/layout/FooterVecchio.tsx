@@ -25,20 +25,34 @@ import { FOOTER_VECCHIO } from "@/testi/condivisi";
  * sezione vuota NON si può togliere anche se non contiene niente: `.cta-section`
  * ha `padding-bottom: 60px`, e quei 60px di aria sopra il footer si vedono.
  * Misurato: senza, la pagina è 86px più corta dell'originale.
+ *
+ * ⚠️ Le stesse tre misure mobile del footer nuovo valgono anche qui (senza
+ * erano 71px in meno dell'originale, misurato il 15/09): i `.container` a
+ * ≤479 prendono `padding-bottom: 10px`; il link del logo è `.navbar-brand`,
+ * che a ≤479 diventa un flex in colonna con 16px di distacco; i titoli dei
+ * gruppi sono `text-[16px]` e non `text-base`, perché l'interlinea è il 180%
+ * ereditato dal `p` del sito (28.8px) e non i 24px di Tailwind.
  */
 export function FooterVecchio() {
   return (
     <RivelaAllaVista>
-      <div className="bg-sfondo pb-[60px]" aria-hidden="true" />
+      {/* `.cta-section` 60px sotto, 30 a ≤991; dentro, `.container-10` ne
+          aggiunge altri 50 a ≤479. */}
+      <div className="bg-sfondo pb-[60px] max-lg:pb-[30px]" aria-hidden="true">
+        <div className="max-sm:pb-[50px]" />
+      </div>
       <footer className="bg-sfondo pb-[30px] pt-[60px] max-lg:pt-[30px]">
-        <div className="mx-auto flex w-full max-w-sito flex-col items-center px-[30px] max-sm:px-0">
+        <div className="mx-auto flex w-full max-w-sito flex-col items-center px-[30px] max-sm:px-0 max-sm:pb-[10px]">
           <div className="flex w-full flex-col gap-[72px]">
             <div className="flex justify-between gap-[50px] max-lg:flex-col max-lg:items-center max-lg:gap-10 max-md:mx-auto max-md:max-w-[400px] max-sm:max-w-full max-sm:gap-[30px]">
               <div className="flex w-[24%] flex-col gap-10 max-lg:w-full max-lg:items-center max-lg:gap-[30px] max-md:items-center max-md:text-center max-sm:px-5">
                 <div className="flex flex-col gap-4">
                   {/* Vedi la nota in `SiteFooter`: sotto i 480px la classe
                       `navbar-brand` riporta il testo a sinistra. */}
-                  <a href={FOOTER_VECCHIO.aboutHref} className="block max-sm:text-left">
+                  <a
+                    href={FOOTER_VECCHIO.aboutHref}
+                    className="block max-sm:flex max-sm:w-auto max-sm:flex-col max-sm:gap-4 max-sm:text-left"
+                  >
                     <Image
                       src={FOOTER_VECCHIO.logo.src}
                       alt={FOOTER_VECCHIO.logo.alt}
@@ -46,7 +60,7 @@ export function FooterVecchio() {
                       height={FOOTER_VECCHIO.logo.altezza}
                       className="h-auto w-full max-w-[250px] max-sm:w-1/2"
                     />
-                    <p className="m-0 text-base font-medium tracking-[-0.2px] text-bianco">
+                    <p className="m-0 text-[16px] font-medium tracking-[-0.2px] text-bianco">
                       {FOOTER_VECCHIO.titoloAbout}
                     </p>
                     <p className="m-0 text-sm font-normal leading-[180%] tracking-[-0.4px] text-bianco opacity-80 max-sm:text-[15px]">
@@ -56,13 +70,16 @@ export function FooterVecchio() {
                 </div>
               </div>
 
-              <div className="flex w-[60%] justify-between gap-5 max-lg:w-full max-lg:gap-[30px] max-md:grid max-md:grid-cols-2 max-md:gap-[30px] max-md:text-center">
+              {/* `.footer-right-block` a ≤767 è una griglia 2×2 con
+                  `align-items: start`: senza, le colonne si stirano
+                  all'altezza della riga. */}
+              <div className="flex w-[60%] justify-between gap-5 max-lg:w-full max-lg:gap-[30px] max-md:grid max-md:grid-cols-2 max-md:items-start max-md:gap-[30px] max-md:text-center">
                 {FOOTER_VECCHIO.colonne.map((colonna) => (
                   <div
                     key={colonna.titolo}
                     className="flex flex-col gap-4 max-md:gap-[15px] max-sm:gap-[5px]"
                   >
-                    <p className="m-0 text-base font-medium tracking-[-0.2px] text-bianco">
+                    <p className="m-0 text-[16px] font-medium tracking-[-0.2px] text-bianco">
                       {colonna.titolo}
                     </p>
                     <div className="flex flex-col gap-2 max-lg:gap-[15px] max-md:gap-[10px]">
@@ -72,6 +89,15 @@ export function FooterVecchio() {
                         </FooterLink>
                       ))}
                     </div>
+                    {/* Le voci che nell'HTML stanno fuori dal blocco dei link
+                        (vedi la nota in `condivisi.ts`). */}
+                    {"vociSciolte" in colonna
+                      ? colonna.vociSciolte.map((voce) => (
+                          <FooterLink key={voce.testo} href={voce.href}>
+                            {voce.testo}
+                          </FooterLink>
+                        ))
+                      : null}
                   </div>
                 ))}
               </div>
@@ -79,7 +105,7 @@ export function FooterVecchio() {
           </div>
         </div>
 
-        <div className="mx-auto flex w-full max-w-sito flex-col items-center px-[30px] max-sm:px-0">
+        <div className="mx-auto flex w-full max-w-sito flex-col items-center px-[30px] max-sm:px-0 max-sm:pb-[10px]">
           <Image
             src={FOOTER_VECCHIO.forme.src}
             alt={FOOTER_VECCHIO.forme.alt}
@@ -89,7 +115,7 @@ export function FooterVecchio() {
           />
         </div>
 
-        <div className="mx-auto flex w-full max-w-sito flex-col items-center px-[30px] max-sm:px-0">
+        <div className="mx-auto flex w-full max-w-sito flex-col items-center px-[30px] max-sm:px-0 max-sm:pb-[10px]">
           <p className="m-0 text-sm font-normal leading-[180%] tracking-[-0.4px] text-bianco opacity-80 max-sm:text-[15px]">
             {FOOTER_VECCHIO.copyright}
           </p>

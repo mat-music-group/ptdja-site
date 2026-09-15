@@ -100,6 +100,10 @@ export default function DjCoursePage() {
         cta={HERO.cta}
         trustpilot={HERO.trustpilot}
         immagine={HERO.immagine}
+        /* Solo qui: `.container-66.header-space--mob` a ≤479 riporta a 0 i
+           35px sotto il contenitore dell'immagine, che producer e
+           mix-mastering invece tengono. */
+        spazioSottoImmagineMobile={false}
       />
 
       {/* ── 2. "Course Content", versione desktop (222 lezioni) ────── */}

@@ -125,7 +125,26 @@ export type ProprietaContenutoCorso = {
    * sua variante mobile, 1 su `/mix-mastering-course`. Default 3.
    */
   readonly accordionTitoloBr?: number;
+  /**
+   * Interlinea in px dello `<strong>` del titolo dell'accordion. Serve solo
+   * dove l'HTML gli mette anche la classe `program`
+   * (`strong.bold-text-5.program { line-height: 24px }`): è la variante
+   * desktop di `/mix-mastering-course`, l'unica con un `<br>` solo. Senza,
+   * lo strong eredita i 7px dell'`h4` e con un `<br>` il sottotitolo finiva
+   * sopra il titolo. Default: nessuna, cioè l'interlinea ereditata.
+   */
+  readonly accordionTitoloInterlinea?: number;
   readonly accordionSottotitolo: string;
+  /**
+   * `true` solo sulla variante mobile di `/mix-mastering-course`, dove sul
+   * sito i sei capitoli sono già tutti aperti al caricamento:
+   * `.faq-item-content` ha `display: block` nel foglio e lì l'interazione IX2
+   * che scriverebbe `height: 0px` non è agganciata (verificato sul DOM del
+   * riferimento il 15/09: `inline: null` sulla variante `.mobile-only`,
+   * `inline: height: 0px` su quella `#program` della stessa pagina).
+   * Effetto: 2667px invece di 1061. Default `false`.
+   */
+  readonly capitoliApertiAllInizio?: boolean;
   readonly capitoli: readonly CapitoloCorso[];
   readonly cosaImparerai: readonly string[];
   readonly iconaFreccia: Immagine;
@@ -223,7 +242,9 @@ function VarianteDesktop(p: ProprietaContenutoCorso) {
                     tabCosaImparerai={p.tabCosaImparerai}
                     accordionTitolo={p.accordionTitolo}
                     accordionTitoloBr={p.accordionTitoloBr}
+                    accordionTitoloInterlinea={p.accordionTitoloInterlinea}
                     accordionSottotitolo={p.accordionSottotitolo}
+                    capitoliApertiAllInizio={p.capitoliApertiAllInizio}
                     capitoli={p.capitoli}
                     cosaImparerai={p.cosaImparerai}
                     iconaFreccia={p.iconaFreccia}
@@ -285,7 +306,9 @@ function VarianteMobile(p: ProprietaContenutoCorso) {
           tabCosaImparerai={p.tabCosaImparerai}
           accordionTitolo={p.accordionTitolo}
           accordionTitoloBr={p.accordionTitoloBr}
+          accordionTitoloInterlinea={p.accordionTitoloInterlinea}
           accordionSottotitolo={p.accordionSottotitolo}
+          capitoliApertiAllInizio={p.capitoliApertiAllInizio}
           capitoli={p.capitoli}
           cosaImparerai={p.cosaImparerai}
           iconaFreccia={p.iconaFreccia}
@@ -297,33 +320,40 @@ function VarianteMobile(p: ProprietaContenutoCorso) {
       {/* `.container.brands.new-home-2.dj-course-page` */}
       {(p.prezzo || p.prezzoMobileFisso) && p.cta && p.trustpilot ? (
         <div className="mx-auto flex w-auto max-w-sito flex-col items-center justify-center bg-sfondo pb-[10px] pt-0">
-          <h2 className="m-0 mt-[30px] pb-[10px] text-center text-[16px] font-light leading-[1.2] text-bianco opacity-70">
-            {p.prezzoMobileFisso ? (
-              /* Nessun `[data-geo]`: qui l'HTML del sito ha una frase sola. */
-              <span>{p.prezzoMobileFisso}</span>
-            ) : p.prezzo ? (
-              <>
-                <span>{p.prezzo.prima}</span>{" "}
-                <span className="text-bianco">
-                  {VALUTE.map((valuta) => (
-                    <span
-                      key={valuta.codice}
-                      data-geo={valuta.modo}
-                      className={
-                        visibilePerPaese(valuta.modo, valuta.paesi, paese)
-                          ? "geo-visibile"
-                          : undefined
-                      }
-                    >
-                      {valuta.simbolo}
-                      {LISTINO.cifraTitolo}
-                    </span>
-                  ))}
-                  {p.prezzo.dopo}
-                </span>
-              </>
-            ) : null}
-          </h2>
+          {/* Due elementi diversi, come sul sito: dove il prezzo è geo-gated
+              (dj-course, producer-course) è un `h2.heading-18.text-provv…`;
+              dove è una frase fissa (mix-mastering-course) è un
+              `p.section-subtitle.negative.new-home-2`, che a ≤479 misura
+              16px su interlinea 180% (28.8px, ereditata dal `p` del sito),
+              `margin-top: 30px`, `padding-bottom: 5px`, allineato a sinistra
+              e senza spaziatura fra le lettere: 34px di altezza contro i 29
+              che veniva fuori riusando l'`h2`. */}
+          {p.prezzoMobileFisso ? (
+            <p className="m-0 mt-[30px] pb-[5px] text-left text-[16px] font-light leading-[180%] tracking-normal text-bianco opacity-70">
+              {p.prezzoMobileFisso}
+            </p>
+          ) : p.prezzo ? (
+            <h2 className="m-0 mt-[30px] pb-[10px] text-center text-[16px] font-light leading-[1.2] text-bianco opacity-70">
+              <span>{p.prezzo.prima}</span>{" "}
+              <span className="text-bianco">
+                {VALUTE.map((valuta) => (
+                  <span
+                    key={valuta.codice}
+                    data-geo={valuta.modo}
+                    className={
+                      visibilePerPaese(valuta.modo, valuta.paesi, paese)
+                        ? "geo-visibile"
+                        : undefined
+                    }
+                  >
+                    {valuta.simbolo}
+                    {LISTINO.cifraTitolo}
+                  </span>
+                ))}
+                {p.prezzo.dopo}
+              </span>
+            </h2>
+          ) : null}
 
           {/* `.hero-button-group` + `a.button.enroll.homepage…signup-now`:
               80vw fino a 300px, non 90vw come quello della hero.
@@ -411,6 +441,11 @@ function SchedaCorso({
                 height={26}
                 className="mr-[18px] h-[26px] w-[26px] max-sm:h-5 max-sm:w-5"
               />
+              {/* Lo spazio fra etichetta e valore è dentro `voce.etichetta`
+                  ed è un `&nbsp;`, come nell'HTML del sito
+                  (`<div class="course-detail-text">Level:&nbsp;</div>`): uno
+                  spazio normale, essendo in fondo a un figlio del flex,
+                  il browser lo toglie e si leggeva "Level:Advanced". */}
               <div className="text-[18px] leading-[1.2em] text-bianco max-sm:text-left">
                 {voce.etichetta}
               </div>
@@ -476,7 +511,9 @@ function TabCorso({
   tabCosaImparerai,
   accordionTitolo,
   accordionTitoloBr = 3,
+  accordionTitoloInterlinea,
   accordionSottotitolo,
+  capitoliApertiAllInizio = false,
   capitoli,
   cosaImparerai,
   iconaFreccia,
@@ -487,7 +524,9 @@ function TabCorso({
   readonly tabCosaImparerai: string;
   readonly accordionTitolo: string;
   readonly accordionTitoloBr?: number;
+  readonly accordionTitoloInterlinea?: number;
   readonly accordionSottotitolo: string;
+  readonly capitoliApertiAllInizio?: boolean;
   readonly capitoli: readonly CapitoloCorso[];
   readonly cosaImparerai: readonly string[];
   readonly iconaFreccia: Immagine;
@@ -496,7 +535,24 @@ function TabCorso({
   readonly etichettaPrimoTab?: boolean;
 }) {
   const [tab, setTab] = useState<"curriculum" | "imparerai">("curriculum");
-  const [aperto, setAperto] = useState<string | null>(null);
+  /* Un capitolo aperto per volta, come il dropdown Webflow. Con
+     `capitoliApertiAllInizio` si parte con tutti aperti e ognuno si chiude per
+     conto suo: lì il dropdown non ha nessuna interazione agganciata. */
+  const [aperti, setAperti] = useState<ReadonlySet<string>>(() =>
+    capitoliApertiAllInizio
+      ? new Set(capitoli.map((capitolo) => capitolo.numero))
+      : new Set()
+  );
+
+  const commuta = (numero: string, aperto: boolean) => {
+    setAperti((precedenti) => {
+      if (!capitoliApertiAllInizio) return aperto ? new Set() : new Set([numero]);
+      const prossimi = new Set(precedenti);
+      if (aperto) prossimi.delete(numero);
+      else prossimi.add(numero);
+      return prossimi;
+    });
+  };
 
   return (
     <RivelaAllaVista className="w-full">
@@ -536,7 +592,14 @@ function TabCorso({
                   della regola a ≤479. */}
               <h4 className="m-0 block flex-1 cursor-pointer pb-[10px] text-[24px] font-medium leading-[7px] tracking-[-0.8px] text-bianco max-lg:text-[22px] max-sm:py-[10px] max-sm:text-left max-sm:text-[20px] 2xl:pb-[15px]">
                 {/* `.bold-text-5`: sotto i 480px diventa crema. */}
-                <strong className="font-bold max-sm:text-crema">
+                <strong
+                  className="font-bold max-sm:text-crema"
+                  style={
+                    accordionTitoloInterlinea
+                      ? { lineHeight: `${accordionTitoloInterlinea}px` }
+                      : undefined
+                  }
+                >
                   {accordionTitolo}
                   {Array.from({ length: accordionTitoloBr }, (_, i) => (
                     // biome-ignore lint/suspicious/noArrayIndexKey: sono `<br>` identici, l'indice è l'unica identità che hanno
@@ -565,9 +628,15 @@ function TabCorso({
                 <Capitolo
                   key={capitolo.numero}
                   capitolo={capitolo}
-                  aperto={aperto === capitolo.numero}
+                  aperto={aperti.has(capitolo.numero)}
+                  /* La freccia la ruota l'interazione IX2, non il CSS: dove
+                     non è agganciata resta con la punta in giù anche a
+                     capitolo aperto, come sullo screenshot di riferimento. */
+                  frecciaRuotata={
+                    !capitoliApertiAllInizio && aperti.has(capitolo.numero)
+                  }
                   onToggle={() =>
-                    setAperto(aperto === capitolo.numero ? null : capitolo.numero)
+                    commuta(capitolo.numero, aperti.has(capitolo.numero))
                   }
                   iconaFreccia={iconaFreccia}
                 />
@@ -644,11 +713,14 @@ function BottoneTab({
 function Capitolo({
   capitolo,
   aperto,
+  frecciaRuotata,
   onToggle,
   iconaFreccia,
 }: {
   readonly capitolo: CapitoloCorso;
   readonly aperto: boolean;
+  /** Di norma uguale ad `aperto`; vedi la nota in `TabCorso`. */
+  readonly frecciaRuotata: boolean;
   readonly onToggle: () => void;
   readonly iconaFreccia: Immagine;
 }) {
@@ -678,7 +750,7 @@ function Capitolo({
             width={iconaFreccia.larghezza}
             height={iconaFreccia.altezza}
             className={`transition-transform duration-300 ${
-              aperto ? "rotate-180" : ""
+              frecciaRuotata ? "rotate-180" : ""
             }`}
           />
         </span>
@@ -689,6 +761,13 @@ function Capitolo({
         animate={{ height: aperto ? "auto" : 0 }}
         transition={{ duration: 0.3, ease: "easeInOut" }}
         aria-hidden={!aperto}
+        /* ⚠️ La riga bianca di 2px sotto un capitolo chiuso NON è un difetto
+           nostro: c'è anche sul sito. Il pannello è `.faq-item-content.program-section`
+           con `border: 1px solid #fff` e `box-sizing: border-box`, e
+           l'interazione IX2 gli scrive `height: 0px` invece di nasconderlo:
+           misurato sul DOM del riferimento il 15/09, `height: 2px` con il
+           bordo visibile su tutti e nove i capitoli. Togliendolo la sezione
+           usciva 18px più bassa dell'originale. Si riproduce. */
         className="-mt-[40px] overflow-hidden rounded-b-media border border-solid border-bianco bg-sfondo"
       >
         {/* Chiave composta con l'indice, non il testo: su `/producer-course`

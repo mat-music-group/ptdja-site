@@ -117,7 +117,9 @@ export function HeroHome() {
       {/* `.container.brands.new-home-2`: `display: none` di base, `flex`
           centrato solo sotto i 480px, dove ripete prezzo, CTA e Trustpilot
           sotto le due strisce di foto. */}
-      <div className="mx-auto hidden w-auto max-w-sito flex-col items-center justify-center max-sm:flex max-sm:overflow-clip max-sm:pb-[10px]">
+      {/* `.container.brands` a ≤479 ha `padding-top: 10px` oltre ai 10 sotto:
+          mancava, e il blocco misurava 147px invece di 157. */}
+      <div className="mx-auto hidden w-auto max-w-sito flex-col items-center justify-center max-sm:flex max-sm:overflow-clip max-sm:pb-[10px] max-sm:pt-[10px]">
         <PrezzoGeo paese={paese} />
         {/* `.hero-button-group.new-home-2.sign-up-now` */}
         <div className="flex items-center justify-center gap-4">

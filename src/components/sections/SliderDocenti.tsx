@@ -48,15 +48,29 @@ type ProprietaSliderDocenti = {
   readonly slide: readonly SlideDocente[];
   /** Nome del carosello per screen reader e tastiera. */
   readonly etichetta?: string;
+  /**
+   * `true` dove sotto i 480px i 30px sopra restano. Nel foglio
+   * `.introduction-content…slider-block { padding-top: 30px }` non ha nessuna
+   * variante responsive: ad azzerarlo a ≤479 sono `.slider-block.dj-course` e
+   * `.slider-block.warmup-landing`, cioè le pagine corso. Sulla home quelle
+   * due classi non ci sono e i 30px restano. Default `false`, cioè il
+   * comportamento delle pagine corso.
+   */
+  readonly paddingSopraSotto480?: boolean;
 };
 
 export function SliderDocenti({
   slide,
   etichetta = "Teachers",
+  paddingSopraSotto480 = false,
 }: ProprietaSliderDocenti) {
   return (
     /* `.introduction-content.homepage.new-home-2.teachers.slider-block.dj-course` */
-    <div className="flex w-full flex-col items-center justify-between overflow-hidden bg-sfondo pt-[30px] leading-[170%] max-sm:gap-[30px] max-sm:pt-0">
+    <div
+      className={`flex w-full flex-col items-center justify-between overflow-hidden bg-sfondo pt-[30px] leading-[170%] max-sm:gap-[30px] ${
+        paddingSopraSotto480 ? "" : "max-sm:pt-0"
+      }`}
+    >
       {/* `.introduction-left-content.new-home-2` */}
       <div className="flex w-[90%] flex-col items-center justify-center gap-4 overflow-hidden max-sm:w-full max-sm:gap-0 2xl:max-w-sito">
         <SliderWebflow

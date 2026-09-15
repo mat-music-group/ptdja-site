@@ -130,6 +130,10 @@ export default function MixMasteringCoursePage() {
         tabCosaImparerai={CONTENUTO.tabCosaImparerai}
         accordionTitolo={CONTENUTO.accordionTitoloDesktop}
         accordionTitoloBr={1}
+        /* `strong.bold-text-5.program { line-height: 24px }`: solo qui lo
+           strong ha la classe `program`. Con l'interlinea ereditata (7px) e
+           un `<br>` solo il sottotitolo finiva sopra il titolo. */
+        accordionTitoloInterlinea={24}
         accordionSottotitolo={CONTENUTO.accordionSottotitoloDesktop}
         capitoli={CONTENUTO.capitoli}
         cosaImparerai={COSA_IMPARERAI_DESKTOP}
@@ -154,6 +158,11 @@ export default function MixMasteringCoursePage() {
         tabCosaImparerai={CONTENUTO.tabCosaImparerai}
         accordionTitolo={CONTENUTO.accordionTitoloMobile}
         accordionSottotitolo={CONTENUTO.accordionSottotitoloMobile}
+        /* Solo qui: sul sito i sei capitoli di questa variante sono aperti al
+           caricamento, perché l'interazione che li chiuderebbe non è
+           agganciata. La variante `#program` della stessa pagina resta
+           chiusa. Vedi la prop in `ContenutoCorso`. */
+        capitoliApertiAllInizio
         capitoli={CONTENUTO.capitoli}
         cosaImparerai={COSA_IMPARERAI_MOBILE}
         iconaFreccia={CONTENUTO.iconaFreccia}
@@ -258,7 +267,10 @@ export default function MixMasteringCoursePage() {
 
       {/* ── 17 e 18. "Book a free call" e FAQ (condivisi) ──────────── */}
       <BookACall />
-      <Faq domande={DOMANDE} />
+      {/* `tutteAperte`: solo su questa pagina la FAQ è già aperta al
+          caricamento, perché l'interazione che scriverebbe `height: 0px` sulle
+          risposte non è agganciata. Vedi la prop in `Faq`. */}
+      <Faq domande={DOMANDE} tutteAperte />
 
       <SiteFooter />
       <ExitIntentPopup />

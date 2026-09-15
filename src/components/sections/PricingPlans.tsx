@@ -197,7 +197,11 @@ function CartaPiano({
           <div className="pb-[2px] text-[26px] font-semibold">{piano.nome}</div>
           {piano.badge ? (
             <div
-              className={`flex items-center justify-center rounded-etichetta px-[10px] py-[6px] text-sm font-semibold ${
+              /* `.most_popular`: 14px senza interlinea propria, quindi
+                 prende l'`1` di `.plan_header_top`; raggio 8px, non 16.
+                 Con `text-sm` (interlinea 20px) il badge misurava 34px
+                 invece di 28 e la card cresceva di 6. */
+              className={`flex items-center justify-center rounded-lg px-[10px] py-[6px] text-[14px] font-semibold ${
                 piano.badge.tono === "mint"
                   ? "border border-mint-acceso bg-[#2d2d2d] text-mint-acceso"
                   : "bg-giallo-badge text-carta"
@@ -254,7 +258,13 @@ function CartaPiano({
               evento.currentTarget
             )
           }
-          className="flex w-full items-center justify-center rounded-pillola bg-mint-acceso px-5 py-[10px] text-base font-medium text-carta transition-colors hover:bg-bianco"
+          /* `.button_primary-2.is_monthly`: 16px peso 500 senza interlinea
+             propria, quindi il 170% ereditato dal `body` (27.2px), e 14px
+             peso 600 a ≤479. Con `text-base` (24px) il bottone misurava 44px
+             invece di 49. Il bordo di 1px arriva da
+             `.button_primary-2.is_monthly.cta_stroke` (`1px solid #414141`):
+             sotto il fondo mint non si vede ma vale 2px di altezza. */
+          className="flex w-full items-center justify-center rounded-pillola border border-solid border-[#414141] bg-mint-acceso px-5 py-[10px] text-[16px] font-medium text-carta transition-colors hover:bg-bianco max-sm:text-[14px] max-sm:font-semibold 2xl:font-semibold"
         >
           {LISTINO.ctaPrefisso}
           {valuta.simbolo}
@@ -344,8 +354,12 @@ function CartaPiano({
         })}
       </ul>
 
-      {/* "Best For" + la frase, con le parole in mint. */}
-      <div className="mt-[30px] border-t border-bordo pt-[10px] text-[18px] font-light leading-[18px] text-testo-tenue">
+      {/* "Best For" + la frase, con le parole in mint.
+          `.text-block-25.best-for`: 20px di margine sopra e interlinea 20px,
+          che da 1440 in su diventano 30 e 18; a ≤479 l'interlinea torna 18.
+          I 2px sotto vengono da `.text-block-25`, che li dichiara nel blocco
+          base: mancavano su ogni card. */}
+      <div className="mt-5 border-t border-bordo pb-[2px] pt-[10px] text-[18px] font-light leading-5 text-testo-tenue max-sm:leading-[18px] 2xl:mt-[30px] 2xl:leading-[18px]">
         <span className="font-normal leading-[30px] text-bianco">
           {piano.bestFor.titolo}
         </span>

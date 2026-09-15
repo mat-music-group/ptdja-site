@@ -72,8 +72,10 @@ export function ReverseFunnel({
         </h2>
 
         {/* `p.cta-p._w-520.new-home-2.dj-course.mm-page`: `._w-520` è
-            `width: 100%; max-width: 520px`. */}
-        <p className="m-0 w-full max-w-[520px] text-center text-[15px] font-light leading-[180%] tracking-[-0.4px] text-bianco">
+            `width: 100%; max-width: 520px` e dichiara `font-size: 16px` nel
+            blocco base, che batte la regola a ≤479 dove `.cta-p` scende a 15.
+            Con 15px il paragrafo misurava 81px invece di 86. */}
+        <p className="m-0 w-full max-w-[520px] text-center text-[16px] font-light leading-[180%] tracking-[-0.4px] text-bianco">
           {paragrafoPrima}
           <strong className="font-bold">{paragrafoEvidenziato}</strong>
           {paragrafoDopo}
@@ -89,7 +91,7 @@ export function ReverseFunnel({
           {/* `.pricing-card-top…dj-course-page.only-text`: fondo trasparente,
               nessun bordo, padding 0 a ≤479. */}
           <div className="rounded-t-[25px] border-0 bg-transparent p-0">
-            <p className="m-0 w-full max-w-[520px] text-[15px] font-light leading-[180%] tracking-[-0.4px] text-bianco">
+            <p className="m-0 w-full max-w-[520px] text-[16px] font-light leading-[180%] tracking-[-0.4px] text-bianco">
               {paragrafoCarta}
             </p>
           </div>

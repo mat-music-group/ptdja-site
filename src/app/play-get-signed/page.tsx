@@ -193,7 +193,10 @@ export default function PlayGetSignedPage() {
         classeFrecce="hidden max-lg:flex"
         className="flex w-full items-center justify-center overflow-visible bg-sfondo px-[50px] py-[25px] max-sm:overflow-hidden max-sm:pb-0 max-sm:pt-5"
         classeMask="w-[1050px] max-w-full max-sm:w-full"
-        classeSlide="px-5 max-sm:px-[5px]"
+        /* Sotto i 480px `.slide-8` ha `width: 100%` e `margin: 0 5px`, non
+           padding: con `px-[5px]` la card era larga 280 invece di 290 e
+           l'immagine, a proporzione fissa, 18px più bassa. */
+        classeSlide="px-5 max-sm:mx-[5px] max-sm:px-0"
         slide={COME_FUNZIONA.passi.map((passo, i) => (
           <div
             key={passo.immagine.src}
@@ -269,6 +272,10 @@ export default function PlayGetSignedPage() {
         titoloPrima={SUCCESS_STORIES.titoloPrima}
         titoloEvidenziato={SUCCESS_STORIES.titoloEvidenziato}
         immagini={SUCCESS_STORIES.immagini}
+        /* Qui il contenitore è `.container.success-wall.new-home-2` e la
+           maschera `.mask-3.talent-pool`: a ≤479 i 30px di aria in fondo che
+           la home ha non ci sono. */
+        spaziSottoMobile={false}
       />
 
       {/* ── 7. "The Future Talent Awards®" ───────────────────────────

@@ -92,11 +92,11 @@ export type VoceMetaCorso = {
 export const META_CORSO_DESKTOP: readonly VoceMetaCorso[] = [
   {
     icona: "/webflow/shared/icon-level-02-academy-template.png",
-    etichetta: "Level: ",
+    etichetta: "Level:\u00a0",
     valore: "Advanced",
   },
-  { icona: "/webflow/shared/reloj.png", etichetta: "Duration: ", valore: "5+ h" },
-  { icona: "/webflow/shared/video.png", etichetta: "Videos: ", valore: "41" },
+  { icona: "/webflow/shared/reloj.png", etichetta: "Duration:\u00a0", valore: "5+ h" },
+  { icona: "/webflow/shared/video.png", etichetta: "Videos:\u00a0", valore: "41" },
   { icona: "/webflow/shared/approved.png", etichetta: "Official Certificate" },
   {
     icona: "/webflow/shared/path-svgrepo-com-2.svg",
@@ -118,11 +118,11 @@ export const META_CORSO_DESKTOP: readonly VoceMetaCorso[] = [
 export const META_CORSO_MOBILE: readonly VoceMetaCorso[] = [
   {
     icona: "/webflow/shared/icon-level-02-academy-template.png",
-    etichetta: "Level: ",
+    etichetta: "Level:\u00a0",
     valore: "Advanced",
   },
-  { icona: "/webflow/shared/reloj.png", etichetta: "Duration: ", valore: "5+ h" },
-  { icona: "/webflow/shared/video.png", etichetta: "Videos: ", valore: "24" },
+  { icona: "/webflow/shared/reloj.png", etichetta: "Duration:\u00a0", valore: "5+ h" },
+  { icona: "/webflow/shared/video.png", etichetta: "Videos:\u00a0", valore: "24" },
   { icona: "/webflow/shared/approved.png", etichetta: "Official Certification" },
   {
     icona: "/webflow/shared/path-svgrepo-com-2.svg",
@@ -624,15 +624,52 @@ export const DOMANDE: readonly DomandaFaq[] = [
     domanda: "Can I get feedback on my mix?",
     risposta: "Yes. Through live sessions and Talent Pool submissions.",
   },
+  /* Le due risposte che nell'HTML hanno `<strong>` (e la seconda anche due
+     `<br>`): arrivano come righe di segmenti invece che come stringa. */
   {
     domanda: "Is mastering included in all subscription plans?",
-    risposta:
-      "No — the Mixing & Mastering course is only available in the Elite (3-course) plan. It’s an advanced course designed for students who want full access to the entire learning path.",
+    risposta: [
+      [
+        { grassetto: false, testo: "No — the " },
+        {
+          grassetto: true,
+          testo:
+            "Mixing & Mastering course is only available in the Elite (3-course) plan",
+        },
+        {
+          grassetto: false,
+          testo:
+            ". It’s an advanced course designed for students who want full access to the entire learning path.",
+        },
+      ],
+    ],
   },
   {
     domanda: "Do I need the full access plan to get everything?",
-    risposta:
-      "All subscription plans include the same features: live sessions, AI tutors, contests, feedback, downloads, and community access. However, to unlock the Mixing & Mastering course and its exclusive content, you’ll need the Elite plan (3-course access) — which gives you the full educational experience from DJing to final mastering.",
+    risposta: [
+      [
+        {
+          grassetto: false,
+          testo:
+            "All subscription plans include the same features: live sessions, AI tutors, contests, feedback, downloads, and community access.",
+        },
+      ],
+      [],
+      [
+        { grassetto: false, testo: "However, to unlock the " },
+        {
+          grassetto: true,
+          testo: "Mixing & Mastering course and its exclusive content",
+        },
+        { grassetto: false, testo: ", you’ll need the " },
+        { grassetto: true, testo: "Elite plan (3-course access)" },
+        {
+          grassetto: false,
+          testo:
+            " — which gives you the full educational experience from DJing to final mastering.",
+        },
+      ],
+    ],
   },
   {
     domanda: "Is certification included in the price?",

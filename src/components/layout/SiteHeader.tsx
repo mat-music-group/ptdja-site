@@ -148,7 +148,13 @@ export function SiteHeader() {
                     href={voce.href}
                     aria-current={attiva(voce.href)}
                     onClick={suClickPrincipale}
-                    className="block py-2 text-base font-normal capitalize tracking-[-0.4px] text-bianco opacity-85 transition-colors hover:text-mint"
+                    /* `text-[16px]` e non `text-base`: `.nav-link-2` non
+                       dichiara l'interlinea e prende il 182% della regola
+                       globale `li` (29.12px), mentre `text-base` imporrebbe
+                       24px. Con 24px la voce misurava 40px invece di 45 e il
+                       logo, centrato nella riga, stava 3px più in alto che
+                       sul sito. */
+                    className="block py-2 text-[16px] font-normal capitalize tracking-[-0.4px] text-bianco opacity-85 transition-colors hover:text-mint"
                   >
                     {voce.testo}
                   </Link>
@@ -203,7 +209,13 @@ export function SiteHeader() {
                     href={voce.href}
                     aria-current={attiva(voce.href)}
                     onClick={suClickPrincipale}
-                    className="block py-2 text-base font-normal capitalize tracking-[-0.4px] text-bianco opacity-85 transition-colors hover:text-mint"
+                    /* `text-[16px]` e non `text-base`: `.nav-link-2` non
+                       dichiara l'interlinea e prende il 182% della regola
+                       globale `li` (29.12px), mentre `text-base` imporrebbe
+                       24px. Con 24px la voce misurava 40px invece di 45 e il
+                       logo, centrato nella riga, stava 3px più in alto che
+                       sul sito. */
+                    className="block py-2 text-[16px] font-normal capitalize tracking-[-0.4px] text-bianco opacity-85 transition-colors hover:text-mint"
                   >
                     {voce.testo}
                   </Link>

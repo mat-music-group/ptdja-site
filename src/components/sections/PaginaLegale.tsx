@@ -19,6 +19,12 @@ import type { TestoLegale } from "@/testi/tipi";
  * bianco, giustificato, 30px di margine sotto, e prende corpo 20px e
  * interlinea 180% dalla regola globale `p` del sito.
  *
+ * ⚠️ Le misure verticali scalano con i breakpoint: senza le varianti la
+ * pagina era 95px più alta dell'originale sul telefono (misurato il 15/09).
+ * `.section-padding` sopra 120/80/60/50; `.section-title` gap 30/30/30/20 e
+ * `padding-bottom` 30/50/40/0; `.section-title-heading` 56/50/45/32;
+ * `.container` a ≤479 aggiunge `padding-bottom: 10px`.
+ *
  * Due animazioni Webflow, entrambe su `SCROLL_INTO_VIEW`:
  * - il titolo entra con `slideInBottom` (`data-w-id` diverso per pagina);
  * - il testo entra con `a-113` "Zoom In 0.3s": parte a scala .97 e opacità 0,
@@ -31,16 +37,19 @@ type ProprietaPaginaLegale = {
 
 export function PaginaLegale({ testo }: ProprietaPaginaLegale) {
   return (
-    <section className="flex items-start justify-start bg-sfondo pb-0 pt-sezione max-sm:px-[30px] max-sm:text-center">
-      <div className="mx-auto flex w-full max-w-sito flex-col items-center justify-center px-[30px] max-sm:px-0">
+    <section className="flex items-start justify-start bg-sfondo pb-0 pt-sezione max-lg:pt-20 max-md:pt-[60px] max-sm:px-[30px] max-sm:pt-[50px] max-sm:text-center">
+      <div className="mx-auto flex w-full max-w-sito flex-col items-center justify-center px-[30px] max-sm:px-0 max-sm:pb-[10px]">
         <RivelaAllaVista>
-          <div className="flex flex-col items-center gap-[30px] pb-[30px] text-center">
-            <p className="m-0 text-base font-light uppercase tracking-[3px] text-bianco opacity-70">
+          <div className="flex flex-col items-center gap-[30px] pb-[30px] text-center max-lg:pb-[50px] max-md:pb-10 max-sm:gap-5 max-sm:pb-0">
+            {/* `.section-subtitle`: 16px peso 300 senza interlinea propria,
+                quindi eredita il 180% del `p` globale. Scritto come valore
+                arbitrario perché `text-base` porterebbe con sé 24px. */}
+            <p className="m-0 text-[16px] font-light uppercase leading-[180%] tracking-[3px] text-bianco opacity-70">
               {testo.eyebrow}
             </p>
-            {/* 56px, e 32px sotto i 480px: `.section-title-heading` nel blocco
-                `max-width: 479px` del foglio Webflow. */}
-            <h2 className="text-[56px] font-normal leading-[130%] tracking-[-2.5px] text-bianco max-sm:text-[32px]">
+            {/* `.section-title-heading`: 56px, 50px a ≤991, 45px a ≤767,
+                32px a ≤479. */}
+            <h2 className="text-[56px] font-normal leading-[130%] tracking-[-2.5px] text-bianco max-lg:text-[50px] max-md:text-[45px] max-sm:text-[32px]">
               {testo.titoloInGrassetto ? (
                 <strong>{testo.titolo}</strong>
               ) : (

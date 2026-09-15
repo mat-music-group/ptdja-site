@@ -48,16 +48,32 @@ type ProprietaSuccessStories = {
   /** Seconda riga, in grassetto (`span.text-span-102`). */
   readonly titoloEvidenziato: string;
   readonly immagini: readonly ImmagineSuccesso[];
+  /**
+   * `false` su `/play-get-signed`, dove sotto i 480px i 30px di aria in fondo
+   * spariscono. Le due pagine non hanno le stesse classi: sulla home il
+   * contenitore è `.container.success-wall` (10px sotto, da `.container`) e la
+   * maschera `.mask-3` (20px sotto); su play-get-signed sono
+   * `.container.success-wall.new-home-2` e `.mask-3.talent-pool`, che a ≤479
+   * portano tutti e due i padding a 0. Default `true`, cioè la home.
+   */
+  readonly spaziSottoMobile?: boolean;
 };
 
 export function SuccessStories({
   titoloPrima,
   titoloEvidenziato,
   immagini,
+  spaziSottoMobile = true,
 }: ProprietaSuccessStories) {
   return (
     <section className="bg-sfondo pt-sezione max-lg:pt-20 max-md:pt-[60px] max-sm:px-[30px] max-sm:pt-[50px] max-sm:text-center">
-      <div className="mx-auto flex w-auto max-w-sito flex-col items-center justify-end bg-sfondo px-[30px] max-sm:px-0">
+      {/* `.container` a ≤479 aggiunge `padding-bottom: 10px`, che
+          `.container.success-wall.new-home-2` riporta a 0. */}
+      <div
+        className={`mx-auto flex w-auto max-w-sito flex-col items-center justify-end bg-sfondo px-[30px] max-sm:px-0 ${
+          spaziSottoMobile ? "max-sm:pb-[10px]" : ""
+        }`}
+      >
         <div className="mx-auto flex w-full flex-col items-center justify-center gap-1 text-center max-lg:w-[70%] max-md:w-full max-sm:w-full max-sm:gap-5">
           <div className="flex flex-col items-center gap-[30px] pb-[30px] text-center max-lg:pb-[50px] max-md:pb-10 max-sm:gap-5 max-sm:pb-0">
             <h2 className="m-0 text-[56px] font-light leading-[130%] tracking-[-2.5px] text-bianco max-lg:text-[50px] max-md:text-[45px] max-sm:text-[32px]">
@@ -76,7 +92,10 @@ export function SuccessStories({
             paddingPallini={40}
             classePallini="max-sm:hidden"
             className="w-full bg-transparent"
-            classeMask="pb-5 max-sm:pb-0"
+            /* `.mask-3 { padding-bottom: 20px }` vale anche sotto i 480px:
+               a riportarlo a 0 lì è `.mask-3.talent-pool`, che ce l'ha solo
+               play-get-signed. */
+            classeMask={spaziSottoMobile ? "pb-5" : "pb-5 max-sm:pb-0"}
             classeSlide="px-[10px] max-sm:px-[10px]"
             slide={immagini.map((immagine) => (
               <Image

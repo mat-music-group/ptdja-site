@@ -435,20 +435,153 @@ export const DOMANDE: readonly DomandaFaq[] = [
     risposta:
       "Absolutely. Whether you're into techno, house, hip hop, EDM, afrobeat or experimental, the skills you learn apply across all genres.",
   },
+  /* Le tre risposte che nell'HTML hanno `<strong>` e `<br>`: arrivano come
+     righe di segmenti invece che come stringa, perché un `\n` dentro una
+     stringa in HTML vale uno spazio e quei capoverso sparivano. Gli `‍`
+     (ZWJ) sono nell'HTML del sito: si copiano. */
   {
     domanda: "How many lessons are included?",
-    risposta:
-      "Each course includes structured video lessons, practical exercises, downloadable resources, and tests. The total number of lessons depends on your plan:\n\n✅ 1 course: over 130 lessons\n✅ 2 courses: over 330 lessons\n✅ 3 full paths: over 350 lessons, covering DJing, Production & Mastering.",
+    risposta: [
+      [
+        {
+          grassetto: false,
+          testo:
+            "Each course includes structured video lessons, practical exercises, downloadable resources, and tests. The total number of lessons depends on your plan:",
+        },
+      ],
+      [],
+      [
+        { grassetto: false, testo: "✅ " },
+        { grassetto: true, testo: "1 course" },
+        { grassetto: false, testo: ": over " },
+        { grassetto: true, testo: "130 lessons" },
+      ],
+      [
+        { grassetto: false, testo: "✅ " },
+        { grassetto: true, testo: "2 courses" },
+        { grassetto: false, testo: ": over " },
+        { grassetto: true, testo: "330 lessons" },
+      ],
+      [
+        { grassetto: false, testo: "✅ " },
+        { grassetto: true, testo: "3 full paths" },
+        { grassetto: false, testo: ": over " },
+        { grassetto: true, testo: "350 lessons" },
+        {
+          grassetto: false,
+          testo: ", covering DJing, Production & Mastering.",
+        },
+      ],
+    ],
   },
   {
     domanda: "What’s included in a subscription?",
-    risposta:
-      "Every subscription — no matter which plan you choose — gives you access to a powerful set of tools and resources to support your journey as a DJ and Music Producer.\n\n‍Included in every plan:\n‍\n‍• 24/7 support through AI tutors, available anytime for guidance\n• Weekly live mentoring sessions with professional DJs and producers\n• Downloadable templates, guides, sample packs, and project files\n• Weekly perks with fresh creative content, challenges, and bonuses\n• Full access from both desktop and mobile\n• Multilingual subtitles (English, French, Spanish, Portuguese)\n• An official Academy Certificate for each course you complete\n• Entry to exclusive DJ contests to compete and gain visibility\n• Access to our Label Radar, where producers can get discovered\n\nThe only difference?\nThe more courses your plan includes, the more lessons, skill areas, and career opportunities you unlock — from DJing, to production, to professional mastering.\nChoose your plan based on how far you want to go — and grow.",
+    risposta: [
+      [
+        {
+          grassetto: false,
+          testo:
+            "Every subscription — no matter which plan you choose — gives you access to a powerful set of tools and resources to support your journey as a DJ and Music Producer.",
+        },
+      ],
+      [],
+      [
+        { grassetto: false, testo: "‍" },
+        { grassetto: true, testo: "Included in every plan:" },
+      ],
+      [{ grassetto: true, testo: "‍" }],
+      [
+        { grassetto: true, testo: "‍• 24/7 support" },
+        { grassetto: false, testo: " through " },
+        { grassetto: true, testo: "AI tutors" },
+        { grassetto: false, testo: ", available anytime for guidance" },
+      ],
+      [
+        { grassetto: true, testo: "• Weekly live mentoring" },
+        {
+          grassetto: false,
+          testo: " sessions with professional DJs and producers",
+        },
+      ],
+      [
+        { grassetto: true, testo: "• Downloadable templates" },
+        {
+          grassetto: false,
+          testo: ", guides, sample packs, and project files",
+        },
+      ],
+      [
+        { grassetto: true, testo: "• Weekly perks " },
+        {
+          grassetto: false,
+          testo: "with fresh creative content, challenges, and bonuses",
+        },
+      ],
+      [
+        { grassetto: true, testo: "•" },
+        { grassetto: false, testo: " Full access from both " },
+        { grassetto: true, testo: "desktop and mobile" },
+      ],
+      [
+        { grassetto: true, testo: "• Multilingual subtitles" },
+        {
+          grassetto: false,
+          testo: " (English, French, Spanish, Portuguese)",
+        },
+      ],
+      [
+        { grassetto: true, testo: "• " },
+        { grassetto: false, testo: "An " },
+        { grassetto: true, testo: "official Academy Certificate" },
+        { grassetto: false, testo: " for each course you complete" },
+      ],
+      [
+        { grassetto: true, testo: "• " },
+        {
+          grassetto: false,
+          testo: "Entry to exclusive DJ contests to compete and ",
+        },
+        { grassetto: true, testo: "gain visibility" },
+      ],
+      [
+        { grassetto: true, testo: "• Access to our Label Radar" },
+        { grassetto: false, testo: ", where producers can get discovered" },
+      ],
+      [],
+      [{ grassetto: true, testo: "The only difference?" }],
+      [
+        {
+          grassetto: false,
+          testo:
+            "The more courses your plan includes, the more lessons, skill areas, and career opportunities you unlock — from DJing, to production, to professional mastering.",
+        },
+      ],
+      [
+        {
+          grassetto: false,
+          testo:
+            "Choose your plan based on how far you want to go — and grow.",
+        },
+      ],
+    ],
   },
   {
     domanda: "What do I need to get started?",
-    risposta:
-      "For DJing: just a laptop and internet connection. \nFor Production: a computer and headphones are enough.",
+    risposta: [
+      [
+        { grassetto: false, testo: "For " },
+        { grassetto: true, testo: "DJing" },
+        {
+          grassetto: false,
+          testo: ": just a laptop and internet connection. ",
+        },
+      ],
+      [
+        { grassetto: false, testo: "For " },
+        { grassetto: true, testo: "Production" },
+        { grassetto: false, testo: ": a computer and headphones are enough." },
+      ],
+    ],
   },
   {
     domanda: "Can I access the platform on any device?",

@@ -101,6 +101,16 @@ export type ProprietaHeroCorso = {
     readonly eyebrowMargineMobile?: number;
     readonly titoloPaddingBottom?: number;
   };
+  /**
+   * `false` dove sotto i 480px i 35px sotto il contenitore dell'immagine non
+   * ci sono. Webflow ha duplicato quel contenitore pagina per pagina e le
+   * copie non si comportano uguale: `.container-68` (producer-course) e
+   * `.container-70` (mix-mastering-course) tengono i `padding-bottom: 35px`
+   * del blocco a ≤479, mentre `.container-66.header-space--mob` (dj-course)
+   * li riporta a 0. Default `true`, cioè il comportamento di due pagine su
+   * tre.
+   */
+  readonly spazioSottoImmagineMobile?: boolean;
 };
 
 export function HeroCorso({
@@ -112,6 +122,7 @@ export function HeroCorso({
   trustpilot,
   immagine,
   spaziatura,
+  spazioSottoImmagineMobile = true,
 }: ProprietaHeroCorso) {
   const paese = usePaese();
 
@@ -148,13 +159,17 @@ export function HeroCorso({
         </p>
       </div>
 
-      {/* `.container-66/-68.header-space--mob.w-container`.
-          I 35px sotto i 480px sono il `padding-bottom` che il foglio mette su
-          `.container-66` e `.container-68` a ≤479: separano l'immagine dal
-          blocco prezzo + CTA, che sul telefono è una sezione sorella e non
-          sta dentro questo contenitore. Mancavano, e valgono 35px di altezza
-          su tutte le pagine corso. */}
-      <div className="mx-auto w-auto max-w-sito px-[30px] text-center max-lg:max-w-[768px] max-md:max-w-[600px] max-sm:px-0 max-sm:pb-[35px]">
+      {/* `.container-66/-68/-70.header-space--mob.w-container`.
+          I 35px sotto i 480px sono il `padding-bottom` che il foglio mette a
+          ≤479: separano l'immagine dal blocco prezzo + CTA, che sul telefono
+          è una sezione sorella e non sta dentro questo contenitore. Su
+          dj-course però `.container-66.header-space--mob` li riazzera: da lì
+          `spazioSottoImmagineMobile={false}`. */}
+      <div
+        className={`mx-auto w-auto max-w-sito px-[30px] text-center max-lg:max-w-[768px] max-md:max-w-[600px] max-sm:px-0 ${
+          spazioSottoImmagineMobile ? "max-sm:pb-[35px]" : ""
+        }`}
+      >
         {/* `.hero-wrapper-8` */}
         <div className="flex items-center justify-between gap-[50px] max-lg:flex-col max-lg:gap-20 max-lg:pb-[50px] max-md:pb-5 max-sm:gap-[50px]">
           {/* `.hero-left-block-3` */}

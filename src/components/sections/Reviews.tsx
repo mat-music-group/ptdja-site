@@ -48,7 +48,12 @@ export function Reviews() {
           <br />
         </h2>
 
-        <div className="overflow-hidden pt-0">
+        {/* `.testimonial-slider-wrapper { padding-top: 64px; overflow: hidden }`,
+            senza varianti responsive nel foglio: sono i 64px che mancavano
+            fra il titolo e la prima card Feedspace su tutte e sei le pagine,
+            desktop e telefono (misurato −64/−65 prima, il 15/09). Non è aria
+            interna del widget. */}
+        <div className="overflow-hidden pt-[64px]">
           {/* Feedspace: il muro di testimonianze video. Il `<div>` vuoto è il
               contenitore che lo script riempie, esattamente come su Webflow. */}
           <div className="feedspace-embed" data-id={RECENSIONI.feedspaceId} />

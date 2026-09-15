@@ -89,9 +89,8 @@ export function SliderIpad({ slide }: ProprietaSliderIpad) {
 function SlideContenuto({ slide }: { readonly slide: SlideIpad }) {
   return (
     /* Sotto i 480px `.slidecontent.new-home-2.opportunities-section` torna
-       `display: block` (non flex): l'immagine ridiventa in linea e la riga che
-       la contiene porta con sé lo spazio sotto la linea di base. Sono gli 8px
-       che separano questa slide da quella del sito. */
+       `display: block` (non flex) e l'immagine, `inline-block` sul sito,
+       ridiventa in linea. */
     <div className="relative mx-5 flex h-full min-w-[200px] flex-1 flex-col overflow-visible rounded-[12px] border-0 p-[10px] text-center max-sm:ml-auto max-sm:mr-0 max-sm:block max-sm:min-w-0 max-sm:rounded-media max-sm:p-5">
       <Image
         src={slide.immagine.src}
@@ -99,7 +98,12 @@ function SlideContenuto({ slide }: { readonly slide: SlideIpad }) {
         width={slide.immagine.larghezza}
         height={slide.immagine.altezza}
         sizes="(max-width: 479px) 100vw, 350px"
-        className="h-auto max-w-full rounded-[20px] max-sm:rounded-media max-sm:object-contain"
+        /* `max-sm:inline-block`: sul sito `.image-42` è `inline-block` (la
+           preflight di Tailwind mette `display: block` su ogni `img`), e
+           dentro il `.slidecontent` che a ≤479 torna `display: block` quella
+           riga porta con sé lo spazio sotto la linea di base. Sono gli 8px
+           che mancavano. */
+        className="h-auto max-w-full rounded-[20px] max-sm:inline-block max-sm:rounded-media max-sm:object-contain"
       />
 
       {/* `p.paragraph.home-trustpilot.new-home-2.testo-left`: il peso è sulla
@@ -113,7 +117,11 @@ function SlideContenuto({ slide }: { readonly slide: SlideIpad }) {
       {/* `p.cta-p._w-520.new-home-2.opportunities-section`: `._w-520` è
           `width: 100%; max-width: 520px` (qui la slide è più stretta, quindi
           il limite non morde, ma la classe c'è). */}
-      <p className="m-0 w-full max-w-[520px] pb-0 text-left text-base font-light leading-[180%] tracking-[-0.4px] text-bianco opacity-75 max-sm:text-[15px] max-sm:opacity-100">
+      {/* Il corpo resta 16px anche sotto i 480px: la regola a ≤479 che porta
+          `.cta-p` a 15px ha una classe sola e perde contro `.cta-p._w-520`,
+          che dichiara `font-size: 16px` nel blocco base. Con 15px il
+          paragrafo misurava 108px invece di 115. */}
+      <p className="m-0 w-full max-w-[520px] pb-0 text-left text-base font-light leading-[180%] tracking-[-0.4px] text-bianco opacity-75 max-sm:opacity-100">
         {slide.testo}
         <br />
       </p>

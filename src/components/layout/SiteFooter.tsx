@@ -108,14 +108,26 @@ export function SiteFooter() {
                     {FOOTER.academy.supporto.testo}
                   </FooterLink>
                   {FOOTER.academy.iubenda.map((badge) => (
+                    /* Struttura dell'HTML: `.footer-widget-block` (flex in
+                       colonna, 8px) → `.w-embed` (un blocco) → il link.
+                       Il div interno è di blocco, quindi prende la riga da
+                       27px del corpo del sito e il badge, `inline-block` e
+                       alto 22px, ci sta dentro. Con il link figlio diretto
+                       del flex il blocco misurava 24px e il footer usciva
+                       10px più corto dell'originale su ogni pagina.
+                       Le misure del badge (11px su interlinea 13.75 e 4px di
+                       padding) sono quelle che `iubenda.js` applica sul sito:
+                       lette dal DOM live del riferimento il 15/09. */
                     <div key={badge.testo} className="flex flex-col gap-2">
-                      <a
-                        href={badge.href}
-                        title={badge.title}
-                        className="iubenda-black iubenda-noiframe iubenda-embed self-start rounded bg-nero px-2 py-1 text-xs font-bold text-bianco max-md:self-center"
-                      >
-                        {badge.testo}
-                      </a>
+                      <div>
+                        <a
+                          href={badge.href}
+                          title={badge.title}
+                          className="iubenda-black iubenda-noiframe iubenda-embed inline-block rounded bg-nero p-[4px] text-[11px] font-bold leading-[13.75px] text-bianco"
+                        >
+                          {badge.testo}
+                        </a>
+                      </div>
                     </div>
                   ))}
                 </div>

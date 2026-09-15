@@ -11,10 +11,20 @@ import { LOGO } from "@/testi/condivisi";
  * si riproduce (regola numero uno).
  *
  * Non è un client component: non c'è niente da cliccare che richieda stato.
+ *
+ * Misure da `.header-2` e `.header-2.sticky-bg`: 92px di altezza con 22px
+ * sopra e sotto, 80px con 24px a ≤991.
+ *
+ * ⚠️ A ≤479 `.header-2.sticky-bg` torna `position: absolute` (è
+ * `.header-2.sticky-bg.new-home-2`, cioè l'header nuovo, a restare `sticky`).
+ * Fuori dal flusso l'header non spinge giù la pagina e copre l'eyebrow della
+ * sezione sotto: sullo screenshot di riferimento di `recess` la parola
+ * "POLICY" non si vede, coperta dal fondo dell'header. Riprodotto com'è:
+ * senza questo la pagina era 92px più alta.
  */
 export function SiteHeaderLegacy() {
   return (
-    <div className="sticky inset-x-0 top-0 z-[9999] h-header w-full bg-sfondo py-[22px]">
+    <div className="sticky inset-x-0 top-0 z-[9999] h-header w-full bg-sfondo py-[22px] max-lg:h-20 max-lg:py-6 max-sm:absolute">
       <div className="mx-auto w-full max-w-sito px-[30px] max-lg:max-w-[768px] max-md:max-w-[600px]">
         <div className="flex w-full items-center justify-between">
           <a href="#" className="flex min-w-0 shrink" aria-label="Pete Tong DJ Academy">

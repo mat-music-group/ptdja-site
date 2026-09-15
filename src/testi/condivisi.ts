@@ -7,6 +7,8 @@
  * "lables"). Se una parola sembra sbagliata, è sbagliata sul sito.
  */
 
+import type { RigaTesto } from "@/testi/tipi";
+
 /* ── Header ─────────────────────────────────────────────────────────── */
 
 export type VoceMenu = {
@@ -153,8 +155,12 @@ export const FOOTER_VECCHIO = {
     },
     {
       titolo: "Campus",
-      voci: [
-        { testo: "Login", href: "https://campus.petetong-djacademy.com" },
+      /* Come nel footer nuovo: nell'HTML "Technical Support" sta FUORI dal
+         blocco dei link, quindi prende i 5px di distacco di `.footer-widget`
+         e non i 10px del blocco interno. Si riproduce la struttura, non una
+         più ordinata: accorpandolo la colonna misurava 98px invece di 93. */
+      voci: [{ testo: "Login", href: "https://campus.petetong-djacademy.com" }],
+      vociSciolte: [
         {
           testo: "Technical Support",
           href: "https://campus.petetong-djacademy.com",
@@ -456,7 +462,14 @@ export const BOOK_A_CALL = {
 
 export type DomandaFaq = {
   readonly domanda: string;
-  readonly risposta: string;
+  /**
+   * Una stringa dove la risposta del sito è testo semplice, l'elenco di righe
+   * di `TestoLegale` (segmenti in grassetto o no, una riga per `<br>`) dove
+   * l'HTML ha `<strong>` o `<br>`: succede su due risposte di
+   * `/mix-mastering-course` e tre della home. Le pagine che passano una
+   * stringa non cambiano.
+   */
+  readonly risposta: string | readonly RigaTesto[];
 };
 
 export const FAQ_TITOLO = "FAQ";

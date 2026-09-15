@@ -121,14 +121,11 @@ export default function Home() {
           `SliderDocenti` rende solo il carosello e non accetta figli: qui il
           paragrafo è un fratello subito dopo. Il contenitore è una colonna
           centrata, quindi il risultato a schermo è lo stesso. */}
-      {/* I 30px sopra sono `.introduction-content…slider-block { padding-top:
-          30px }`, che vale anche sotto i 480px: `SliderDocenti` lo azzera lì
-          perché su `/dj-course` il foglio lo azzera davvero
-          (`.slider-block.dj-course`), ma sulla home no. Finché il componente
-          non ha una props per questo, il padding si rimette da qui. */}
-      <div className="max-sm:pt-[30px]">
-        <SliderDocenti slide={DOCENTI.slide} />
-      </div>
+      {/* `paddingSopraSotto480`: i 30px sopra di
+          `.introduction-content…slider-block` valgono anche sotto i 480px.
+          Ad azzerarli lì sono `.slider-block.dj-course` e
+          `.slider-block.warmup-landing`, classi che la home non ha. */}
+      <SliderDocenti slide={DOCENTI.slide} paddingSopraSotto480 />
       {/* Sul sito questo paragrafo è l'ultimo figlio dello stesso contenitore
           del carosello, che sotto i 480px ha `gap: 30px`: 30 di gap più 30 di
           `margin-top`. Qui il carosello è un fratello, quindi i 60px stanno

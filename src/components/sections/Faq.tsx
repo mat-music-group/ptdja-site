@@ -2,9 +2,10 @@
 
 import { motion } from "framer-motion";
 import Image from "next/image";
-import { useState } from "react";
+import { Fragment, useState } from "react";
 import { tracciaFaqAperta } from "@/lib/eventi-mixpanel";
 import { FAQ_ICONA, FAQ_TITOLO, type DomandaFaq } from "@/testi/condivisi";
+import type { RigaTesto } from "@/testi/tipi";
 
 /*
  * La sezione FAQ: `section.faq-section-one…new-home-2`.
@@ -37,12 +38,38 @@ import { FAQ_ICONA, FAQ_TITOLO, type DomandaFaq } from "@/testi/condivisi";
 type ProprietaFaq = {
   readonly domande: readonly DomandaFaq[];
   readonly className?: string;
+  /**
+   * `true` solo su `/mix-mastering-course`, dove sul sito la FAQ è già tutta
+   * aperta al caricamento. Non è una scelta: `.faq-item-content` ha
+   * `display: block` nel foglio e vince su `.w-dropdown-list`, che sarebbe
+   * `display: none`; sulle altre pagine è l'interazione IX2 a scrivere
+   * `height: 0px` sull'attributo `style` di ogni risposta, e su quella pagina
+   * quella interazione non è agganciata (verificato sul DOM del riferimento
+   * il 15/09: `inline: null` lì, `inline: height: 0px` su `/dj-course`).
+   * Effetto: la sezione FAQ misura 1481px invece di 699 sul desktop.
+   * Default `false`, cioè il comportamento di tutte le altre pagine.
+   */
+  readonly tutteAperte?: boolean;
 };
 
-export function Faq({ domande, className = "" }: ProprietaFaq) {
+export function Faq({ domande, className = "", tutteAperte = false }: ProprietaFaq) {
   /* Una sola domanda aperta per volta: è il comportamento del dropdown
-     Webflow, che chiude gli altri quando ne apre uno. */
-  const [aperta, setAperta] = useState<string | null>(null);
+     Webflow, che chiude gli altri quando ne apre uno. Con `tutteAperte` si
+     parte con tutte aperte e ognuna si chiude per conto suo, perché lì il
+     dropdown non ha nessuna interazione che chiuda le altre. */
+  const [aperte, setAperte] = useState<ReadonlySet<string>>(() =>
+    tutteAperte ? new Set(domande.map((voce) => voce.domanda)) : new Set()
+  );
+
+  const commuta = (domanda: string, attiva: boolean) => {
+    setAperte((precedenti) => {
+      if (!tutteAperte) return attiva ? new Set() : new Set([domanda]);
+      const prossime = new Set(precedenti);
+      if (attiva) prossime.delete(domanda);
+      else prossime.add(domanda);
+      return prossime;
+    });
+  };
 
   return (
     /* Lo spazio sotto è quello di `.section-padding`, che il foglio cala a
@@ -65,7 +92,13 @@ export function Faq({ domande, className = "" }: ProprietaFaq) {
 
           <div className="flex w-full max-w-testo flex-col gap-5 overflow-hidden pb-10">
             {domande.map((voce) => {
-              const attiva = aperta === voce.domanda;
+              const attiva = aperte.has(voce.domanda);
+              /* La pillola e la freccia le muove l'interazione IX2, non il
+                 CSS: dove quell'interazione non è agganciata (`tutteAperte`)
+                 restano nere con la punta in giù anche a risposta aperta,
+                 ed è così che si vede sullo screenshot di riferimento di
+                 `/mix-mastering-course`. */
+              const aspettoAperto = tutteAperte ? false : attiva;
               return (
                 <div key={voce.domanda} className="w-full">
                   <button
@@ -78,7 +111,7 @@ export function Faq({ domande, className = "" }: ProprietaFaq) {
                        stato che abbiamo già. */
                     onClick={() => {
                       if (!attiva) tracciaFaqAperta(voce.domanda);
-                      setAperta(attiva ? null : voce.domanda);
+                      commuta(voce.domanda, attiva);
                     }}
                     className="z-10 mb-[25px] flex w-full justify-between border-t border-bianco bg-transparent p-4 text-left"
                   >
@@ -93,7 +126,7 @@ export function Faq({ domande, className = "" }: ProprietaFaq) {
                     </span>
                     <span
                       className={`flex h-[29px] w-[43px] min-w-[43px] items-center justify-center rounded-etichetta p-[5px] transition-colors duration-100 ${
-                        attiva ? "bg-bianco" : "bg-nero"
+                        aspettoAperto ? "bg-bianco" : "bg-nero"
                       }`}
                     >
                       <Image
@@ -102,7 +135,7 @@ export function Faq({ domande, className = "" }: ProprietaFaq) {
                         width={FAQ_ICONA.larghezza}
                         height={FAQ_ICONA.altezza}
                         className={`transition-transform duration-300 ${
-                          attiva ? "rotate-180 invert" : ""
+                          aspettoAperto ? "rotate-180 invert" : ""
                         }`}
                       />
                     </span>
@@ -122,7 +155,7 @@ export function Faq({ domande, className = "" }: ProprietaFaq) {
                   >
                     {/* `.faq-item-content-p`: 16px, 15px a ≤479. */}
                     <p className="m-0 mt-[30px] px-4 pb-5 text-base font-normal leading-[180%] tracking-[-0.4px] text-bianco max-sm:text-[15px]">
-                      {voce.risposta}
+                      <Risposta risposta={voce.risposta} />
                     </p>
                   </motion.div>
                 </div>
@@ -132,5 +165,38 @@ export function Faq({ domande, className = "" }: ProprietaFaq) {
         </div>
       </div>
     </section>
+  );
+}
+
+/*
+ * Il corpo di una risposta. Dove il sito ha testo semplice arriva una stringa
+ * e si rende così com'è; dove ha `<strong>` o `<br>` arriva l'elenco di righe
+ * di `TestoLegale`, una riga per `<br>` e un segmento per ogni tratto in
+ * grassetto. Una riga vuota è un `<br>` senza testo, come sul sito.
+ */
+function Risposta({ risposta }: { readonly risposta: string | readonly RigaTesto[] }) {
+  if (typeof risposta === "string") return <>{risposta}</>;
+
+  return (
+    <>
+      {risposta.map((riga, indiceRiga) => (
+        /* L'indice è una chiave legittima: l'elenco è una costante, non cambia
+           mai ordine e non viene filtrato. */
+        // biome-ignore lint/suspicious/noArrayIndexKey: elenco costante
+        <Fragment key={indiceRiga}>
+          {indiceRiga > 0 ? <br /> : null}
+          {riga.map((segmento, indiceSegmento) => (
+            // biome-ignore lint/suspicious/noArrayIndexKey: elenco costante
+            <Fragment key={indiceSegmento}>
+              {segmento.grassetto ? (
+                <strong>{segmento.testo}</strong>
+              ) : (
+                segmento.testo
+              )}
+            </Fragment>
+          ))}
+        </Fragment>
+      ))}
+    </>
   );
 }

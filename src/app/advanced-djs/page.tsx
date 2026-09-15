@@ -34,18 +34,23 @@ export default function AdvancedDjs() {
     <section className="bg-sfondo pb-0 pt-[108px] max-sm:pt-sezione">
       <TagSocialSenzaCard titolo={ADVANCED_DJS.meta.title} />
 
+      {/* `.container-16` a ≤479 prende `padding-bottom: 35px`. */}
       <div
         id="landing-video"
-        className="mx-auto block w-full max-w-sito px-[30px] text-center"
+        className="mx-auto block w-full max-w-sito px-[30px] text-center max-sm:pb-[35px]"
       >
         <div className="flex flex-col gap-16">
           <div className="block">
+            {/* `inline`: la preflight di Tailwind rende `iframe` un blocco,
+                sul sito resta in linea e la riga che lo contiene porta con sé
+                gli 8px sotto la linea di base. */}
             <iframe
               src={ADVANCED_DJS.videoask.src}
               title=""
               allow="camera *; microphone *; autoplay *; encrypted-media *; fullscreen *; display-capture *;"
               width="100%"
               height={ADVANCED_DJS.videoask.altezza}
+              className="inline align-baseline"
               style={{ border: "none", borderRadius: "24px" }}
             />
           </div>
@@ -53,7 +58,13 @@ export default function AdvancedDjs() {
       </div>
 
       <div className="flex items-center justify-center pb-[108px] pt-[60px]">
-        <Button href={ADVANCED_DJS.cta.href} variante="mint" esterno>
+        {/* `.button-2.secondary { margin-top: 30px }`. */}
+        <Button
+          href={ADVANCED_DJS.cta.href}
+          variante="mint"
+          esterno
+          className="mt-[30px]"
+        >
           {ADVANCED_DJS.cta.testo}
         </Button>
       </div>
