@@ -25,24 +25,24 @@ Ordine: prima le pagine semplici per stabilizzare header, footer e design token,
 - [x] `advanced-djs` (36KB, zero interazioni).
 - [x] `recess`.
 - [x] `pricing-page`: 3 piani × 2 cicli × 3 valute, 18 link Chargebee identici, meccanismo di scelta valuta da capire e replicare, tooltip nativo al posto di Flowbase.
-- [ ] `play-get-signed` (Talent Pool).
-- [ ] Home (59 interazioni, carosello corsi, Feedspace, Trustpilot, Wistia hero).
-- [ ] `dj-course` (77 interazioni, 19 riferimenti Wistia, FAQ).
-- [ ] `producer-course`.
-- [ ] `mix-mastering-course`.
+- [x] `play-get-signed` (Talent Pool).
+- [x] Home (59 interazioni, carosello corsi, Feedspace, Trustpilot, Wistia hero).
+- [x] `dj-course` (77 interazioni, 19 riferimenti Wistia, FAQ).
+- [x] `producer-course`.
+- [x] `mix-mastering-course`.
 Per ogni pagina: parità visiva desktop e mobile con lo screenshot di riferimento, link identici (checkout, campus, start, typeform, calendly), metadati identici, JSON-LD identico.
 
 ## 3. Tracking e attribuzione
-- [ ] Eventi Mixpanel del footer Webflow riprodotti (page view, CTA, navbar, pricing checkout clicked, FAQ, carosello) con gli stessi nomi e props.
-- [ ] Decorazione link carrello con `customer[cf_*]` verificata: confronto URL finale Webflow vs Next con gli stessi cookie `attr_*`.
-- [ ] `ptdja_identity_ready` nel dataLayer, GTM Preview verde.
-- [ ] track.js proprietario: `data-landing` di test durante lo sviluppo, `sito` in produzione.
-- [ ] `debug: false` su Mixpanel (nice to have, da decidere).
+- [x] Eventi Mixpanel del footer Webflow riprodotti (page view, CTA, navbar, pricing checkout clicked, FAQ, carosello) con gli stessi nomi e props.
+- [x] Decorazione link carrello con `customer[cf_*]` verificata: confronto URL finale Webflow vs Next con gli stessi cookie `attr_*`.
+- [x] `ptdja_identity_ready` nel dataLayer (verificato in locale con Playwright). GTM Preview verde: da fare sul deploy.
+- [x] track.js proprietario: `data-landing` di test durante lo sviluppo (`sito-test` via VERCEL_ENV), `sito` in produzione.
+- [x] `debug: false` su Mixpanel (nice to have, da decidere).
 
 ## 4. SEO e rotte
-- [ ] `sitemap.xml` e `robots.txt` equivalenti.
-- [ ] Redirect 301 di Webflow replicati in `next.config.ts` (elenco da Matteo).
-- [ ] Slug identici, trailing slash come Webflow.
+- [x] `sitemap.xml` e `robots.txt` equivalenti.
+- [ ] Redirect 301 di Webflow replicati in `next.config.ts` (elenco da Matteo: export da Site settings → Publishing, **ancora mancante**).
+- [x] Slug identici, trailing slash come Webflow.
 
 ## 5. Pubblicazione di test
 - [ ] Repo GitHub `mat-music-group/<nome>` creato, progetto Vercel collegato, commit con identità verificabile.
