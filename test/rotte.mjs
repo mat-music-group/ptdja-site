@@ -69,7 +69,7 @@ function esige(condizione, messaggio) {
    `not-found.tsx` dentro il layout, cioè col tracciamento montato. Una 404 che
    perde il layout è una pagina su cui il visitatore esiste e non viene contato. */
 const ROTTE = [
-  { path: "/", status: 200, nome: "home (segnaposto)" },
+  { path: "/", status: 200, nome: "home" },
   { path: "/404", status: 404, nome: "404" },
   { path: "/terms-conditions", status: 200, nome: "terms-conditions" },
   { path: "/terms-conditions-sa", status: 200, nome: "terms-conditions-sa" },
@@ -78,6 +78,8 @@ const ROTTE = [
   { path: "/pricing-page", status: 200, nome: "pricing-page" },
   { path: "/play-get-signed", status: 200, nome: "play-get-signed" },
   { path: "/dj-course", status: 200, nome: "dj-course" },
+  { path: "/producer-course", status: 200, nome: "producer-course" },
+  { path: "/mix-mastering-course", status: 200, nome: "mix-mastering-course" },
 ];
 
 /* ── Ciò che deve esserci, e ciò che non deve esserci ──────────────

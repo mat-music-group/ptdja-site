@@ -53,6 +53,25 @@ export type BloccoHighlight = {
    * qui e non si deduce dall'indice.
    */
   readonly spaziatura?: "compatta" | "normale";
+  /*
+   * ── L'ordine dentro `.content-image-group.feature.gifs` ───────────────
+   * Vale solo con `disposizione: "destra"`, cioè sul gruppo in colonna. Nel
+   * foglio Webflow non c'è nessun `order`: l'ordine è quello del DOM, e nel
+   * DOM cambia da blocco a blocco anche dentro la stessa pagina.
+   *   `"riga-prima"` (default)  `.div-right-gifs.but-left` (60% + 140%) sopra,
+   *                             `.div-left-gifs.but-right` (100%) sotto.
+   *                             È dj-course e i blocchi 2 e 4 di producer.
+   *   `"gruppo-prima"`          l'opposto: l'immagine a tutta larghezza sopra.
+   *                             Blocchi 1 e 3 di producer-course.
+   */
+  readonly ordine?: "riga-prima" | "gruppo-prima";
+  /*
+   * `true` dove dentro `.div-right-gifs.but-left` l'immagine al 140%
+   * (`.image-22`) precede quella al 60% (`.image-23`): succede sul terzo
+   * blocco di `/producer-course`. `immagini` resta nell'ordine degli SLOT
+   * (60%, 140%, 100%): a cambiare è solo come vengono disposti.
+   */
+  readonly rigaInvertita?: boolean;
   readonly immagini: readonly {
     readonly src: string;
     readonly alt: string;
@@ -150,21 +169,25 @@ function CardHighlight({
         ) : (
           /* `.content-image-group.feature.gifs` */
           <div className="flex w-full max-w-full flex-col items-start justify-center gap-5">
-            {/* `.div-right-gifs.but-left` */}
-            <div className="flex w-[48%] flex-row gap-[15px]">
-              <Foto
-                immagine={alta}
-                className="w-[60%] max-w-[60%] rounded-media"
-              />
-              <Foto
-                immagine={primaPiccola}
-                className="w-[140%] max-w-none rounded-media"
-              />
-            </div>
-            {/* `.div-left-gifs.but-right` */}
-            <div className="w-full">
-              <Foto immagine={secondaPiccola} className="rounded-media" />
-            </div>
+            {blocco.ordine === "gruppo-prima" ? (
+              <>
+                <GruppoLargo immagine={secondaPiccola} />
+                <RigaDueFoto
+                  stretta={alta}
+                  larga={primaPiccola}
+                  invertita={blocco.rigaInvertita}
+                />
+              </>
+            ) : (
+              <>
+                <RigaDueFoto
+                  stretta={alta}
+                  larga={primaPiccola}
+                  invertita={blocco.rigaInvertita}
+                />
+                <GruppoLargo immagine={secondaPiccola} />
+              </>
+            )}
           </div>
         )}
       </div>
@@ -206,6 +229,50 @@ function CardHighlight({
           </div>
         </div>
       </div>
+    </div>
+  );
+}
+
+/* `.div-right-gifs.but-left`: 48% in riga, `.image-23` al 60% e `.image-22` al
+   140%, che deborda di proposito. `invertita` scambia solo l'ordine dei due. */
+function RigaDueFoto({
+  stretta,
+  larga,
+  invertita = false,
+}: {
+  readonly stretta: Immagine;
+  readonly larga: Immagine;
+  readonly invertita?: boolean;
+}) {
+  const sessanta = (
+    <Foto immagine={stretta} className="w-[60%] max-w-[60%] rounded-media" />
+  );
+  const centoquaranta = (
+    <Foto immagine={larga} className="w-[140%] max-w-none rounded-media" />
+  );
+
+  return (
+    <div className="flex w-[48%] flex-row gap-[15px]">
+      {invertita ? (
+        <>
+          {centoquaranta}
+          {sessanta}
+        </>
+      ) : (
+        <>
+          {sessanta}
+          {centoquaranta}
+        </>
+      )}
+    </div>
+  );
+}
+
+/* `.div-left-gifs.but-right`: 100% della larghezza del riquadro. */
+function GruppoLargo({ immagine }: { readonly immagine: Immagine }) {
+  return (
+    <div className="w-full">
+      <Foto immagine={immagine} className="rounded-media" />
     </div>
   );
 }

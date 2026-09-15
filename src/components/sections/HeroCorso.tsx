@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import type { CSSProperties } from "react";
 import { usePaese } from "@/lib/usePaese";
 import { visibilePerPaese } from "@/lib/geo";
 import { LISTINO, VALUTE } from "@/testi/condivisi";
@@ -55,6 +56,17 @@ export type ProprietaHeroCorso = {
     readonly grassetto: string;
     readonly dopo: string;
     readonly secondaRiga: string;
+    /**
+     * Su quale delle due righe sta lo `<strong>`.
+     * - `"prima"` (default, dj-course e producer-course):
+     *   `prima` + **grassetto** + `dopo` + `<br>` + `secondaRiga` + `<br>`
+     * - `"seconda"` (mix-mastering-course, dove lo `<strong>` è nella seconda
+     *   riga): `prima` + `<br>` + `secondaRiga` + **grassetto** + `dopo` + `<br>`
+     *
+     * I campi non cambiano nome: si sposta solo la coppia grassetto/dopo, e
+     * `secondaRiga` diventa il testo che apre la seconda riga.
+     */
+    readonly grassettoSu?: "prima" | "seconda";
   };
   readonly prezzo: { readonly prima: string; readonly dopo: string };
   readonly cta: { readonly testo: string; readonly href: string };
@@ -69,6 +81,26 @@ export type ProprietaHeroCorso = {
     readonly larghezza: number;
     readonly altezza: number;
   };
+  /**
+   * Le misure del blocco occhiello + titolo, che Webflow ha duplicato pagina
+   * per pagina invece di riusarle, e le copie non hanno gli stessi numeri.
+   * Omessa, valgono quelle di `/dj-course`.
+   *
+   * - `eyebrowMargine`: `margin-bottom` dell'occhiello sopra i 480px. 0 su
+   *   `.section-subtitle-41…top-title-head` (dj-course), **-50** su
+   *   `.section-subtitle-44…` (producer-course), che porta con sé anche
+   *   `position: relative; z-index: 10`.
+   * - `eyebrowMargineMobile`: lo stesso sotto i 480px. Se omesso vale
+   *   `eyebrowMargine`; su producer-course il foglio lo porta a **-30**.
+   * - `titoloPaddingBottom`: `padding-bottom` del blocco titolo sopra i 480px.
+   *   **40** su `.section-title-16…dj-course`, **60** su `.section-title-17…`
+   *   (producer-course). Sotto i 480px vale 30 su entrambe.
+   */
+  readonly spaziatura?: {
+    readonly eyebrowMargine?: number;
+    readonly eyebrowMargineMobile?: number;
+    readonly titoloPaddingBottom?: number;
+  };
 };
 
 export function HeroCorso({
@@ -79,21 +111,50 @@ export function HeroCorso({
   cta,
   trustpilot,
   immagine,
+  spaziatura,
 }: ProprietaHeroCorso) {
   const paese = usePaese();
 
+  const eyebrowMargine = spaziatura?.eyebrowMargine ?? 0;
+  const eyebrowMargineMobile =
+    spaziatura?.eyebrowMargineMobile ?? eyebrowMargine;
+  const titoloPaddingBottom = spaziatura?.titoloPaddingBottom ?? 40;
+
   return (
     <section className="block bg-sfondo px-[30px] py-[60px] max-sm:pb-[30px]">
-      {/* `.section-title-16.new-home-2.course-page.dj-course` */}
-      <div className="flex w-full flex-col items-center justify-start gap-[30px] pb-10 text-left max-sm:gap-5 max-sm:pb-[30px]">
-        {/* `.section-subtitle-41.negative.new-home-2.top-title-head` */}
-        <p className="mt-[30px] pb-0 text-center text-base font-light uppercase leading-[180%] tracking-normal text-bianco opacity-70 max-sm:leading-[16px]">
+      {/* `.section-title-16/-17.new-home-2.course-page.dj-course`.
+          I tre numeri passano da variabili CSS e non da classi costruite a
+          runtime: Tailwind genera solo le utility che vede scritte nel
+          sorgente, quindi `pb-[60px]` nato da un template literal non
+          esisterebbe nel foglio. Le utility qui sotto sono statiche, il valore
+          arriva dallo `style`. */}
+      <div
+        className="flex w-full flex-col items-center justify-start gap-[30px] pb-[var(--pb-titolo)] text-left max-sm:gap-5 max-sm:pb-[30px]"
+        style={{ "--pb-titolo": `${titoloPaddingBottom}px` } as CSSProperties}
+      >
+        {/* `.section-subtitle-41/-44.negative.new-home-2.top-title-head` */}
+        <p
+          className={`mt-[30px] mb-[var(--mb-eyebrow)] pb-0 text-center text-base font-light uppercase leading-[180%] tracking-normal text-bianco opacity-70 max-sm:mb-[var(--mb-eyebrow-mob)] max-sm:leading-[16px] ${
+            eyebrowMargine !== 0 ? "relative z-10" : ""
+          }`}
+          style={
+            {
+              "--mb-eyebrow": `${eyebrowMargine}px`,
+              "--mb-eyebrow-mob": `${eyebrowMargineMobile}px`,
+            } as CSSProperties
+          }
+        >
           {eyebrow}
         </p>
       </div>
 
-      {/* `.container-66.header-space--mob.w-container` */}
-      <div className="mx-auto w-auto max-w-sito px-[30px] text-center max-lg:max-w-[768px] max-md:max-w-[600px] max-sm:px-0">
+      {/* `.container-66/-68.header-space--mob.w-container`.
+          I 35px sotto i 480px sono il `padding-bottom` che il foglio mette su
+          `.container-66` e `.container-68` a ≤479: separano l'immagine dal
+          blocco prezzo + CTA, che sul telefono è una sezione sorella e non
+          sta dentro questo contenitore. Mancavano, e valgono 35px di altezza
+          su tutte le pagine corso. */}
+      <div className="mx-auto w-auto max-w-sito px-[30px] text-center max-lg:max-w-[768px] max-md:max-w-[600px] max-sm:px-0 max-sm:pb-[35px]">
         {/* `.hero-wrapper-8` */}
         <div className="flex items-center justify-between gap-[50px] max-lg:flex-col max-lg:gap-20 max-lg:pb-[50px] max-md:pb-5 max-sm:gap-[50px]">
           {/* `.hero-left-block-3` */}
@@ -108,12 +169,25 @@ export function HeroCorso({
 
               {/* `p._w-490-4` */}
               <p className="m-0 text-left text-[20px] font-normal leading-[180%] tracking-[-0.8px] text-bianco max-lg:text-[15px] max-sm:text-center">
-                {paragrafo.prima}
-                <strong className="font-bold">{paragrafo.grassetto}</strong>
-                {paragrafo.dopo}
-                <br />
-                {paragrafo.secondaRiga}
-                <br />
+                {paragrafo.grassettoSu === "seconda" ? (
+                  <>
+                    {paragrafo.prima}
+                    <br />
+                    {paragrafo.secondaRiga}
+                    <strong className="font-bold">{paragrafo.grassetto}</strong>
+                    {paragrafo.dopo}
+                    <br />
+                  </>
+                ) : (
+                  <>
+                    {paragrafo.prima}
+                    <strong className="font-bold">{paragrafo.grassetto}</strong>
+                    {paragrafo.dopo}
+                    <br />
+                    {paragrafo.secondaRiga}
+                    <br />
+                  </>
+                )}
               </p>
 
               {/* `.hero-content-3.new-home-2.home-button-container.mob`:

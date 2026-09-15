@@ -4,7 +4,9 @@ import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
+import { LinkTrustpilot } from "@/components/ui/LinkTrustpilot";
 import { RivelaAllaVista } from "@/components/ui/RivelaAllaVista";
+import { tracciaBottone } from "@/lib/eventi-mixpanel";
 import { visibilePerPaese } from "@/lib/geo";
 import { usePaese } from "@/lib/usePaese";
 import { LISTINO, VALUTE } from "@/testi/condivisi";
@@ -43,6 +45,28 @@ import { LISTINO, VALUTE } from "@/testi/condivisi";
  *   3. un iframe embedly dentro `.video-talent-pool.w-video`, che il foglio
  *      mostra solo sotto i 480px.
  * Si riproducono tutte e tre, nello stesso punto e con le stesse visibilità.
+ *
+ * ── I DUE EVENTI MIXPANEL DEL SITO STANNO QUI, NON NELLA HERO ─────────
+ * Nel custom code del footer Webflow due selettori agganciano elementi che,
+ * sulle tre pagine corso, vivono dentro la variante `mobile` di QUESTA
+ * sezione e da nessun'altra parte:
+ *
+ *   a.button.enroll.signup-now              → 'CTA Click'  { section: 'Hero
+ *                                             Signup', label, href, url }
+ *   p.paragraph a[href*="trustpilot.com"]   → 'Trustpilot CTA Clicked'
+ *
+ * Il nome `Hero Signup` inganna: nell'HTML pubblicato le due CTA della hero
+ * sono `a.button-2.enroll…signup-now` e il loro paragrafo è `paragraph-13/-14/
+ * -15`, quindi nessuno dei due selettori le prende. L'unico elemento con
+ * classe `.button` (senza il `-2`) e l'unico paragrafo con classe `paragraph`
+ * sono quelli qui sotto. `section` resta la costante dello script.
+ *
+ * ⚠️ La CTA NON passa dal componente `Button`: la sua base è `.button`
+ * (`padding: 10px 24px 8px`, `inline-block`, hover bianco), mentre qui a ≤479
+ * il foglio la riscrive a `padding: 5px 24px`, `display: block`, larghezza
+ * 80vw/300px e senza hover. Usare `Button` cambierebbe di 8px l'altezza del
+ * bottone su tutte e tre le pagine corso. L'evento è lo stesso perché passa
+ * dalla stessa funzione che userebbe `Button` (`tracciaBottone`).
  */
 
 export type VoceMetaCorso = {
@@ -72,7 +96,13 @@ export type ProprietaContenutoCorso = {
   /** `id` dell'`<h2>`: "dj-coursecontent" su questa pagina. */
   readonly idTitolo?: string;
   readonly titolo: string;
-  readonly bolle: readonly { readonly src: string; readonly alt: string }[];
+  /**
+   * Le bolle dei docenti sopra i tab (`a.course-teacher-wrapper…course-content`).
+   * Omesse o vuote il contenitore non si rende affatto: su
+   * `/mix-mastering-course` quel blocco non c'è nell'HTML, e renderlo vuoto
+   * aggiungerebbe i suoi 30px di `padding-bottom`.
+   */
+  readonly bolle?: readonly { readonly src: string; readonly alt: string }[];
   readonly metaDesktop: readonly VoceMetaCorso[];
   readonly metaMobile: readonly VoceMetaCorso[];
   readonly wistiaMediaId: string;
@@ -87,6 +117,14 @@ export type ProprietaContenutoCorso = {
   readonly tabCurriculum: string;
   readonly tabCosaImparerai: string;
   readonly accordionTitolo: string;
+  /**
+   * Quanti `<br>` fra il titolo dell'accordion e il conteggio delle lezioni.
+   * Sono il modo in cui Webflow ottiene quello spazio (l'interlinea dell'`h4`
+   * è 7px), e il numero non è lo stesso ovunque: 3 su entrambe le varianti di
+   * `/dj-course`, **2** sulla variante desktop di `/producer-course` e 3 sulla
+   * sua variante mobile, 1 su `/mix-mastering-course`. Default 3.
+   */
+  readonly accordionTitoloBr?: number;
   readonly accordionSottotitolo: string;
   readonly capitoli: readonly CapitoloCorso[];
   readonly cosaImparerai: readonly string[];
@@ -94,6 +132,13 @@ export type ProprietaContenutoCorso = {
   readonly iconaSpunta: Immagine;
   /** Solo sulla variante mobile: il blocco prezzo + CTA in fondo. */
   readonly prezzo?: { readonly prima: string; readonly dopo: string };
+  /**
+   * Solo sulla variante mobile, e alternativo a `prezzo`: dove l'HTML ha una
+   * frase fissa al posto dei tre `<span>` geo-gated (`/mix-mastering-course`
+   * scrive "Starting at $13 per month" e basta), si passa quel testo qui e il
+   * blocco valuta non si rende.
+   */
+  readonly prezzoMobileFisso?: string;
   readonly cta?: { readonly testo: string; readonly href: string };
   readonly trustpilot?: {
     readonly prima: string;
@@ -149,23 +194,25 @@ function VarianteDesktop(p: ProprietaContenutoCorso) {
                   semplice contenitore: un link senza destinazione è solo un
                   ostacolo per chi naviga da tastiera. Sotto i 480px il foglio
                   lo spegne. */}
-              <div className="flex w-full items-center justify-center pb-[30px] max-sm:hidden">
-                {/* `.image-14.course-teacher` ha `margin-right: 24px` su
-                    TUTTE le bolle, anche l'ultima: in un contenitore
-                    `justify-content: center` quel margine finale sposta il
-                    gruppo di 12px a sinistra. Togliendolo all'ultima, le bolle
-                    escono spostate a destra rispetto al sito. */}
-                {p.bolle.map((bolla) => (
-                  <Image
-                    key={bolla.src}
-                    src={bolla.src}
-                    alt={bolla.alt}
-                    width={301}
-                    height={301}
-                    className="mr-6 h-[70px] w-[70px] flex-none rounded-full"
-                  />
-                ))}
-              </div>
+              {p.bolle && p.bolle.length > 0 ? (
+                <div className="flex w-full items-center justify-center pb-[30px] max-sm:hidden">
+                  {/* `.image-14.course-teacher` ha `margin-right: 24px` su
+                      TUTTE le bolle, anche l'ultima: in un contenitore
+                      `justify-content: center` quel margine finale sposta il
+                      gruppo di 12px a sinistra. Togliendolo all'ultima, le
+                      bolle escono spostate a destra rispetto al sito. */}
+                  {p.bolle.map((bolla) => (
+                    <Image
+                      key={bolla.src}
+                      src={bolla.src}
+                      alt={bolla.alt}
+                      width={301}
+                      height={301}
+                      className="mr-6 h-[70px] w-[70px] flex-none rounded-full"
+                    />
+                  ))}
+                </div>
+              ) : null}
 
               {/* `.feature-section…the-team.only-desktop.new-home-2`: c'è
                   sopra i 479px, sparisce sul telefono. */}
@@ -175,6 +222,7 @@ function VarianteDesktop(p: ProprietaContenutoCorso) {
                     tabCurriculum={p.tabCurriculum}
                     tabCosaImparerai={p.tabCosaImparerai}
                     accordionTitolo={p.accordionTitolo}
+                    accordionTitoloBr={p.accordionTitoloBr}
                     accordionSottotitolo={p.accordionSottotitolo}
                     capitoli={p.capitoli}
                     cosaImparerai={p.cosaImparerai}
@@ -236,6 +284,7 @@ function VarianteMobile(p: ProprietaContenutoCorso) {
           tabCurriculum={p.tabCurriculum}
           tabCosaImparerai={p.tabCosaImparerai}
           accordionTitolo={p.accordionTitolo}
+          accordionTitoloBr={p.accordionTitoloBr}
           accordionSottotitolo={p.accordionSottotitolo}
           capitoli={p.capitoli}
           cosaImparerai={p.cosaImparerai}
@@ -246,37 +295,55 @@ function VarianteMobile(p: ProprietaContenutoCorso) {
       </div>
 
       {/* `.container.brands.new-home-2.dj-course-page` */}
-      {p.prezzo && p.cta && p.trustpilot ? (
+      {(p.prezzo || p.prezzoMobileFisso) && p.cta && p.trustpilot ? (
         <div className="mx-auto flex w-auto max-w-sito flex-col items-center justify-center bg-sfondo pb-[10px] pt-0">
           <h2 className="m-0 mt-[30px] pb-[10px] text-center text-[16px] font-light leading-[1.2] text-bianco opacity-70">
-            <span>{p.prezzo.prima}</span>{" "}
-            <span className="text-bianco">
-              {VALUTE.map((valuta) => (
-                <span
-                  key={valuta.codice}
-                  data-geo={valuta.modo}
-                  className={
-                    visibilePerPaese(valuta.modo, valuta.paesi, paese)
-                      ? "geo-visibile"
-                      : undefined
-                  }
-                >
-                  {valuta.simbolo}
-                  {LISTINO.cifraTitolo}
+            {p.prezzoMobileFisso ? (
+              /* Nessun `[data-geo]`: qui l'HTML del sito ha una frase sola. */
+              <span>{p.prezzoMobileFisso}</span>
+            ) : p.prezzo ? (
+              <>
+                <span>{p.prezzo.prima}</span>{" "}
+                <span className="text-bianco">
+                  {VALUTE.map((valuta) => (
+                    <span
+                      key={valuta.codice}
+                      data-geo={valuta.modo}
+                      className={
+                        visibilePerPaese(valuta.modo, valuta.paesi, paese)
+                          ? "geo-visibile"
+                          : undefined
+                      }
+                    >
+                      {valuta.simbolo}
+                      {LISTINO.cifraTitolo}
+                    </span>
+                  ))}
+                  {p.prezzo.dopo}
                 </span>
-              ))}
-              {p.prezzo.dopo}
-            </span>
+              </>
+            ) : null}
           </h2>
 
           {/* `.hero-button-group` + `a.button.enroll.homepage…signup-now`:
-              80vw fino a 300px, non 90vw come quello della hero. */}
+              80vw fino a 300px, non 90vw come quello della hero.
+              È l'unico `a.button.enroll.signup-now` della pagina, cioè l'unico
+              elemento che il selettore 'CTA Click' del footer Webflow prende. */}
           <div className="flex flex-wrap items-center justify-center gap-4">
             <Link
               href={p.cta.href}
               data-label="pick_your_course_header"
               data-event="cta_click"
               data-category="homepage"
+              data-traccia="CTA Click"
+              onClick={(evento) =>
+                tracciaBottone(
+                  /* `section` è la costante dello script del sito, commento
+                     "example" compreso. Non è un testo di pagina. */
+                  { evento: "CTA Click", section: "Hero Signup" },
+                  evento.currentTarget
+                )
+              }
               className="block w-[80vw] max-w-[300px] rounded-bottone border-0 bg-mint px-6 py-[5px] text-center text-base font-normal leading-[180%] transition-all duration-500"
             >
               <span className="flex items-center justify-center gap-3">
@@ -285,12 +352,14 @@ function VarianteMobile(p: ProprietaContenutoCorso) {
             </Link>
           </div>
 
-          {/* `p.paragraph.home-trustpilot`: 290px fissi sotto i 480px. */}
+          {/* `p.paragraph.home-trustpilot`: 290px fissi sotto i 480px. È il
+              solo paragrafo con classe `paragraph` delle pagine corso, quindi
+              il solo link che il selettore 'Trustpilot CTA Clicked' prende. */}
           <p className="m-0 w-[290px] overflow-hidden pt-[5px] text-center text-[18px] font-light leading-[180%] text-bianco">
             {p.trustpilot.prima}
-            <a href={p.trustpilot.href} target="_blank" rel="noreferrer">
+            <LinkTrustpilot href={p.trustpilot.href}>
               <span className="text-mint">{p.trustpilot.link}</span>
-            </a>
+            </LinkTrustpilot>
           </p>
         </div>
       ) : null}
@@ -406,6 +475,7 @@ function TabCorso({
   tabCurriculum,
   tabCosaImparerai,
   accordionTitolo,
+  accordionTitoloBr = 3,
   accordionSottotitolo,
   capitoli,
   cosaImparerai,
@@ -416,6 +486,7 @@ function TabCorso({
   readonly tabCurriculum: string;
   readonly tabCosaImparerai: string;
   readonly accordionTitolo: string;
+  readonly accordionTitoloBr?: number;
   readonly accordionSottotitolo: string;
   readonly capitoli: readonly CapitoloCorso[];
   readonly cosaImparerai: readonly string[];
@@ -467,9 +538,10 @@ function TabCorso({
                 {/* `.bold-text-5`: sotto i 480px diventa crema. */}
                 <strong className="font-bold max-sm:text-crema">
                   {accordionTitolo}
-                  <br />
-                  <br />
-                  <br />
+                  {Array.from({ length: accordionTitoloBr }, (_, i) => (
+                    // biome-ignore lint/suspicious/noArrayIndexKey: sono `<br>` identici, l'indice è l'unica identità che hanno
+                    <br key={i} />
+                  ))}
                 </strong>
                 <span className="max-sm:text-[13px] max-sm:font-light">
                   <strong className="text-[15px] font-light text-mint">
@@ -619,9 +691,13 @@ function Capitolo({
         aria-hidden={!aperto}
         className="-mt-[40px] overflow-hidden rounded-b-media border border-solid border-bianco bg-sfondo"
       >
+        {/* Chiave composta con l'indice, non il testo: su `/producer-course`
+            il capitolo 3 ripete due lezioni identiche (lo fa il sito), e con
+            `key={lezione}` React segnalerebbe due figli con la stessa chiave.
+            Le righe duplicate si riproducono, la chiave no. */}
         {capitolo.lezioni.map((lezione, i) => (
           <div
-            key={lezione}
+            key={`${i}-${lezione}`}
             className={`mx-5 flex items-center gap-[7px] py-[10px] ${
               i === 0 ? "pt-10" : ""
             } ${
