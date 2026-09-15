@@ -316,49 +316,15 @@ export const CONTENUTO = {
   },
 } as const;
 
-/* ── Sezione 4 e 5: docenti ─────────────────────────────────────────── */
-
-/* Tutti i ritratti sono 295×556: la misura è quella del file, non una stima. */
-const RITRATTO = { larghezza: 295, altezza: 556 } as const;
-
-export const DOCENTI = {
-  titoloRiga1: "DJ Course",
-  titoloEvidenziato: "Teachers",
-  slide: [
-    {
-      src: "/webflow/shared/geometrics-two-pete.png",
-      alt: "Portrait of DJ Pete Tong wearing a black shirt, set against a bright blue background",
-      ...RITRATTO,
-    },
-    {
-      src: "/webflow/shared/geometrics-two-carl-cox.png",
-      alt: "Portrait of DJ Carl Cox wearing sunglasses and a black t-shirt, smiling against a pink background",
-      ...RITRATTO,
-    },
-    {
-      src: "/webflow/shared/geometrics-two-adam-beyer.png",
-      alt: "Portrait of DJ Adam Beyer smiling against a blue background",
-      ...RITRATTO,
-    },
-    { src: "/webflow/shared/geometrics-two-ame.png", alt: "", ...RITRATTO },
-    {
-      src: "/webflow/shared/geometrics-two-jamies-jones.png",
-      alt: "",
-      ...RITRATTO,
-    },
-    {
-      src: "/webflow/shared/geometrics-two-nicole-moudaber.png",
-      alt: "",
-      ...RITRATTO,
-    },
-    { src: "/webflow/shared/geometrics-two-tsha.png", alt: "", ...RITRATTO },
-    {
-      src: "/webflow/shared/geometrics-two-the-reloud.png",
-      alt: "",
-      ...RITRATTO,
-    },
-  ],
-} as const;
+/* ── Sezione 4 e 5: docenti ───────────────────────────────────
+ *
+ * ⚠️ DEVIAZIONE VOLUTA dal sito Webflow, richiesta di Matteo del 2026-09-15.
+ * Il titolo "DJ Course Teachers" e le otto slide del carosello dei docenti
+ * stavano qui e sono stati tolti: la pagina monta `DocentiAcademy`, che prende
+ * titolo e persone da `src/testi/docenti.ts` (i testi delle landing beginner).
+ * Le foto Webflow in `public/webflow/shared/geometrics-two-*.png` restano dove
+ * sono: sono il riferimento con cui si confrontano gli screenshot.
+ */
 
 /* ── Sezione 6: il virtual tour ─────────────────────────────────────
  *

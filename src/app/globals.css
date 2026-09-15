@@ -129,6 +129,40 @@
     Roboto, Arial, sans-serif;
 }
 
+/*
+ * ⚠️ DEVIAZIONE VOLUTA dal sito Webflow, richiesta di Matteo del 2026-09-15.
+ *
+ * Le due righe che seguono non vengono dal foglio Webflow: servono alla
+ * sezione `DocentiAcademy`, portata dalle landing beginner al posto del
+ * carosello dei docenti. Sono copiate da `src/app/globals.css` del repo
+ * landing (`Funnel/Landing_ADV/PTDJA/repo-start`), dove hanno la stessa forma.
+ *
+ * `no-scrollbar` nasconde la barra orizzontale della pista che scorre: senza,
+ * sotto le foto resta una barra di sistema che sul sito non c'è da nessuna
+ * parte. È `@utility` e non una classe in `@layer`, così Tailwind la tratta
+ * come tutte le altre (si può comporre con le varianti e sparisce se nessuno
+ * la usa).
+ */
+@utility no-scrollbar {
+  scrollbar-width: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+/* Il pallino verde ai lati dell'occhiello "YOUR TEACHERS" di `DocentiAcademy`,
+   usato come `animate-[blink_1.6s_ease-in-out_infinite]`. Stessa keyframe del
+   repo landing. */
+@keyframes blink {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.25;
+  }
+}
+
 @layer base {
   /*
    * La preflight di Tailwind rende `b` e `strong` con `font-weight: bolder`,

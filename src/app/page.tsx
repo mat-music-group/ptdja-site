@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { SiteFooter } from "@/components/layout/SiteFooter";
 import { SiteHeader } from "@/components/layout/SiteHeader";
+import { DocentiAcademy } from "@/components/sections/DocentiAcademy";
 import { ExitIntentPopup } from "@/components/sections/ExitIntentPopup";
 import { Faq } from "@/components/sections/Faq";
 import { HeroHome } from "@/components/sections/HeroHome";
@@ -11,7 +12,6 @@ import { PlayGetSignedTeaser } from "@/components/sections/PlayGetSignedTeaser";
 import { PricingPlans } from "@/components/sections/PricingPlans";
 import { Reviews } from "@/components/sections/Reviews";
 import { SliderCorsi } from "@/components/sections/SliderCorsi";
-import { SliderDocenti } from "@/components/sections/SliderDocenti";
 import { SuccessStories } from "@/components/sections/SuccessStories";
 import { VirtualTour } from "@/components/sections/VirtualTour";
 import { Trengo } from "@/components/tracking/Trengo";
@@ -29,6 +29,7 @@ import {
   SUCCESS_STORIES,
   VIRTUAL_TOUR,
 } from "@/testi/home";
+import { DOCENTI_HOME, TITOLO_HOME } from "@/testi/docenti";
 
 /*
  * La home, `/`.
@@ -102,34 +103,22 @@ export default function Home() {
       {/* ── 1. Hero ────────────────────────────────────────────────── */}
       <HeroHome />
 
-      {/* ── 2. L'occhiello "YOUR TEACHERS", che sul sito è una sezione
-             intera con dentro solo quel paragrafo ────────────────────
-          `.the-team.new-home-2` azzera il padding verticale: lo spazio lo
-          fanno i margini dell'occhiello. A ≤479 la sezione prende 40px sopra
-          e 15px di lato. */}
-      <section className="block overflow-hidden bg-sfondo py-0 max-sm:px-[15px] max-sm:pt-10">
-        {/* `.container.new-home-2.names` */}
-        <div className="mx-auto flex w-auto max-w-sito flex-col items-center justify-center bg-sfondo px-[30px] max-sm:overflow-clip max-sm:px-0 max-sm:pb-[10px]">
-          {/* `.teachers-section` porta il margine sopra a zero. */}
-          <p className={`mt-0 ${OCCHIELLO}`}>{DOCENTI.eyebrow}</p>
-        </div>
-      </section>
+      {/* ── 2 e 3. Docenti ────────────────────────────────────────────
+          ⚠️ DEVIAZIONE VOLUTA dal sito Webflow, richiesta di Matteo del
+          2026-09-15. Sul sito qui ci sono due blocchi: una sezione con dentro
+          il solo occhiello "YOUR TEACHERS" (`.the-team.new-home-2`) e subito
+          dopo il carosello delle 11 foto (`SliderDocenti`). Sono stati tolti
+          tutti e due e sostituiti da "The Academy Teachers" delle landing
+          beginner, nella stessa posizione. L'occhiello ora è quello della
+          landing ("Your teachers"), non "YOUR TEACHERS" del Webflow.
 
-      {/* ── 3. Il carosello degli 11 docenti ──────────────────────────
-          Sul sito l'occhiello "PARTNERS" è l'ultimo figlio dello stesso
-          `div.introduction-content…slider-block` che contiene il carosello.
-          `SliderDocenti` rende solo il carosello e non accetta figli: qui il
-          paragrafo è un fratello subito dopo. Il contenitore è una colonna
-          centrata, quindi il risultato a schermo è lo stesso. */}
-      {/* `paddingSopraSotto480`: i 30px sopra di
-          `.introduction-content…slider-block` valgono anche sotto i 480px.
-          Ad azzerarli lì sono `.slider-block.dj-course` e
-          `.slider-block.warmup-landing`, classi che la home non ha. */}
-      <SliderDocenti slide={DOCENTI.slide} paddingSopraSotto480 />
-      {/* Sul sito questo paragrafo è l'ultimo figlio dello stesso contenitore
-          del carosello, che sotto i 480px ha `gap: 30px`: 30 di gap più 30 di
-          `margin-top`. Qui il carosello è un fratello, quindi i 60px stanno
-          tutti sul margine. */}
+          Le persone sono l'unione delle due liste della landing, DJ prima e
+          producer poi senza doppioni: 11, come le slide che c'erano qui. */}
+      <DocentiAcademy titolo={TITOLO_HOME} docenti={DOCENTI_HOME} />
+      {/* L'occhiello "PARTNERS" resta: sul sito è l'ultimo figlio dello stesso
+          contenitore del carosello, qui è un fratello subito dopo. Sotto i
+          480px il contenitore aveva `gap: 30px` più 30 di `margin-top`,
+          quindi i 60px stanno tutti sul margine. */}
       <p className={`mt-[30px] bg-sfondo max-sm:mt-[60px] ${OCCHIELLO}`}>
         {DOCENTI.eyebrowPartner}
       </p>

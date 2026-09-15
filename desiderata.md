@@ -19,7 +19,7 @@ Rifare il sito pubblico di Pete Tong DJ Academy (`www.petetong-djacademy.com`, o
 - SEO: title, meta description, Open Graph, JSON-LD, sitemap, robots, redirect esistenti.
 - Repo GitHub proprio, progetto Vercel proprio, anteprima su URL di test.
 
-**Deviazioni volute dal Webflow (Matteo, 2026-09-15, dopo aver visto il sito di test):** la regola "identico" resta per tutto il resto, ma (1) il Virtual Tour compare **una sola volta** per pagina (su Webflow dj-course e mix-mastering lo hanno due volte di fila, la seconda con CTA Typeform); (2) i capitoli chiusi del curriculum **non mostrano la riga bianca** di 2 px che il sito ha; (3) lo **slider dei docenti scorre da solo** (3,5 s per pagina, pausa al passaggio del mouse e al tocco, fermo con `prefers-reduced-motion`).
+**Deviazioni volute dal Webflow (Matteo, 2026-09-15, dopo aver visto il sito di test):** la regola "identico" resta per tutto il resto, ma (1) il Virtual Tour compare **una sola volta** per pagina (su Webflow dj-course e mix-mastering lo hanno due volte di fila, la seconda con CTA Typeform); (2) i capitoli chiusi del curriculum **non mostrano la riga bianca** di 2 px che il sito ha; (3) lo slider Webflow dei docenti è **sostituito dalla sezione "The Academy Teachers" delle landing beginner** (componente, testi, foto e liste docenti di `repo-start`), su home, dj-course e producer-course.
 
 ## 🚫 Out of scope (non-goals)
 - Redesign, cambio copy, cambio struttura: la parola d'ordine è identico.
@@ -85,7 +85,7 @@ Ancora aperte:
 Risolte il 2026-09-14: perimetro (10 pagine, poi blog), metodo (ricostruzione a componenti), blog (Webflow headless), terze parti (tabella sopra), form (nessuno in scope), font (Google Fonts gratuiti).
 
 ## 📝 Changelog
-- 2026-09-15: sito di test online su `ptdja-site.vercel.app`. Tre deviazioni volute chieste da Matteo dopo la visione: un solo Virtual Tour per pagina, niente riga bianca sotto i capitoli chiusi, slider docenti in autoplay (l'alternativa "The Academy Teachers" delle landing è un carosello manuale, scartata). Next 16.3.5 per due RCE. Redirect 301 ancora da esportare.
+- 2026-09-15: sito di test online su `ptdja-site.vercel.app`. Tre deviazioni volute chieste da Matteo dopo la visione: un solo Virtual Tour per pagina, niente riga bianca sotto i capitoli chiusi, slider docenti prima messo in autoplay, poi (stessa sera) sostituito con la sezione "The Academy Teachers" delle landing beginner, per scelta di Matteo. Next 16.3.5 per due RCE. Redirect 301 ancora da esportare.
 - 2026-09-14 (notte): via al piano. Test su `*.vercel.app`, dominio dopo. Refersion via. Riusare le strutture esistenti (componenti tracking del repo landing, landing kit) invece di riscrivere.
 - 2026-09-14 (sera): risposte di Matteo alle prime 5 domande. Perimetro fase 1 = 10 pagine in sitemap. Ricostruzione a componenti. Blog in fase 2 come Webflow headless. Via Optibase, Intellimize e Flowbase; il resto resta. Verificato che nessuna delle 10 pagine ha form Webflow. Font identificati.
 - 2026-09-14: creazione del documento dopo inventario Webflow via MCP (131 pagine, 8 collezioni, 1048 asset, custom code sito).

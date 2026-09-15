@@ -4,6 +4,7 @@ import { SiteHeader } from "@/components/layout/SiteHeader";
 import { AdattaATe } from "@/components/sections/AdattaATe";
 import { BookACall } from "@/components/sections/BookACall";
 import { ContenutoCorso } from "@/components/sections/ContenutoCorso";
+import { DocentiAcademy } from "@/components/sections/DocentiAcademy";
 import { ExitIntentPopup } from "@/components/sections/ExitIntentPopup";
 import { Faq } from "@/components/sections/Faq";
 import { HeroCorso } from "@/components/sections/HeroCorso";
@@ -12,9 +13,7 @@ import { MoreThanACourse } from "@/components/sections/MoreThanACourse";
 import { PricingPlans } from "@/components/sections/PricingPlans";
 import { RelatedCourses } from "@/components/sections/RelatedCourses";
 import { Reviews } from "@/components/sections/Reviews";
-import { SliderDocenti } from "@/components/sections/SliderDocenti";
 import { TalentPoolCorso } from "@/components/sections/TalentPoolCorso";
-import { TitoloDocentiCorso } from "@/components/sections/TitoloDocentiCorso";
 import { VirtualTour } from "@/components/sections/VirtualTour";
 import { Trengo } from "@/components/tracking/Trengo";
 import { JsonLd } from "@/components/ui/JsonLd";
@@ -24,7 +23,6 @@ import {
   CONTENUTO,
   CORSI_CORRELATI,
   CORSI_CORRELATI_TITOLO,
-  DOCENTI,
   DOMANDE,
   HERO,
   HIGHLIGHTS,
@@ -35,6 +33,7 @@ import {
   TALENT_POOL,
   VIRTUAL_TOUR,
 } from "@/testi/producer-course";
+import { DOCENTI_PRODUCER, TITOLO_PRODUCER } from "@/testi/docenti";
 
 /*
  * `/producer-course`, la seconda delle tre pagine corso.
@@ -151,12 +150,13 @@ export default function ProducerCoursePage() {
         trustpilot={HERO.trustpilot}
       />
 
-      {/* ── 4 e 5. Docenti ─────────────────────────────────────────── */}
-      <TitoloDocentiCorso
-        titoloRiga1={DOCENTI.titoloRiga1}
-        titoloEvidenziato={DOCENTI.titoloEvidenziato}
-      />
-      <SliderDocenti slide={DOCENTI.slide} />
+      {/* ── 4 e 5. Docenti ─────────────────────────────────────────────
+          ⚠️ DEVIAZIONE VOLUTA dal sito Webflow, richiesta di Matteo del
+          2026-09-15. Al posto del titolo "Producer Course Teachers" e del
+          carosello di sole foto (`TitoloDocentiCorso` + `SliderDocenti`,
+          rimossi) c'è "The Academy Teachers" delle landing beginner, nella
+          stessa posizione. Titolo e persone vengono dalla landing producer. */}
+      <DocentiAcademy titolo={TITOLO_PRODUCER} docenti={DOCENTI_PRODUCER} />
 
       {/* ── 6. Il virtual tour, una volta sola ─────────────────────── */}
       <VirtualTour

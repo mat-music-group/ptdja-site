@@ -40,9 +40,16 @@ import type { CSSProperties, ReactNode } from "react";
  *   informazione detta meglio.
  * - ⚠️ `autoplay` non esiste sul sito: nessuno slider dell'HTML salvato ha
  *   `data-autoplay`. È una DEVIAZIONE VOLUTA, richiesta di Matteo del
- *   2026-09-15, oggi usata dal solo `SliderDocenti`. Chi non passa la prop ha
- *   esattamente il comportamento di prima: gli slider dei corsi, delle success
- *   stories, di "how it works" e dell'iPad restano manuali.
+ *   2026-09-15, ed è **oggi senza nessun chiamante**: l'unico che la passava
+ *   era `SliderDocenti`, rimosso lo stesso giorno insieme al carosello dei
+ *   docenti (sostituito da `DocentiAcademy`, che ha un meccanismo suo e non
+ *   usa questo componente).
+ *
+ *   Resta qui, su richiesta, perché è codice verificato e la prossima volta
+ *   che serve un carosello che scorre da solo basta passare i millisecondi.
+ *   Chi non passa la prop ha esattamente il comportamento del sito: gli
+ *   slider dei corsi, delle success stories, di "how it works" e dell'iPad
+ *   restano manuali, cioè tutti quelli montati oggi.
  */
 
 type PerVista = {
@@ -205,9 +212,9 @@ export function SliderWebflow({
     return () => query.removeEventListener("change", aggiorna);
   }, [autoplay]);
 
-  /* Fuori dal viewport l'autoplay non parte: la home monta lo slider docenti
-     in fondo a una pagina da 12.000px, e tre slider che traslano dove nessuno
-     guarda sono solo lavoro sprecato. */
+  /* Fuori dal viewport l'autoplay non parte: le pagine del sito sono lunghe
+     oltre 12.000px, e uno slider che trasla dove nessuno guarda è solo lavoro
+     sprecato. */
   useEffect(() => {
     if (!autoplay) return;
     const nodo = contenitore.current;

@@ -22,7 +22,6 @@
  */
 
 import type { CorsoInVetrina } from "@/components/sections/SliderCorsi";
-import type { SlideDocente } from "@/components/sections/SliderDocenti";
 import type { ImmagineSuccesso } from "@/components/sections/SuccessStories";
 import type { DomandaFaq } from "@/testi/condivisi";
 import type {
@@ -167,26 +166,23 @@ export const MURO = {
   mobileBasso: MURO_MOBILE_BASSO,
 } as const;
 
-/* ── Sezioni 2 e 3: "YOUR TEACHERS" e il carosello dei docenti ──────── */
+/* ── Sezioni 2 e 3: docenti ───────────────────────────────────
+ *
+ * ⚠️ DEVIAZIONE VOLUTA dal sito Webflow, richiesta di Matteo del 2026-09-15.
+ * L'''occhiello "YOUR TEACHERS" e le undici slide del carosello dei docenti
+ * stavano qui e sono stati tolti: la home monta `DocentiAcademy`, che prende
+ * titolo e persone da `src/testi/docenti.ts` (i testi delle landing beginner).
+ * Le foto Webflow in `public/webflow/` restano dove sono: sono il riferimento
+ * degli screenshot.
+ *
+ * Resta `eyebrowPartner`, che sul sito è l'''ultimo figlio dello stesso blocco
+ * del carosello ma appartiene alla striscia dei loghi qui sotto, non ai
+ * docenti: quella parte della home non cambia.
+ */
 
 export const DOCENTI = {
-  eyebrow: "YOUR TEACHERS",
-  /* `p.section-subtitle.negative.new-home-2` in coda allo stesso blocco del
-     carosello, non una sezione a sé. */
+  /* `p.section-subtitle.negative.new-home-2`, l'''occhiello sopra i loghi. */
   eyebrowPartner: "PARTNERS",
-  slide: [
-    { src: "/webflow/shared/geometrics-two-pete.png", alt: "Pete Tong teaching the DJ & Producer Course at Pete Tong DJ Academy", larghezza: 295, altezza: 556 },
-    { src: "/webflow/shared/geometrics-two-diplo.png", alt: "Multi-Grammy Award-winning global icon Diplo", larghezza: 295, altezza: 556 },
-    { src: "/webflow/shared/geometrics-two-carl-cox.png", alt: "Carl Cox, tutor at the PTDJ Academy", larghezza: 295, altezza: 556 },
-    { src: "/webflow/shared/geometrics-two-jamies-jones.png", alt: "", larghezza: 295, altezza: 556 },
-    { src: "/webflow/shared/geometrics-two-adam-beyer.png", alt: "", larghezza: 295, altezza: 556 },
-    { src: "/webflow/shared/geometrics-two-ame.png", alt: "", larghezza: 295, altezza: 556 },
-    { src: "/webflow/shared/geometrics-two-parisi.webp", alt: "", larghezza: 295, altezza: 556 },
-    { src: "/webflow/shared/geometrics-two-tsha.png", alt: "", larghezza: 295, altezza: 556 },
-    { src: "/webflow/shared/geometrics-two-nicole-moudaber.png", alt: "", larghezza: 295, altezza: 556 },
-    { src: "/webflow/home/geometrics-two-luca-pretolesi.png", alt: "", larghezza: 295, altezza: 556 },
-    { src: "/webflow/shared/geometrics-two-the-reloud.png", alt: "", larghezza: 295, altezza: 556 },
-  ] as readonly SlideDocente[],
 } as const;
 
 /* ── Sezione 4: la striscia dei 22 loghi ────────────────────────────── */

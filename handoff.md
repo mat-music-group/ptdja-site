@@ -176,6 +176,10 @@ Tre richieste applicate da un agente Opus, verificate e committate: (1) **un sol
 
 **Nuove altezze di riferimento del build** (desktop / mobile): dj-course 14492 / 16434 (era 15563 / 16912), mix-mastering 13342 / 17884 (era 14407 / 18344), producer 15503 / 17733, home invariata. Da qui in poi le pagine corso divergono dagli screenshot Webflow di 1053 px (Virtual Tour) e di 12 a 22 px (bordi): il confronto con `docs/webflow/screenshots/` va letto tenendone conto. Effetto collaterale dichiarato: `durata` 700 rende più morbide anche le frecce manuali dello slider docenti.
 
+## 👩‍🏫 Sezione Teachers delle landing al posto dello slider (2026-09-15, sera)
+
+Seconda decisione di Matteo sui docenti: non lo slider Webflow in autoplay, ma **la sezione "The Academy Teachers" delle landing beginner** (`repo-start/src/components/sections.tsx`, `Teachers` + `TeacherCard`, titolo `TwoTone`, frecce `CarouselArrows`, dati `teachers[]` di `dj.ts` e `producer.ts`, foto `public/teachers/`). Portata come `src/components/sections/DocentiAcademy.tsx` con dati e foto copiati; montata su dj-course (lista DJ), producer-course (lista producer) e home (unione senza duplicati). `SliderDocenti` e `TitoloDocentiCorso` rimossi; `SliderWebflow.autoplay` resta disponibile ma non usato. Dettagli e altezze nel report dell'agente riportato sotto.
+
 ## 👉 Next steps (what I'd do next)
 1. ~~Estrazione~~ fatta. ~~Sei pagine semplici~~ fatte e committate (`8c8cd2d`).
 2. ~~Ondate A, B, C, residui condivisi~~ fatti: 11 pagine, build e test verdi (123 controlli), parità al pixel o entro 17 px.

@@ -4,20 +4,22 @@ import { RivelaAllaVista } from "@/components/ui/RivelaAllaVista";
  * Il titolo "Your Teacher. / A pioneer. A legend." di `/mix-mastering-course`:
  * `section.feature-section…new-home-2.course-teachers`.
  *
- * ── Perché non è `TitoloDocentiCorso` ─────────────────────────────────
- * L'involucro è lo stesso (stessa sezione, stesso `.container.new-home-2.dj-course`,
- * stesso `.section-title.new-home-2.dj-course`), ma l'`<h2>` ha una forma che
- * quel componente non sa fare. Sul sito:
+ * ── Perché è un componente a sé ───────────────────────────────────────
+ * L'involucro è quello delle altre due pagine corso (stessa sezione, stesso
+ * `.container.new-home-2.dj-course`, stesso `.section-title.new-home-2.dj-course`),
+ * ma l'`<h2>` ha una forma diversa. Sul sito:
  *
  *   <span>Your</span><span class="text-span-105"> Teacher.<br></span>A pioneer. A legend.
  *
  * cioè il grassetto (`.text-span-105`, peso 600) sta sulla PRIMA riga, sulla
  * sola parola " Teacher." (lo spazio iniziale è dentro lo span), e la seconda
- * riga è leggera. `TitoloDocentiCorso` impagina l'inverso — riga 1 leggera,
- * riga 2 in grassetto — e le sue props non permettono di ribaltarlo.
- * Componente separato, quindi, invece di toccare il condiviso.
+ * riga è leggera. Su `/dj-course` e `/producer-course` era l'inverso — riga 1
+ * leggera, riga 2 in grassetto — e lo faceva `TitoloDocentiCorso`, rimosso il
+ * 2026-09-15 insieme al carosello dei docenti (vedi `DocentiAcademy`). Questo
+ * resta perché `/mix-mastering-course` non ha né carosello né docenti da
+ * elencare: là il titolo è tutta la sezione.
  *
- * ── Misure (identiche a `TitoloDocentiCorso`, dal foglio Webflow) ─────
+ * ── Misure (dal foglio Webflow) ───────────────────────────────────────
  *   sezione                    padding-top 60 (50 sotto i 480), niente sotto
  *   .container.new-home-2.dj-course   max-width 1380 → 768 → 600, px 30,
  *                              a ≤479 px 0 e padding-bottom 0
