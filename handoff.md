@@ -1,7 +1,7 @@
 # HANDOFF: sito-ptdja
 
 > Aggiornare a fine sessione / prima di /clear e /compact. Leggere all'inizio.
-> Last updated: 2026-09-14
+> Last updated: 2026-09-15
 
 ## 🎯 Goal
 Rifare il sito Webflow di PTDJA in Next.js su Vercel, identico, in un repo separato per test. Intento completo in `desiderata.md`.
@@ -144,8 +144,19 @@ Server `next start -p 3000` rimasto acceso dalla sessione precedente: fermato. P
 
 **Anomalie del sito riprodotte, in aggiunta alle precedenti**: conteggi lezioni incoerenti fra desktop e mobile su tutte e tre le pagine corso (dj 222/130, producer 196/200, mix 41/24); "What you'll learn" diverso fra desktop e mobile su mix; lezioni duplicate nei capitoli 3 e 10 di producer; `container-31` (accordion "Adapts to You") invisibile a ogni breakpoint con i refusi "genra", "tequines", "trakcs"; sezione 6 di mix nascosta sopra 479 px e card interna mai visibile ("iRefine", "masters"); `id="sliderId"` ripetuto (3 volte su mix, 4 sulla home); "Student's Success Stories", "The Courses is designed", "Students' Trending Opportunities"; `lesson-hifhlights`; `og:url` con slash finale nei testi ma normalizzato da Next.
 
+## 🔒 Residui chiusi, sicurezza e gate di pubblicazione (Fable + agenti, 2026-09-15)
+
+**Residui condivisi chiusi** (commit `f938dec`): 5 pagine al pixel, le altre entro 17 px; play-get-signed fuori solo per DynTube su localhost, Feedspace variabile. Scoperte: mix-mastering ha FAQ e curriculum mobile **aperti al caricamento** sul sito (IX2 non applicato; `Faq tutteAperte`, `ContenutoCorso capitoliApertiAllInizio`, pillola e freccia restano nere come sul sito); `Reviews` mancava di `padding-top: 64px` su `.testimonial-slider-wrapper` (era il −64 costante); la riga bianca di 2 px sotto i capitoli chiusi c'è anche sul sito (`height: 0` con bordo), non va tolta; `text-base` di Tailwind impone interlinea 24 dove Webflow eredita il 170% del body (`text-[16px]`); l'header legacy a ≤479 è `position: absolute` e copre l'eyebrow di recess (riprodotto). `DomandaFaq.risposta` accetta anche righe ricche (`RigaTesto[]`).
+
+**Sicurezza** (commit `b85e8c2` e `df0b6a5`): Next **16.3.1 → 16.3.5** (due RCE, una nell'ottimizzazione immagini AVIF: da fare anche nel repo landing). Header su ogni risposta (nosniff, `X-Frame-Options SAMEORIGIN`, Referrer-Policy, HSTS, Permissions-Policy, `X-Robots-Tag noindex` finché `landingSlug()` vale `sito-test`), `poweredByHeader: false`, `remotePatterns` limitato al site ID Webflow. `robots.ts` legato a `landingSlug()`: sul dominio del brand apre la scansione e dichiara la sitemap da solo. CI con `permissions: contents: read` e action pinnate a SHA; `security.yml` (gitleaks + npm audit su radice e `scripts/`) e Dependabot. **`attribution.js` diverge dallo script Webflow**: tetto di 512 caratteri su ogni valore persistito (cookie bomb via `utm_*` da un link: 400/431 su sito, carrello e server GTM per la vittima), cookie nativo `_fbc`/`_fbp` codificato, `decodeURIComponent` protetto. **Da applicare anche allo script sul Webflow live**, i cookie sono condivisi. Verifiche: `scripts/_verifica-cookie-bomb.mjs`, `_verifica-attribuzione.mjs`, `_verifica-mixpanel.mjs`.
+
+**Audit Vibe Shield**: `/setup-security`, `/security-audit` (code-auditor, config-auditor, 2 finding-verifier) e `/pre-deploy` → **pass** su HEAD `df0b6a5`, 0/0/0 e 4 bassi aperti, report in `.vibe-shield/report.md` (ignorato da git). Nota operativa: `gate.py` include nell'impronta anche `.next/`: un `next build` dopo il `begin` invalida il pass; l'ordine giusto è build, poi `begin`, scanner, `pass`. Il pass dura 30 minuti: prima del push va rifatto `/pre-deploy`.
+
+**Bassi aperti, decisioni per Matteo**: F3 tracker senza consenso e URL completo negli eventi Mixpanel (ereditato; proposta: Clarity dietro finalità 4); F4 iframe VideoAsk con `allow` a `*` (restringere a `'src'` dopo verifica); CFG-02 CSP da costruire in report-only sull'URL di test; CFG-05 apex come redirect verso `www` nel pannello Vercel al cambio dominio. Più le decisioni già note: guardia hostname Mixpanel sull'URL di test, blocco Lead Generation da `?email`/`?uid`, redirect 301 da esportare da Webflow, visibilità del repo GitHub.
+
 ## 👉 Next steps (what I'd do next)
 1. ~~Estrazione~~ fatta. ~~Sei pagine semplici~~ fatte e committate (`8c8cd2d`).
-2. ~~Ondate A, B, C~~ fatte: le 11 pagine esistono, build e test verdi. In corso: passaggio unico sui residui condivisi (task #8), poi commit `fix(condivisi)` e nuovi screenshot.
-3. ~~Eventi Mixpanel, attribuzione, SEO~~ fatti. Resta: redirect 301 (export Webflow da Matteo).
-4. Vibe Shield (`/setup-security`, `/security-audit`, `/pre-deploy`), repo GitHub, deploy di test. Decisioni da chiedere a Matteo al deploy: guardia hostname Mixpanel; Clarity dietro consenso o no; blocco Lead Generation da `?email`/`?uid`.
+2. ~~Ondate A, B, C, residui condivisi~~ fatti: 11 pagine, build e test verdi (123 controlli), parità al pixel o entro 17 px.
+3. ~~Tracking, attribuzione, SEO, Vibe Shield~~ fatti: audit e pre-deploy **pass** su `df0b6a5`.
+4. **Pubblicazione di test**, serve Matteo: `! gh auth status`, `! vercel whoami`; creare `mat-music-group/ptdja-site` (visibilità da decidere) e collegare il progetto Vercel `ptdja-site`; `git remote add`, rifare `/pre-deploy` (il pass dura 30 minuti), push; poi `/post-deploy-check`, verifica `data-landing="sito-test"` e `X-Robots-Tag` sull'URL Vercel, Lighthouse mobile home Webflow contro Vercel.
+5. Decisioni aperte elencate sopra; redirect 301 da esportare da Webflow; aggiornare Next a 16.3.5 anche nel repo landing.
