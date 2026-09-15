@@ -761,14 +761,23 @@ function Capitolo({
         animate={{ height: aperto ? "auto" : 0 }}
         transition={{ duration: 0.3, ease: "easeInOut" }}
         aria-hidden={!aperto}
-        /* ⚠️ La riga bianca di 2px sotto un capitolo chiuso NON è un difetto
-           nostro: c'è anche sul sito. Il pannello è `.faq-item-content.program-section`
-           con `border: 1px solid #fff` e `box-sizing: border-box`, e
-           l'interazione IX2 gli scrive `height: 0px` invece di nasconderlo:
-           misurato sul DOM del riferimento il 15/09, `height: 2px` con il
-           bordo visibile su tutti e nove i capitoli. Togliendolo la sezione
-           usciva 18px più bassa dell'originale. Si riproduce. */
-        className="-mt-[40px] overflow-hidden rounded-b-media border border-solid border-bianco bg-sfondo"
+        /* ⚠️ DEVIAZIONE VOLUTA dal sito Webflow, richiesta di Matteo del
+           2026-09-15: il bordo si applica solo a capitolo aperto.
+           Sul sito la riga bianca di 2px sotto un capitolo chiuso c'è davvero,
+           e non era un difetto nostro: il pannello è
+           `.faq-item-content.program-section` con `border: 1px solid #fff` e
+           `box-sizing: border-box`, e l'interazione IX2 gli scrive
+           `height: 0px` invece di nasconderlo, quindi restano il bordo sopra e
+           quello sotto (misurato sul DOM del riferimento il 15/09: `height:
+           2px` su tutti e nove i capitoli). Era stata riprodotta di proposito.
+           Matteo la vuole via: con `border-0` a capitolo chiuso il pannello
+           collassa davvero a zero e la riga sparisce. Conseguenza dichiarata:
+           una pagina corso esce circa 18px più bassa del riferimento Webflow
+           (2px per capitolo chiuso). Con `capitoliApertiAllInizio` i capitoli
+           partono aperti e il bordo c'è, come deve. */
+        className={`-mt-[40px] overflow-hidden rounded-b-media border-solid border-bianco bg-sfondo ${
+          aperto ? "border" : "border-0"
+        }`}
       >
         {/* Chiave composta con l'indice, non il testo: su `/producer-course`
             il capitolo 3 ripete due lezioni identiche (lo fa il sito), e con

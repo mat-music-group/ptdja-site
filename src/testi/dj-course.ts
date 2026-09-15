@@ -360,14 +360,20 @@ export const DOCENTI = {
   ],
 } as const;
 
-/* ── Sezioni 6 e 7: il virtual tour, due volte ──────────────────────── */
+/* ── Sezione 6: il virtual tour ─────────────────────────────────────
+ *
+ * ⚠️ DEVIAZIONE VOLUTA dal sito Webflow, richiesta di Matteo del 2026-09-15.
+ * Sul sito la sezione è ripetuta due volte di fila (sezioni 6 e 7): la seconda
+ * copia ha l'occhiello "Virtual TOUR" (stesso testo con capitalizzazione
+ * diversa: il CSS lo rende maiuscolo, quindi a schermo non si vedeva) e la CTA
+ * verso il Typeform `https://form.typeform.com/to/eu83FgdN`. Qui la sezione è
+ * montata una volta sola, con la CTA verso il form su `start.`: i due campi
+ * della seconda copia sono stati tolti perché non aveva più senso tenerli
+ * senza nessun chiamante.
+ */
 
 export const VIRTUAL_TOUR = {
-  /* L'occhiello cambia capitalizzazione fra le due copie: "VIRTUAL TOUR" e
-     "Virtual TOUR". Il CSS lo rende maiuscolo, quindi a schermo non si vede,
-     ma nell'HTML è così e così resta. */
-  eyebrowPrima: "VIRTUAL TOUR",
-  eyebrowSeconda: "Virtual TOUR",
+  eyebrow: "VIRTUAL TOUR",
   titoloRiga1: "Take Our",
   titoloRiga2: "Virtual Tour",
   iframe: {
@@ -375,10 +381,7 @@ export const VIRTUAL_TOUR = {
     titolo: "Academy virtual tour teaser",
   },
   cta: "Unlock now",
-  /* Le due CTA puntano a due form diversi: la prima al form su `start.`, la
-     seconda a un Typeform. Duplicazione voluta del sito. */
-  hrefPrima: "https://start.petetong-djacademy.com/virtualtour-form",
-  hrefSeconda: "https://form.typeform.com/to/eu83FgdN",
+  href: "https://start.petetong-djacademy.com/virtualtour-form",
   sottotesto: "Fill in the form and unlock the virtual tour",
 } as const;
 

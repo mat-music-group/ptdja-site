@@ -38,6 +38,11 @@ import type { CSSProperties, ReactNode } from "react";
  * - Webflow monta una `.w-slider-aria-label` nascosta per lo screen reader;
  *   qui il ruolo lo fanno gli `aria-label` dei bottoni, che è la stessa
  *   informazione detta meglio.
+ * - ⚠️ `autoplay` non esiste sul sito: nessuno slider dell'HTML salvato ha
+ *   `data-autoplay`. È una DEVIAZIONE VOLUTA, richiesta di Matteo del
+ *   2026-09-15, oggi usata dal solo `SliderDocenti`. Chi non passa la prop ha
+ *   esattamente il comportamento di prima: gli slider dei corsi, delle success
+ *   stories, di "how it works" e dell'iPad restano manuali.
  */
 
 type PerVista = {
@@ -60,6 +65,19 @@ type ProprietaSlider = {
   readonly durata?: number;
   /** `data-infinite`: dall'ultima pagina si torna alla prima. */
   readonly infinito?: boolean;
+  /**
+   * Millisecondi fra un avanzamento e l'altro. **Assente = nessun autoplay**,
+   * cioè il comportamento di sempre. Non esiste su Webflow: vedi la nota in
+   * testa al file.
+   *
+   * Scorre di una pagina per volta e conta su `infinito` (default `true`) per
+   * tornare all'inizio; con `infinito: false` l'avanzamento si fermerebbe
+   * sull'ultima pagina. Si ferma da solo quando il puntatore è sopra lo
+   * slider, durante un touch, fuori dal viewport e con
+   * `prefers-reduced-motion: reduce`; riparte da zero dopo un click sulle
+   * frecce o sui pallini.
+   */
+  readonly autoplay?: number;
   /** Mostra le due frecce. */
   readonly frecce?: boolean;
   /** `data-hide-arrows`: nasconde la freccia quando non c'è più niente da quel lato. */
@@ -102,6 +120,7 @@ export function SliderWebflow({
   perVista = { desktop: 1 },
   durata = 500,
   infinito = true,
+  autoplay,
   frecce = true,
   nascondiFrecceAiBordi = false,
   pallini = true,
@@ -121,6 +140,21 @@ export function SliderWebflow({
   const [visibili, setVisibili] = useState(perVista.desktop);
   const [pagina, setPagina] = useState(0);
   const inizioTocco = useRef<number | null>(null);
+
+  /* ── Stato dell'autoplay ──────────────────────────────────────────────
+     Le condizioni che lo spengono stanno in quattro stati separati invece che
+     in un unico booleano "in pausa": si accendono e si spengono per conto
+     loro, e il mouse che esce non deve far ripartire uno slider che nel
+     frattempo è uscito dal viewport. Sono inerti finché `autoplay` è assente. */
+  const contenitore = useRef<HTMLDivElement | null>(null);
+  const [puntatoreSopra, setPuntatoreSopra] = useState(false);
+  const [toccoInCorso, setToccoInCorso] = useState(false);
+  const [nelViewport, setNelViewport] = useState(false);
+  const [motoRidotto, setMotoRidotto] = useState(false);
+  /* Cambia a ogni navigazione manuale: è la dipendenza che fa ripartire
+     l'attesa da zero invece di lasciare chi ha appena cliccato in mezzo al
+     conto precedente. */
+  const [daCapo, setDaCapo] = useState(0);
 
   useEffect(() => {
     const aggiorna = () =>
@@ -144,6 +178,70 @@ export function SliderWebflow({
     });
   };
 
+  /* L'intervallo chiama sempre l'ultima versione di `vai` passando da una ref:
+     così il timer non si azzera a ogni render (un resize del viewport, che
+     ridisegna `vai` con un `pagine` nuovo, non deve far ripartire il conto). */
+  const vaiRef = useRef(vai);
+  useEffect(() => {
+    vaiRef.current = vai;
+  });
+
+  /* Ogni navigazione manuale fa ripartire l'attesa da zero. */
+  const manuale = (azione: () => void) => {
+    azione();
+    setDaCapo((n) => n + 1);
+  };
+
+  /* `prefers-reduced-motion: reduce`: chi l'ha chiesto al sistema non vuole
+     cose che si muovono da sole. Lo stato parte `false` perché sul server il
+     media query non esiste; l'effetto lo corregge al montaggio e resta in
+     ascolto, che l'impostazione si cambia a pagina aperta. */
+  useEffect(() => {
+    if (!autoplay) return;
+    const query = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const aggiorna = () => setMotoRidotto(query.matches);
+    aggiorna();
+    query.addEventListener("change", aggiorna);
+    return () => query.removeEventListener("change", aggiorna);
+  }, [autoplay]);
+
+  /* Fuori dal viewport l'autoplay non parte: la home monta lo slider docenti
+     in fondo a una pagina da 12.000px, e tre slider che traslano dove nessuno
+     guarda sono solo lavoro sprecato. */
+  useEffect(() => {
+    if (!autoplay) return;
+    const nodo = contenitore.current;
+    if (!nodo) return;
+    if (typeof IntersectionObserver === "undefined") {
+      setNelViewport(true);
+      return;
+    }
+    const osservatore = new IntersectionObserver(
+      ([voce]) => setNelViewport(voce?.isIntersecting ?? false),
+      { threshold: 0 }
+    );
+    osservatore.observe(nodo);
+    return () => osservatore.disconnect();
+  }, [autoplay]);
+
+  /* Il timer vero. Se manca una delle condizioni non parte proprio: "in pausa"
+     non è uno stato del timer, è la sua assenza. Il `clearInterval` del
+     cleanup lo chiude allo smontaggio e a ogni cambio di condizione. */
+  useEffect(() => {
+    if (!autoplay || motoRidotto || !nelViewport || pagine <= 1) return;
+    if (puntatoreSopra || toccoInCorso) return;
+    const timer = window.setInterval(() => vaiRef.current(1), autoplay);
+    return () => window.clearInterval(timer);
+  }, [
+    autoplay,
+    motoRidotto,
+    nelViewport,
+    pagine,
+    puntatoreSopra,
+    toccoInCorso,
+    daCapo,
+  ]);
+
   const puoIndietro = infinito || paginaValida > 0;
   const puoAvanti = infinito || paginaValida < pagine - 1;
   const mostraSinistra =
@@ -160,14 +258,23 @@ export function SliderWebflow({
 
   return (
     <div
+      ref={contenitore}
       className={`relative ${className}`}
       role="region"
       aria-roledescription="carousel"
       aria-label={etichetta}
+      onMouseEnter={() => setPuntatoreSopra(true)}
+      onMouseLeave={() => setPuntatoreSopra(false)}
       onTouchStart={(e) => {
+        setToccoInCorso(true);
         inizioTocco.current = e.touches[0]?.clientX ?? null;
       }}
+      onTouchCancel={() => {
+        setToccoInCorso(false);
+        inizioTocco.current = null;
+      }}
       onTouchEnd={(e) => {
+        setToccoInCorso(false);
         const partenza = inizioTocco.current;
         inizioTocco.current = null;
         if (partenza === null) return;
@@ -207,7 +314,7 @@ export function SliderWebflow({
         <button
           type="button"
           aria-label="Previous"
-          onClick={() => vai(-1)}
+          onClick={() => manuale(() => vai(-1))}
           className={`absolute inset-y-0 left-0 z-[3] flex w-20 cursor-pointer items-center justify-center text-bianco ${classeFrecce}`}
         >
           <Chevron verso="sinistra" />
@@ -217,7 +324,7 @@ export function SliderWebflow({
         <button
           type="button"
           aria-label="Next"
-          onClick={() => vai(1)}
+          onClick={() => manuale(() => vai(1))}
           className={`absolute inset-y-0 right-0 z-[4] flex w-20 cursor-pointer items-center justify-center text-bianco ${classeFrecce}`}
         >
           <Chevron verso="destra" />
@@ -236,7 +343,7 @@ export function SliderWebflow({
               type="button"
               aria-label={`Show slide ${i + 1} of ${pagine}`}
               aria-current={i === paginaValida}
-              onClick={() => setPagina(i)}
+              onClick={() => manuale(() => setPagina(i))}
               style={{
                 width: diametroPallini,
                 height: diametroPallini,

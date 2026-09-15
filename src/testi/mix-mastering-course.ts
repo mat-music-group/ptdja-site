@@ -392,14 +392,20 @@ export const SLIDER_IPAD: readonly SlideIpad[] = [
   },
 ];
 
-/* ── Sezioni 9 e 10: il virtual tour, due volte ─────────────────────── */
+/* ── Sezione 9: il virtual tour ─────────────────────────────────────
+ *
+ * ⚠️ DEVIAZIONE VOLUTA dal sito Webflow, richiesta di Matteo del 2026-09-15.
+ * Sul sito la sezione è ripetuta due volte di fila (sezioni 9 e 10): la
+ * seconda copia ha l'occhiello "Virtual TOUR" (sopra i 480px il CSS lo rende
+ * maiuscolo e la differenza non si vede, sotto, dove `text-transform` torna
+ * `none`, si leggeva) e la CTA verso il Typeform
+ * `https://form.typeform.com/to/eu83FgdN`. Qui la sezione è montata una volta
+ * sola, con la CTA verso il form su `start.`: i due campi della seconda copia
+ * sono stati tolti perché non aveva più senso tenerli senza nessun chiamante.
+ */
 
 export const VIRTUAL_TOUR = {
-  /* L'occhiello cambia capitalizzazione fra le due copie: "VIRTUAL TOUR" e
-     "Virtual TOUR". Sopra i 480px il CSS lo rende maiuscolo e la differenza
-     non si vede; sotto, dove `text-transform` torna `none`, si legge. */
-  eyebrowPrima: "VIRTUAL TOUR",
-  eyebrowSeconda: "Virtual TOUR",
+  eyebrow: "VIRTUAL TOUR",
   titoloRiga1: "Take Our",
   titoloRiga2: "Virtual Tour",
   iframe: {
@@ -407,10 +413,7 @@ export const VIRTUAL_TOUR = {
     titolo: "Academy virtual tour teaser",
   },
   cta: "Unlock now",
-  /* Le due CTA puntano a due form diversi: la prima al form su `start.`, la
-     seconda a un Typeform. Duplicazione voluta del sito. */
-  hrefPrima: "https://start.petetong-djacademy.com/virtualtour-form",
-  hrefSeconda: "https://form.typeform.com/to/eu83FgdN",
+  href: "https://start.petetong-djacademy.com/virtualtour-form",
   sottotesto: "Fill in the form and unlock the virtual tour",
 } as const;
 

@@ -216,23 +216,21 @@ export default function MixMasteringCoursePage() {
       {/* ── 8. Lo slider dei tre passi del Reverse Funnel ──────────── */}
       <SliderIpad slide={SLIDER_IPAD} />
 
-      {/* ── 9 e 10. Il virtual tour, due volte, con due CTA diverse ── */}
+      {/* ── 9. Il virtual tour ──────────────────────────────────────
+          ⚠️ DEVIAZIONE VOLUTA dal sito Webflow, richiesta di Matteo del
+          2026-09-15. Sul sito questa sezione è montata due volte di fila: la
+          seconda ha l'occhiello "Virtual TOUR" e la CTA verso il Typeform
+          `form.typeform.com/to/eu83FgdN`. Qui resta solo la prima, quella che
+          porta al form su `start.`. I numeri di sezione dei commenti più sotto
+          continuano a contare le sezioni **del sito**, non i blocchi di questo
+          file: la 10 è il virtual tour rimosso. */}
       <VirtualTour
-        eyebrow={VIRTUAL_TOUR.eyebrowPrima}
+        eyebrow={VIRTUAL_TOUR.eyebrow}
         titoloRiga1={VIRTUAL_TOUR.titoloRiga1}
         titoloRiga2={VIRTUAL_TOUR.titoloRiga2}
         iframe={VIRTUAL_TOUR.iframe}
         cta={VIRTUAL_TOUR.cta}
-        href={VIRTUAL_TOUR.hrefPrima}
-        sottotesto={VIRTUAL_TOUR.sottotesto}
-      />
-      <VirtualTour
-        eyebrow={VIRTUAL_TOUR.eyebrowSeconda}
-        titoloRiga1={VIRTUAL_TOUR.titoloRiga1}
-        titoloRiga2={VIRTUAL_TOUR.titoloRiga2}
-        iframe={VIRTUAL_TOUR.iframe}
-        cta={VIRTUAL_TOUR.cta}
-        href={VIRTUAL_TOUR.hrefSeconda}
+        href={VIRTUAL_TOUR.href}
         sottotesto={VIRTUAL_TOUR.sottotesto}
       />
 

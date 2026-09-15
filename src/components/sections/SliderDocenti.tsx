@@ -37,6 +37,31 @@ import { SliderWebflow } from "@/components/ui/SliderWebflow";
  * divergenze.
  */
 
+/* ⚠️ DEVIAZIONE VOLUTA dal sito Webflow, richiesta di Matteo del 2026-09-15:
+ * il carosello dei docenti scorre da solo. Sul sito nessuno slider ha
+ * `data-autoplay`, si muove solo con le frecce o col dito.
+ *
+ * I due numeri, e perché questi:
+ *
+ * - 3500ms fra un avanzamento e l'altro. Una pagina di ritratti si guarda in
+ *   poco più di tre secondi: sotto i 3s il carosello diventa nervoso e non si
+ *   fa in tempo a fermarsi su una faccia, sopra i 4s chi scorre la pagina non
+ *   vede mai il movimento e l'autoplay non serve a niente. Le pagine da
+ *   scorrere sono poche (a desktop: 4 sulla home con 11 slide, 3 su
+ *   `/dj-course` con 8, 2 su `/producer-course` con 5), quindi il giro
+ *   completo resta breve.
+ * - 700ms di traslazione invece dei 500 di default. Con l'avanzamento
+ *   automatico il movimento va letto, non subito: 700ms su 3500 è un quinto
+ *   del ciclo, abbastanza per seguire le foto che scorrono e poco abbastanza
+ *   da non mangiarsi l'attesa. Vale anche per le frecce, che diventano un po'
+ *   più morbide.
+ *
+ * Lo slider si ferma da solo col puntatore sopra, durante un tocco, fuori dal
+ * viewport e con `prefers-reduced-motion: reduce`: la logica sta tutta in
+ * `SliderWebflow`. */
+const AUTOPLAY_MS = 3500;
+const DURATA_MS = 700;
+
 export type SlideDocente = {
   readonly src: string;
   readonly alt: string;
@@ -76,6 +101,8 @@ export function SliderDocenti({
         <SliderWebflow
           etichetta={etichetta}
           perVista={{ desktop: 1196 / 350, tablet: 1 }}
+          autoplay={AUTOPLAY_MS}
+          durata={DURATA_MS}
           pallini={false}
           className="flex h-full w-full items-center justify-start bg-sfondo px-[50px] py-[25px] 2xl:justify-around max-sm:overflow-hidden max-sm:pb-0 max-sm:pt-5"
           classeMask="w-full"
