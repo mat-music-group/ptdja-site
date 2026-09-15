@@ -45,8 +45,11 @@ export function LinkTrustpilot({
     <a
       href={href}
       target="_blank"
-      /* Nell'HTML Webflow c'è `target="_blank"` e basta: niente `rel`. Si copia
-         com'è, `noopener` compreso — cioè assente. */
+      /* Nell'HTML Webflow c'è `target="_blank"` e basta, senza `rel`. Qui si
+         aggiunge `noopener`: non cambia nulla di visibile né di tracciato, e
+         toglie alla pagina di destinazione il riferimento alla scheda di
+         origine (Vibe Shield, F5). */
+      rel="noopener"
       className={className}
       onClick={suClick}
     >

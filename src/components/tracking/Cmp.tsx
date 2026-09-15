@@ -38,14 +38,20 @@ import iubenda from "@/lib/iubenda.config.json";
  *   statunitense che questa configurazione ha attiva (`enableUspr`).
  * - `iubenda_cs.js`: il banner.
  */
+/* Come in `JsonLd`: un `<` nel JSON (per esempio `</script>` in un testo del
+   banner) chiuderebbe il tag in anticipo. Si neutralizza (Vibe Shield, F6). */
+function senzaMinore(valore: unknown): string {
+  return JSON.stringify(valore).replace(/</g, "\\u003c");
+}
+
 export function Cmp() {
   return (
     <>
       <script
         dangerouslySetInnerHTML={{
           __html: `var _iub = _iub || [];
-_iub.csConfiguration = ${JSON.stringify(iubenda.csConfiguration)};
-_iub.csLangConfiguration = ${JSON.stringify(iubenda.csLangConfiguration)};`,
+_iub.csConfiguration = ${senzaMinore(iubenda.csConfiguration)};
+_iub.csLangConfiguration = ${senzaMinore(iubenda.csLangConfiguration)};`,
         }}
       />
       <script src="https://cs.iubenda.com/autoblocking/3605700.js" />

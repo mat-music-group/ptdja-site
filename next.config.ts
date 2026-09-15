@@ -1,5 +1,7 @@
 import type { NextConfig } from "next";
 
+import { landingSlug } from "./src/lib/analytics.config";
+
 /*
  * Configurazione del sito PTDJA.
  *
@@ -43,6 +45,10 @@ const nextConfig: NextConfig = {
     root: import.meta.dirname,
   },
 
+  /* Niente `X-Powered-By: Next.js`: un'informazione gratis per chi cerca
+     bersagli per versione di framework (Vibe Shield, CFG-04). */
+  poweredByHeader: false,
+
   /*
    * Security header (Vibe Shield, /setup-security del 2026-09-15).
    *
@@ -58,10 +64,18 @@ const nextConfig: NextConfig = {
    * anche su altri hosting.
    */
   async headers() {
+    /* Sull'URL di test le pagine dichiarano anche `noindex`: `robots.txt`
+       ferma la scansione, non l'indicizzazione di un URL linkato da altri.
+       Stessa condizione di `src/app/robots.ts` (Vibe Shield, CFG-07). */
+    const noindex =
+      landingSlug() === "sito-test"
+        ? [{ key: "X-Robots-Tag", value: "noindex, nofollow" }]
+        : [];
     return [
       {
         source: "/(.*)",
         headers: [
+          ...noindex,
           { key: "X-Content-Type-Options", value: "nosniff" },
           { key: "X-Frame-Options", value: "SAMEORIGIN" },
           { key: "Referrer-Policy", value: "strict-origin-when-cross-origin" },
@@ -83,7 +97,14 @@ const nextConfig: NextConfig = {
       /* Gli asset del sito Webflow. Le immagini verranno scaricate in `public/`
          (piano, sezione 1), ma finché la migrazione degli asset non è completa
          una pagina può ancora puntare alla CDN di origine. */
-      { protocol: "https", hostname: "cdn.prod.website-files.com" },
+      /* Solo il sito Webflow PTDJA (il suo site ID apre ogni URL della CDN):
+         senza `pathname` l'ottimizzatore servirebbe le immagini di qualunque
+         sito Webflow a spese della nostra quota (Vibe Shield, CFG-06). */
+      {
+        protocol: "https",
+        hostname: "cdn.prod.website-files.com",
+        pathname: "/677f9e71c11a68b86359df57/**",
+      },
       /* Il muro di testimonianze Feedspace, presente su 6 delle 10 pagine. */
       { protocol: "https", hostname: "static.feedspace.io" },
     ],

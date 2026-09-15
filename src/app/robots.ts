@@ -1,32 +1,32 @@
 import type { MetadataRoute } from "next";
 
+import { landingSlug } from "@/lib/analytics.config";
+
 /*
- * Indicizzazione chiusa, e per ora è la scelta giusta.
+ * Indicizzazione legata all'ambiente, non a una riga da ricordarsi di cambiare.
  *
- * Questo repo vive su un URL di test (`*.vercel.app` fino al cambio dominio) e
- * ricostruisce pagina per pagina un sito che è già online e già indicizzato. Due
- * copie dello stesso contenuto, con gli stessi testi, sotto due domini diversi,
- * sono contenuto duplicato che fa concorrenza al sito vero: il danno non lo
- * prende la copia, lo prende l'originale.
+ * Finché il progetto vive su un URL di test (`*.vercel.app`, o un dominio che
+ * non è quello del brand) ricostruisce pagina per pagina un sito già online e
+ * già indicizzato: due copie dello stesso contenuto sotto due domini fanno
+ * concorrenza all'originale, e il danno lo prende il sito vero. Quindi scansione
+ * chiusa. `Disallow: /` impedisce la scansione, non l'indicizzazione (un URL può
+ * comparire lo stesso se qualcuno lo linka): per questo `next.config.ts` aggiunge
+ * anche `X-Robots-Tag: noindex, nofollow` nelle stesse condizioni. Le due cose
+ * servono insieme.
  *
- * ⚠️ DA APRIRE AL CAMBIO DOMINIO. Quando questo repo diventerà
- * `www.petetong-djacademy.com`, questo file va sostituito con l'equivalente del
- * `robots.txt` del sito Webflow (piano, sezione 4) e la sitemap va dichiarata.
- * Se resta com'è, il sito nuovo entra in produzione invisibile ai motori e alle
- * anteprime dei modelli, e il calo di organico arriva settimane dopo, quando è
- * difficile collegarlo a questa riga.
- *
- * `Disallow: /` impedisce la scansione, non l'indicizzazione: un URL può
- * comparire lo stesso se qualcuno lo linka. Per questo le pagine segnaposto
- * dichiarano anche `noindex` nei loro metadati. Le due cose servono insieme.
+ * Quando il dominio di produzione del progetto Vercel sarà quello del brand,
+ * `landingSlug()` vale `sito` (stessa condizione usata per il tracciamento) e
+ * questo file apre la scansione e dichiara la sitemap, senza modifiche al
+ * codice. Vibe Shield, CFG-07.
  */
 export default function robots(): MetadataRoute.Robots {
+  if (landingSlug() === "sito-test") {
+    return {
+      rules: [{ userAgent: "*", disallow: "/" }],
+    };
+  }
   return {
-    rules: [
-      {
-        userAgent: "*",
-        disallow: "/",
-      },
-    ],
+    rules: [{ userAgent: "*", allow: "/" }],
+    sitemap: "https://www.petetong-djacademy.com/sitemap.xml",
   };
 }

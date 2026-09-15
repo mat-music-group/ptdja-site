@@ -58,14 +58,33 @@
   };
 
   // ===== Utils (same storage scheme as v2: attr_* on 3 layers) =====
+  // ── Divergenza voluta dallo script Webflow (Vibe Shield 2026-09-15, F1 e F2) ──
+  // Sul sito live questi valori arrivano dall'indirizzo e finiscono in cookie di
+  // dominio radice senza limiti: quattro utm_* da ~4 KB ciascuna bastano a far
+  // rifiutare al server ogni richiesta della vittima (header Cookie oltre 8-16
+  // KB, risposta 400/431) verso sito, carrello e server GTM, finché non cancella
+  // i cookie. Qui ogni valore persistito è troncato a MAX_VALUE_LEN: nessun
+  // gclid, fbclid o utm legittimo si avvicina a quella lunghezza. Da applicare
+  // anche allo script sul Webflow live, perché i cookie sono condivisi.
+  var MAX_VALUE_LEN = 512;
+  function clamp(value) {
+    if (typeof value !== 'string') return value;
+    return value.length > MAX_VALUE_LEN ? value.slice(0, MAX_VALUE_LEN) : value;
+  }
+  // decodeURIComponent lancia su sequenze percentuali malformate (es. `%E0`):
+  // senza protezione l'intero boot() si fermava e la visita perdeva attribuzione
+  // e decorazione del carrello. In caso di errore si tiene il valore grezzo.
+  function safeDecode(v) {
+    try { return decodeURIComponent(v); } catch (e) { return v; }
+  }
   function getParam(name) {
     var m = window.location.search.match(new RegExp('[?&]' + name + '=([^&]*)'));
-    return m ? decodeURIComponent(m[1]) : null;
+    return m ? clamp(safeDecode(m[1])) : null;
   }
   function getCookie(name) {
     var esc = name.replace(/[.$?*|{}()[\]\\\/+^]/g, '\\$&');
     var m = document.cookie.match(new RegExp('(?:^|; )' + esc + '=([^;]*)'));
-    return m ? decodeURIComponent(m[1]) : null;
+    return m ? safeDecode(m[1]) : null;
   }
   function setRawCookie(name, value) {
     var d = new Date(); d.setTime(d.getTime() + COOKIE_DAYS * 24 * 60 * 60 * 1000);
@@ -74,6 +93,7 @@
   }
   function persist(key, value) {
     if (!value) return;
+    value = clamp(value);
     try { setRawCookie('attr_' + key, value); } catch (e) {}
     try { localStorage.setItem('attr_' + key, value); } catch (e) {}
     try { sessionStorage.setItem('attr_' + key, value); } catch (e) {}
@@ -170,7 +190,11 @@
   function setNativeCookie(name, value) {
     if (!value || getCookie(name)) return;
     var d = new Date(); d.setTime(d.getTime() + COOKIE_DAYS * 24 * 60 * 60 * 1000);
-    document.cookie = name + '=' + value +
+    // Codificato come in setRawCookie: un `;` dentro un fbclid controllato da
+    // un link non deve poter aggiungere attributi al cookie (Vibe Shield, F1).
+    // Per i valori legittimi (`fb.1.<ts>.<fbclid>`, `fb.1.<ts>.<random>`) la
+    // codifica non cambia un solo carattere.
+    document.cookie = name + '=' + encodeURIComponent(clamp(value)) +
       ';expires=' + d.toUTCString() + ';path=/;domain=' + COOKIE_DOMAIN + ';SameSite=Lax';
   }
   function ensureNativeMetaCookies() {
