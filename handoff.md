@@ -1,7 +1,7 @@
 # HANDOFF: sito-ptdja
 
 > Aggiornare a fine sessione / prima di /clear e /compact. Leggere all'inizio.
-> Last updated: 2026-09-15
+> Last updated: 2026-09-16
 
 ## 🎯 Goal
 Rifare il sito Webflow di PTDJA in Next.js su Vercel, identico, in un repo separato per test. Intento completo in `desiderata.md`.
@@ -180,9 +180,20 @@ Tre richieste applicate da un agente Opus, verificate e committate: (1) **un sol
 
 Seconda decisione di Matteo sui docenti: non lo slider Webflow in autoplay, ma **la sezione "The Academy Teachers" delle landing beginner** (`repo-start/src/components/sections.tsx`, `Teachers` + `TeacherCard`, titolo `TwoTone`, frecce `CarouselArrows`, dati `teachers[]` di `dj.ts` e `producer.ts`, foto `public/teachers/`). Portata come `src/components/sections/DocentiAcademy.tsx` con dati e foto copiati; montata su dj-course (lista DJ), producer-course (lista producer) e home (unione senza duplicati). `SliderDocenti` e `TitoloDocentiCorso` rimossi; `SliderWebflow.autoplay` resta disponibile ma non usato. Dettagli e altezze nel report dell'agente riportato sotto.
 
+## 🧭 Stato alla chiusura della sessione (2026-09-16, notte)
+
+**Dove siamo.** Fase 1 completa e online su `https://ptdja-site.vercel.app` (progetto Vercel `ptdja-site`, repo pubblico `mat-music-group/ptdja-site`, deploy automatico da `main`). HEAD `5c80921` più questo commit di documentazione. CI (contratto delle rotte) e Security checks (gitleaks con `.gitleaks.toml`, npm audit) verdi. Audit Vibe Shield e pre-deploy pass sul contenuto pubblicato (0 critici, 0 alti, 0 medi, 4 bassi aperti); report in `.vibe-shield/report.md`, non versionato.
+
+**Le 11 pagine** riproducono il Webflow al pixel o entro 20 px, con **quattro deviazioni volute da Matteo** (anche in `desiderata.md`): un solo Virtual Tour per pagina; niente riga bianca sotto i capitoli chiusi del curriculum; la sezione docenti è "The Academy Teachers" delle landing beginner (`DocentiAcademy`, dati in `src/testi/docenti.ts`, foto in `public/docenti/`); `SliderWebflow` ha una prop `autoplay` documentata e senza chiamanti. Anomalie del sito riprodotte e catalogate nelle sezioni precedenti.
+
+**Tracking e SEO**: eventi Mixpanel con stessi nomi e props, attribuzione verificata, `data-landing="sito-test"` sull'URL di test, `noindex` e robots chiusi finché `landingSlug()` vale `sito-test`, sitemap pronta. Next 16.3.5.
+
+**Come si lavora qui** (le trappole pagate): il guard Vibe Shield blocca `&&`, heredoc, `gh`, `vercel` e qualunque comando che contenga "vercel" o "deploy" (anche in un nome host o file); i comandi di pubblicazione li lancia Matteo con `!`; gli URL vanno letti da file (`SITO_URL_FILE`) o dal browser vero via estensione Chrome. Ordine per pubblicare: `next build` → `write-status.sh begin` → scanner → `pass` → `gate.py --check` → `begin --reuse` → extra → `pass` → `git push`. I subagenti Opus possono morire per il limite di spesa (429) e si riprendono con `SendMessage`. Il firewall di Vercel mette i client non browser dietro il "Security Checkpoint" dopo una raffica di richieste.
+
 ## 👉 Next steps (what I'd do next)
-1. ~~Estrazione~~ fatta. ~~Sei pagine semplici~~ fatte e committate (`8c8cd2d`).
-2. ~~Ondate A, B, C, residui condivisi~~ fatti: 11 pagine, build e test verdi (123 controlli), parità al pixel o entro 17 px.
-3. ~~Tracking, attribuzione, SEO, Vibe Shield~~ fatti: audit e pre-deploy **pass** su `df0b6a5`.
-4. ~~Repo GitHub, push, Vercel, post-deploy-check~~ fatti: online su `ptdja-site.vercel.app`. Restano: confronto Lighthouse con la home Webflow (PSI dal browser, quando risponde) e poi diagnosi della LCP a 22 s sulla home Vercel; verifica nel pannello Vercel del Firewall (Security Checkpoint); Dependabot potrebbe aprire PR.
-5. Decisioni aperte elencate sopra; redirect 301 da esportare da Webflow; aggiornare Next a 16.3.5 anche nel repo landing.
+1. **Confronto Lighthouse mobile** home Webflow contro home Vercel (PSI dal browser quando risponde, o API con chiave). Vercel home: performance 34, LCP 22,1 s. Poi diagnosi della LCP: immagini della hero `loading="lazy"` come su Webflow (probabile elemento LCP), muro di 69 foto con `sizes` largo, Wistia in autoplay, terze parti. Criterio: non peggiore del sito attuale.
+2. **Matteo, pannello Vercel → Firewall**: capire se il "Security Checkpoint" è la mitigazione automatica o "Attack Challenge Mode" acceso (in quel caso spegnerlo).
+3. **Decisioni di Matteo**: guardia hostname Mixpanel sull'URL di test (oggi gli eventi di prova finiscono nel progetto vero); Clarity e Mixpanel dietro consenso Iubenda o come sul sito (F3); blocco Lead Generation da `?email`/`?uid` (identify sui profili veri); permessi dell'iframe VideoAsk (F4); CSP in report-only sull'URL di test (CFG-02); apex come redirect verso `www` al cambio dominio (CFG-05).
+4. **Fuori da questo repo**: export dei redirect 301 da Webflow (Site settings → Publishing) e loro replica in `next.config.ts`; Next 16.3.5 anche nel repo landing; tetto di lunghezza dello script di attribuzione (`attribution.js`) da applicare nell'head del Webflow live.
+5. **Cambio dominio** (decisione a parte): con il dominio del brand su Vercel `landingSlug()` vale `sito`, robots e sitemap si aprono da soli, `data-landing` diventa `sito`; verificare cookie `attr_*` e `trk_vid` sul dominio radice e il flusso fino a Chargebee; Dependabot potrebbe intanto aprire PR.
+6. **Fase 2**: blog headless dal CMS Webflow; elenco delle 42 pagine fuori sitemap.

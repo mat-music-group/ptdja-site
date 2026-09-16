@@ -9,7 +9,7 @@
 - [x] Script `cb push v2.2` portato tal quale in un componente `Attribution` (stesse chiavi `attr_*`, stesso cookie domain, stessi `FIELD_MAP`).
 - [x] Refersion, Trustpilot bootstrap, vt-quiz.js come `next/script` con consenso dove serve.
 - [x] Font via `next/font/google`: Oswald, Lato, Geist, Inter.
-- [ ] Vibe Shield: `/setup-security` sul repo nuovo.
+- [x] Vibe Shield: `/setup-security` sul repo nuovo.
 
 ## 1. Estrazione dal sito Webflow (nessuna modifica al sito live)
 - [x] Per ognuna delle 10 pagine: HTML pubblicato salvato in `docs/webflow/<slug>.html`, CSS `mats-mubly.webflow.shared.*.css` salvato una volta.
@@ -45,11 +45,11 @@ Per ogni pagina: parità visiva desktop e mobile con lo screenshot di riferiment
 - [x] Slug identici, trailing slash come Webflow.
 
 ## 5. Pubblicazione di test
-- [ ] Repo GitHub `mat-music-group/<nome>` creato, progetto Vercel collegato, commit con identità verificabile.
-- [ ] `/security-audit` e `/pre-deploy` prima del primo push.
-- [ ] Sottodominio di test sul dominio del brand, verifica cookie `trk_vid` e `attr_*` sul dominio radice.
-- [ ] `/post-deploy-check`.
-- [ ] Lighthouse mobile prima (Webflow) e dopo (Vercel), stessa pagina, stesso giorno.
+- [x] Repo GitHub `mat-music-group/<nome>` creato, progetto Vercel collegato, commit con identità verificabile.
+- [x] `/security-audit` e `/pre-deploy` prima del primo push.
+- [ ] Sottodominio di test sul dominio del brand, verifica cookie `trk_vid` e `attr_*` sul dominio radice (oggi test su `ptdja-site.vercel.app`: i cookie di dominio radice non si scrivono, atteso).
+- [x] `/post-deploy-check`.
+- [ ] Lighthouse mobile prima (Webflow) e dopo (Vercel), stessa pagina, stesso giorno. Vercel home: 34, LCP 22,1 s (15/09); Webflow non misurato (PSI bloccata).
 
 ## Fase 2 (dopo)
 - [ ] Blog headless dal CMS Webflow (lista, articolo, autori, categorie), rich text con gli embed HTML custom degli articoli.
